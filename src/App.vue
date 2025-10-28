@@ -1,0 +1,4112 @@
+<template>
+  <div id="app">
+    <div className="flow-editor">
+      <!-- Header -->
+      <div className="flow-header">
+        <div className="app-logo-header">
+          <img src="./assets/images/logo.svg" alt="FlowChart Studio" className="logo-image" />
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div className="floating-sidebar">
+        <button className="sidebar-header sidebar-btn" @click="openSetting">
+          <img v-if="!isSetting" src="./assets/images/setting.svg" alt="setting" className="setting-icon" />
+          <img v-if="isSetting" src="./assets/images/setting-active.svg" alt="setting" className="setting-active-icon" />
+        </button>
+        <div className="sidebar-divider"></div>
+        <div className="sidebar-actions">
+          <button className="sidebar-btn">
+            <img src="./assets/images/menu-new.svg" alt="new" className="nav-icon" />
+            <div v-if="!isSetting" className="hover-menu-container">
+              <div className="hover-menu-list"> 
+                <button className="hover-menu-btn" @click="handleNewFile">建立新檔</button>
+              </div>
+            </div>
+          </button>
+          <button className="sidebar-btn">
+            <img src="./assets/images/menu-file.svg" alt="open" className="nav-icon" />
+            <div v-if="!isSetting" className="hover-menu-container">
+              <div className="hover-menu-list"> 
+                <button className="hover-menu-btn" @click="handleSaveFile">儲存檔案</button>
+                <button className="hover-menu-btn" @click="handleSaveAsFile">另存檔案</button>
+                <button className="hover-menu-btn" @click="handleLoadFile">讀取檔案</button>
+              </div>
+            </div>
+          </button>
+          <button className="sidebar-btn">
+            <img src="./assets/images/menu-pdf.svg" alt="pdf" className="nav-icon" />
+            <div v-if="!isSetting" className="hover-menu-container">
+              <div className="hover-menu-list"> 
+                <button className="hover-menu-btn">單線圖</button>
+              </div>
+            </div>
+          </button>
+          <button className="sidebar-btn">
+            <img src="./assets/images/menu-xlsx.svg" alt="xlsx" className="nav-icon" />
+            <div v-if="!isSetting" className="hover-menu-container">
+              <div className="hover-menu-list"> 
+                <button className="hover-menu-btn">Hierarchy</button>
+                <button className="hover-menu-btn">聚賢料表</button>
+                <button className="hover-menu-btn">台積料表</button>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Setting -->
+      <Setting :isOpen="isSetting" :settings="settings" @close="closeSetting" @save="handleSaveSetting" />
+
+      <!-- File Manager -->
+      <FileManager
+        :isOpen="isFileManagerOpen"
+        :currentData="currentFlowchartData"
+        :currentFilename="currentFilename"
+        ref="fileManagerRef"
+        @close="closeFileManager"
+        @save="handleFileManagerSave"
+        @load="handleFileManagerLoad"
+        @delete-file="handleFileManagerDelete"
+      />
+
+      <!-- Popup -->
+      <Popup
+        :visible="popupConfig.visible"
+        :title="popupConfig.title"
+        :message="popupConfig.message"
+        :buttons="popupConfig.buttons"
+        :showIcon="popupConfig.showIcon"
+        :closeOnOverlay="popupConfig.closeOnOverlay"
+        @close="closePopup"
+        @button-click="handlePopupButtonClick"
+      />
+
+      <!-- Canvas -->
+      <div className="flow-container">
+        <VueZoomable 
+          style="width: 100%; height: 100%;"
+          :initialZoom="1"
+          :wheelZoomStep="0.015"
+          :minZoom="0.1"
+          :maxZoom="3"
+        >
+          <div className="canvas-content">
+            <ConnectionLine 
+              :connections="lineConnections" 
+              @additional-icon-click="handleAdditionalIconClick"
+              @fa-icon-click="handleFaIconClick"
+            />
+            <div className="default-cards">
+              <!-- 所有模組組都使用 v-for 生成 -->
+              <template v-for="(moduleSet, setIndex) in allModuleSets" :key="`module-set-${setIndex}`">
+                <SourceInfoCard 
+                  :initialPosition="moduleSet.source.position"
+                  :cardData="moduleSet.source.data"
+                  :canDelete="canDeleteModule"
+                  @update-data="(data) => updateCardData(setIndex, 'source', data)"
+                  @add-module="handleAddModule"
+                  @add-branch-source="handleAddBranchSource"
+                  @delete-module="handleDeleteModule"
+                />
+                
+                <!-- 動態添加的閥件資訊卡片 -->
+                <template v-if="moduleSet.valveCards">
+                  <template v-for="(valveCard, valveIndex) in moduleSet.valveCards" :key="`valve-card-${setIndex}-${valveIndex}`">
+                    <ValveInfoCard 
+                      v-if="valveCard.type !== 'branch-valve'"
+                      :initialPosition="valveCard.position"
+                      @delete-valve="handleDeleteValve"
+                    />
+                  </template>
+                </template>
+                
+                <!-- 分支模組卡片 -->
+                <template v-if="moduleSet.branchModuleCards">
+                  <template v-for="(branchModule, branchModuleIndex) in moduleSet.branchModuleCards" :key="`branch-module-${setIndex}-${branchModuleIndex}`">
+                    <ValveInfoCard 
+                      :initialPosition="branchModule.valve.position"
+                      :cardData="branchModule.valve.data"
+                      :isBranchModule="true"
+                      :module-set-index="setIndex"
+                      :branch-module-index="branchModuleIndex"
+                      @update-data="(data) => updateBranchValveData(setIndex, branchModuleIndex, data)"
+                      @delete-valve="handleDeleteBranchValve"
+                    />
+                    <!-- 當 enableValve 為 true 時才顯示後方區塊 -->
+                    <template v-if="branchModule.valve.data?.enableValve">
+                      <PipelineInfoCard 
+                        :initialPosition="branchModule.pipeline.position"
+                        :cardData="branchModule.pipeline.data"
+                        :isBranchModule="true"
+                        @update-data="(data) => updateBranchPipelineData(setIndex, branchModuleIndex, data)"
+                      />
+                      <FloorInfoCard 
+                        :initialPosition="branchModule.floor.position"
+                        :cardData="branchModule.floor.data"
+                        :isBranchModule="true"
+                        @update-data="(data) => updateBranchFloorData(setIndex, branchModuleIndex, data)"
+                      />
+                      <!-- 分支 Panel+Equipment 群組 -->
+                      <template v-for="(panelEquipmentGroup, groupIndex) in branchModule.panelEquipmentGroups" :key="`branch-panel-equipment-${setIndex}-${branchModuleIndex}-${groupIndex}`">
+                        <PanelInfoCard 
+                          :initialPosition="panelEquipmentGroup.panel.position"
+                          :cardData="panelEquipmentGroup.panel.data"
+                          :isBranchModule="true"
+                          @update-data="(data) => updateBranchPanelData(setIndex, branchModuleIndex, groupIndex, data)"
+                        />
+                        <EquipmentInfoCard 
+                          :initialPosition="panelEquipmentGroup.equipment.position"
+                          :cardData="panelEquipmentGroup.equipment.data"
+                          :isBranchModule="true"
+                          @update-data="(data) => updateBranchEquipmentData(setIndex, branchModuleIndex, groupIndex, data)"
+                        />
+                        <!-- 額外的設備卡片 -->
+                        <template v-if="panelEquipmentGroup.additionalEquipmentCards">
+                          <EquipmentInfoCard 
+                            v-for="(additionalCard, cardIndex) in panelEquipmentGroup.additionalEquipmentCards" 
+                            :key="`branch-additional-equipment-${setIndex}-${branchModuleIndex}-${groupIndex}-${cardIndex}`"
+                            :initialPosition="additionalCard.position"
+                            :isBranchModule="true"
+                          />
+                        </template>
+                      </template>
+                    </template>
+                  </template>
+                </template>
+                
+                <!-- 分支源頭資訊卡片 -->
+                <template v-if="moduleSet.branchSourceCards">
+                  <BranchSourceInfoCard 
+                    v-for="(branchCard, branchIndex) in moduleSet.branchSourceCards" 
+                    :key="`branch-source-card-${setIndex}-${branchIndex}`"
+                    :initialPosition="branchCard.position"
+                    :cardData="branchCard.data"
+                    @update-data="(data) => updateBranchSourceData(setIndex, branchIndex, data)"
+                    @delete-branch-source="handleDeleteBranchSource"
+                  />
+                </template>
+                
+                <PipelineInfoCard 
+                  :initialPosition="moduleSet.pipeline.position" 
+                  :cardData="moduleSet.pipeline.data"
+                  @update-data="(data) => updateCardData(setIndex, 'pipeline', data)"
+                />
+                <FloorInfoCard 
+                  :initialPosition="moduleSet.floor.position"
+                  :cardData="moduleSet.floor.data"
+                  @update-data="(data) => updateCardData(setIndex, 'floor', data)"
+                />
+                
+                <!-- Panel+Equipment 群組使用 v-for 生成 -->
+                <template v-for="(panelEquipmentGroup, groupIndex) in moduleSet.panelEquipmentGroups" :key="`panel-equipment-group-${setIndex}-${groupIndex}`">
+                  <PanelInfoCard 
+                    :initialPosition="panelEquipmentGroup.panel.position"
+                    :cardData="panelEquipmentGroup.panel.data"
+                    @update-data="(data) => updatePanelData(setIndex, groupIndex, data)"
+                  />
+                  <!-- Panel 和 Equipment 之間的閥件 -->
+                  <ValveInfoCard 
+                    v-if="panelEquipmentGroup.valve"
+                    :initialPosition="panelEquipmentGroup.valve.position"
+                    :cardData="panelEquipmentGroup.valve.data"
+                    :isPanelEquipmentValve="true"
+                    @update-data="(data) => updatePanelEquipmentValveData(setIndex, groupIndex, data)"
+                  />
+                  <EquipmentInfoCard 
+                    :initialPosition="panelEquipmentGroup.equipment.position"
+                    :cardData="panelEquipmentGroup.equipment.data"
+                    @update-data="(data) => updateEquipmentData(setIndex, groupIndex, data)"
+                  />
+                  <!-- 額外的設備卡片 -->
+                  <template v-if="panelEquipmentGroup.additionalEquipmentCards">
+                    <EquipmentInfoCard 
+                      v-for="(additionalCard, cardIndex) in panelEquipmentGroup.additionalEquipmentCards" 
+                      :key="`additional-equipment-${setIndex}-${groupIndex}-${cardIndex}`"
+                      :initialPosition="additionalCard.position" 
+                    />
+                  </template>
+                </template>
+              </template>
+            </div>
+          </div>
+        </VueZoomable>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import Setting from './components/Setting.vue'
+import FileManager from './components/FileManager.vue'
+import ConnectionLine from './components/ConnectionLine.vue'
+import SourceInfoCard from './components/FlowCards/SourceInfoCard.vue'
+import BranchSourceInfoCard from './components/FlowCards/BranchSourceInfoCard.vue'
+import PipelineInfoCard from './components/FlowCards/PipelineInfoCard.vue'
+import FloorInfoCard from './components/FlowCards/FloorInfoCard.vue'
+import PanelInfoCard from './components/FlowCards/PanelInfoCard.vue'
+import EquipmentInfoCard from './components/FlowCards/EquipmentInfoCard.vue'
+import ValveInfoCard from './components/FlowCards/ValveInfoCard.vue'
+import Popup from './components/Popup.vue'
+import { VueZoomable } from 'vue-zoomable'
+import 'vue-zoomable/dist/style.css'
+
+const CARD_WIDTH = 232
+const CARD_HEIGHT_OFFSET = 150
+const MODULE_SPACING = 150 // 模組之間的間距
+const SOURCE_CARD_HEIGHT = 713 // 源頭資訊卡片高度
+const BRANCH_SPACING = 48 // 分支卡片間距
+const PANEL_EQUIPMENT_GROUP_SPACING = 150 // Panel+Equipment 群組之間的垂直間距
+const FIRST_BRANCH_VALVE_SPACING = 45 // 第一個分支閥件與主位置之間的垂直間距
+const BRANCH_VALVE_SPACING = 410 // 分支閥件之間的垂直間距（比 Panel+Equipment 群組間距大，避免重疊）
+
+export default {
+  name: 'App',
+  components: {
+    Setting,
+    FileManager,
+    ConnectionLine,
+    SourceInfoCard,
+    BranchSourceInfoCard,
+    PipelineInfoCard,
+    FloorInfoCard,
+    PanelInfoCard,
+    EquipmentInfoCard,
+    ValveInfoCard,
+    Popup,
+    VueZoomable
+  },
+  data() {
+    return {
+      isSetting: false,
+      isDefault: false,
+      isFileManagerOpen: false,
+      isSaveAsMode: false,
+      // 當前檔案名稱
+      currentFilename: '',
+      currentFileId: null,
+      // 待讀取的檔案數據
+      pendingLoadData: null,
+      // Popup 相關狀態
+      popupConfig: {
+        visible: false,
+        title: '',
+        message: '',
+        buttons: [],
+        showIcon: true,
+        closeOnOverlay: true
+      },
+      // 所有模組組（包括原始默認模組和動態添加的模組）
+      // 初始化為空陣列，只有當用戶在設定中儲存時才會添加預設數據
+      allModuleSets: [],
+      // 設定資料
+      settings: {
+        customer: '',
+        vendorInfo: '',
+        surveySupervisor: '',
+        surveyDate: '',
+        machineName: '',
+        locationId: '',
+        code: '',
+        engineerContact: '',
+        constructionVendor: '',
+        drawingDate: '',
+        notes: '',
+        hierarchyType: 'specialGas'
+      }
+    }
+  },
+  computed: {
+    currentFlowchartData() {
+      return {
+        allModuleSets: this.allModuleSets,
+        settings: this.settings
+      };
+    },
+    
+    lineConnections() {
+      const connections = []
+      
+      // 所有模組組的連接線
+      this.allModuleSets.forEach((moduleSet, setIndex) => {
+        moduleSet.connections.forEach((conn, connIndex) => {
+          // 檢查是否為分支閥件相關連接且 enableValve 為 false
+          if (conn.branchModuleIndex !== undefined) {
+            const branchModule = moduleSet.branchModuleCards[conn.branchModuleIndex];
+            // 如果 enableValve 為 false，隱藏所有與分支後方區塊相關的連接線
+            if (branchModule && branchModule.valve.data && !branchModule.valve.data.enableValve) {
+              // 檢查連接線是否與分支後方區塊相關
+              const isFromBranchCard = conn.from === 'branch-valve' || conn.from === 'branch-pipeline' || 
+                                        conn.from === 'branch-floor' || conn.from === 'branch-panel' || 
+                                        conn.from === 'branch-equipment';
+              const isToBranchCard = conn.to === 'branch-valve' || conn.to === 'branch-pipeline' || 
+                                      conn.to === 'branch-floor' || conn.to === 'branch-panel' || 
+                                      conn.to === 'branch-equipment' || conn.to === 'branch-additional-equipment';
+              
+              // 如果是分支區域內的連接線（從分支卡片到分支卡片），則跳過
+              if (isFromBranchCard && isToBranchCard) {
+                return;
+              }
+            }
+          }
+          
+          let fromCard, toCard
+          
+          // 處理不同的卡片類型
+          if (conn.from === 'additional-icon') {
+            // 使用自訂的起始位置
+            fromCard = { position: conn.fromPosition }
+          } else if (conn.from === 'panel-equipment-connection' || conn.from === 'branch-panel-equipment-connection' || conn.from === 'panel-equipment-valve') {
+            // 額外設備卡片連接線的起始位置（包括從閥件出發的情況）
+            fromCard = { position: conn.fromPosition }
+          } else if (conn.from === 'branch-source-connection') {
+            // 分支源頭資訊連接線的起始位置
+            fromCard = { position: conn.fromPosition }
+          } else if (conn.from === 'valve') {
+            // 對於 valve，從 valveCards 陣列中獲取
+            const valveIndex = conn.valveCardIndex !== undefined ? conn.valveCardIndex : 0
+            fromCard = { position: moduleSet.valveCards[valveIndex].position }
+          } else if (conn.from === 'branch-valve') {
+            // 對於 branch-valve，從 valveCards 陣列中獲取
+            const branchValveIndex = conn.branchValveCardIndex !== undefined ? conn.branchValveCardIndex : 0
+            fromCard = { position: moduleSet.valveCards[branchValveIndex].position }
+          } else if (conn.from === 'branch-pipeline' || conn.from === 'branch-floor') {
+            // 對於分支模組的基本卡片，從 branchModuleCards 陣列中獲取
+            const branchModuleIndex = conn.branchModuleIndex !== undefined ? conn.branchModuleIndex : 0
+            fromCard = { position: moduleSet.branchModuleCards[branchModuleIndex][conn.from.replace('branch-', '')].position }
+          } else if (conn.from === 'branch-panel' || conn.from === 'branch-equipment') {
+            // 對於分支模組的 panel/equipment，從 panelEquipmentGroups 陣列中獲取
+            const branchModuleIndex = conn.branchModuleIndex !== undefined ? conn.branchModuleIndex : 0
+            const groupIndex = conn.panelEquipmentGroupIndex !== undefined ? conn.panelEquipmentGroupIndex : 0
+            const cardType = conn.from.replace('branch-', '')
+            fromCard = { position: moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex][cardType].position }
+          } else if (conn.from === 'panel' || conn.from === 'equipment') {
+            // 對於 panel 和 equipment，根據 groupIndex 獲取對應的群組
+            const groupIndex = conn.groupIndex !== undefined ? conn.groupIndex : 0
+            if (conn.fromGroupIndex !== undefined) {
+              // 從上一個群組獲取 equipment
+              fromCard = moduleSet.panelEquipmentGroups[conn.fromGroupIndex][conn.from]
+            } else {
+              // 從當前群組獲取
+              fromCard = moduleSet.panelEquipmentGroups[groupIndex][conn.from]
+            }
+          } else {
+            // 對於 source, pipeline, floor，直接從 moduleSet 獲取
+            fromCard = moduleSet[conn.from]
+          }
+          
+          if (conn.to === 'additional-equipment' || conn.to === 'branch-additional-equipment') {
+            // 額外設備卡片
+            if (conn.branchModuleIndex !== undefined) {
+              // 分支額外設備卡片
+              const branchModuleIndex = conn.branchModuleIndex
+              const groupIndex = conn.panelEquipmentGroupIndex !== undefined ? conn.panelEquipmentGroupIndex : 0
+              const equipmentCardIndex = conn.equipmentCardIndex !== undefined ? conn.equipmentCardIndex : 0
+              toCard = { position: moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].additionalEquipmentCards[equipmentCardIndex].position }
+            } else {
+              // 主額外設備卡片
+              const groupIndex = conn.groupIndex !== undefined ? conn.groupIndex : 0
+              const equipmentCardIndex = conn.equipmentCardIndex !== undefined ? conn.equipmentCardIndex : 0
+              toCard = { position: moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[equipmentCardIndex].position }
+            }
+          } else if (conn.to === 'branch-source') {
+            // 分支源頭資訊卡片
+            const branchIndex = conn.branchCardIndex !== undefined ? conn.branchCardIndex : 0
+            toCard = { position: moduleSet.branchSourceCards[branchIndex].position }
+          } else if (conn.to === 'valve') {
+            // 對於 valve，從 valveCards 陣列中獲取
+            const valveIndex = conn.valveCardIndex !== undefined ? conn.valveCardIndex : 0
+            toCard = { position: moduleSet.valveCards[valveIndex].position }
+          } else if (conn.to === 'branch-valve') {
+            // 對於 branch-valve，從 valveCards 陣列中獲取
+            const branchValveIndex = conn.branchValveCardIndex !== undefined ? conn.branchValveCardIndex : 0
+            toCard = { position: moduleSet.valveCards[branchValveIndex].position }
+          } else if (conn.to === 'branch-pipeline' || conn.to === 'branch-floor') {
+            // 對於分支模組的基本卡片，從 branchModuleCards 陣列中獲取
+            const branchModuleIndex = conn.branchModuleIndex !== undefined ? conn.branchModuleIndex : 0
+            toCard = { position: moduleSet.branchModuleCards[branchModuleIndex][conn.to.replace('branch-', '')].position }
+          } else if (conn.to === 'branch-panel' || conn.to === 'branch-equipment') {
+            // 對於分支模組的 panel/equipment，從 panelEquipmentGroups 陣列中獲取
+            const branchModuleIndex = conn.branchModuleIndex !== undefined ? conn.branchModuleIndex : 0
+            const groupIndex = conn.panelEquipmentGroupIndex !== undefined ? conn.panelEquipmentGroupIndex : 0
+            const cardType = conn.to.replace('branch-', '')
+            toCard = { position: moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex][cardType].position }
+          } else if (conn.to === 'panel-equipment-valve') {
+            // 對於 panel-equipment-valve，根據 groupIndex 獲取對應的群組中的 valve
+            const groupIndex = conn.groupIndex !== undefined ? conn.groupIndex : 0
+            if (moduleSet.panelEquipmentGroups[groupIndex] && moduleSet.panelEquipmentGroups[groupIndex].valve) {
+              toCard = { position: moduleSet.panelEquipmentGroups[groupIndex].valve.position }
+            } else {
+              // 如果 valve 不存在，返回一個空對象作為占位符
+              toCard = { position: { x: 0, y: 0 } }
+            }
+          } else if (conn.to === 'panel' || conn.to === 'equipment') {
+            // 對於 panel 和 equipment，根據 groupIndex 獲取對應的群組
+            const groupIndex = conn.groupIndex !== undefined ? conn.groupIndex : 0
+            toCard = moduleSet.panelEquipmentGroups[groupIndex][conn.to]
+          } else {
+            // 對於 source, pipeline, floor，直接從 moduleSet 獲取
+            toCard = moduleSet[conn.to]
+          }
+          
+          // 計算連接線的起始和結束位置
+          let fromX, fromY, toX, toY
+          
+          if (conn.from === 'branch-source-connection') {
+            // 分支源頭資訊連接線使用自定義起始位置
+            if (conn.fromPosition) {
+              fromX = conn.fromPosition.x
+              fromY = conn.fromPosition.y
+            } else {
+              console.warn('Missing fromPosition for branch-source connection:', conn);
+              return;
+            }
+          } else if (conn.from === 'panel-equipment-connection' || conn.from === 'branch-panel-equipment-connection' || conn.from === 'panel-equipment-valve') {
+            // 額外設備卡片連接線使用自定義起始位置（包括從閥件出發的情況）
+            if (conn.fromPosition) {
+              fromX = conn.fromPosition.x
+              fromY = conn.fromPosition.y
+            } else {
+              console.warn('Missing fromPosition for connection:', conn);
+              return; // 跳過此連接線
+            }
+          } else if (conn.from === 'source' && conn.fromPosition && conn.to === 'branch-valve') {
+            // 分支閥件連接線使用自定義起始位置（源頭資訊到閥件資訊的連接線上）
+            fromX = conn.fromPosition.x
+            fromY = conn.fromPosition.y
+          } else if (conn.from === 'valve' && conn.fromPosition) {
+            // 其他閥件連接線使用自定義起始位置
+            fromX = conn.fromPosition.x
+            fromY = conn.fromPosition.y
+          } else if (conn.from === 'branch-floor' && conn.fromPosition) {
+            // 分支 floor 連接線使用自定義起始位置（add icon 右側）
+            fromX = conn.fromPosition.x
+            fromY = conn.fromPosition.y
+          } else {
+            // 其他連接線使用標準計算
+            if (fromCard && fromCard.position) {
+              fromX = fromCard.position.x + CARD_WIDTH
+              fromY = fromCard.position.y + CARD_HEIGHT_OFFSET
+            } else {
+              console.warn('Invalid fromCard for connection:', conn);
+              return; // 跳過此連接線
+            }
+          }
+          
+          if (conn.to === 'additional-equipment' || conn.to === 'branch-additional-equipment') {
+            // 額外設備卡片連接線使用自定義結束位置
+            if (conn.toPosition) {
+              toX = conn.toPosition.x
+              toY = conn.toPosition.y
+            } else {
+              console.warn('Missing toPosition for additional-equipment connection:', conn);
+              return;
+            }
+          } else if (conn.to === 'branch-source') {
+            // 分支源頭資訊連接線使用自定義結束位置
+            if (conn.toPosition) {
+              toX = conn.toPosition.x
+              toY = conn.toPosition.y
+            } else {
+              console.warn('Missing toPosition for branch-source connection:', conn);
+              return;
+            }
+          } else if (conn.to === 'branch-valve' && conn.toPosition) {
+            // 分支閥件連接線使用自定義結束位置（分支閥件卡片左側）
+            toX = conn.toPosition.x
+            toY = conn.toPosition.y
+          } else {
+            // 其他連接線使用標準計算
+            if (toCard && toCard.position) {
+              toX = toCard.position.x
+              toY = toCard.position.y + CARD_HEIGHT_OFFSET
+            } else {
+              // 如果 toCard 無效，跳過此連接線
+              console.warn('Invalid toCard for connection:', conn);
+              return; // 在 forEach 中使用 return 跳過當前項
+            }
+          }
+          
+          connections.push({
+            id: `line-${setIndex}-${connIndex}`,
+            from: {
+              x: fromX,
+              y: fromY
+            },
+            to: {
+              x: toX,
+              y: toY
+            },
+            showAdditionalIcon: conn.showAdditionalIcon,
+            showFaIcon: conn.showFaIcon,
+            isBranchSource: conn.from === 'branch-source-connection', // 標識分支源頭資訊連接線
+            isBranchValve: conn.from === 'source' && conn.to === 'branch-valve', // 標識分支閥件連接線
+            isAdditionalEquipment: conn.from === 'panel-equipment-connection' || conn.from === 'branch-panel-equipment-connection' || conn.from === 'panel-equipment-valve' // 標識額外設備卡片連接線
+          })
+        })
+      })
+      
+      return connections
+    },
+    
+    // 檢查是否可以刪除模組（至少需要保留一個模組組）
+    canDeleteModule() {
+      return this.allModuleSets.length > 1;
+    }
+  },
+  methods: {
+    // ==================== 設置相關方法 ====================
+    openSetting() {
+      if (this.allModuleSets.length > 0) {
+        this.isSetting = !this.isSetting
+      } 
+    },
+    
+    closeSetting() {
+      this.isSetting = false;
+    },
+
+    resetAll() {
+      // 重置當前畫布
+      this.allModuleSets = [];
+      this.currentFileId = null;
+      this.currentFilename = ''; // 重置為預設名稱
+      // 重置設定資料
+      this.settings = {
+        customer: '',
+        vendorInfo: '',
+        surveySupervisor: '',
+        surveyDate: '',
+        machineName: '',
+        locationId: '',
+        code: '',
+        engineerContact: '',
+        constructionVendor: '',
+        drawingDate: '',
+        notes: '',
+        hierarchyType: 'specialGas'
+      };
+      this.isSetting = true
+    },
+    
+    // ==================== 新建檔案方法 ====================
+    handleNewFile() {
+      // 判斷是否有單線圖
+      const hasFlowchart = this.allModuleSets.length > 0;
+      
+      if (hasFlowchart) {
+        // 判斷是否為未儲存的檔案
+        const isUnsaved = this.currentFileId === null;
+        const isExistingFile = this.currentFileId !== null && this.currentFilename !== '';
+        
+        let title, message;
+        
+        if (isUnsaved) {
+          // 未儲存的新檔案
+          title = '請先儲存當前畫布';
+          message = '將開啟新畫布。<br>是否在關閉前儲存當前畫布?';
+        } else if (isExistingFile) {
+          // 已儲存的舊檔
+          title = '請先儲存當前檔案';
+          message = `將開啟新畫布。<br>是否在關閉前儲存變更至檔案「${this.currentFilename}」?`;
+        } else {
+          // 其他情況（不太可能發生）
+          title = '請先儲存當前檔案';
+          message = '將開啟新畫布。<br>是否在關閉前儲存當前畫布?';
+        }
+        
+        this.showPopup({
+          title,
+          message,
+          buttons: [
+            {
+              text: '否',
+              class: 'default',
+              action: () => {
+                this.closePopup();
+                this.resetAll();
+              }
+            },
+            {
+              text: '是',
+              class: 'primary',
+              action: () => {
+                if (isUnsaved) {
+                  // 未儲存的新檔案，打開檔案管理器
+                  this.openFileManager();
+                } else if (isExistingFile) {
+                  // 已儲存的舊檔，直接更新
+                  this.updateFile();
+                  this.resetAll();
+                }
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      } 
+
+
+
+      this.resetAll();
+    },
+    
+    handleSaveSetting(data) {
+      console.log('保存數據:', data);
+      // 更新設定資料
+      this.settings = { ...data };
+      // 如果 allModuleSets 為空，添加預設數據
+      if (this.allModuleSets.length === 0) {
+        this.isDefault = true;
+        this.allModuleSets = this.createDefaultModuleSets();
+      }
+    },
+
+    // ==================== 初始化和設定方法 ====================
+    /**
+     * 創建預設模組組
+     * @returns {Array} 預設模組組陣列
+     */
+    createDefaultModuleSets() {
+      return [
+        {
+          id: 'default-module-set',
+          source: {
+            position: { x: 100, y: 80 },
+            data: {
+              title: '',
+              pipelineType: '單套管',
+              gasType: '',
+              valveNumber: '',
+              sourceSize: '',
+              doubleSleeveSize: '',
+              connectorSpec: 'WELD',
+              locationInfo: '',
+              heatInsulation: false
+            }
+          },
+          pipeline: {
+            position: { x: 520, y: 80 },
+            data: {
+              length: '',
+              material: 'NA'
+            }
+          },
+          floor: {
+            position: { x: 790, y: 80 },
+            data: {
+              sourceFloor: '',
+              equipmentFloor: ''
+            }
+          },
+          // 閥件卡片
+          valveCards: [],
+          // 分支源頭資訊卡片
+          branchSourceCards: [],
+          // Panel+Equipment 群組
+          panelEquipmentGroups: [
+            {
+              id: 'panel-equipment-group-0',
+              panel: {
+                position: { x: 1120, y: 80 },
+                data: {
+                  enablePanel: true,
+                  valve: '',
+                  size: '',
+                  valveConnector: '',
+                  regulator: false,
+                  pressureGauge: 'none',
+                  backPipelineType: ''
+                }
+              },
+              equipment: {
+                position: { x: 1550, y: 80 },
+                data: {
+                  gasType: '',
+                  size: '',
+                  connector: '',
+                  connectionName: '',
+                  threeInOne: ''
+                }
+              },
+              additionalEquipmentCards: []
+            }
+          ],
+          // 連接線配置
+          connections: [
+            { 
+              from: 'source', 
+              to: 'pipeline',
+              showAdditionalIcon: false,
+              showFaIcon: true
+            },
+            { 
+              from: 'pipeline', 
+              to: 'floor',
+              showAdditionalIcon: false,
+              showFaIcon: false
+            },
+            { 
+              from: 'floor', 
+              to: 'panel',
+              showAdditionalIcon: true,
+              showFaIcon: false
+            },
+            { 
+              from: 'panel', 
+              to: 'equipment',
+              showAdditionalIcon: true,
+              showFaIcon: true
+            }
+          ]
+        }
+      ];
+    },
+
+    // ==================== 檔案管理方法 ====================
+    /**
+     * 處理儲存檔案事件
+     */
+    handleSaveFile() {
+      // 1. 檢查是否有單線圖數據
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+      
+      // 2. 判斷是否為新檔案
+      if (!this.currentFileId) {
+        // 如果是新檔案，直接打開另存的彈窗（檔案管理器）
+        this.handleSaveAsFile();
+      } else {
+        // 如果是舊檔案，顯示確認儲存彈窗
+        this.showSaveFilePopup();
+      }
+    },
+    
+    /**
+     * 處理另存檔案事件
+     */
+    handleSaveAsFile() {
+      // 1. 檢查是否有單線圖數據
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+      
+      // 2. 如果有單線圖數據，直接打開檔案管理器
+      this.isSaveAsMode = true;
+      this.openFileManager();
+    },
+    
+    /**
+     * 處理讀取檔案事件
+     */
+    handleLoadFile() {
+      this.isSaveAsMode = false;
+      this.openFileManager();
+    },
+    
+    /**
+     * 開啟檔案管理器
+     */
+    openFileManager() {
+      this.isFileManagerOpen = true;
+    },
+    
+    /**
+     * 關閉檔案管理器
+     */
+    closeFileManager() {
+      this.isFileManagerOpen = false;
+    },
+    
+    /**
+     * 從檔案管理器儲存
+     */
+    async handleFileManagerSave({ project_name, data }) {
+      try {
+        const response = await fetch('http://localhost:3001/api/flowcharts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name,
+            data
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          this.currentFilename = project_name;
+          this.currentFileId = result.data.id;
+          console.log('File saved successfully:', result.data);
+          this.closeFileManager();
+        } else {
+          console.error('Error saving file:', result.error);
+          // 檢查是否是重複檔案名稱的錯誤
+          if (result.error === '系統存在同名檔案' || result.error.includes('already exists')) {
+            this.showPopup({
+              title: '系統存在同名檔案',
+              message: `是否替換檔案「${project_name}」?`,
+              buttons: [
+                {
+                  text: '取消',
+                  class: 'default',
+                  action: () => {
+                    this.closePopup();
+                  }
+                },
+                {
+                  text: '替換檔案',
+                  class: 'primary',
+                  action: async () => {
+                    await this.replaceExistingFile(project_name, data);
+                    this.closePopup();
+                  }
+                }
+              ],
+              showIcon: false,
+              closeOnOverlay: true
+            });
+          } else {
+            this.showPopup({
+              title: '',
+              message: '儲存失敗：' + result.error,
+              buttons: [
+                {
+                  text: '確定',
+                  class: 'primary',
+                  action: () => {
+                    this.closePopup();
+                  }
+                }
+              ],
+              showIcon: false,
+              closeOnOverlay: true
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to save file:', error);
+        this.showPopup({
+          title: '',
+          message: '儲存失敗：無法連接到伺服器',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      }
+    },
+    
+    /**
+     * 從檔案管理器讀取
+     */
+    handleFileManagerLoad(loadData) {
+      // 判斷是否有單線圖
+      const hasFlowchart = this.allModuleSets.length > 0;
+      
+      if (hasFlowchart) {
+        // 判斷是否為未儲存的檔案
+        const isUnsaved = this.currentFileId === null;
+        const isExistingFile = this.currentFileId !== null && this.currentFilename !== '';
+        
+        let title, message;
+        
+        if (isUnsaved) {
+          // 未儲存的新檔案
+          title = '請先儲存當前畫布';
+          message = '將讀取其他檔案。<br>是否在關閉前儲存當前畫布?';
+        } else if (isExistingFile) {
+          // 已儲存的舊檔
+          title = '請先儲存當前檔案';
+          message = `將讀取其他檔案。<br>是否在關閉前儲存變更至檔案「${this.currentFilename}」?`;
+        } else {
+          // 其他情況（不太可能發生）
+          title = '請先儲存當前檔案';
+          message = '將讀取其他檔案。<br>是否在關閉前儲存當前畫布?';
+        }
+        
+        // 保存 loadData 以便在用户确认后使用
+        this.pendingLoadData = loadData;
+        
+        this.showPopup({
+          title,
+          message,
+          buttons: [
+            {
+              text: '不儲存，直接讀取',
+              class: 'default',
+              action: () => {
+                this.executeLoad(this.pendingLoadData);
+                this.pendingLoadData = null;
+                this.closePopup();
+              }
+            },
+            {
+              text: '儲存後讀取',
+              class: 'primary',
+              action: async () => {
+                if (isUnsaved) {
+                  // 取消讀取，讓用戶先保存
+                  this.showWarningPopup('請先使用「儲存檔案」或「另存檔案」功能保存當前畫布');
+                } else if (isExistingFile) {
+                  // 先更新，再讀取
+                  await this.updateFileAndLoad(this.pendingLoadData);
+                }
+                this.pendingLoadData = null;
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      } else {
+        // 沒有單線圖，直接讀取
+        this.executeLoad(loadData);
+      }
+    },
+    
+    /**
+     * 執行讀取檔案
+     */
+    executeLoad(loadData) {
+      // 從讀取的資料重建模組
+      if (loadData && loadData.data && loadData.data.allModuleSets) {
+        this.allModuleSets = loadData.data.allModuleSets;
+        
+        // 從讀取的資料還原設定（如果有）
+        if (loadData.data.settings) {
+          this.settings = { ...loadData.data.settings };
+        }
+        
+        // 設置當前文件信息
+        if (loadData.file) {
+          this.currentFileId = loadData.file.id;
+          this.currentFilename = loadData.file.project_name;
+        }
+        
+        console.log('File loaded successfully:', {
+          id: this.currentFileId,
+          filename: this.currentFilename
+        });
+      }
+    },
+    
+    /**
+     * 更新檔案並讀取新檔案
+     */
+    async updateFileAndLoad(loadData) {
+      try {
+        // 先更新當前檔案
+        if (!this.currentFileId) {
+          this.showWarningPopup('無法更新檔案');
+          return;
+        }
+        
+        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log('File updated successfully before loading new file');
+          // 然後讀取新檔案
+          this.executeLoad(loadData);
+        } else {
+          console.error('Error updating file:', result.error);
+          this.showWarningPopup('儲存失敗：' + result.error);
+        }
+      } catch (error) {
+        console.error('Failed to update file:', error);
+        this.showWarningPopup('儲存失敗：無法連接到伺服器');
+      }
+    },
+    
+    /**
+     * 處理檔案管理器刪除檔案請求
+     */
+    handleFileManagerDelete(file) {
+      this.showConfirmPopup(`確定要刪除檔案「${file.project_name}」嗎？`, async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`, {
+            method: 'DELETE'
+          });
+          const result = await response.json();
+          
+          if (result.success) {
+            // 重新載入檔案列表
+            if (this.$refs.fileManagerRef) {
+              await this.$refs.fileManagerRef.loadFiles();
+            }
+            this.closePopup();
+          } else {
+            console.error('Error deleting file:', result.error);
+            this.showWarningPopup(`刪除失敗：${result.error}`);
+          }
+        } catch (error) {
+          console.error('Failed to delete file:', error);
+          this.showWarningPopup('刪除失敗：無法連接到伺服器');
+        }
+      }, () => {
+        this.closePopup();
+      });
+    },
+    
+    /**
+     * 更新現有檔案
+     */
+    async updateFile() {
+      if (!this.currentFileId) return;
+      
+      try {
+        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log('File updated successfully');
+          this.showPopup({
+            message: '已成功儲存檔案!',
+            buttons: [
+              {
+                text: '確定',
+                class: 'primary',
+                action: () => {
+                  this.closePopup();
+                }
+              }
+            ],
+            showIcon: false,
+            closeOnOverlay: true
+          });
+        } else {
+          console.error('Error updating file:', result.error);
+          this.showPopup({
+            message: '更新失敗：' + result.error,
+            buttons: [
+              {
+                text: '確定',
+                class: 'primary',
+                action: () => {
+                  this.closePopup();
+                }
+              }
+            ],
+            showIcon: false,
+            closeOnOverlay: true
+          });
+        }
+      } catch (error) {
+        console.error('Failed to update file:', error);
+        alert('更新失敗：無法連接到伺服器');
+      }
+    },
+    
+    /**
+     * 替換已存在的檔案（根據檔案名稱）
+     */
+    async replaceExistingFile(project_name, data) {
+      try {
+        // 首先獲取所有檔案，找到同名檔案
+        const response = await fetch('http://localhost:3001/api/flowcharts');
+        const result = await response.json();
+        
+        if (!result.success) {
+          throw new Error('無法獲取檔案列表');
+        }
+        
+        // 找到同名檔案
+        const existingFile = result.data.find(file => file.project_name === project_name);
+        
+        if (!existingFile) {
+          this.showPopup({
+            title: '',
+            message: '找不到同名檔案',
+            buttons: [
+              {
+                text: '確定',
+                class: 'primary',
+                action: () => {
+                  this.closePopup();
+                }
+              }
+            ],
+            showIcon: false,
+            closeOnOverlay: true
+          });
+          return;
+        }
+        
+        // 更新該檔案
+        const updateResponse = await fetch(`http://localhost:3001/api/flowcharts/${existingFile.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name,
+            data
+          })
+        });
+        
+        const updateResult = await updateResponse.json();
+        
+        if (updateResult.success) {
+          this.currentFilename = project_name;
+          this.currentFileId = existingFile.id;
+          console.log('File replaced successfully');
+          this.closeFileManager();
+          this.showPopup({
+            title: '',
+            message: '已成功替換檔案!',
+            buttons: [
+              {
+                text: '確定',
+                class: 'primary',
+                action: () => {
+                  this.closePopup();
+                }
+              }
+            ],
+            showIcon: false,
+            closeOnOverlay: true
+          });
+        } else {
+          console.error('Error replacing file:', updateResult.error);
+          this.showPopup({
+            title: '',
+            message: '替換失敗：' + updateResult.error,
+            buttons: [
+              {
+                text: '確定',
+                class: 'primary',
+                action: () => {
+                  this.closePopup();
+                }
+              }
+            ],
+            showIcon: false,
+            closeOnOverlay: true
+          });
+        }
+      } catch (error) {
+        console.error('Failed to replace file:', error);
+        this.showPopup({
+          title: '',
+          message: '替換失敗：無法連接到伺服器',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      }
+    },
+    
+    /**
+     * 取得當前資料
+     */
+    getCurrentData() {
+      return {
+        allModuleSets: this.allModuleSets,
+        settings: this.settings
+      };
+    },
+
+    // ==================== 檔案處理方法 (舊版) ====================
+    /**
+     * 處理儲存檔案事件 (舊版彈窗)
+     */
+    handleSaveFileOld() {
+      this.showSaveFilePopup();
+    },
+    
+    /**
+     * 顯示儲存檔案確認彈窗
+     */
+    showSaveFilePopup() {
+      this.showPopup({
+        title: '確認儲存變更',
+        message: `是否儲存變更至檔案「${this.currentFilename}」?`,
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: () => {
+              this.closePopup();
+            }
+          },
+          {
+            text: '另存新檔',
+            class: 'default',
+            action: () => {
+              this.handleSaveAs();
+              this.closePopup();
+            }
+          },
+          {
+            text: '儲存',
+            class: 'primary',
+            action: () => {
+              this.updateFile();
+              this.closePopup();
+            }
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      });
+    },
+    
+    /**
+     * 執行儲存
+     */
+    async executeSave() {
+      console.log('儲存檔案:', this.currentFilename);
+      
+      try {
+        const response = await fetch('http://localhost:3001/api/flowcharts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          this.currentFileId = result.data.id;
+          console.log('File saved successfully');
+          alert('檔案已儲存');
+        } else {
+          console.error('Error saving file:', result.error);
+          alert('儲存失敗：' + result.error);
+        }
+      } catch (error) {
+        console.error('Failed to save file:', error);
+        alert('儲存失敗：無法連接到伺服器');
+      }
+    },
+    
+    /**
+     * 執行另存新檔
+     */
+    handleSaveAs() {
+      this.handleSaveAsFile();
+    },
+
+    // ==================== 卡片高度和位置計算 ====================
+    /**
+     * 獲取特定卡片類型的高度
+     * @param {string} cardType - 卡片類型
+     * @returns {number} 卡片高度
+     */
+    getCardHeight(cardType) {
+      const cardHeights = {
+        'source': 713,        // 源頭資訊卡片：包含多個輸入欄位和按鈕
+        'branch-source': 713, // 分支源頭資訊卡片：與源頭資訊相同結構
+        'pipeline': 177,      // 管線資訊卡片：2個輸入欄位
+        'floor': 177,         // 樓層資訊卡片：2個輸入欄位
+        'valve': 203,         // 閥件資訊卡片：多個輸入欄位
+        'panel': 240,         // 盤面資訊卡片：多個選項
+        'equipment': 430      // 設備資訊卡片：多個輸入欄位
+      };
+      
+      return cardHeights[cardType] || 200; // 預設高度
+    },
+    
+    /**
+     * 計算模組組的總高度
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 模組組總高度
+     */
+    calculateModuleHeight(moduleSet) {
+      let maxHeight = 0;
+      
+      // 計算基礎卡片高度
+      const baseCards = ['source', 'pipeline', 'floor'];
+      baseCards.forEach(cardType => {
+        maxHeight = Math.max(maxHeight, this.getCardHeight(cardType));
+      });
+      
+      // 計算閥件卡片高度（如果存在）
+      if (moduleSet.valveCards?.length > 0) {
+        maxHeight = Math.max(maxHeight, this.getCardHeight('valve'));
+      }
+      
+      // 計算分支源頭資訊卡片高度（如果存在）
+      if (moduleSet.branchSourceCards?.length > 0) {
+        maxHeight = Math.max(maxHeight, this.getCardHeight('branch-source'));
+      }
+      
+      // 計算 Panel+Equipment 群組高度
+      if (moduleSet.panelEquipmentGroups?.length > 0) {
+        moduleSet.panelEquipmentGroups.forEach(group => {
+          const panelHeight = this.getCardHeight('panel');
+          const equipmentHeight = this.getCardHeight('equipment');
+          maxHeight = Math.max(maxHeight, Math.max(panelHeight, equipmentHeight));
+        });
+      }
+      
+      return maxHeight;
+    },
+    
+    /**
+     * 計算模組組的額外高度（分支和群組）
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 額外高度
+     */
+    calculateModuleExtraHeight(moduleSet) {
+      let extraHeight = 0;
+      
+      // 計算分支源頭資訊卡片的額外高度
+      if (moduleSet.branchSourceCards?.length > 0) {
+        extraHeight += moduleSet.branchSourceCards.length * (this.getCardHeight('branch-source') + BRANCH_SPACING);
+      }
+      
+      // 計算 Panel+Equipment 群組的額外高度
+      if (moduleSet.panelEquipmentGroups?.length > 1) {
+        const additionalGroups = moduleSet.panelEquipmentGroups.length - 1;
+        extraHeight += additionalGroups * (this.getCardHeight('equipment') + PANEL_EQUIPMENT_GROUP_SPACING);
+      }
+      
+      return extraHeight;
+    },
+    
+    /**
+     * 計算下一個模組組的位置
+     * @param {Object} clickedPosition - 點擊位置
+     * @returns {Object} 新位置坐標
+     */
+    calculateNextModulePosition(clickedPosition) {
+      let totalHeight = 0;
+      
+      // 遍歷所有模組組，計算每個模組組的實際高度
+      this.allModuleSets.forEach(moduleSet => {
+        const baseHeight = this.calculateModuleHeight(moduleSet);
+        const extraHeight = this.calculateModuleExtraHeight(moduleSet);
+        const totalModuleHeight = baseHeight + extraHeight;
+        
+        // 計算該模組組的底部位置
+        const moduleBottomY = moduleSet.source.position.y + totalModuleHeight;
+        totalHeight = Math.max(totalHeight, moduleBottomY);
+      });
+      
+      // 如果沒有現有模組，使用點擊位置作為起始點
+      if (totalHeight === 0) {
+        totalHeight = clickedPosition.y;
+      }
+      
+      // 返回新位置：最下方模組的底部 + 模組間距
+      return {
+        x: clickedPosition.x,
+        y: totalHeight + MODULE_SPACING
+      };
+    },
+
+    // ==================== 連接線事件處理 ====================
+    /**
+     * 處理加號圖標點擊事件
+     * @param {Object} connection - 連接對象
+     */
+    handleAdditionalIconClick(connection) {
+      console.log('加號圖標被點擊，連接:', connection);
+      
+      const { moduleSetIndex, connIndex } = this.parseConnectionId(connection.id);
+      const moduleSet = this.allModuleSets[moduleSetIndex];
+      const connConfig = moduleSet.connections[connIndex];
+      
+      // 檢查是否是樓層到盤面的連接線（主分支支援）
+      if (connConfig.from === 'floor' && connConfig.to === 'panel') {
+        this.addPanelEquipmentModule(connConfig);
+      } 
+      // 檢查是否是分支的 floor → panel 連接線（分支模組支援 - 新增盤面）
+      else if (connConfig.from === 'branch-floor' && connConfig.to === 'branch-panel') {
+        this.addBranchPanelEquipmentModule(connConfig);
+      }
+      // 檢查是否是 panel → equipment 連接線（新增設備卡片）
+      else if (connConfig.from === 'panel' && connConfig.to === 'equipment') {
+        this.addEquipmentCard(connConfig, moduleSetIndex);
+      }
+      // 檢查是否是 panel → panel-equipment-valve 連接線（新增設備卡片）
+      else if (connConfig.from === 'panel' && connConfig.to === 'panel-equipment-valve') {
+        // 對於有閥件的情況，從閥件連接到新的設備
+        this.addEquipmentCardWithValve(connConfig, moduleSetIndex);
+      }
+      // 檢查是否是分支的 panel → equipment 連接線（新增設備卡片）
+      else if (connConfig.from === 'branch-panel' && connConfig.to === 'branch-equipment') {
+        this.addBranchEquipmentCard(connConfig, moduleSetIndex);
+      } 
+      else {
+        this.showWarningPopup(`加號圖標被點擊！連接 ID: ${connection.id}`);
+      }
+    },
+    
+    /**
+     * 處理紫色圖標點擊事件
+     * @param {Object} connection - 連接對象
+     */
+    handleFaIconClick(connection) {
+      console.log('紫色圖標被點擊，連接:', connection);
+      
+      const { moduleSetIndex, connIndex } = this.parseConnectionId(connection.id);
+      const moduleSet = this.allModuleSets[moduleSetIndex];
+      const connConfig = moduleSet.connections[connIndex];
+      
+      // 檢查是否是閥件相關的連接線
+      const isValveRelatedConnection = 
+        (connConfig.from === 'source' && connConfig.to === 'pipeline') || // 初始狀態：source → pipeline
+        (connConfig.from === 'source' && connConfig.to === 'valve') ||    // 有閥件後：source → valve
+        (connConfig.from === 'valve' && connConfig.to === 'pipeline');  // 有閥件後：valve → pipeline
+      
+      // 檢查是否是 panel → equipment 連接線（在盤面和設備之間添加閥件）
+      const isPanelEquipmentConnection = 
+        (connConfig.from === 'panel' && connConfig.to === 'equipment');
+      
+      if (isValveRelatedConnection) {
+        // 檢查是否已經有閥件
+        if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
+          // 如果已經有閥件，添加分支閥件
+          this.addBranchValveCard(connection, moduleSetIndex);
+      } else {
+          // 如果沒有閥件，添加普通閥件
+          this.addValveInfoCard(connection, moduleSetIndex);
+        }
+      } else if (isPanelEquipmentConnection) {
+        // 在 panel 和 equipment 之間添加閥件
+        this.addValveBetweenPanelAndEquipment(connection, moduleSetIndex);
+      } else {
+        this.showWarningPopup(`紫色圖標被點擊！連接 ID: ${connection.id}`);
+      }
+    },
+    
+    /**
+     * 解析連接線 ID 獲取模組組索引和連接索引
+     * @param {string} connectionId - 連接線 ID
+     * @returns {Object} 包含 moduleSetIndex 和 connIndex 的對象
+     */
+    parseConnectionId(connectionId) {
+      const idParts = connectionId.split('-');
+      return {
+        moduleSetIndex: parseInt(idParts[1]),
+        connIndex: parseInt(idParts[2])
+      };
+    },
+    // ==================== 模組管理 ====================
+    /**
+     * 處理添加模組事件
+     * @param {Object} moduleData - 模組數據
+     */
+    handleAddModule(moduleData) {
+      console.log('添加完整模組組:', moduleData);
+      
+      const newPosition = this.calculateNextModulePosition(moduleData.position);
+      const newModuleSet = this.createNewModuleSet(newPosition);
+      
+      this.allModuleSets.push(newModuleSet);
+      console.log(`已添加新模組組，總模組數量: ${this.allModuleSets.length}`);
+    },
+    
+    /**
+     * 創建新的模組組
+     * @param {Object} position - 位置坐標
+     * @returns {Object} 新的模組組對象
+     */
+    createNewModuleSet(position) {
+      const baseX = position.x;
+      const baseY = position.y;
+      
+      return {
+        id: `module-set-${Date.now()}`,
+        source: { 
+          position: { x: baseX, y: baseY },
+          data: {
+            title: '',
+            pipelineType: '單套管',
+            gasType: '',
+            valveNumber: '',
+            sourceSize: '',
+            doubleSleeveSize: '',
+            connectorSpec: 'WELD',
+            locationInfo: '',
+            heatInsulation: false
+          }
+        },
+        pipeline: { 
+          position: { x: baseX + 420, y: baseY },
+          data: {
+            length: '',
+            material: 'NA'
+          }
+        },
+        floor: { 
+          position: { x: baseX + 690, y: baseY },
+          data: {
+            sourceFloor: '',
+            equipmentFloor: ''
+          }
+        },
+        valveCards: [],
+        branchSourceCards: [],
+        panelEquipmentGroups: [
+          {
+            id: `panel-equipment-group-${Date.now()}`,
+            panel: { 
+              position: { x: baseX + 1020, y: baseY },
+              data: {
+                enablePanel: false,
+                valve: '',
+                size: '',
+                valveConnector: '',
+                regulator: false,
+                pressureGauge: 'none',
+                backPipelineType: ''
+              }
+            },
+            equipment: { 
+              position: { x: baseX + 1450, y: baseY },
+              data: {
+                gasType: '',
+                size: '',
+                connector: '',
+                connectionName: '',
+                threeInOne: ''
+              }
+            },
+            additionalEquipmentCards: []
+          }
+        ],
+        connections: this.createDefaultConnections()
+      };
+    },
+    
+    /**
+     * 創建預設連接線配置
+     * @returns {Array} 連接線配置數組
+     */
+    createDefaultConnections() {
+      return [
+        { from: 'source', to: 'pipeline', showAdditionalIcon: false, showFaIcon: true },
+        { from: 'pipeline', to: 'floor', showAdditionalIcon: false, showFaIcon: false },
+        { from: 'floor', to: 'panel', groupIndex: 0, showAdditionalIcon: true, showFaIcon: false },
+        { from: 'panel', to: 'equipment', groupIndex: 0, showAdditionalIcon: true, showFaIcon: true }
+      ];
+    },
+    
+    /**
+     * 更新卡片數據
+     * @param {number} setIndex - 模組組索引
+     * @param {string} cardType - 卡片類型 ('source', 'pipeline', 'floor')
+     * @param {Object} data - 新的數據
+     */
+    updateCardData(setIndex, cardType, data) {
+      if (this.allModuleSets[setIndex] && this.allModuleSets[setIndex][cardType]) {
+        this.allModuleSets[setIndex][cardType].data = data;
+      }
+    },
+
+    /**
+     * 更新Panel卡片數據
+     * @param {number} setIndex - 模組組索引
+     * @param {number} groupIndex - Panel+Equipment群組索引
+     * @param {Object} data - 新的數據
+     */
+    updatePanelData(setIndex, groupIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].panelEquipmentGroups && 
+          this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex]) {
+        this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex].panel.data = data;
+      }
+    },
+
+    /**
+     * 更新Equipment卡片數據
+     * @param {number} setIndex - 模組組索引
+     * @param {number} groupIndex - Panel+Equipment群組索引
+     * @param {Object} data - 新的數據
+     */
+    updateEquipmentData(setIndex, groupIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].panelEquipmentGroups && 
+          this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex]) {
+        this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex].equipment.data = data;
+      }
+    },
+
+    /**
+     * 更新BranchSource卡片數據
+     * @param {number} setIndex - 模組組索引
+     * @param {number} branchIndex - 分支卡片索引
+     * @param {Object} data - 新的數據
+     */
+    updateBranchSourceData(setIndex, branchIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchSourceCards && 
+          this.allModuleSets[setIndex].branchSourceCards[branchIndex]) {
+        this.allModuleSets[setIndex].branchSourceCards[branchIndex].data = data;
+      }
+    },
+
+    /**
+     * 更新分支閥件數據
+     */
+    updateBranchValveData(setIndex, branchModuleIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchModuleCards && 
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex]) {
+        this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].valve.data = data;
+      }
+    },
+
+    /**
+     * 更新分支Pipeline數據
+     */
+    updateBranchPipelineData(setIndex, branchModuleIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchModuleCards && 
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex]) {
+        this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].pipeline.data = data;
+      }
+    },
+
+    /**
+     * 更新分支Floor數據
+     */
+    updateBranchFloorData(setIndex, branchModuleIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchModuleCards && 
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex]) {
+        this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].floor.data = data;
+      }
+    },
+
+    /**
+     * 更新分支Panel數據
+     */
+    updateBranchPanelData(setIndex, branchModuleIndex, groupIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchModuleCards && 
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex] &&
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups &&
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex]) {
+        this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].panel.data = data;
+      }
+    },
+
+    /**
+     * 更新分支Equipment數據
+     */
+    updateBranchEquipmentData(setIndex, branchModuleIndex, groupIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].branchModuleCards && 
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex] &&
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups &&
+          this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex]) {
+        this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].equipment.data = data;
+      }
+    },
+
+    /**
+     * 更新Panel-Equipment之間閥件數據
+     */
+    updatePanelEquipmentValveData(setIndex, groupIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].panelEquipmentGroups && 
+          this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex] &&
+          this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex].valve) {
+        this.allModuleSets[setIndex].panelEquipmentGroups[groupIndex].valve.data = data;
+      }
+    },
+
+    /**
+     * 處理刪除模組事件
+     * @param {Object} moduleData - 模組數據
+     */
+    handleDeleteModule(moduleData) {
+      console.log('刪除模組:', moduleData);
+      
+      const moduleIndex = this.findModuleSetByPosition(moduleData.position);
+      if (moduleIndex !== -1) {
+        this.allModuleSets.splice(moduleIndex, 1);
+        console.log(`已刪除模組組，剩餘模組數量: ${this.allModuleSets.length}`);
+      }
+    },
+    
+    /**
+     * 根據位置查找模組組索引
+     * @param {Object} position - 位置坐標
+     * @returns {number} 模組組索引，找不到返回 -1
+     */
+    findModuleSetByPosition(position) {
+      return this.allModuleSets.findIndex(moduleSet => 
+        moduleSet.source.position.x === position.x && 
+        moduleSet.source.position.y === position.y
+      );
+    },
+    // ==================== 分支源頭資訊管理 ====================
+    /**
+     * 處理添加分支源頭資訊事件
+     * @param {Object} branchData - 分支數據
+     */
+    handleAddBranchSource(branchData) {
+      console.log('添加分支源頭資訊卡片:', branchData);
+      
+      const moduleSetIndex = this.findModuleSetByPosition(branchData.sourcePosition);
+      if (moduleSetIndex === -1) {
+        console.error('找不到對應的模組');
+        return;
+      }
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      const newBranchCard = this.createBranchSourceCard(branchData, currentModuleSet);
+      
+      currentModuleSet.branchSourceCards.push(newBranchCard);
+      this.addBranchSourceConnection(currentModuleSet, newBranchCard, moduleSetIndex);
+      
+      console.log(`已在模組 ${moduleSetIndex} 中添加分支源頭資訊卡片`);
+    },
+    
+    /**
+     * 創建分支源頭資訊卡片
+     * @param {Object} branchData - 分支數據
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {Object} 新的分支卡片對象
+     */
+    createBranchSourceCard(branchData, moduleSet) {
+      const existingBranchCount = moduleSet.branchSourceCards.length;
+      const branchCardHeight = this.getCardHeight('branch-source');
+      
+      // 計算新分支卡片的位置
+      const sourceCardBottomY = moduleSet.source.position.y + this.getCardHeight('source');
+      const existingBranchesHeight = existingBranchCount * (branchCardHeight + BRANCH_SPACING);
+      const branchY = sourceCardBottomY + existingBranchesHeight + BRANCH_SPACING;
+      
+      return {
+        id: `branch-source-card-${Date.now()}`,
+        type: 'branch-source',
+        position: { x: branchData.position.x, y: branchY },
+        data: {
+          title: '',
+          pipelineType: '',
+          gasType: '',
+          valveNumber: '',
+          sourceSize: '',
+          doubleSleeveSize: '',
+          connectorSpec: 'WELD',
+          locationInfo: '',
+          heatInsulation: false
+        }
+      };
+    },
+    
+    /**
+     * 處理刪除分支源頭資訊事件
+     * @param {Object} branchData - 分支數據
+     */
+    handleDeleteBranchSource(branchData) {
+      console.log('刪除分支源頭資訊:', branchData);
+      
+      for (let moduleIndex = 0; moduleIndex < this.allModuleSets.length; moduleIndex++) {
+        const moduleSet = this.allModuleSets[moduleIndex];
+        
+        if (moduleSet.branchSourceCards?.length > 0) {
+          const branchIndex = moduleSet.branchSourceCards.findIndex(branchCard => 
+            branchCard.position.x === branchData.position.x && 
+            branchCard.position.y === branchData.position.y
+          );
+          
+          if (branchIndex !== -1) {
+            moduleSet.branchSourceCards.splice(branchIndex, 1);
+            this.removeBranchSourceConnection(moduleSet, branchIndex);
+            console.log(`已從模組 ${moduleIndex} 中刪除分支源頭資訊卡片`);
+            return;
+          }
+        }
+      }
+      
+      console.error('找不到要刪除的分支源頭資訊卡片');
+    },
+    // ==================== 連接線管理 ====================
+    /**
+     * 添加分支源頭資訊的連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchCard - 分支卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchSourceConnection(moduleSet, branchCard, moduleSetIndex) {
+      console.log('添加分支源頭資訊連接線');
+      
+      const sourceToPipelineConnection = moduleSet.connections.find(conn => 
+      conn.from === 'source' && (conn.to === 'pipeline' || conn.to === 'valve')
+
+      );
+      
+      if (!sourceToPipelineConnection) {
+        console.error('找不到源頭資訊到管線的連接線');
+        return;
+      }
+      
+      const connectionPositions = this.calculateBranchConnectionPositions(moduleSet, branchCard);
+      
+      const branchConnection = {
+        from: 'branch-source-connection',
+        to: 'branch-source',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        branchCardIndex: moduleSet.branchSourceCards.length - 1,
+        moduleSetIndex: moduleSetIndex,
+        fromPosition: connectionPositions.from,
+        toPosition: connectionPositions.to
+      };
+      
+      moduleSet.connections.push(branchConnection);
+      console.log('已添加分支源頭資訊連接線:', branchConnection);
+    },
+    
+    /**
+     * 計算分支連接線的位置
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchCard - 分支卡片對象
+     * @returns {Object} 包含 from 和 to 位置的對象
+     */
+    calculateBranchConnectionPositions(moduleSet, branchCard) {
+      const sourceCard = moduleSet.source;
+      const pipelineCard = moduleSet.pipeline;
+      const valveCard = moduleSet.valveCards && moduleSet.valveCards.length > 0 ? moduleSet.valveCards[0] : null;
+      
+      // 源頭資訊到管線連接線的起始點
+      const connectionStartX = sourceCard.position.x + CARD_WIDTH;
+      const connectionStartY = sourceCard.position.y + CARD_HEIGHT_OFFSET;
+      let faIconX;
+      // 紫色icon的位置（在連接線中間）
+      if (valveCard) {
+        faIconX = connectionStartX + (valveCard.position.x - connectionStartX) / 2;
+      }  else {
+        faIconX = connectionStartX + (pipelineCard.position.x - connectionStartX) / 2;
+      }
+
+      
+      const faIconY = connectionStartY;
+      
+      // 分支源頭資訊卡片的右側位置
+      const branchCardRightX = branchCard.position.x + CARD_WIDTH;
+      const branchCardRightY = branchCard.position.y + CARD_HEIGHT_OFFSET;
+      
+      return {
+        from: { x: faIconX - 50, y: faIconY }, // 紫色icon左側 50px
+        to: { x: branchCardRightX, y: branchCardRightY } // 分支源頭資訊右側
+      };
+    },
+    
+    /**
+     * 刪除分支源頭資訊的連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchIndex - 分支索引
+     */
+    removeBranchSourceConnection(moduleSet, branchIndex) {
+      console.log('刪除分支源頭資訊連接線');
+      
+      const connectionIndex = moduleSet.connections.findIndex(conn => 
+        conn.from === 'branch-source-connection' && 
+        conn.branchCardIndex === branchIndex
+      );
+      
+      if (connectionIndex !== -1) {
+        moduleSet.connections.splice(connectionIndex, 1);
+        console.log('已刪除分支源頭資訊連接線');
+      } else {
+        console.warn('找不到對應的分支源頭資訊連接線');
+      }
+    },
+    
+    /**
+     * 根據連接找到對應的模組組索引
+     * @param {Object} connection - 連接對象
+     * @returns {number} 模組組索引，找不到返回 -1
+     */
+    findModuleSetByConnection(connection) {
+      for (let i = 0; i < this.allModuleSets.length; i++) {
+        const moduleSet = this.allModuleSets[i];
+        if (moduleSet.connections) {
+          const foundConnection = moduleSet.connections.find(conn => 
+            conn.from === connection.from && 
+            conn.to === connection.to &&
+            conn.showAdditionalIcon === connection.showAdditionalIcon
+          );
+          if (foundConnection) {
+            return i;
+          }
+        }
+      }
+      return -1;
+    },
+    // ==================== Panel+Equipment 管理 ====================
+    /**
+     * 添加 Panel+Equipment 模組
+     * @param {Object} connConfig - 連接配置
+     */
+    addPanelEquipmentModule(connConfig) {
+      console.log('添加 Panel+Equipment 模組');
+      
+      const moduleSetIndex = this.findModuleSetByConnection(connConfig);
+      if (moduleSetIndex === -1) {
+        console.error('找不到對應的模組組');
+        return;
+      }
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      
+      if (!currentModuleSet?.panelEquipmentGroups?.length) {
+        console.error('找不到當前的 Panel+Equipment 群組');
+        return;
+      }
+      
+      const newGroup = this.createPanelEquipmentGroup(currentModuleSet);
+      currentModuleSet.panelEquipmentGroups.push(newGroup);
+      this.addConnectionLinesForNewGroup(currentModuleSet, newGroup, moduleSetIndex);
+      
+      // 更新所有分支閥件的位置
+      this.updateAllBranchValvePositions(currentModuleSet);
+      
+      // 更新設備卡片的連接線位置
+      this.updateAdditionalEquipmentConnectionLines(currentModuleSet, -1);
+      
+      console.log('已添加 Panel+Equipment 群組:', newGroup);
+    },
+    
+    /**
+     * 創建新的 Panel+Equipment 群組
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {Object} 新的群組對象
+     */
+    createPanelEquipmentGroup(moduleSet) {
+      const lastGroup = moduleSet.panelEquipmentGroups[moduleSet.panelEquipmentGroups.length - 1];
+      
+      // 找到該群組中最底部的設備卡片位置
+      let maxBottomY = lastGroup.equipment.position.y + this.getCardHeight('equipment');
+      
+      // 如果有額外的設備卡片，檢查它們的最底部位置
+      if (lastGroup.additionalEquipmentCards && lastGroup.additionalEquipmentCards.length > 0) {
+        lastGroup.additionalEquipmentCards.forEach(card => {
+          const cardBottomY = card.position.y + this.getCardHeight('equipment');
+          maxBottomY = Math.max(maxBottomY, cardBottomY);
+        });
+      }
+      
+      const baseX = lastGroup.panel.position.x;
+      const baseY = maxBottomY + PANEL_EQUIPMENT_GROUP_SPACING;
+      
+      return {
+        id: `panel-equipment-group-${Date.now()}`,
+        panel: { position: { x: baseX, y: baseY } },
+        equipment: { position: { x: baseX + 430, y: baseY } }, // Panel 和 Equipment 之間間距 430px
+        additionalEquipmentCards: []
+      };
+    },
+    
+    /**
+     * 計算加號圖標位置（考慮閥件插入後的佈局）
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 加號圖標的 X 位置
+     */
+    calculateAdditionalIconPosition(moduleSet) {
+      const firstPanelCard = moduleSet.panelEquipmentGroups[0].panel;
+      return firstPanelCard.position.x - CARD_WIDTH - 30;
+    },
+    
+    /**
+     * 為新群組添加連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} newGroup - 新群組對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addConnectionLinesForNewGroup(moduleSet, newGroup, moduleSetIndex) {
+      const groupIndex = moduleSet.panelEquipmentGroups.length - 1;
+      const iconPosition = this.calculateAdditionalIconPosition(moduleSet);
+      
+      // 創建從加號位置到新 panel 的連接線
+      moduleSet.connections.push({
+        from: 'additional-icon',
+        to: 'panel',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        groupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex,
+        fromPosition: { x: iconPosition, y: moduleSet.floor.position.y }
+      });
+      
+      // 從 panel 連接到 equipment（群組內部連接）
+      moduleSet.connections.push({
+        from: 'panel',
+        to: 'equipment',
+        showAdditionalIcon: true,
+        showFaIcon: true,
+        groupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex
+      });
+      
+      console.log('已為新群組添加連接線，群組索引:', groupIndex, '起始點:', `(${iconPosition}, ${moduleSet.floor.position.y})`);
+    },
+    
+    /**
+     * 為分支添加 Panel+Equipment 模組
+     * @param {Object} connConfig - 連接配置
+     */
+    addBranchPanelEquipmentModule(connConfig) {
+      console.log('為分支添加 Panel+Equipment 模組');
+      
+      const moduleSetIndex = this.findModuleSetByConnection(connConfig);
+      if (moduleSetIndex === -1) {
+        console.error('找不到對應的模組組');
+        return;
+      }
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      const branchModuleIndex = connConfig.branchModuleIndex;
+      const branchModule = currentModuleSet.branchModuleCards[branchModuleIndex];
+      
+      if (!branchModule?.panelEquipmentGroups?.length) {
+        console.error('找不到當前的 Panel+Equipment 群組');
+        return;
+      }
+      
+      const newGroup = this.createBranchPanelEquipmentGroup(branchModule);
+      branchModule.panelEquipmentGroups.push(newGroup);
+      this.addBranchConnectionLinesForNewGroup(currentModuleSet, branchModule, newGroup, moduleSetIndex, branchModuleIndex);
+      
+      // 更新所有分支閥件的位置（因為新增的群組可能會影響其他分支的位置）
+      this.updateAllBranchValvePositions(currentModuleSet);
+      
+      // 更新設備卡片的連接線位置
+      this.updateAdditionalEquipmentConnectionLines(currentModuleSet, branchModuleIndex);
+      
+      console.log('已為分支添加 Panel+Equipment 群組:', newGroup);
+    },
+    
+    /**
+     * 創建分支的新 Panel+Equipment 群組
+     * @param {Object} branchModule - 分支模組對象
+     * @returns {Object} 新的群組對象
+     */
+    createBranchPanelEquipmentGroup(branchModule) {
+      const lastGroup = branchModule.panelEquipmentGroups[branchModule.panelEquipmentGroups.length - 1];
+      
+      // 找到該群組中最底部的設備卡片位置
+      let maxBottomY = lastGroup.equipment.position.y + this.getCardHeight('equipment');
+      
+      // 如果有額外的設備卡片，檢查它們的最底部位置
+      if (lastGroup.additionalEquipmentCards && lastGroup.additionalEquipmentCards.length > 0) {
+        lastGroup.additionalEquipmentCards.forEach(card => {
+          const cardBottomY = card.position.y + this.getCardHeight('equipment');
+          maxBottomY = Math.max(maxBottomY, cardBottomY);
+        });
+      }
+      
+      const baseX = lastGroup.panel.position.x;
+      const baseY = maxBottomY + PANEL_EQUIPMENT_GROUP_SPACING;
+      
+      return {
+        id: `branch-panel-equipment-group-${Date.now()}`,
+        panel: {
+          id: `branch-panel-card-${Date.now()}`,
+          type: 'branch-panel',
+          position: { x: baseX, y: baseY }
+        },
+        equipment: {
+          id: `branch-equipment-card-${Date.now()}`,
+          type: 'branch-equipment',
+          position: { x: baseX + 430, y: baseY }
+        },
+        additionalEquipmentCards: []
+      };
+    },
+    
+    /**
+     * 為分支的新群組添加連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchModule - 分支模組對象
+     * @param {Object} newGroup - 新群組對象
+     * @param {number} moduleSetIndex - 模組組索引
+     * @param {number} branchModuleIndex - 分支模組索引
+     */
+    addBranchConnectionLinesForNewGroup(moduleSet, branchModule, newGroup, moduleSetIndex, branchModuleIndex) {
+      const groupIndex = branchModule.panelEquipmentGroups.length - 1;
+      
+      // 計算原始 floor → panel 連接線上 add icon 的位置
+      // 基於第一個 panel（index 0）的位置計算
+      const firstPanel = branchModule.panelEquipmentGroups[0].panel;
+      const floorRight = branchModule.floor.position.x + CARD_WIDTH;
+      const floorY = branchModule.floor.position.y + CARD_HEIGHT_OFFSET;
+      const firstPanelLeft = firstPanel.position.x;
+      
+      // 計算 add icon 的位置（與 ConnectionLine 組件中的邏輯一致）
+      const midX = floorRight + (firstPanelLeft - floorRight) * 0.9;
+      const iconX = floorRight + (midX - floorRight) * 0.33;
+      const iconY = floorY;
+      
+      // add icon 寬度是 32px，從圖標右側開始（+16px 到圖標中心，再處理實際右邊）
+      const newConnectionStartX = iconX + 39; // 圖標中心在 iconX，右邊在 iconX + 16
+      
+      // 從 add icon 右側連接到 panel（這個連接線不需要 add icon）
+      moduleSet.connections.push({
+        from: 'branch-floor',
+        to: 'branch-panel',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        branchModuleIndex: branchModuleIndex,
+        panelEquipmentGroupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex,
+        fromPosition: { x: newConnectionStartX, y: iconY }
+      });
+      
+      // 從 panel 連接到 equipment（群組內部連接）
+      moduleSet.connections.push({
+        from: 'branch-panel',
+        to: 'branch-equipment',
+        showAdditionalIcon: true,
+        showFaIcon: true,
+        branchModuleIndex: branchModuleIndex,
+        panelEquipmentGroupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex
+      });
+      
+      console.log('已為分支新群組添加連接線，群組索引:', groupIndex, '起始點:', `(${newConnectionStartX}, ${iconY})`, 'iconX:', iconX);
+    },
+    
+    // ==================== 設備卡片管理 ====================
+    /**
+     * 添加設備卡片（在同一個 panel 下）
+     * @param {Object} connConfig - 連接配置
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addEquipmentCard(connConfig, moduleSetIndex) {
+      console.log('添加設備卡片到 Panel');
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      if (!currentModuleSet) {
+        console.error('找不到對應的模組組');
+        return;
+      }
+      
+      const groupIndex = connConfig.groupIndex !== undefined ? connConfig.groupIndex : 0;
+      const currentGroup = currentModuleSet.panelEquipmentGroups[groupIndex];
+      
+      if (!currentGroup) {
+        console.error('找不到對應的 Panel+Equipment 群組');
+        return;
+      }
+      
+      // 計算新設備卡片的位置（在現有設備下方）
+      const equipmentCardHeight = this.getCardHeight('equipment');
+      let newEquipmentY = currentGroup.equipment.position.y + equipmentCardHeight + 50;
+      
+      // 如果已經有其他額外的設備卡片，使用最後一個設備卡片的位置
+      if (currentGroup.additionalEquipmentCards && currentGroup.additionalEquipmentCards.length > 0) {
+        const lastAdditionalCard = currentGroup.additionalEquipmentCards[currentGroup.additionalEquipmentCards.length - 1];
+        newEquipmentY = lastAdditionalCard.position.y + equipmentCardHeight + 50;
+      }
+      
+      const newEquipmentCard = {
+        id: `equipment-card-${Date.now()}`,
+        position: { x: currentGroup.equipment.position.x, y: newEquipmentY }
+      };
+      
+      // 初始化 additionalEquipmentCards 數組
+      if (!currentGroup.additionalEquipmentCards) {
+        currentGroup.additionalEquipmentCards = [];
+      }
+      
+      currentGroup.additionalEquipmentCards.push(newEquipmentCard);
+      
+      // 添加連接線
+      this.addEquipmentConnectionLine(currentModuleSet, groupIndex, newEquipmentCard, moduleSetIndex);
+      
+      // 更新所有分支閥件的位置
+      this.updateAllBranchValvePositions(currentModuleSet);
+      
+      console.log('已添加設備卡片:', newEquipmentCard);
+    },
+    
+    /**
+     * 添加設備卡片（有閥件的情況）
+     * @param {Object} connConfig - 連接配置
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addEquipmentCardWithValve(connConfig, moduleSetIndex) {
+      console.log('添加設備卡片到 Panel（有閥件的情況）');
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      if (!currentModuleSet) {
+        console.error('找不到對應的模組組');
+        return;
+      }
+      
+      const groupIndex = connConfig.groupIndex !== undefined ? connConfig.groupIndex : 0;
+      const currentGroup = currentModuleSet.panelEquipmentGroups[groupIndex];
+      
+      if (!currentGroup) {
+        console.error('找不到對應的 Panel+Equipment 群組');
+        return;
+      }
+
+      if (!currentGroup.valve) {
+        console.error('找不到閥件');
+        return;
+      }
+
+      // 計算新設備卡片的位置（從閥件位置開始計算）
+      const equipmentCardHeight = this.getCardHeight('equipment');
+      let newEquipmentY = currentGroup.equipment.position.y + equipmentCardHeight + 50;
+      
+      // 如果已經有其他額外的設備卡片，使用最後一個設備卡片的位置
+      if (currentGroup.additionalEquipmentCards && currentGroup.additionalEquipmentCards.length > 0) {
+        const lastAdditionalCard = currentGroup.additionalEquipmentCards[currentGroup.additionalEquipmentCards.length - 1];
+        newEquipmentY = lastAdditionalCard.position.y + equipmentCardHeight + 50;
+      }
+      
+      // 從閥件右側開始，間距 86px
+      const newEquipmentCard = {
+        id: `equipment-card-${Date.now()}`,
+        position: { x: currentGroup.valve.position.x + 318, y: newEquipmentY }
+      };
+      
+      // 初始化 additionalEquipmentCards 數組
+      if (!currentGroup.additionalEquipmentCards) {
+        currentGroup.additionalEquipmentCards = [];
+      }
+      
+      currentGroup.additionalEquipmentCards.push(newEquipmentCard);
+      
+      // 添加連接線（從閥件連接到新設備）
+      this.addEquipmentConnectionLineWithValve(currentModuleSet, groupIndex, newEquipmentCard, moduleSetIndex);
+      
+      // 更新所有分支閥件的位置
+      this.updateAllBranchValvePositions(currentModuleSet);
+      
+      console.log('已添加設備卡片:', newEquipmentCard);
+    },
+
+    /**
+     * 添加分支設備卡片
+     * @param {Object} connConfig - 連接配置
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchEquipmentCard(connConfig, moduleSetIndex) {
+      console.log('為分支添加設備卡片');
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      if (!currentModuleSet) {
+        console.error('找不到對應的模組組');
+        return;
+      }
+      
+      const branchModuleIndex = connConfig.branchModuleIndex;
+      const branchModule = currentModuleSet.branchModuleCards[branchModuleIndex];
+      const groupIndex = connConfig.panelEquipmentGroupIndex !== undefined ? connConfig.panelEquipmentGroupIndex : 0;
+      const currentGroup = branchModule.panelEquipmentGroups[groupIndex];
+      
+      if (!currentGroup) {
+        console.error('找不到對應的分支 Panel+Equipment 群組');
+        return;
+      }
+      
+      // 計算新設備卡片的位置（在現有設備下方）
+      const equipmentCardHeight = this.getCardHeight('equipment');
+      let newEquipmentY = currentGroup.equipment.position.y + equipmentCardHeight + 50;
+      
+      // 如果已經有其他額外的設備卡片，使用最後一個設備卡片的位置
+      if (currentGroup.additionalEquipmentCards && currentGroup.additionalEquipmentCards.length > 0) {
+        const lastAdditionalCard = currentGroup.additionalEquipmentCards[currentGroup.additionalEquipmentCards.length - 1];
+        newEquipmentY = lastAdditionalCard.position.y + equipmentCardHeight + 50;
+      }
+      
+      const newEquipmentCard = {
+        id: `branch-equipment-card-${Date.now()}`,
+        position: { x: currentGroup.equipment.position.x, y: newEquipmentY }
+      };
+      
+      // 初始化 additionalEquipmentCards 數組
+      if (!currentGroup.additionalEquipmentCards) {
+        currentGroup.additionalEquipmentCards = [];
+      }
+      
+      currentGroup.additionalEquipmentCards.push(newEquipmentCard);
+      
+      // 添加連接線
+      this.addBranchEquipmentConnectionLine(currentModuleSet, branchModuleIndex, groupIndex, newEquipmentCard, moduleSetIndex);
+      
+      // 更新所有分支閥件的位置
+      this.updateAllBranchValvePositions(currentModuleSet);
+      
+      console.log('已為分支添加設備卡片:', newEquipmentCard);
+    },
+    
+    /**
+     * 為新增的設備卡片添加連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} groupIndex - 群組索引
+     * @param {Object} newEquipmentCard - 新的設備卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addEquipmentConnectionLine(moduleSet, groupIndex, newEquipmentCard, moduleSetIndex) {
+      const currentGroup = moduleSet.panelEquipmentGroups[groupIndex];
+      
+      // 計算連接線起始位置（在 panel 到 equipment 連接線上的 add icon 和 purple icon 之間）
+      const panelRightX = currentGroup.panel.position.x + CARD_WIDTH;
+      const panelY = currentGroup.panel.position.y + CARD_HEIGHT_OFFSET;
+      const equipmentLeftX = currentGroup.equipment.position.x;
+      
+      // 計算 add icon 的位置（panel 和 equipment 之間）
+      const midX = panelRightX + (equipmentLeftX - panelRightX) * 0.9;
+      const iconX = panelRightX + (midX - panelRightX) * 0.33;
+      
+      // 計算紫色圖標的位置
+      const purpleIconX = panelRightX + (equipmentLeftX - panelRightX) * 0.67;
+      
+      // 連接線從 add icon 和 purple icon 之間的位置開始（選擇兩者中間）
+      const connectionStartX = (iconX + purpleIconX) / 2;
+      const connectionStartY = panelY;
+      
+      // 連接線終點在設備卡片左側
+      const equipmentCardHeight = this.getCardHeight('equipment');
+      const connectionEndX = newEquipmentCard.position.x;
+      const connectionEndY = newEquipmentCard.position.y + CARD_HEIGHT_OFFSET;
+      
+      // 添加連接線配置
+      moduleSet.connections.push({
+        from: 'panel-equipment-connection',
+        to: 'additional-equipment',
+        showAdditionalIcon: false,
+        showFaIcon: true,
+        groupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex,
+        equipmentCardIndex: currentGroup.additionalEquipmentCards.length - 1,
+        fromPosition: { x: connectionStartX, y: connectionStartY },
+        toPosition: { x: connectionEndX, y: connectionEndY }
+      });
+      
+      console.log('已添加設備卡片連接線，起始點:', `(${connectionStartX}, ${connectionStartY})`, '終點:', `(${connectionEndX}, ${connectionEndY})`);
+    },
+
+    /**
+     * 為有閥件的情況添加設備卡片連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} groupIndex - Panel+Equipment 群組索引
+     * @param {Object} newEquipmentCard - 新的設備卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addEquipmentConnectionLineWithValve(moduleSet, groupIndex, newEquipmentCard, moduleSetIndex) {
+      const currentGroup = moduleSet.panelEquipmentGroups[groupIndex];
+      
+      if (!currentGroup.valve) {
+        console.error('找不到閥件');
+        return;
+      }
+
+      // 連接線起始位置：panel → valve 連接線上的位置
+      const panelRightX = currentGroup.panel.position.x + CARD_WIDTH;
+      const panelY = currentGroup.panel.position.y + CARD_HEIGHT_OFFSET;
+      const valveLeftX = currentGroup.valve.position.x;
+      
+      // 計算 add icon 的位置（panel 和 valve 之間）
+      const midX = panelRightX + (valveLeftX - panelRightX) * 0.9;
+      const iconX = panelRightX + (midX - panelRightX) * 0.33;
+      
+      // 計算紫色圖標的位置
+      const purpleIconX = panelRightX + (valveLeftX - panelRightX) * 0.67;
+      
+      // 連接線從 add icon 和 purple icon 之間的位置開始（選擇兩者中間）
+      const connectionStartX = (iconX + purpleIconX) / 2;
+      const connectionStartY = panelY;
+      
+      // 連接線終點在設備卡片左側
+      const equipmentCardHeight = this.getCardHeight('equipment');
+      const connectionEndX = newEquipmentCard.position.x;
+      const connectionEndY = newEquipmentCard.position.y + CARD_HEIGHT_OFFSET;
+      
+      // 添加連接線配置
+      moduleSet.connections.push({
+        from: 'panel-equipment-valve',
+        to: 'additional-equipment',
+        showAdditionalIcon: false,
+        showFaIcon: true,
+        groupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex,
+        equipmentCardIndex: currentGroup.additionalEquipmentCards.length - 1,
+        fromPosition: { x: connectionStartX, y: connectionStartY },
+        toPosition: { x: connectionEndX, y: connectionEndY }
+      });
+      
+      console.log('已添加設備卡片連接線（從 panel → valve 線條），起始點:', `(${connectionStartX}, ${connectionStartY})`, '終點:', `(${connectionEndX}, ${connectionEndY})`);
+    },
+    
+    /**
+     * 為分支新增的設備卡片添加連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchModuleIndex - 分支模組索引
+     * @param {number} groupIndex - 群組索引
+     * @param {Object} newEquipmentCard - 新的設備卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchEquipmentConnectionLine(moduleSet, branchModuleIndex, groupIndex, newEquipmentCard, moduleSetIndex) {
+      const branchModule = moduleSet.branchModuleCards[branchModuleIndex];
+      const currentGroup = branchModule.panelEquipmentGroups[groupIndex];
+      
+      // 計算連接線起始位置（在 panel 到 equipment 連接線上的 add icon 和 purple icon 之間）
+      const panelRightX = currentGroup.panel.position.x + CARD_WIDTH;
+      const panelY = currentGroup.panel.position.y + CARD_HEIGHT_OFFSET;
+      const equipmentLeftX = currentGroup.equipment.position.x;
+      
+      // 計算 add icon 的位置（panel 和 equipment 之間）
+      const midX = panelRightX + (equipmentLeftX - panelRightX) * 0.9;
+      const iconX = panelRightX + (midX - panelRightX) * 0.33;
+      
+      // 計算紫色圖標的位置
+      const purpleIconX = panelRightX + (equipmentLeftX - panelRightX) * 0.67;
+      
+      // 連接線從 add icon 和 purple icon 之間的位置開始（選擇兩者中間）
+      const connectionStartX = (iconX + purpleIconX) / 2;
+      const connectionStartY = panelY;
+      
+      // 連接線終點在設備卡片左側
+      const connectionEndX = newEquipmentCard.position.x;
+      const connectionEndY = newEquipmentCard.position.y + CARD_HEIGHT_OFFSET;
+      
+      // 添加連接線配置
+      moduleSet.connections.push({
+        from: 'branch-panel-equipment-connection',
+        to: 'branch-additional-equipment',
+        showAdditionalIcon: false,
+        showFaIcon: true,
+        branchModuleIndex: branchModuleIndex,
+        panelEquipmentGroupIndex: groupIndex,
+        moduleSetIndex: moduleSetIndex,
+        equipmentCardIndex: currentGroup.additionalEquipmentCards.length - 1,
+        fromPosition: { x: connectionStartX, y: connectionStartY },
+        toPosition: { x: connectionEndX, y: connectionEndY }
+      });
+      
+      console.log('已為分支添加設備卡片連接線，起始點:', `(${connectionStartX}, ${connectionStartY})`, '終點:', `(${connectionEndX}, ${connectionEndY})`);
+    },
+    
+    // ==================== 閥件管理 ====================
+    /**
+     * 添加閥件資訊卡片
+     * @param {Object} connection - 連接對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addValveInfoCard(connection, moduleSetIndex = 0) {
+      console.log(`添加閥件資訊卡片到模組組 ${moduleSetIndex}`);
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      
+      if (!currentModuleSet) {
+        console.error('找不到當前的模組組');
+        return;
+      }
+      
+      const newValveCard = this.createValveCard(currentModuleSet);
+      
+      // 初始化閥件卡片數組
+      if (!currentModuleSet.valveCards) {
+        currentModuleSet.valveCards = [];
+      }
+      currentModuleSet.valveCards.push(newValveCard);
+      
+      // 將管線資訊及後續卡片往右推移
+      this.shiftCardsRight(currentModuleSet, currentModuleSet.pipeline.position.x);
+      
+      // 更新連接線配置
+      this.updateConnectionsForValve(currentModuleSet);
+      
+      // 更新已存在的 Panel+Equipment 群組的連接線起始點
+      this.updateExistingPanelConnections(currentModuleSet);
+      
+      // 更新設備卡片的連接線位置
+      this.updateAdditionalEquipmentConnectionLines(currentModuleSet, -1);
+      
+      console.log(`已在模組組 ${moduleSetIndex} 中添加閥件資訊卡片:`, newValveCard);
+    },
+    
+    /**
+     * 在 panel 和 equipment 之間添加閥件
+     * @param {Object} connection - 連接對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addValveBetweenPanelAndEquipment(connection, moduleSetIndex = 0) {
+      console.log(`在 panel 和 equipment 之間添加閥件到模組組 ${moduleSetIndex}`);
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      
+      if (!currentModuleSet) {
+        console.error('找不到當前的模組組');
+        return;
+      }
+
+      const { connIndex } = this.parseConnectionId(connection.id);
+      const connConfig = currentModuleSet.connections[connIndex];
+      const groupIndex = connConfig.groupIndex || 0;
+      
+      const panelEquipmentGroup = currentModuleSet.panelEquipmentGroups[groupIndex];
+      if (!panelEquipmentGroup) {
+        console.error('找不到對應的 Panel+Equipment 群組');
+        return;
+      }
+
+      const panel = panelEquipmentGroup.panel;
+      const equipment = panelEquipmentGroup.equipment;
+
+      // 檢查是否已經有面板設備閥件
+      if (!panelEquipmentGroup.valve) {
+        // 閥件取代第一個設備資訊的位置
+        const valveX = equipment.position.x;
+        const valveY = equipment.position.y;
+
+        // 創建新的面板設備閥件
+        const valve = {
+          id: `panel-equipment-valve-${Date.now()}`,
+          type: 'panel-equipment-valve',
+          position: { x: valveX, y: valveY },
+          data: {
+            connectorType: '',
+            size: '',
+            valveType: '',
+            enableValve: false,
+            branchSize: ''
+          }
+        };
+        
+        // 將閥件添加到群組中
+        panelEquipmentGroup.valve = valve;
+
+        // 將 equipment 向右推移（閥件寬度232 + 間距86 = 318px）
+        const shiftDistance = 318;
+        equipment.position.x = equipment.position.x + shiftDistance;
+
+        // 如果有額外的設備卡片，也向右推移
+        if (panelEquipmentGroup.additionalEquipmentCards) {
+          panelEquipmentGroup.additionalEquipmentCards.forEach(card => {
+            card.position.x += shiftDistance;
+          });
+        }
+
+        // 更新連接線配置
+        this.updateConnectionsForPanelEquipmentValve(currentModuleSet, groupIndex);
+
+        // 更新額外設備卡片的連接線位置
+        this.updatePanelEquipmentAdditionalConnectionLines(currentModuleSet, groupIndex);
+
+        console.log(`已在模組組 ${moduleSetIndex} 的 Panel-Equipment 群組 ${groupIndex} 之間添加閥件:`, valve);
+      }
+    },
+
+    /**
+     * 更新連接線配置以適應 panel-equipment 之間的閥件
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} groupIndex - Panel+Equipment 群組索引
+     */
+    updateConnectionsForPanelEquipmentValve(moduleSet, groupIndex) {
+      // 查找 panel → equipment 的連接線（支持默認 groupIndex 為 0 或 undefined）
+      const connectionIndex = moduleSet.connections.findIndex(conn => 
+        conn.from === 'panel' && conn.to === 'equipment' && 
+        (conn.groupIndex === groupIndex || (groupIndex === 0 && conn.groupIndex === undefined))
+      );
+
+      if (connectionIndex !== -1) {
+        // 插入新的連接線：panel → valve, valve → equipment
+        const oldConnection = moduleSet.connections[connectionIndex];
+        
+        // 獲取 valve 和 equipment 的位置
+        const panelEquipmentGroup = moduleSet.panelEquipmentGroups[groupIndex];
+        const valve = panelEquipmentGroup.valve;
+        const equipment = panelEquipmentGroup.equipment;
+        
+        moduleSet.connections.splice(connectionIndex, 1);
+
+        // 添加 panel → valve 連接（保留 add icon 和紫色 icon）
+        moduleSet.connections.push({
+          from: 'panel',
+          to: 'panel-equipment-valve',
+          groupIndex: groupIndex,
+          showAdditionalIcon: oldConnection.showAdditionalIcon,
+          showFaIcon: oldConnection.showFaIcon
+        });
+
+        // 添加 valve → equipment 連接（不顯示 icon）
+        // 設置 fromPosition 為閥件右側
+        moduleSet.connections.push({
+          from: 'panel-equipment-valve',
+          to: 'equipment',
+          groupIndex: groupIndex,
+          showAdditionalIcon: false,
+          showFaIcon: false,
+          fromPosition: {
+            x: valve.position.x + CARD_WIDTH,
+            y: valve.position.y + CARD_HEIGHT_OFFSET
+          }
+        });
+      }
+    },
+
+    /**
+     * 更新 Panel-Equipment 群組中額外設備卡片的連接線位置
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} groupIndex - Panel+Equipment 群組索引
+     */
+    updatePanelEquipmentAdditionalConnectionLines(moduleSet, groupIndex) {
+      const panelEquipmentGroup = moduleSet.panelEquipmentGroups[groupIndex];
+      
+      if (!panelEquipmentGroup || !panelEquipmentGroup.valve) {
+        return;
+      }
+
+      const valve = panelEquipmentGroup.valve;
+      const shiftDistance = 318; // 閥件寬度232 + 間距86
+      
+      // 更新額外設備卡片的連接線
+      moduleSet.connections.forEach(conn => {
+        if (conn.from === 'panel-equipment-connection' && 
+            conn.groupIndex === groupIndex && 
+            conn.equipmentCardIndex !== undefined) {
+          
+          // 更新 from 為 panel-equipment-valve（從閥件出發）
+          conn.from = 'panel-equipment-valve';
+          
+          // 更新連接線起始位置為 panel → valve 連接線上的位置
+          const panelRightX = panelEquipmentGroup.panel.position.x + CARD_WIDTH;
+          const panelY = panelEquipmentGroup.panel.position.y + CARD_HEIGHT_OFFSET;
+          const valveLeftX = valve.position.x;
+          
+          // 計算 add icon 的位置（panel 和 valve 之間）
+          const midX = panelRightX + (valveLeftX - panelRightX) * 0.9;
+          const iconX = panelRightX + (midX - panelRightX) * 0.33;
+          
+          // 計算紫色圖標的位置
+          const purpleIconX = panelRightX + (valveLeftX - panelRightX) * 0.67;
+          
+          // 連接線從 add icon 和 purple icon 之間的位置開始（選擇兩者中間）
+          const connectionStartX = (iconX + purpleIconX) / 2;
+          const connectionStartY = panelY;
+          
+          conn.fromPosition = {
+            x: connectionStartX,
+            y: connectionStartY
+          };
+          
+          // 更新連接線結束位置（設備已經右移了shiftDistance）
+          if (conn.toPosition) {
+            conn.toPosition.x += shiftDistance;
+          } else {
+            // 如果沒有 toPosition，從設備卡片位置計算
+            const equipmentCardIndex = conn.equipmentCardIndex;
+            if (equipmentCardIndex !== undefined && panelEquipmentGroup.additionalEquipmentCards && panelEquipmentGroup.additionalEquipmentCards[equipmentCardIndex]) {
+              const equipmentCard = panelEquipmentGroup.additionalEquipmentCards[equipmentCardIndex];
+              conn.toPosition = {
+                x: equipmentCard.position.x,
+                y: equipmentCard.position.y + CARD_HEIGHT_OFFSET
+              };
+            }
+          }
+        }
+      });
+    },
+
+    /**
+     * 創建閥件卡片
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {Object} 新的閥件卡片對象
+     */
+    createValveCard(moduleSet) {
+      const pipelineCard = moduleSet.pipeline;
+      
+      return {
+        id: `valve-card-${Date.now()}`,
+        type: 'valve',
+        position: { x: pipelineCard.position.x, y: pipelineCard.position.y }
+      };
+    },
+    
+    /**
+     * 添加分支閥件卡片（包含完整的模組流程）
+     * @param {Object} connection - 連接對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchValveCard(connection, moduleSetIndex) {
+      console.log(`添加分支閥件完整模組到模組組 ${moduleSetIndex}`);
+      
+      const currentModuleSet = this.allModuleSets[moduleSetIndex];
+      
+      if (!currentModuleSet) {
+        console.error('找不到當前的模組組');
+        return;
+      }
+      
+      // 獲取最後一個閥件卡片的位置（用於X軸定位）
+      const lastValveCard = currentModuleSet.valveCards[currentModuleSet.valveCards.length - 1];
+      
+      // 計算分支閥件的Y位置
+      let branchValveY;
+      if (currentModuleSet.branchModuleCards && currentModuleSet.branchModuleCards.length > 0) {
+        // 如果已經有分支閥件群組，計算最後一個群組的最大底部位置
+        const lastBranchModule = currentModuleSet.branchModuleCards[currentModuleSet.branchModuleCards.length - 1];
+        
+        // 找到最後一個分支模組中最後一個 panel-equipment 群組
+        let lastBranchMaxBottomY = lastBranchModule.valve.position.y;
+        if (lastBranchModule.panelEquipmentGroups && lastBranchModule.panelEquipmentGroups.length > 0) {
+          const lastGroup = lastBranchModule.panelEquipmentGroups[lastBranchModule.panelEquipmentGroups.length - 1];
+          const groupPanelBottomY = lastGroup.panel.position.y + this.getCardHeight('panel');
+          const groupEquipmentBottomY = lastGroup.equipment.position.y + this.getCardHeight('equipment');
+          let groupMaxBottomY = Math.max(groupPanelBottomY, groupEquipmentBottomY);
+          
+          // 如果有額外的設備卡片，檢查它們的最底部位置
+          if (lastGroup.additionalEquipmentCards && lastGroup.additionalEquipmentCards.length > 0) {
+            lastGroup.additionalEquipmentCards.forEach(card => {
+              const cardBottomY = card.position.y + this.getCardHeight('equipment');
+              groupMaxBottomY = Math.max(groupMaxBottomY, cardBottomY);
+            });
+          }
+          
+          lastBranchMaxBottomY = groupMaxBottomY;
+        }
+        
+        // 在最後一個分支閥件群組下方添加新的分支閥件
+        branchValveY = lastBranchMaxBottomY + BRANCH_VALVE_SPACING;
+        
+        console.log('添加第二個分支閥件，基於最後一個分支閥件群組:', {
+          lastBranchMaxBottomY,
+          branchValveY,
+          branchCount: currentModuleSet.branchModuleCards.length
+        });
+      } else {
+        // 如果沒有分支閥件群組，使用主分支高度計算
+        branchValveY = this.calculateBranchValveYPosition(currentModuleSet);
+        
+        console.log('添加第一個分支閥件，基於主分支高度:', {
+          branchValveY
+        });
+      }
+      
+      // 創建分支閥件卡片
+      const newBranchValveCard = {
+        id: `branch-valve-card-${Date.now()}`,
+        type: 'branch-valve',
+        position: { x: lastValveCard.position.x, y: branchValveY },
+        data: {
+          connectorType: '',
+          size: '',
+          valveType: '',
+          enableValve: false,
+          branchSize: ''
+        }
+      };
+      
+      // 創建分支模組的後續卡片
+      const branchModuleCards = this.createBranchModuleCards(newBranchValveCard);
+      
+      // 將分支閥件添加到閥件卡片數組
+      currentModuleSet.valveCards.push(newBranchValveCard);
+      
+      // 添加分支模組的後續卡片到對應數組
+      this.addBranchModuleCards(currentModuleSet, branchModuleCards);
+      
+      // 添加分支閥件的連接線
+      this.addBranchValveConnection(currentModuleSet, newBranchValveCard, moduleSetIndex);
+      
+      // 添加分支模組內部的連接線
+      this.addBranchModuleConnections(currentModuleSet, branchModuleCards, moduleSetIndex);
+      
+      // 更新所有設備卡片的連接線位置（影響所有分支）
+      if (currentModuleSet.branchModuleCards && currentModuleSet.branchModuleCards.length > 0) {
+        currentModuleSet.branchModuleCards.forEach((_, index) => {
+          this.updateAdditionalEquipmentConnectionLines(currentModuleSet, index);
+        });
+      }
+      // 更新主分支的設備卡片連接線
+      this.updateAdditionalEquipmentConnectionLines(currentModuleSet, -1);
+      
+      console.log(`已在模組組 ${moduleSetIndex} 中添加分支閥件完整模組:`, {
+        branchValve: newBranchValveCard,
+        moduleCards: branchModuleCards
+      });
+    },
+    
+    /**
+     * 計算分支閥件的Y位置（在主分支最下方，包括所有Panel+Equipment群組）
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 分支閥件的Y位置
+     */
+    calculateBranchValveYPosition(moduleSet) {
+      // 計算主分支的最大底部位置（包括所有Panel+Equipment群組）
+      let maxBottomY = 0;
+      
+      // 獲取主要卡片的底部位置
+      const sourceBottomY = moduleSet.source.position.y + this.getCardHeight('source');
+      const pipelineBottomY = moduleSet.pipeline.position.y + this.getCardHeight('pipeline');
+      const floorBottomY = moduleSet.floor.position.y + this.getCardHeight('floor');
+      
+      maxBottomY = Math.max(maxBottomY, sourceBottomY, pipelineBottomY, floorBottomY);
+      
+      // 計算Panel+Equipment群組的最大底部位置（取最後一個群組的底部）
+      if (moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups.length > 0) {
+        // 找到最後一個群組（最新的群組在最下方）
+        const lastGroup = moduleSet.panelEquipmentGroups[moduleSet.panelEquipmentGroups.length - 1];
+        const panelBottomY = lastGroup.panel.position.y + this.getCardHeight('panel');
+        const equipmentBottomY = lastGroup.equipment.position.y + this.getCardHeight('equipment');
+        let lastGroupMaxBottomY = Math.max(panelBottomY, equipmentBottomY);
+        
+        // 如果有額外的設備卡片，檢查它們的最底部位置
+        if (lastGroup.additionalEquipmentCards && lastGroup.additionalEquipmentCards.length > 0) {
+          lastGroup.additionalEquipmentCards.forEach(card => {
+            const cardBottomY = card.position.y + this.getCardHeight('equipment');
+            lastGroupMaxBottomY = Math.max(lastGroupMaxBottomY, cardBottomY);
+          });
+        }
+        
+        maxBottomY = Math.max(maxBottomY, lastGroupMaxBottomY);
+      }
+      
+      // 計算分支閥件與主分支之間的間距（第一個分支使用較小的間距）
+      const branchSpacing = FIRST_BRANCH_VALVE_SPACING;
+      
+      // 計算主分支增高的額外間距（Panel+Equipment 群組的增長高度）
+      const extraHeight = this.calculateExtraHeightForBranch(moduleSet);
+      
+      // 在主分支最大底部位置下方使用第一個分支的間距，再加上額外高度
+      const branchValveY = maxBottomY + branchSpacing + extraHeight;
+      
+      console.log('計算分支閥件Y位置 (基於主分支高度):', {
+        sourceBottomY,
+        pipelineBottomY,
+        floorBottomY,
+        lastGroupMaxBottomY: moduleSet.panelEquipmentGroups?.length > 0 ? 
+          Math.max(
+            moduleSet.panelEquipmentGroups[moduleSet.panelEquipmentGroups.length - 1].panel.position.y + this.getCardHeight('panel'),
+            moduleSet.panelEquipmentGroups[moduleSet.panelEquipmentGroups.length - 1].equipment.position.y + this.getCardHeight('equipment')
+          ) : 0,
+        maxBottomY,
+        branchSpacing,
+        extraHeight,
+        branchValveY,
+        panelEquipmentGroupsCount: moduleSet.panelEquipmentGroups?.length || 0
+      });
+      
+      return branchValveY;
+    },
+    
+    /**
+     * 計算主分支增高時的額外間距
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 額外間距
+     */
+    calculateExtraHeightForBranch(moduleSet) {
+      // 如果 Panel+Equipment 群組數量大於1，表示主分支增高了
+      if (moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups.length > 1) {
+        // 計算第一群組到底部群組之間的距離
+        const firstGroup = moduleSet.panelEquipmentGroups[0];
+        const lastGroup = moduleSet.panelEquipmentGroups[moduleSet.panelEquipmentGroups.length - 1];
+        
+        const firstGroupBottomY = Math.max(
+          firstGroup.panel.position.y + this.getCardHeight('panel'),
+          firstGroup.equipment.position.y + this.getCardHeight('equipment')
+        );
+        
+        const lastGroupTopY = Math.min(lastGroup.panel.position.y, lastGroup.equipment.position.y);
+        
+        const extraSpacing = lastGroupTopY - firstGroupBottomY;
+        
+        // 返回額外的 355 間距
+        return 355;
+      }
+      
+      return 0;
+    },
+    
+    /**
+     * 計算主分支卡片之間的距離
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {number} 主分支卡片之間的距離
+     */
+    calculateMainBranchSpacing(moduleSet) {
+      // 計算源頭資訊到管線資訊的距離
+      const sourceToPipelineDistance = moduleSet.pipeline.position.y - moduleSet.source.position.y;
+      
+      // 計算管線資訊到樓層資訊的距離
+      const pipelineToFloorDistance = moduleSet.floor.position.y - moduleSet.pipeline.position.y;
+      
+      // 計算樓層資訊到盤面的距離
+      let floorToPanelDistance = 0;
+      if (moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups.length > 0) {
+        const firstPanel = moduleSet.panelEquipmentGroups[0].panel;
+        floorToPanelDistance = firstPanel.position.y - moduleSet.floor.position.y;
+      }
+      
+      // 使用平均距離作為主分支距離
+      const distances = [sourceToPipelineDistance, pipelineToFloorDistance, floorToPanelDistance].filter(d => d > 0);
+      const averageSpacing = distances.length > 0 ? distances.reduce((sum, d) => sum + d, 0) / distances.length : 50;
+      
+      console.log('計算主分支距離:', {
+        sourceToPipelineDistance,
+        pipelineToFloorDistance,
+        floorToPanelDistance,
+        averageSpacing
+      });
+      
+      return averageSpacing;
+    },
+    
+    /**
+     * 更新所有分支閥件的位置
+     * @param {Object} moduleSet - 模組組對象
+     */
+    updateAllBranchValvePositions(moduleSet) {
+      console.log('更新所有分支閥件位置');
+      
+      if (!moduleSet.branchModuleCards || moduleSet.branchModuleCards.length === 0) {
+        console.log('沒有分支閥件需要更新');
+        return;
+      }
+      
+      // 計算第一個分支閥件應該在的位置（基於當前主分支高度）
+      const firstBranchValveY = this.calculateBranchValveYPosition(moduleSet);
+      
+      // 計算每個分支閥件及其相關卡片的位置
+      let currentBaseY = firstBranchValveY;
+      
+      moduleSet.branchModuleCards.forEach((branchModule, index) => {
+        const currentY = branchModule.valve.position.y;
+        
+        // 計算新位置
+        const newBranchValveY = index === 0 ? firstBranchValveY : currentBaseY + BRANCH_VALVE_SPACING;
+        
+        // 保存原始位置，用於計算相對位置
+        const originalValveY = branchModule.valve.position.y;
+        
+        console.log(`分支閥件 ${index}: 當前Y=${currentY}, 新Y=${newBranchValveY}, 移動=${newBranchValveY - currentY}`);
+        
+        // 更新分支閥件卡片的位置（在valveCards中）
+        if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
+          const branchValveInValveCards = moduleSet.valveCards.find(valveCard => 
+            valveCard.type === 'branch-valve' &&
+            valveCard.position.x === branchModule.valve.position.x &&
+            Math.abs(valveCard.position.y - currentY) < 1
+          );
+          
+          if (branchValveInValveCards) {
+            branchValveInValveCards.position.y = newBranchValveY;
+          }
+        }
+        
+        // 更新分支模組內所有卡片的位置
+        branchModule.valve.position.y = newBranchValveY;
+        branchModule.pipeline.position.y = newBranchValveY;
+        branchModule.floor.position.y = newBranchValveY;
+        
+        // 更新所有 panel-equipment 群組的位置（保持相對位置）
+        if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
+          branchModule.panelEquipmentGroups.forEach((group, groupIndex) => {
+            // 第一個群組與閥件在同一 Y 位置
+            if (groupIndex === 0) {
+              group.panel.position.y = newBranchValveY;
+              group.equipment.position.y = newBranchValveY;
+              
+              // 更新額外的設備卡片位置
+              if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                const equipmentY = group.equipment.position.y;
+                group.additionalEquipmentCards.forEach((card, cardIndex) => {
+                  card.position.y = equipmentY + (cardIndex + 1) * (this.getCardHeight('equipment') + 50);
+                });
+              }
+            } else {
+              // 其他群組保持與第一個群組的相對位置
+              const relativeY = group.panel.position.y - originalValveY;
+              group.panel.position.y = newBranchValveY + relativeY;
+              group.equipment.position.y = newBranchValveY + relativeY;
+              
+              // 更新額外的設備卡片位置（保持相對位置）
+              if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                const firstAdditionalCardOriginalY = group.additionalEquipmentCards[0].position.y;
+                const firstAdditionalCardOriginalRelativeY = firstAdditionalCardOriginalY - originalValveY;
+                group.additionalEquipmentCards.forEach((card, cardIndex) => {
+                  if (cardIndex === 0) {
+                    card.position.y = newBranchValveY + firstAdditionalCardOriginalRelativeY;
+                  } else {
+                    const equipmentCardHeight = this.getCardHeight('equipment');
+                    card.position.y = group.additionalEquipmentCards[0].position.y + cardIndex * (equipmentCardHeight + 50);
+                  }
+                });
+              }
+            }
+          });
+        }
+        
+        // 計算該分支的最大高度（在更新位置後）
+        let maxHeight = 0;
+        if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
+          const lastGroup = branchModule.panelEquipmentGroups[branchModule.panelEquipmentGroups.length - 1];
+          let groupMaxBottomY = Math.max(
+            lastGroup.panel.position.y + this.getCardHeight('panel'),
+            lastGroup.equipment.position.y + this.getCardHeight('equipment')
+          );
+          
+          // 如果有額外的設備卡片，檢查它們的最底部位置
+          if (lastGroup.additionalEquipmentCards && lastGroup.additionalEquipmentCards.length > 0) {
+            lastGroup.additionalEquipmentCards.forEach(card => {
+              const cardBottomY = card.position.y + this.getCardHeight('equipment');
+              groupMaxBottomY = Math.max(groupMaxBottomY, cardBottomY);
+            });
+          }
+          
+          maxHeight = groupMaxBottomY - newBranchValveY;
+        } else {
+          maxHeight = Math.max(
+            this.getCardHeight('valve'),
+            this.getCardHeight('pipeline'),
+            this.getCardHeight('floor')
+          );
+        }
+        
+        // 更新當前分支的最大底部位置，用於計算下一個分支的位置
+        const branchBottomY = newBranchValveY + maxHeight;
+        if (index === 0) {
+          currentBaseY = branchBottomY;
+        } else {
+          currentBaseY = Math.max(currentBaseY, branchBottomY);
+        }
+        
+        // 更新連接線的位置
+        this.updateBranchValveConnectionPositions(moduleSet, index);
+        
+        // 更新該分支的設備卡片連接線位置
+        this.updateAdditionalEquipmentConnectionLines(moduleSet, index);
+      });
+      
+      console.log('已更新所有分支閥件位置', {
+        分支數量: moduleSet.branchModuleCards.length,
+        第一個分支閥件Y: firstBranchValveY
+      });
+    },
+    
+    /**
+     * 更新分支閥件連接線的位置
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchModuleIndex - 分支模組索引
+     */
+    updateBranchValveConnectionPositions(moduleSet, branchModuleIndex) {
+      console.log(`更新分支閥件 ${branchModuleIndex} 的連接線位置`);
+      
+      const branchValveCard = moduleSet.branchModuleCards[branchModuleIndex];
+      if (!branchValveCard) {
+        return;
+      }
+      
+      moduleSet.connections.forEach(conn => {
+        // 更新從源頭到分支閥件的連接線終點
+        // 檢查連接線是否對應這個分支模組
+        const isThisBranchModuleConnection = 
+          (conn.from === 'source' && conn.to === 'branch-valve') ||
+          (conn.branchModuleIndex === branchModuleIndex);
+        
+        if (isThisBranchModuleConnection) {
+          // 更新連接線的終點位置（從源頭到分支閥件）
+          if (conn.to === 'branch-valve' && conn.toPosition) {
+            conn.toPosition.y = branchValveCard.valve.position.y + CARD_HEIGHT_OFFSET;
+          }
+        }
+      });
+    },
+    
+    /**
+     * 更新額外設備卡片的連接線位置
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchModuleIndex - 分支模組索引（如果是主分支則為 -1）
+     */
+    updateAdditionalEquipmentConnectionLines(moduleSet, branchModuleIndex) {
+      // 更新主分支的設備卡片連接線
+      if (branchModuleIndex === -1 || branchModuleIndex === undefined) {
+        if (moduleSet.panelEquipmentGroups) {
+          moduleSet.panelEquipmentGroups.forEach((group, groupIndex) => {
+            if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+              this.updateGroupEquipmentConnectionLines(moduleSet, group, groupIndex, -1, false);
+            }
+          });
+        }
+      } else {
+        // 更新分支的設備卡片連接線
+        const branchModule = moduleSet.branchModuleCards[branchModuleIndex];
+        if (branchModule && branchModule.panelEquipmentGroups) {
+          branchModule.panelEquipmentGroups.forEach((group, groupIndex) => {
+            if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+              this.updateGroupEquipmentConnectionLines(moduleSet, group, groupIndex, branchModuleIndex, true);
+            }
+          });
+        }
+      }
+    },
+    
+    /**
+     * 更新群組的設備卡片連接線位置（統一方法）
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} group - Panel+Equipment 群組
+     * @param {number} groupIndex - 群組索引
+     * @param {number} branchModuleIndex - 分支模組索引（-1 表示主分支）
+     * @param {boolean} isBranch - 是否為分支
+     */
+    updateGroupEquipmentConnectionLines(moduleSet, group, groupIndex, branchModuleIndex, isBranch = false) {
+      // 計算連接線起始位置
+      const panelRightX = group.panel.position.x + CARD_WIDTH;
+      const panelY = group.panel.position.y + CARD_HEIGHT_OFFSET;
+      const equipmentLeftX = group.equipment.position.x;
+      
+      const midX = panelRightX + (equipmentLeftX - panelRightX) * 0.9;
+      const iconX = panelRightX + (midX - panelRightX) * 0.33;
+      const purpleIconX = panelRightX + (equipmentLeftX - panelRightX) * 0.67;
+      
+      const connectionStartX = (iconX + purpleIconX) / 2;
+      const connectionStartY = panelY;
+      
+      // 更新該群組的設備卡片連接線
+      moduleSet.connections.forEach(conn => {
+        if (isBranch) {
+          // 分支設備卡片連接線
+          if (conn.from === 'branch-panel-equipment-connection' && 
+              conn.branchModuleIndex === branchModuleIndex &&
+              conn.panelEquipmentGroupIndex === groupIndex) {
+            const equipmentCardIndex = conn.equipmentCardIndex;
+            if (equipmentCardIndex !== undefined && group.additionalEquipmentCards[equipmentCardIndex]) {
+              const card = group.additionalEquipmentCards[equipmentCardIndex];
+              conn.fromPosition = { x: connectionStartX, y: connectionStartY };
+              conn.toPosition = { x: card.position.x, y: card.position.y + CARD_HEIGHT_OFFSET };
+            }
+          }
+        } else {
+          // 主分支設備卡片連接線
+          if (conn.from === 'panel-equipment-connection' && 
+              conn.groupIndex === groupIndex) {
+            const equipmentCardIndex = conn.equipmentCardIndex;
+            if (equipmentCardIndex !== undefined && group.additionalEquipmentCards[equipmentCardIndex]) {
+              const card = group.additionalEquipmentCards[equipmentCardIndex];
+              conn.fromPosition = { x: connectionStartX, y: connectionStartY };
+              conn.toPosition = { x: card.position.x, y: card.position.y + CARD_HEIGHT_OFFSET };
+            }
+          }
+        }
+      });
+    },
+    
+    /**
+     * 創建分支模組的後續卡片
+     * @param {Object} branchValveCard - 分支閥件卡片對象
+     * @returns {Object} 包含所有後續卡片的對象
+     */
+    createBranchModuleCards(branchValveCard) {
+      // 調整分支模組的卡片間距
+      const valveToPipelineSpacing = 260;  // 分支資訊到管線資訊的間距（縮短）
+      const pipelineToFloorSpacing = 260;  // 790 - 520 = 270px
+      const floorToPanelSpacing = 330;     // 1120 - 790 = 330px
+      const panelToEquipmentSpacing = 430; // 1550 - 1120 = 430px
+      
+      // 計算各卡片的位置（所有卡片使用相同的Y位置）
+      const pipelineX = branchValveCard.position.x + valveToPipelineSpacing;
+      const floorX = pipelineX + pipelineToFloorSpacing;
+      const panelX = floorX + floorToPanelSpacing;
+      const equipmentX = panelX + panelToEquipmentSpacing;
+      
+      return {
+        valve: {
+          id: `branch-valve-card-${Date.now()}`,
+          type: 'branch-valve',
+          position: { x: branchValveCard.position.x, y: branchValveCard.position.y },
+          data: {
+            connectorType: '',
+            size: '',
+            valveType: '',
+            enableValve: false,
+            branchSize: ''
+          }
+        },
+        pipeline: {
+          id: `branch-pipeline-card-${Date.now()}`,
+          type: 'branch-pipeline',
+          position: { x: pipelineX, y: branchValveCard.position.y },
+          data: {
+            length: '',
+            material: 'NA'
+          }
+        },
+        floor: {
+          id: `branch-floor-card-${Date.now()}`,
+          type: 'branch-floor',
+          position: { x: floorX, y: branchValveCard.position.y },
+          data: {
+            sourceFloor: '',
+            equipmentFloor: ''
+          }
+        },
+        // 使用 panelEquipmentGroups 數組來支持多個面板群組
+        panelEquipmentGroups: [
+          {
+            id: `branch-panel-equipment-group-${Date.now()}`,
+            panel: {
+              id: `branch-panel-card-${Date.now()}`,
+              type: 'branch-panel',
+              position: { x: panelX, y: branchValveCard.position.y },
+              data: {
+                enablePanel: true,
+                valve: '',
+                size: '',
+                valveConnector: '',
+                regulator: false,
+                pressureGauge: 'none',
+                backPipelineType: ''
+              }
+            },
+            equipment: {
+              id: `branch-equipment-card-${Date.now()}`,
+              type: 'branch-equipment',
+              position: { x: equipmentX, y: branchValveCard.position.y },
+              data: {
+                gasType: '',
+                size: '',
+                connector: '',
+                connectionName: '',
+                threeInOne: ''
+              }
+            },
+            additionalEquipmentCards: []
+          }
+        ]
+      };
+    },
+    
+    /**
+     * 添加分支模組的後續卡片到模組組
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchModuleCards - 分支模組卡片對象
+     */
+    addBranchModuleCards(moduleSet, branchModuleCards) {
+      // 初始化分支模組卡片數組
+      if (!moduleSet.branchModuleCards) {
+        moduleSet.branchModuleCards = [];
+      }
+      
+      // 添加分支模組卡片
+      moduleSet.branchModuleCards.push(branchModuleCards);
+      
+      console.log('已添加分支模組卡片:', branchModuleCards);
+    },
+    
+    /**
+     * 添加分支模組內部的連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchModuleCards - 分支模組卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchModuleConnections(moduleSet, branchModuleCards, moduleSetIndex) {
+      const branchModuleIndex = moduleSet.branchModuleCards.length - 1;
+      
+      // 分支閥件 → 管線資訊
+      const valveToPipelineConnection = {
+        from: 'branch-valve',
+        to: 'branch-pipeline',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        branchValveCardIndex: moduleSet.valveCards.length - 1,
+        branchModuleIndex: branchModuleIndex,
+        moduleSetIndex: moduleSetIndex
+      };
+      
+      // 管線資訊 → 樓層資訊
+      const pipelineToFloorConnection = {
+        from: 'branch-pipeline',
+        to: 'branch-floor',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        branchModuleIndex: branchModuleIndex,
+        moduleSetIndex: moduleSetIndex
+      };
+      
+      // 樓層資訊 → 盤面
+      const floorToPanelConnection = {
+        from: 'branch-floor',
+        to: 'branch-panel',
+        showAdditionalIcon: true,
+        showFaIcon: false,
+        branchModuleIndex: branchModuleIndex,
+        moduleSetIndex: moduleSetIndex,
+        panelEquipmentGroupIndex: 0 // 初始群組索引
+      };
+      
+      // 盤面 → 設備資訊
+      const panelToEquipmentConnection = {
+        from: 'branch-panel',
+        to: 'branch-equipment',
+        showAdditionalIcon: true,
+        showFaIcon: true,
+        branchModuleIndex: branchModuleIndex,
+        moduleSetIndex: moduleSetIndex,
+        panelEquipmentGroupIndex: 0 // 初始群組索引
+      };
+      
+      // 添加所有連接線
+      moduleSet.connections.push(
+        valveToPipelineConnection,
+        pipelineToFloorConnection,
+        floorToPanelConnection,
+        panelToEquipmentConnection
+      );
+      
+      console.log('已添加分支模組內部連接線:', {
+        valveToPipeline: valveToPipelineConnection,
+        pipelineToFloor: pipelineToFloorConnection,
+        floorToPanel: floorToPanelConnection
+      });
+    },
+    
+    /**
+     * 添加分支閥件的連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Object} branchValveCard - 分支閥件卡片對象
+     * @param {number} moduleSetIndex - 模組組索引
+     */
+    addBranchValveConnection(moduleSet, branchValveCard, moduleSetIndex) {
+      console.log('添加分支閥件連接線');
+      
+      // 找到最後一個閥件卡片（源閥件）
+      const lastValveCard = moduleSet.valveCards[moduleSet.valveCards.length - 2]; // 倒數第二個（新添加的分支閥件之前）
+      
+      // 計算連接線位置
+      // 起點：源頭資訊到閥件資訊的連接線上（紫色圖標位置）
+      const fromX = moduleSet.source.position.x + CARD_WIDTH + 140; // 源頭資訊卡片右側 + 紫色圖標偏移
+      const fromY = moduleSet.source.position.y + CARD_HEIGHT_OFFSET;
+      
+      // 終點：分支閥件卡片的左側
+      const toX = branchValveCard.position.x;
+      const toY = branchValveCard.position.y + CARD_HEIGHT_OFFSET;
+      
+      const branchValveConnection = {
+        from: 'source',
+        to: 'branch-valve',
+        showAdditionalIcon: false,
+        showFaIcon: false,
+        valveCardIndex: moduleSet.valveCards.length - 2, // 源閥件索引
+        branchValveCardIndex: moduleSet.valveCards.length - 1, // 分支閥件索引（新添加的）
+        branchModuleIndex: moduleSet.branchModuleCards.length, // 對應的分支模組索引（即將添加）
+        moduleSetIndex: moduleSetIndex,
+        fromPosition: { x: fromX, y: fromY },
+        toPosition: { x: toX, y: toY }
+      };
+      
+      moduleSet.connections.push(branchValveConnection);
+      console.log('已添加分支閥件連接線:', branchValveConnection);
+    },
+    
+    /**
+     * 處理刪除閥件事件
+     * @param {Object} valveData - 閥件數據
+     */
+    handleDeleteValve(valveData) {
+      console.log('刪除閥件:', valveData);
+      
+      this.showConfirmPopup('是否確定刪除此元件?', () => {
+        this.deleteValveInfoCard(valveData);
+        this.closePopup();
+      }, () => {
+        this.closePopup();
+      });
+    },
+    
+    /**
+     * 刪除閥件資訊卡片
+     * @param {Object} valveData - 閥件數據
+     */
+    deleteValveInfoCard(valveData) {
+      console.log('刪除閥件資訊卡片');
+      
+      // 遍歷所有模組組，找到包含要刪除閥件的模組
+      for (let moduleSetIndex = 0; moduleSetIndex < this.allModuleSets.length; moduleSetIndex++) {
+        const currentModuleSet = this.allModuleSets[moduleSetIndex];
+        
+        if (currentModuleSet?.valveCards?.length > 0) {
+          const valveIndex = currentModuleSet.valveCards.findIndex(valveCard => 
+            valveCard.position.x === valveData.position.x && 
+            valveCard.position.y === valveData.position.y
+          );
+          
+          if (valveIndex !== -1) {
+            // 刪除閥件卡片
+            currentModuleSet.valveCards.splice(valveIndex, 1);
+            
+            // 復原卡片位置和連接線配置
+            this.restoreCardsPosition(currentModuleSet);
+            this.restoreConnectionsForValve(currentModuleSet);
+            this.updateExistingPanelConnections(currentModuleSet);
+            
+            // 更新設備卡片的連接線位置
+            this.updateAdditionalEquipmentConnectionLines(currentModuleSet, -1);
+            
+            console.log(`已從模組組 ${moduleSetIndex} 中刪除閥件資訊卡片並復原佈局`);
+            return;
+          }
+        }
+      }
+      
+      console.error('找不到要刪除的閥件卡片');
+    },
+    // ==================== 分支閥件管理 ====================
+    /**
+     * 處理刪除分支閥件事件
+     * @param {Object} valveData - 閥件數據
+     */
+    handleDeleteBranchValve(valveData) {
+      console.log('刪除分支閥件:', valveData);
+      
+      this.showConfirmPopup('是否確定刪除此分支閥件及其相關元件?', () => {
+        this.deleteBranchValveModule(valveData);
+        this.closePopup();
+      }, () => {
+        this.closePopup();
+      });
+    },
+    
+    /**
+     * 刪除分支閥件模組
+     * @param {Object} valveData - 閥件數據
+     */
+    deleteBranchValveModule(valveData) {
+      console.log('刪除分支閥件模組');
+      
+      // 遍歷所有模組組，找到包含要刪除分支閥件的模組
+      for (let moduleSetIndex = 0; moduleSetIndex < this.allModuleSets.length; moduleSetIndex++) {
+        const currentModuleSet = this.allModuleSets[moduleSetIndex];
+        
+        if (currentModuleSet?.branchModuleCards?.length > 0) {
+          // 找到分支閥件模組的索引
+          const branchModuleIndex = currentModuleSet.branchModuleCards.findIndex(branchModule => 
+            branchModule.valve.position.x === valveData.position.x && 
+            branchModule.valve.position.y === valveData.position.y
+          );
+          
+          if (branchModuleIndex !== -1) {
+            // 刪除分支模組卡片
+            currentModuleSet.branchModuleCards.splice(branchModuleIndex, 1);
+            
+            // 如果valveCards中有對應的分支閥件，也刪除它
+            if (currentModuleSet?.valveCards?.length > 0) {
+              const branchValveIndex = currentModuleSet.valveCards.findIndex(valveCard => 
+                valveCard.type === 'branch-valve' &&
+                valveCard.position.x === valveData.position.x && 
+                valveCard.position.y === valveData.position.y
+              );
+              
+              if (branchValveIndex !== -1) {
+                currentModuleSet.valveCards.splice(branchValveIndex, 1);
+              }
+            }
+            
+            // 刪除相關的連接線
+            this.removeBranchValveConnections(currentModuleSet, branchModuleIndex);
+            
+            // 更新剩餘連接線的索引
+            this.updateConnectionIndices(currentModuleSet, branchModuleIndex);
+            
+            console.log(`已從模組組 ${moduleSetIndex} 中刪除分支閥件模組`);
+            return;
+          }
+        }
+      }
+      
+      console.error('找不到要刪除的分支閥件卡片');
+    },
+    
+    /**
+     * 刪除分支閥件相關的連接線
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchModuleIndex - 分支模組索引
+     */
+    removeBranchValveConnections(moduleSet, branchModuleIndex) {
+      console.log('刪除分支閥件連接線');
+      
+      // 刪除分支閥件的連接線（從源頭到分支閥件）
+      // 需要找到對應這個branchModuleIndex的連接線
+      const connectionsToRemove = [];
+      
+      moduleSet.connections.forEach((conn, index) => {
+        // 檢查是否是分支閥件連接線
+        if (conn.from === 'source' && conn.to === 'branch-valve') {
+          // 如果連接線的branchValveCardIndex對應這個branchModuleIndex
+          // branchValveCardIndex是valveCards中的索引，需要轉換為branchModuleCards索引
+          // 假設第一個閥件是普通閥件，之後都是分支閥件
+          // branchValveCardIndex = 1 對應 branchModuleIndex = 0
+          // branchValveCardIndex = 2 對應 branchModuleIndex = 1
+          if (conn.branchValveCardIndex !== undefined) {
+            const valveIndexInBranchModuleCards = conn.branchValveCardIndex - 1; // 減去第一個普通閥件
+            if (valveIndexInBranchModuleCards === branchModuleIndex) {
+              connectionsToRemove.push(index);
+            }
+          }
+        }
+        
+        // 檢查是否是分支模組內部的連接線
+        if (conn.branchModuleIndex === branchModuleIndex) {
+          connectionsToRemove.push(index);
+        }
+      });
+      
+      // 從後往前刪除，避免索引改變
+      connectionsToRemove.reverse().forEach(index => {
+        moduleSet.connections.splice(index, 1);
+      });
+      
+      console.log(`已刪除 ${connectionsToRemove.length} 條分支閥件相關連接線`);
+    },
+    
+    /**
+     * 更新連接線索引
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} deletedBranchModuleIndex - 被刪除的分支模組索引
+     */
+    updateConnectionIndices(moduleSet, deletedBranchModuleIndex) {
+      console.log('更新連接線索引');
+      
+      // 更新所有分支模組相關連接線的索引
+      moduleSet.connections.forEach(conn => {
+        if (conn.branchModuleIndex !== undefined && 
+            conn.branchModuleIndex > deletedBranchModuleIndex) {
+          conn.branchModuleIndex = conn.branchModuleIndex - 1;
+        }
+        
+        if (conn.branchValveCardIndex !== undefined && 
+            conn.branchValveCardIndex > deletedBranchModuleIndex + 1) {
+          conn.branchValveCardIndex = conn.branchValveCardIndex - 1;
+        }
+      });
+      
+      console.log('已更新連接線索引');
+    },
+    // ==================== 卡片位置和連接線更新 ====================
+    /**
+     * 更新已存在的 Panel+Equipment 群組的連接線起始點
+     * @param {Object} moduleSet - 模組組對象
+     */
+    updateExistingPanelConnections(moduleSet) {
+      console.log('更新已存在的 Panel+Equipment 群組連接線起始點');
+      
+      if (!moduleSet.panelEquipmentGroups?.length) {
+        console.log('沒有 Panel+Equipment 群組需要更新');
+        return;
+      }
+      
+      const iconPosition = this.calculateAdditionalIconPosition(moduleSet);
+      const iconY = moduleSet.floor.position.y;
+      
+      // 更新所有從 additional-icon 到 panel 的連接線起始點
+      moduleSet.connections.forEach(conn => {
+        if (conn.from === 'additional-icon' && conn.fromPosition) {
+          conn.fromPosition = { x: iconPosition, y: iconY };
+          console.log(`更新連接線起始點: (${iconPosition}, ${iconY})`);
+        }
+      });
+      
+      console.log('已更新所有 Panel+Equipment 群組的連接線起始點');
+    },
+    
+    /**
+     * 將卡片往右推移
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} startX - 起始 X 位置
+     */
+    shiftCardsRight(moduleSet, startX) {
+      const distances = this.calculateShiftDistances(moduleSet);
+      
+      // 推移管線資訊卡片
+      moduleSet.pipeline.position.x += distances.pipelineShift;
+      
+      // 推移樓層資訊卡片
+      moduleSet.floor.position.x += distances.otherShift;
+      
+      // 推移所有 Panel+Equipment 群組
+      if (moduleSet.panelEquipmentGroups) {
+        moduleSet.panelEquipmentGroups.forEach(group => {
+          group.panel.position.x += distances.otherShift;
+          group.equipment.position.x += distances.otherShift;
+          
+          // 推移設備前的閥件（如果存在）
+          if (group.valve) {
+            group.valve.position.x += distances.otherShift;
+          }
+          
+          // 推移額外的設備卡片
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach(card => {
+              card.position.x += distances.otherShift;
+            });
+          }
+        });
+      }
+      
+      this.updateConnectionsAfterShift(moduleSet);
+      console.log('已將卡片往右推移，管線推移距離:', distances.pipelineShift, '其他卡片推移距離:', distances.otherShift);
+    },
+    
+    /**
+     * 計算卡片推移距離
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {Object} 包含不同推移距離的對象
+     */
+    calculateShiftDistances(moduleSet) {
+      // 計算管線資訊到樓層資訊的距離
+      const pipelineRightX = moduleSet.pipeline.position.x + CARD_WIDTH;
+      const floorLeftX = moduleSet.floor.position.x + 223;
+      const pipelineToFloorDistance = floorLeftX - pipelineRightX;
+      
+      return {
+        pipelineShift: pipelineToFloorDistance,
+        otherShift: CARD_WIDTH + 20
+      };
+    },
+    
+    /**
+     * 更新連接線配置
+     * @param {Object} moduleSet - 模組組對象
+     */
+    updateConnectionsAfterShift(moduleSet) {
+      const shiftDistance = this.calculateShiftDistances(moduleSet).otherShift;
+      
+      // 更新所有使用自定義 fromPosition 和 toPosition 的連接線
+      // 只更新與 Panel-Equipment 相關的連接線（包括 panel-equipment-valve 相關的）
+      moduleSet.connections.forEach(conn => {
+        // 更新 panel → panel-equipment-valve 和 panel-equipment-valve → equipment 的連接線
+        if (conn.from === 'panel' && conn.to === 'panel-equipment-valve' || 
+            conn.from === 'panel-equipment-valve' && conn.to === 'equipment' ||
+            conn.from === 'panel-equipment-valve' && conn.to === 'additional-equipment') {
+          if (conn.fromPosition) {
+            conn.fromPosition.x += shiftDistance;
+          }
+          if (conn.toPosition) {
+            conn.toPosition.x += shiftDistance;
+          }
+        }
+        // 更新額外設備卡片的連接線
+        else if (conn.from === 'panel' && conn.to === 'panel-equipment-connection' ||
+                 conn.from === 'panel-equipment-connection' && conn.to === 'additional-equipment') {
+          if (conn.fromPosition) {
+            conn.fromPosition.x += shiftDistance;
+          }
+          if (conn.toPosition) {
+            conn.toPosition.x += shiftDistance;
+          }
+        }
+      });
+      
+      console.log('連接線已更新以適應新的卡片位置，推移距離:', shiftDistance);
+    },
+    
+    /**
+     * 為閥件資訊更新連接線配置
+     * @param {Object} moduleSet - 模組組對象
+     */
+    updateConnectionsForValve(moduleSet) {
+      const sourceToPipelineIndex = moduleSet.connections.findIndex(conn => 
+        conn.from === 'source' && conn.to === 'pipeline'
+      );
+      
+      if (sourceToPipelineIndex !== -1) {
+        // 修改原始連接線：source → valve
+        moduleSet.connections[sourceToPipelineIndex] = {
+          from: 'source',
+          to: 'valve',
+          showAdditionalIcon: false,
+          showFaIcon: true,
+          valveCardIndex: moduleSet.valveCards.length - 1
+        };
+        
+        // 添加新的連接線：valve → pipeline
+        moduleSet.connections.splice(sourceToPipelineIndex + 1, 0, {
+          from: 'valve',
+          to: 'pipeline',
+          showAdditionalIcon: false,
+          showFaIcon: false,
+          valveCardIndex: moduleSet.valveCards.length - 1
+        });
+        
+        console.log('已更新連接線配置：source → valve → pipeline');
+      }
+    },
+    
+    /**
+     * 復原卡片位置
+     * @param {Object} moduleSet - 模組組對象
+     */
+    restoreCardsPosition(moduleSet) {
+      console.log('復原卡片位置');
+      
+      const restoreDistance = CARD_WIDTH + 20; // 252px
+      
+      // 復原管線資訊卡片位置
+      moduleSet.pipeline.position.x -= restoreDistance;
+      
+      // 復原樓層資訊卡片位置
+      moduleSet.floor.position.x -= restoreDistance;
+      
+      // 復原所有 Panel+Equipment 群組位置
+      if (moduleSet.panelEquipmentGroups) {
+        moduleSet.panelEquipmentGroups.forEach(group => {
+          group.panel.position.x -= restoreDistance;
+          group.equipment.position.x -= restoreDistance;
+          
+          // 復原額外的設備卡片位置
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach(card => {
+              card.position.x -= restoreDistance;
+            });
+          }
+        });
+      }
+      
+      console.log('已復原卡片位置，復原距離:', restoreDistance);
+    },
+    
+    /**
+     * 復原連接線配置
+     * @param {Object} moduleSet - 模組組對象
+     */
+    restoreConnectionsForValve(moduleSet) {
+      console.log('復原連接線配置');
+      
+      const sourceToValveIndex = moduleSet.connections.findIndex(conn => 
+        conn.from === 'source' && conn.to === 'valve'
+      );
+      
+      if (sourceToValveIndex !== -1) {
+        // 將 source 到 valve 的連接線改回 source 到 pipeline
+        moduleSet.connections[sourceToValveIndex] = {
+          from: 'source',
+          to: 'pipeline',
+          showAdditionalIcon: false,
+          showFaIcon: true
+        };
+        
+        // 找到 valve 到 pipeline 的連接線並刪除
+        const valveToPipelineIndex = moduleSet.connections.findIndex(conn => 
+          conn.from === 'valve' && conn.to === 'pipeline'
+        );
+        
+        if (valveToPipelineIndex !== -1) {
+          moduleSet.connections.splice(valveToPipelineIndex, 1);
+        }
+        
+        console.log('已復原連接線配置：source → pipeline');
+      }
+    },
+    // ==================== Popup 管理 ====================
+    /**
+     * 顯示 Popup
+     * @param {Object} config - Popup 配置
+     */
+    showPopup(config) {
+      this.popupConfig = {
+        visible: true,
+        title: config.title || '',
+        message: config.message || '',
+        buttons: config.buttons || [{ text: '確定', class: 'primary', action: 'confirm' }],
+        showIcon: config.showIcon !== false,
+        closeOnOverlay: config.closeOnOverlay !== false
+      };
+    },
+    
+    /**
+     * 關閉 Popup
+     */
+    closePopup() {
+      this.popupConfig.visible = false;
+    },
+    
+    /**
+     * 處理 Popup 按鈕點擊事件
+     * @param {Object} event - 事件對象
+     */
+    handlePopupButtonClick(event) {
+      console.log('Popup button clicked:', event);
+      // 可以在這裡處理特定的按鈕點擊邏輯
+    },
+    
+    /**
+     * 快速顯示警告 popup
+     * @param {string} message - 警告訊息
+     * @param {Function} onConfirm - 確認回調函數
+     */
+    showWarningPopup(message, onConfirm = null) {
+      this.showPopup({
+        title: '',
+        message,
+        buttons: [
+          {
+            text: '確定',
+            class: 'primary',
+            action: onConfirm || 'confirm'
+          }
+        ],
+        showIcon: true
+      });
+    },
+    
+    /**
+     * 快速顯示確認 popup
+     * @param {string} message - 確認訊息
+     * @param {Function} onDelete - 刪除回調函數
+     * @param {Function} onCancel - 取消回調函數
+     */
+    showConfirmPopup(message, onDelete = null, onCancel = null) {
+      this.showPopup({
+        title: '',
+        message,
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: onCancel || 'cancel'
+          },
+          {
+            text: '刪除',
+            class: 'danger',
+            action: onDelete || 'delete'
+          }
+        ],
+        showIcon: true
+      });
+    },
+    // ==================== 測試方法 ====================
+    /**
+     * 測試：手動觸發添加 Panel+Equipment 模組
+     */
+    testAddPanelEquipmentModule() {
+      const mockConnection = { id: 'line-0-2' };
+      this.addPanelEquipmentModule(mockConnection);
+    },
+    
+    /**
+     * 測試：為所有模組添加 Panel+Equipment 群組
+     */
+    testAddPanelEquipmentForAllModules() {
+      console.log('測試為所有模組添加 Panel+Equipment 群組');
+      
+      this.allModuleSets.forEach((moduleSet, setIndex) => {
+        const floorToPanelConnection = moduleSet.connections.find(conn => 
+          conn.from === 'floor' && conn.to === 'panel'
+        );
+        
+        if (floorToPanelConnection) {
+          console.log(`為模組組 ${setIndex} 添加 Panel+Equipment 群組`);
+          this.addPanelEquipmentModule(floorToPanelConnection);
+        }
+      });
+    },
+    
+    /**
+     * 測試：添加分支閥件功能
+     */
+    testAddBranchValve() {
+      console.log('測試添加分支閥件功能');
+      
+      // 1. 先添加普通閥件
+      const mockConnection1 = { id: 'line-0-0' };
+      this.addValveInfoCard(mockConnection1, 0);
+      
+      // 等待一下讓閥件添加完成
+      setTimeout(() => {
+        // 2. 再次點擊紫色圖標，應該添加分支閥件
+        // 注意：此時連接線已經變為 source → valve 或 valve → pipeline
+        const mockConnection2 = { id: 'line-0-0' }; // 點擊 source → valve 連接線
+        this.handleFaIconClick(mockConnection2);
+        
+        console.log('測試完成：添加分支閥件');
+      }, 500);
+    },
+    
+    /**
+     * 測試：多次點擊紫色圖標添加多個分支閥件
+     */
+    testMultipleBranchValves() {
+      console.log('測試多次點擊紫色圖標添加多個分支閥件');
+      
+      // 1. 先添加普通閥件
+      const mockConnection1 = { id: 'line-0-0' };
+      this.addValveInfoCard(mockConnection1, 0);
+      
+      // 等待一下讓閥件添加完成
+      setTimeout(() => {
+        // 2. 添加第一個分支閥件（包含完整模組）
+        const mockConnection2 = { id: 'line-0-0' };
+        this.handleFaIconClick(mockConnection2);
+        
+        setTimeout(() => {
+          // 3. 添加第二個分支閥件（包含完整模組）
+          const mockConnection3 = { id: 'line-0-0' };
+          this.handleFaIconClick(mockConnection3);
+          
+          console.log('測試完成：添加多個分支閥件完整模組');
+        }, 500);
+      }, 500);
+    },
+    
+    /**
+     * 測試：查看分支模組結構
+     */
+    testViewBranchModuleStructure() {
+      console.log('查看分支模組結構');
+      this.allModuleSets.forEach((moduleSet, index) => {
+        console.log(`模組組 ${index}:`, moduleSet);
+        if (moduleSet.branchModuleCards) {
+          console.log(`  分支模組數量: ${moduleSet.branchModuleCards.length}`);
+          moduleSet.branchModuleCards.forEach((branchModule, branchIndex) => {
+            console.log(`    分支模組 ${branchIndex}:`, branchModule);
+          });
+        }
+        if (moduleSet.connections) {
+          console.log(`  連接線數量: ${moduleSet.connections.length}`);
+          moduleSet.connections.forEach((conn, connIndex) => {
+            console.log(`    連接線 ${connIndex}:`, conn);
+          });
+        }
+      });
+    },
+    
+    /**
+     * 測試：測試分支閥件位置計算
+     */
+    testBranchValvePositionCalculation() {
+      console.log('測試分支閥件位置計算');
+      
+      const moduleSet = this.allModuleSets[0];
+      if (moduleSet) {
+        const calculatedY = this.calculateBranchValveYPosition(moduleSet);
+        console.log('計算出的分支閥件Y位置:', calculatedY);
+        
+        // 顯示各卡片的位置信息
+        console.log('各卡片位置信息:', {
+          source: {
+            y: moduleSet.source.position.y,
+            height: this.getCardHeight('source'),
+            bottomY: moduleSet.source.position.y + this.getCardHeight('source')
+          },
+          pipeline: {
+            y: moduleSet.pipeline.position.y,
+            height: this.getCardHeight('pipeline'),
+            bottomY: moduleSet.pipeline.position.y + this.getCardHeight('pipeline')
+          },
+          floor: {
+            y: moduleSet.floor.position.y,
+            height: this.getCardHeight('floor'),
+            bottomY: moduleSet.floor.position.y + this.getCardHeight('floor')
+          }
+        });
+      }
+    },
+    
+    /**
+     * 測試：測試分支源頭資訊連接線顯示
+     */
+    testBranchSourceConnectionLine() {
+      console.log('測試分支源頭資訊連接線顯示');
+      
+      // 1. 先添加分支閥件
+      const mockConnection1 = { id: 'line-0-0' };
+      this.addValveInfoCard(mockConnection1, 0);
+      
+      setTimeout(() => {
+        // 2. 添加分支閥件
+        const mockConnection2 = { id: 'line-0-0' };
+        this.handleFaIconClick(mockConnection2);
+        
+        setTimeout(() => {
+          // 3. 添加分支源頭資訊
+          const mockBranchData = {
+            type: 'branch-source',
+            position: { x: 100, y: 1200 },
+            sourcePosition: { x: 100, y: 80 }
+          };
+          this.handleAddBranchSource(mockBranchData);
+          
+          setTimeout(() => {
+            // 4. 檢查連接線
+            console.log('檢查分支源頭資訊連接線:');
+            this.testViewBranchModuleStructure();
+          }, 500);
+        }, 500);
+      }, 500);
+    }
+  }
+}
+</script>

@@ -1,0 +1,212 @@
+// Variables
+$primary-color: #667eea;
+$primary-hover: #5a6fd8;
+$secondary-color: #95a5a6;
+$secondary-hover: #7f8c8d;
+$success-color: #27ae60;
+$success-hover: #229954;
+$danger-color: #e74c3c;
+$danger-hover: #c0392b;
+$background-color: #f5f5f5;
+$white: #fff;
+$border-color: #e1e8ed;
+$text-color: #333;
+$text-light: #666;
+$text-muted: #888;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.15);
+$border-radius: 8px;
+$transition: all 0.2s ease;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-editor {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.flow-header {
+  background: white;
+  border-bottom: 1px solid #e1e5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 63px;
+  min-height: 63px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* Logo 相關樣式 */
+  .app-logo-header {
+    @include flex-center;
+    .logo-image {
+      width: 130px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px $shadow-light);
+    }
+  }
+}
+
+
+.flow-container {
+  flex: 1;
+  width: 100%;
+  background-color: #f5f5f5;
+  background-image: radial-gradient(circle, #c4c4c4 1.3px, transparent 1.3px);
+  background-size: 20px 20px;
+}
+
+.canvas-content {
+  position: relative;
+  width: 3000px;
+  height: 2000px;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.default-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 側邊欄相關樣式 */
+.floating-sidebar {
+  width: 72px;
+  background: white;
+  border-right: 1px solid #e1e5e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+
+  position: fixed;
+  top: 85px;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  border-radius: 8px;
+}
+
+.sidebar-header {
+  cursor: pointer;
+}
+
+.sidebar-divider {
+  width: 40px;
+  height: 1px;
+  min-height: 1px;
+  background: #D4D4D4;
+  margin: 16px;
+}
+
+.sidebar-actions {
+  @include flex-column;
+  gap: 16px;
+}
+
+.sidebar-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  @include flex-center;
+  transition: $transition;
+  position: relative;
+
+  &:hover {
+    background: #E4FBF0;
+    transform: scale(1.1);
+  }
+
+  // &:active {
+  //   transform: scale(0.95);
+  // }
+
+  .btn-icon {
+    font-size: 18px;
+    color: #ecf0f1;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.hover-menu-container {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  padding-left: 20px;
+
+  .hover-menu-list {
+    width: 312px;
+    padding: 8px;
+    border-radius: $border-radius;
+    background: $white;
+    @include flex-column;
+
+    .hover-menu-btn {
+      background: $white;
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: $border-radius;
+      border: none;
+      outline: none;
+      text-align: left;
+      height: 100%;
+      @include flex-center;
+      justify-content: flex-start;
+      font-size: 14px;
+      font-weight: 400;
+      color: #171717;
+      cursor: pointer;
+
+      &:hover {
+        background: #E4FBF0;
+        color: #3F8009;
+      }
+    }
+  }
+}
+
+.sidebar-btn:hover .hover-menu-container {
+  display: block;
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('@/assets/images/chevron-down.svg') no-repeat right center;
+  background-size: 16px;
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  padding-right: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #171717;
+  background: #F5F5F5;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
