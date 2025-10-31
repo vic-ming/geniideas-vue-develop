@@ -5,6 +5,13 @@
         <img src="@/assets/images/type-e.svg" alt="equipment-info" />
       </div>
       <h3 class="card-title">設備資訊</h3>
+      <img 
+        v-if="canDelete"
+        @click="handleDeleteButtonClick" 
+        src="@/assets/images/delete.svg" 
+        alt="delete" 
+        class="clickable-icon"
+      />
     </div>
     
     <div class="card-content">
@@ -69,6 +76,10 @@ export default {
       type: Object,
       default: () => ({ x: 1140, y: 100 })
     },
+    canDelete: {
+      type: Boolean,
+      default: false
+    },
     cardData: {
       type: Object,
       default: () => ({
@@ -108,6 +119,16 @@ export default {
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    handleDeleteButtonClick() {
+      console.log('刪除設備卡片按鈕被點擊');
+      this.$emit('delete-equipment-card', {
+        type: 'equipment-card',
+        position: {
+          x: this.initialPosition.x,
+          y: this.initialPosition.y
+        }
+      });
     }
   }
 }
@@ -217,6 +238,21 @@ export default {
   &::placeholder {
     color: #A3A3A3;
   }
+}
+
+.clickable-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  width: 20px;
+  height: 20px;
+}
+
+.clickable-icon:hover {
+  opacity: 0.8;
+}
+
+.clickable-icon:active {
+  transform: scale(0.95);
 }
 </style>
 

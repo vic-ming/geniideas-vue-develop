@@ -139,7 +139,7 @@ export default {
     handleDeleteButtonClick() {
       console.log('閥件資訊卡片刪除按鈕被點擊');
       this.$emit('delete-valve', {
-        type: this.isBranchModule ? 'branch-valve' : 'valve',
+        type: this.isPanelEquipmentValve ? 'panel-equipment-valve' : (this.isBranchModule ? 'branch-valve' : 'valve'),
         position: {
           x: this.initialPosition.x,
           y: this.initialPosition.y

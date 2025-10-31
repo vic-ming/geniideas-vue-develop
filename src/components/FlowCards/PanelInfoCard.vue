@@ -5,6 +5,13 @@
         <img src="@/assets/images/type-d.svg" alt="panel-info" />
       </div>
       <h3 class="card-title">盤面</h3>
+      <img 
+        v-if="canDelete"
+        @click="handleDeleteButtonClick" 
+        src="@/assets/images/delete.svg" 
+        alt="delete" 
+        class="clickable-icon"
+      />
     </div>
     
     <div class="card-content">
@@ -85,6 +92,10 @@ export default {
       type: Object,
       default: () => ({ x: 880, y: 100 })
     },
+    canDelete: {
+      type: Boolean,
+      default: false
+    },
     cardData: {
       type: Object,
       default: () => ({
@@ -126,6 +137,16 @@ export default {
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    handleDeleteButtonClick() {
+      console.log('刪除盤面卡片按鈕被點擊');
+      this.$emit('delete-panel-group', {
+        type: 'panel-group',
+        position: {
+          x: this.initialPosition.x,
+          y: this.initialPosition.y
+        }
+      });
     }
   }
 }
@@ -313,6 +334,21 @@ export default {
   &:hover {
     border-color: #999;
   }
+}
+
+.clickable-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  width: 20px;
+  height: 20px;
+}
+
+.clickable-icon:hover {
+  opacity: 0.8;
+}
+
+.clickable-icon:active {
+  transform: scale(0.95);
 }
 </style>
 

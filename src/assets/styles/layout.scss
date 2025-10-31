@@ -59,6 +59,28 @@ $transition: all 0.2s ease;
       filter: drop-shadow(0 2px 4px $shadow-light);
     }
   }
+  /* Header 右側資訊 */
+  .header-info {
+    position: absolute;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    
+    .header-time {
+      font-size: 14px;
+      color: #737373;
+      line-height: 1.2;
+    }
+    
+    .header-filename {
+      font-size: 14px;
+      color: #171717;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+  }  
 }
 
 

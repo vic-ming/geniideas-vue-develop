@@ -1,7 +1,8 @@
 <template>
   <div v-if="isOpen" class="file-manager-container">
     <div class="file-manager-top">
-      <h2 class="section-title">讀取/另存檔案</h2>
+      <h2 class="section-title">檔案管理</h2>
+
       <button class="close-btn" @click="handleClose">✕</button>
     </div>
     <div class="file-manager">
@@ -33,7 +34,11 @@
                   <button class="btn-read" @click="handleReadFile(file)">
                     讀取檔案
                   </button>
-                  <button class="btn-delete" @click="handleDeleteFile(file)">
+                  <button 
+                    class="btn-delete" 
+                    :title="currentFileId && file.id === currentFileId ? '無法刪除當前開啟的檔案' : ''"
+                    @click="handleDeleteFile(file)">
+
                     <img src="@/assets/images/trash.svg" alt="delete" />
                   </button>
                 </div>
@@ -118,6 +123,10 @@ export default {
     currentFilename: {
       type: String,
       default: ''
+    },
+    currentFileId: {
+      type: Number,
+      default: null
     }
   },
   data() {
@@ -198,15 +207,18 @@ export default {
         
         if (result.success) {
           const data = JSON.parse(result.data.data)
-          // 传递文件信息和数据
+                    // 传递文件信息和数据，不立即關閉FileManager
+          // 讓 handleFileManagerLoad 決定是否需要關閉
+
           this.$emit('load', {
             data: data,
             file: {
-              id: file.id,
-              project_name: file.project_name
-            }
+              id: result.data.id,
+              project_name: result.data.project_name,
+              updated_at: result.data.updated_at
+            },
+            shouldCloseFileManager: true // 標記是否需要關閉FileManager
           })
-          this.handleClose()
         } else {
           console.error('Error reading file:', result.error)
         }
@@ -251,6 +263,9 @@ export default {
     
     formatDate(dateString) {
       const date = new Date(dateString)
+      // 加上 8 小時
+      date.setHours(date.getHours() + 8)
+
       const year = date.getFullYear()
       const month = String(date.getMonth() + 1).padStart(2, '0')
       const day = String(date.getDate()).padStart(2, '0')
@@ -377,6 +392,16 @@ export default {
 .btn-delete {
   border: none;
   background: none;
+    
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &:hover:not(:disabled) {
+    opacity: 0.7;
+  }
+
 }
 .col-action{
     display: flex;
