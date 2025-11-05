@@ -9,7 +9,7 @@
     
     <div class="card-content">
       <div class="info-item">
-        <label class="info-label">源頭樓層</label>
+        <label class="info-label">源頭樓層<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !floorData.sourceFloor }" v-model="floorData.sourceFloor">
           <option value="">請選擇源頭樓層</option>
           <option value="1F">1F</option>
@@ -29,7 +29,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">設備樓層</label>
+        <label class="info-label">設備樓層<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !floorData.equipmentFloor }" v-model="floorData.equipmentFloor">
           <option value="">請選擇設備樓層</option>
           <option value="1F">1F</option>
@@ -152,6 +152,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-select {

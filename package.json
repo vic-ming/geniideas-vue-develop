@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
     "vue": "^3.4.0",
-    "vue-zoomable": "^1.2.8"
+    "vue-zoomable": "^1.2.8",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.0",

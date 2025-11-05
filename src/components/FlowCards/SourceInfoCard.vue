@@ -26,7 +26,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">管線類別</label>
+        <label class="info-label">管線類別<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.pipelineType }" v-model="sourceData.pipelineType">
           <option value="">請選擇管線類別</option>
           <option v-for="type in $constants.pipelineTypes" :key="type" :value="type">{{ type }}</option>
@@ -34,7 +34,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">氣體別</label>
+        <label class="info-label">氣體別<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.gasType }" v-model="sourceData.gasType">
           <option value="">請選擇氣體別</option>
           <option v-for="gasType in $constants.gasTypes" :key="gasType" :value="gasType">{{ gasType }}</option>
@@ -42,7 +42,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">閥件編號</label>
+        <label class="info-label">閥件編號<span class="required">*</span></label>
         <input 
           type="text" 
           class="info-input" 
@@ -53,15 +53,15 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">源頭尺寸</label>
+        <label class="info-label">源頭尺寸<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.sourceSize }" v-model="sourceData.sourceSize">
           <option value="">請選擇源頭尺寸</option>
           <option v-for="sourceSize in $constants.sourceSizes" :key="sourceSize" :value="sourceSize">{{ sourceSize }}</option>
         </select>
       </div>
       
-      <div class="info-item">
-        <label class="info-label">雙套管尺寸</label>
+      <div v-if="sourceData.pipelineType === '雙套管'" class="info-item">
+        <label class="info-label">雙套管尺寸<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.doubleSleeveSize }" v-model="sourceData.doubleSleeveSize">
           <option value="">請選擇雙套管尺寸</option>
           <option v-for="size in $constants.doubleSleeveSizes" :key="size" :value="size">{{ size }}</option>
@@ -69,7 +69,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">接頭規格</label>
+        <label class="info-label">接頭規格<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.connectorSpec }" v-model="sourceData.connectorSpec">
           <option value="">請選擇接頭規格</option>
           <option v-for="spec in $constants.connectorSpecs" :key="spec" :value="spec">{{ spec }}</option>
@@ -251,6 +251,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-input {

@@ -16,16 +16,28 @@
     
     <div class="card-content">
       <div class="info-item">
-        <label class="info-label">氣體別</label>
-        <select class="info-select" :class="{ empty: !equipmentData.gasType }" v-model="equipmentData.gasType">
+        <label class="info-label">氣體別<span class="required">*</span></label>
+        <select 
+          :key="`gasType-${cardData.gasType || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.gasType === '' }" 
+          v-model="cardData.gasType"
+          @change="handleDataChange"
+        >
           <option value="">請選擇氣體別</option>
           <option v-for="gasType in $constants.gasTypes" :key="gasType" :value="gasType">{{ gasType }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">尺寸</label>
-        <select class="info-select" :class="{ empty: !equipmentData.size }" v-model="equipmentData.size">
+        <label class="info-label">尺寸<span class="required">*</span></label>
+        <select 
+          :key="`size-${cardData.size || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.size === '' }" 
+          v-model="cardData.size"
+          @change="handleDataChange"
+        >
           <option value="">請選擇尺寸</option>
           <option v-for="size in $constants.equipmentSizes" :key="size" :value="size">{{ size }}</option> 
 
@@ -34,8 +46,14 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">接頭</label>
-        <select class="info-select" :class="{ empty: !equipmentData.connector }" v-model="equipmentData.connector">
+        <label class="info-label">接頭<span class="required">*</span></label>
+        <select 
+          :key="`connector-${cardData.connector || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.connector === '' }" 
+          v-model="cardData.connector"
+          @change="handleDataChange"
+        >
           <option value="">請選擇接頭</option>
           <option v-for="spec in $constants.connectorSpecs" :key="spec" :value="spec">{{ spec }}</option>
           <option value="快速接頭">快速接頭</option>
@@ -46,7 +64,7 @@
         <label class="info-label">設備接點名稱</label>
         <textarea 
           class="info-textarea" 
-          v-model="equipmentData.connectionName"
+          v-model="cardData.connectionName"
           placeholder="請輸入設備接點名稱"
           rows="3"
           maxlength="50"
@@ -54,8 +72,14 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">三合一</label>
-        <select class="info-select" :class="{ empty: !equipmentData.threeInOne }" v-model="equipmentData.threeInOne">
+        <label class="info-label">三合一<span class="required">*</span></label>
+        <select 
+          :key="`threeInOne-${cardData.threeInOne || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.threeInOne === '' }" 
+          v-model="cardData.threeInOne"
+          @change="handleDataChange"
+        >
           <option value="">請選擇三合一</option>
           <option value="無">無</option>
           <option value="三合一新增">三合一新增</option>
@@ -100,6 +124,22 @@ export default {
     equipmentData() {
       return this.cardData;
     },
+    isEmptyGasType() {
+      const val = this.cardData.gasType;
+      return val === '' || val === null || val === undefined;
+    },
+    isEmptySize() {
+      const val = this.cardData.size;
+      return val === '' || val === null || val === undefined;
+    },
+    isEmptyConnector() {
+      const val = this.cardData.connector;
+      return val === '' || val === null || val === undefined;
+    },
+    isEmptyThreeInOne() {
+      const val = this.cardData.threeInOne;
+      return val === '' || val === null || val === undefined;
+    },
     cardStyle() {
       return {
         position: 'absolute',
@@ -109,16 +149,21 @@ export default {
     }
   },
   watch: {
-    equipmentData: {
+    cardData: {
       handler(newVal) {
         this.$emit('update-data', newVal);
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    handleDataChange() {
+      this.$emit('update-data', this.cardData);
+      this.$forceUpdate();
     },
     handleDeleteButtonClick() {
       console.log('刪除設備卡片按鈕被點擊');
@@ -188,6 +233,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-select {

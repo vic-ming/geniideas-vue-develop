@@ -19,47 +19,77 @@
         <label class="toggle-switch">
           <input 
             type="checkbox" 
-            v-model="valveData.enableValve"
+            v-model="cardData.enableValve"
           />
           <span class="toggle-slider"></span>
         </label>
       </div>
 
       <div v-if="isBranchModule" class="info-item">
-        <label class="info-label">連結分支尺寸</label>
-        <select class="info-select" :class="{ empty: !valveData.branchSize }" v-model="valveData.branchSize">
+        <label class="info-label">連結分支尺寸<span class="required">*</span></label>
+        <select 
+          :key="`branchSize-${cardData.branchSize || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.branchSize === '' }" 
+          v-model="cardData.branchSize"
+          @change="handleDataChange"
+        >
           <option value="">請選擇連結分支尺寸</option>
           <option v-for="size in $constants.sourceSizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
 
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件接頭形式' : '閥件接頭形式' }}</label>
-        <select class="info-select" :class="{ empty: !valveData.connectorType }" v-model="valveData.connectorType">
+        <label class="info-label">{{ isBranchModule ? '分支閥件接頭形式' : '閥件接頭形式' }}<span class="required">*</span></label>
+        <select 
+          :key="`connectorType-${cardData.connectorType || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.connectorType === '' }" 
+          v-model="cardData.connectorType"
+          @change="handleDataChange"
+        >
           <option value="">{{ isBranchModule ? '請輸入分支閥件接頭形式' : '請輸入閥件接頭形式' }}</option>
          <option v-for="connectorType in $constants.connectorSpecs" :key="connectorType" :value="connectorType">{{ connectorType }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件尺寸' : '閥件尺寸' }}</label>
-        <select class="info-select" :class="{ empty: !valveData.size }" v-model="valveData.size">
+        <label class="info-label">{{ isBranchModule ? '分支閥件尺寸' : '閥件尺寸' }}<span class="required">*</span></label>
+        <select 
+          :key="`size-${cardData.size || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.size === '' }" 
+          v-model="cardData.size"
+          @change="handleDataChange"
+        >
           <option value="">{{ isBranchModule ? '請輸入分支閥件尺寸' : '請輸入閥件尺寸' }}</option>
           <option v-for="size in $constants.sourceSizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件種類' : '閥件種類' }}</label>
-        <select class="info-select" :class="{ empty: !valveData.valveType }" v-model="valveData.valveType">
+        <label class="info-label">{{ isBranchModule ? '分支閥件種類' : '閥件種類' }}<span class="required">*</span></label>
+        <select 
+          :key="`valveType-${cardData.valveType || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.valveType === '' }" 
+          v-model="cardData.valveType"
+          @change="handleDataChange"
+        >
           <option value="">{{ isBranchModule ? '請輸入分支閥件種類' : '請輸入閥件種類' }}</option>
           <option v-for="valveType in $constants.valveTypes" :key="valveType" :value="valveType">{{ valveType }}</option>
         </select>
       </div>
 
       <div v-if="isPanelEquipmentValve" class="info-item">
-        <label class="info-label">後方管線類別</label>
-        <select class="info-select" :class="{ empty: !valveData.backPipelineType }" v-model="valveData.backPipelineType">
+        <label class="info-label">後方管線類別<span class="required">*</span></label>
+        <select 
+          :key="`backPipelineType-${cardData.backPipelineType || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.backPipelineType === '' }" 
+          v-model="cardData.backPipelineType"
+          @change="handleDataChange"
+        >
           <option value="">請選擇後方管線類別</option>
           <option v-for="pipelineType in $constants.pipelineTypes" :key="pipelineType" :value="pipelineType">{{ pipelineType }}</option>
         </select>
@@ -128,14 +158,19 @@ export default {
     }
   },
   watch: {
-    valveData: {
+    cardData: {
       handler(newVal) {
         this.$emit('update-data', newVal);
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
+    handleDataChange() {
+      this.$emit('update-data', this.cardData);
+      this.$forceUpdate();
+    },
     handleDeleteButtonClick() {
       console.log('閥件資訊卡片刪除按鈕被點擊');
       this.$emit('delete-valve', {
@@ -204,6 +239,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-select {

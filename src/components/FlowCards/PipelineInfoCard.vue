@@ -9,7 +9,7 @@
     
     <div class="card-content">
       <div class="info-item">
-        <label class="info-label">管線長度</label>
+        <label class="info-label">管線長度<span class="required">*</span></label>
         <input 
           type="text" 
           class="info-input" 
@@ -21,7 +21,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">管線材質</label>
+        <label class="info-label">管線材質<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !pipelineData.material }" v-model="pipelineData.material">
           <option value="">請選擇管線材質</option>
           <option v-for="material in $constants.pipelineMaterials" :key="material" :value="material">{{ material }}</option>
@@ -140,6 +140,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-input {

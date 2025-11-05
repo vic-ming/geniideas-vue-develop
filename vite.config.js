@@ -9,6 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  optimizeDeps: {
+    include: ['exceljs']
+  },
   server: {
     port: 3000,
     open: true,

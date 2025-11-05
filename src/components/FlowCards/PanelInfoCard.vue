@@ -20,31 +20,49 @@
         <label class="toggle-switch">
           <input 
             type="checkbox" 
-            v-model="panelData.enablePanel"
+            v-model="cardData.enablePanel"
           />
           <span class="toggle-slider"></span>
         </label>
       </div>
       
       <div class="info-item">
-        <label class="info-label">Valve</label>
-        <select class="info-select" :class="{ empty: !panelData.valve }" v-model="panelData.valve">
+        <label class="info-label">Valve<span class="required">*</span></label>
+        <select 
+          :key="`valve-${cardData.valve || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.valve === '' }" 
+          v-model="cardData.valve"
+          @change="handleDataChange"
+        >
           <option value="">請選擇Valve</option>
           <option v-for="valveType in $constants.valveTypes" :key="valveType" :value="valveType">{{ valveType }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">尺寸</label>
-        <select class="info-select" :class="{ empty: !panelData.size }" v-model="panelData.size">
+        <label class="info-label">尺寸<span class="required">*</span></label>
+        <select 
+          :key="`size-${cardData.size || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.size === '' }" 
+          v-model="cardData.size"
+          @change="handleDataChange"
+        >
           <option value="">請選擇尺寸</option>
           <option v-for="size in $constants.sourceSizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">Valve接頭</label>
-        <select class="info-select" :class="{ empty: !panelData.valveConnector }" v-model="panelData.valveConnector">
+        <label class="info-label">Valve接頭<span class="required">*</span></label>
+        <select 
+          :key="`valveConnector-${cardData.valveConnector || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.valveConnector === '' }" 
+          v-model="cardData.valveConnector"
+          @change="handleDataChange"
+        >
           <option value="">請選擇Valve接頭</option>
           <option value="SWG">SWG</option>
           <option value="VCR-M">VCR-M</option>
@@ -59,14 +77,20 @@
           <input 
             type="checkbox" 
             class="info-checkbox" 
-            v-model="panelData.regulator"
+            v-model="cardData.regulator"
           />
         </label>
       </div>
       
       <div class="info-item">
-        <label class="info-label">壓力錶錶頭</label>
-        <select class="info-select" :class="{ empty: !panelData.pressureGauge }" v-model="panelData.pressureGauge">
+        <label class="info-label">壓力錶錶頭<span class="required">*</span></label>
+        <select 
+          :key="`pressureGauge-${cardData.pressureGauge || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.pressureGauge === '' || !cardData.pressureGauge }" 
+          v-model="cardData.pressureGauge"
+          @change="handleDataChange"
+        >
           <option value="none">無</option>
           <option value="Gauge">Gauge</option>
           <option value="eSensor">eSensor</option>
@@ -74,8 +98,14 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">後方管線類別</label>
-        <select class="info-select" :class="{ empty: !panelData.backPipelineType }" v-model="panelData.backPipelineType">
+        <label class="info-label">後方管線類別<span class="required">*</span></label>
+        <select 
+          :key="`backPipelineType-${cardData.backPipelineType || ''}`"
+          class="info-select" 
+          :class="{ empty: cardData.backPipelineType === '' }" 
+          v-model="cardData.backPipelineType"
+          @change="handleDataChange"
+        >
           <option value="">請選擇管線類別</option>
           <option v-for="pipelineType in $constants.pipelineTypes" :key="pipelineType" :value="pipelineType">{{ pipelineType }}</option>
         </select>
@@ -127,16 +157,21 @@ export default {
     }
   },
   watch: {
-    panelData: {
+    cardData: {
       handler(newVal) {
         this.$emit('update-data', newVal);
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    handleDataChange() {
+      this.$emit('update-data', this.cardData);
+      this.$forceUpdate();
     },
     handleDeleteButtonClick() {
       console.log('刪除盤面卡片按鈕被點擊');
@@ -206,6 +241,9 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #737373;
+  .required {
+    color: #FF0000;
+  }
 }
 
 .info-select {
