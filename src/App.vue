@@ -122,6 +122,9 @@
                     <ValveInfoCard 
                       v-if="valveCard.type !== 'branch-valve'"
                       :initialPosition="valveCard.position"
+                      :cardData="valveCard.data"
+                      :module-set-index="setIndex"
+                      @update-data="(data) => updateValveData(setIndex, valveIndex, data)"
                       @delete-valve="handleDeleteValve"
                     />
                   </template>
@@ -1606,6 +1609,27 @@ export default {
         return;
       }
 
+      // 验证必填字段
+      const validationResult = this.validateRequiredFields();
+      if (!validationResult.isValid) {
+        this.showPopup({
+          title: '',
+          message: validationResult.message,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
       try {
         // 根据类型选择模板文件
         const templateName = hierarchyType === 'bulkGas' 
@@ -1631,8 +1655,10 @@ export default {
           throw new Error(`無法找到工作表: ${sheetName}`);
         }
 
-        // 将流程图数据转换为 Excel 格式
-        const excelData = this.convertToHierarchyExcel(this.allModuleSets);
+        // 将流程图数据转换为 Excel 格式（根据类型选择不同的转换方法）
+        const excelData = hierarchyType === 'bulkGas' 
+          ? this.convertToHierarchyExcelBulkGas(this.allModuleSets)
+          : this.convertToHierarchyExcelSpecialGas(this.allModuleSets);
         
         // 从第4行开始写入数据（前3行是标题）
         let rowIndex = 4;
@@ -1641,7 +1667,7 @@ export default {
           
           // 写入每一列的数据，保留原有单元格格式
           Object.keys(rowData).forEach((key) => {
-            const colIndex = this.getColumnIndex(key);
+            const colIndex = this.getColumnIndex(key, hierarchyType);
             if (colIndex !== -1) {
               // colIndex 是 0-based，ExcelJS 的列是从 1 开始的
               const colNumber = colIndex + 1;
@@ -1713,20 +1739,20 @@ export default {
     },
 
     /**
-     * 将流程图数据转换为 Hierarchy Excel 格式
+     * 将流程图数据转换为 Hierarchy Excel 格式 (Bulk Gas)
      * @param {Array} moduleSets - 所有模組組
      * @returns {Array} Excel 数据行数组
      */
-    convertToHierarchyExcel(moduleSets) {
+    convertToHierarchyExcelBulkGas(moduleSets) {
       const excelRows = [];
 
-      moduleSets.forEach((moduleSet) => {
+      moduleSets.forEach((moduleSet, moduleSetIndex) => {
         const source = moduleSet.source?.data || {};
-        const pipeline = moduleSet.pipeline?.data || {};
         const floor = moduleSet.floor?.data || {};
         
-        // 获取分支数据
-        const branches = this.getBranchData(moduleSet);
+        // 获取閥件資訊（b1-size 从閥件資訊获取）
+        const valveCard = this.getFirstValveCard(moduleSet);
+        const b1Size = valveCard?.data?.size || '';
         
         // 获取 Panel 和 Equipment 数据
         const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
@@ -1735,24 +1761,48 @@ export default {
           const panel = group.panel?.data || {};
           const equipment = group.equipment?.data || {};
           
+          // 判断是否为第一个设备（用于 b1-type）
+          const isFirstEquipment = moduleSetIndex === 0 && groupIndex === 0;
+          
           // 创建 Excel 行数据
           const row = {
-            'util-cat': source.gasType || '', // Utility Category
-            'sm-no': source.valveNumber || '', // Sub main Take-off No.
-            'sm-size': source.sourceSize || '', // Sub main Size
-            'sm-floor': floor.sourceFloor || '', // Sub main 樓層
-            'b1-size': branches[0]?.size || '', // Branch-1 Size
-            'b1-floor': branches[0]?.floor || '', // Branch-1 樓層
-            'b2-size': branches[1]?.size || '', // Branch-2 Size
-            'b2-floor': branches[1]?.floor || '', // Branch-2 樓層
-            'b3-size': branches[2]?.size || '', // Branch-3 Size
-            'b3-floor': branches[2]?.floor || '', // Branch-3 樓層
-            'dp-size': panel.size || '', // DP Panel Size
-            'dp-type': this.getPanelType(panel), // DP Panel Type
-            'dp-tag': panel.pressureGauge === 'eSensor' ? 'eSensor' : '', // E-Sensor (只显示 eSensor，其他为空)
-            'pou-size': equipment.size || '', // POU Size
-            'pou-ptype': this.getPOUType(equipment), // DP盤後軟/硬管
-            'pou-comp': equipment.connectionName || '', // Component
+            'util-cat': source.gasType || '', // A: 源頭資訊 -> 氣體別
+            'sm-no': source.valveNumber || '', // B: 源頭資訊 -> 閥件編號
+            'sm-size': source.sourceSize || '', // C: 源頭資訊 -> 源頭尺寸
+            'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
+            'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
+            'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
+            'b2-size': '', // G: 無須填寫
+            'b2-floor': '', // H: 無須填寫
+            'b3-size': '', // I: 無須填寫
+            'b3-floor': '', // J: 無須填寫
+            'dp-size': panel.size || '', // K: 盤面資訊 -> 尺寸
+            'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
+            'dp-tag': '', // M: 無須填寫
+            'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
+            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'bulkGas'), // O: 根據管線類型判斷
+            'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
+            'Accessory1': '', // Q: 無須填寫
+            'Accessory2': '', // R: 無須填寫
+            'Accessory3': '', // S: 無須填寫
+            'Accessory4': '', // T: 無須填寫
+            'Accessory5': '', // U: 無須填寫
+            'Accessory6': '', // V: 無須填寫
+            'b1-type': this.getB1Type(moduleSet, groupIndex, isFirstEquipment), // W: 判斷邏輯
+            'dp-con': this.getDPCon(panel), // X: 盤面資訊 -> Valve接頭
+            'dp-tv': this.getDPTV(moduleSet, group), // Y: 盤面後方是否有分支或閥件
+            'n-labor': '', // Z: 無須填寫
+            'l1-labor': '', // AA: 無須填寫
+            'vpanel-line': this.getVPanelLine(equipment), // AB: 設備資訊 -> 三合一
+            'sup-qty': '', // AC: 無須填寫
+            'n2-temp': '', // AD: 無須填寫
+            'gt-loop4': '', // AE: 無須填寫
+            'gt-loop8': '', // AF: 無須填寫
+            'ht-m': '', // AG: 無須填寫
+            'ins-m': '', // AH: 無須填寫
+            'long-type': '', // AI: 無須填寫
+            'long-m': '', // AJ: 無須填寫
+            'dl-type': '', // AK: 無須填寫
           };
           
           excelRows.push(row);
@@ -1763,8 +1813,9 @@ export default {
               const additionalRow = { ...row };
               const additionalData = additionalEquipment.data || {};
               additionalRow['pou-size'] = additionalData.size || '';
-              additionalRow['pou-ptype'] = this.getPOUType(additionalData);
+              additionalRow['pou-ptype'] = this.getPOUType(moduleSet, group, additionalData, 'bulkGas');
               additionalRow['pou-comp'] = additionalData.connectionName || '';
+              additionalRow['vpanel-line'] = this.getVPanelLine(additionalData);
               excelRows.push(additionalRow);
             });
           }
@@ -1775,38 +1826,16 @@ export default {
     },
 
     /**
-     * 获取分支数据
+     * 获取第一个閥件資訊卡片
      * @param {Object} moduleSet - 模組組
-     * @returns {Array} 分支数据数组
+     * @returns {Object} 閥件卡片对象
      */
-    getBranchData(moduleSet) {
-      const branches = [];
-      
-      // 获取分支源頭資訊卡片（branchSourceCards）
-      if (moduleSet.branchSourceCards && moduleSet.branchSourceCards.length > 0) {
-        moduleSet.branchSourceCards.forEach((branchSourceCard) => {
-          const branchSource = branchSourceCard.data || {};
-          branches.push({
-            size: branchSource.sourceSize || '',
-            floor: branchSource.locationInfo || '' // 使用 locationInfo 作为楼层信息
-          });
-        });
+    getFirstValveCard(moduleSet) {
+      // 获取主分支的閥件資訊卡片
+      if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
+        return moduleSet.valveCards[0];
       }
-      
-      // 如果分支源頭資訊卡片不存在，尝试从分支模块卡片获取
-      if (branches.length === 0 && moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > 0) {
-        moduleSet.branchModuleCards.forEach((branchModule) => {
-          const branchSource = branchModule.source?.data || {};
-          const branchFloor = branchModule.floor?.data || {};
-          
-          branches.push({
-            size: branchSource.sourceSize || '',
-            floor: branchFloor.equipmentFloor || branchFloor.sourceFloor || ''
-          });
-        });
-      }
-      
-      return branches;
+      return null;
     },
 
     /**
@@ -1843,43 +1872,731 @@ export default {
     },
 
     /**
+     * 将流程图数据转换为 Hierarchy Excel 格式 (Special Gas)
+     * @param {Array} moduleSets - 所有模組組
+     * @returns {Array} Excel 数据行数组
+     */
+    convertToHierarchyExcelSpecialGas(moduleSets) {
+      const excelRows = [];
+
+      moduleSets.forEach((moduleSet, moduleSetIndex) => {
+        const source = moduleSet.source?.data || {};
+        const pipeline = moduleSet.pipeline?.data || {};
+        const floor = moduleSet.floor?.data || {};
+        
+        // 获取閥件資訊（b1-size 从閥件資訊获取）
+        const valveCard = this.getFirstValveCard(moduleSet);
+        const b1Size = valveCard?.data?.size || '';
+        
+        // 获取 Panel 和 Equipment 数据
+        const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
+        
+        panelEquipmentGroups.forEach((group, groupIndex) => {
+          const panel = group.panel?.data || {};
+          const equipment = group.equipment?.data || {};
+          
+          // 判断是否为第一个设备（用于 b1-type）
+          const isFirstEquipment = moduleSetIndex === 0 && groupIndex === 0;
+          
+          // 获取管线长度（用于 long-type 和 long-m）
+          const pipelineLength = parseFloat(pipeline.length) || 0;
+          
+          // 创建 Excel 行数据（Special Gas 字段顺序不同）
+          const row = {
+            'util-cat': source.gasType || '', // A: 源頭資訊 -> 氣體別
+            'sm-no': source.valveNumber || '', // B: 源頭資訊 -> 閥件編號
+            'sm-size': source.sourceSize || '', // C: 源頭資訊 -> 源頭尺寸
+            'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
+            'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
+            'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
+            'b2-size': '', // G: 無須填寫
+            'b2-floor': '', // H: 無須填寫
+            'b3-size': '', // I: 無須填寫
+            'b3-floor': '', // J: 無須填寫
+            'dp-size': panel.size || '', // K: 盤面資訊 -> 尺寸
+            'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
+            'dp-tag': '', // M: 無須填寫
+            'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
+            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'specialGas'), // O: 根據管線類型判斷（Special Gas 不會用到軟管）
+            'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
+            'Accessory1': '', // Q: 無須填寫
+            'Accessory2': '', // R: 無須填寫
+            'Accessory3': '', // S: 無須填寫
+            'Accessory4': '', // T: 無須填寫
+            'Accessory5': '', // U: 無須填寫
+            'dp-con': this.getDPCon(panel), // V: 盤面資訊 -> Valve接頭（Special Gas 在 V 列）
+            'n-labor': '', // W: 無須填寫
+            'l1-labor': '', // X: 無須填寫
+            'vpanel-line': this.getVPanelLine(equipment), // Y: 設備資訊 -> 三合一
+            'sup-qty': '', // Z: 無須填寫
+            'gas-conta': this.getGasConta(moduleSet, group, equipment), // AA: 管線類型（單管/雙管）
+            'ht-m': '', // AB: 無須填寫
+            'ins-m': '', // AC: 無須填寫
+            'gt-loop4': '', // AD: 無須填寫
+            'gt-loop8': '', // AE: 無須填寫
+            'long-type': this.getLongType(pipelineLength), // AF: 超長米數Range（≥47M才顯示）
+            'long-m': this.getLongM(pipelineLength), // AG: 超長米數（≥47M才顯示）
+            'dl-type': '', // AH: 無須填寫
+          };
+          
+          excelRows.push(row);
+          
+          // 如果有额外的设备卡片，也为每个设备创建一行
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach((additionalEquipment) => {
+              const additionalRow = { ...row };
+              const additionalData = additionalEquipment.data || {};
+              additionalRow['pou-size'] = additionalData.size || '';
+              additionalRow['pou-ptype'] = this.getPOUType(moduleSet, group, additionalData, 'specialGas');
+              additionalRow['pou-comp'] = additionalData.connectionName || '';
+              additionalRow['vpanel-line'] = this.getVPanelLine(additionalData);
+              additionalRow['gas-conta'] = this.getGasConta(moduleSet, group, additionalData);
+              excelRows.push(additionalRow);
+            });
+          }
+        });
+      });
+
+      return excelRows;
+    },
+
+    /**
      * 获取 POU Type (軟/硬管)
+     * 根據管線類型判斷：單套管/雙套管顯示"硬管"，反之"軟管"
+     * Special Gas 不會用到軟管
+     * @param {Object} moduleSet - 模組組
+     * @param {Object} group - Panel+Equipment 群組
      * @param {Object} equipment - Equipment 数据
+     * @param {String} hierarchyType - 類型（'bulkGas' 或 'specialGas'）
      * @returns {String} 軟管或硬管
      */
-    getPOUType(equipment) {
-      // 根据 connector 类型判断
-      const connector = equipment.connector || '';
-      if (connector.includes('軟') || connector.toLowerCase().includes('soft')) {
+    getPOUType(moduleSet, group, equipment, hierarchyType = 'bulkGas') {
+      // 優先判斷：盤面資訊的後方管線類別
+      const panel = group.panel?.data || {};
+      if (panel.backPipelineType) {
+        const backPipelineType = panel.backPipelineType;
+        if (backPipelineType === '單套管' || backPipelineType === '雙套管') {
+          return '硬管';
+        }
         return '軟管';
       }
+      
+      // 其次判斷：設備閥件資訊的後方管線類別
+      // 檢查是否有設備閥件
+      if (group.equipment?.valve?.data?.backPipelineType) {
+        const valveBackPipelineType = group.equipment.valve.data.backPipelineType;
+        if (valveBackPipelineType === '單套管' || valveBackPipelineType === '雙套管') {
+          return '硬管';
+        }
+        return '軟管';
+      }
+      
+      // 最後判斷：源頭資訊的管線類型
+      const source = moduleSet.source?.data || {};
+      const pipelineType = source.pipelineType || '';
+      if (pipelineType === '單套管' || pipelineType === '雙套管') {
+        return '硬管';
+      }
+      
+      // 默認判斷：根據 connector 類型
+      const connector = equipment.connector || '';
+      
+      // Special Gas 不會用到軟管
+      if (hierarchyType === 'specialGas') {
+        return '硬管';
+      }
+      
+      // Bulk Gas 的判斷邏輯
+      if (connector.includes('軟') || connector.toLowerCase().includes('soft') || 
+          connector.toLowerCase().includes('quick') || connector === '快速接頭') {
+        return '軟管';
+      }
+      
       return '硬管';
     },
 
     /**
-     * 获取列索引（根据模板的列名）
+     * 获取 gas-conta (管線類型 - Special Gas 專用)
+     * 顯示接入設備的管線種類：單套管顯示"單管"，雙套管顯示"雙管"
+     * @param {Object} moduleSet - 模組組
+     * @param {Object} group - Panel+Equipment 群組
+     * @param {Object} equipment - Equipment 数据
+     * @returns {String} 單管、雙管或空字符串
+     */
+    getGasConta(moduleSet, group, equipment) {
+      // 優先判斷：盤面資訊的後方管線類別
+      const panel = group.panel?.data || {};
+      if (panel.backPipelineType) {
+        const backPipelineType = panel.backPipelineType;
+        if (backPipelineType === '單套管') {
+          return '單管';
+        }
+        if (backPipelineType === '雙套管') {
+          return '雙管';
+        }
+        return '';
+      }
+      
+      // 其次判斷：設備閥件資訊的後方管線類別
+      if (group.equipment?.valve?.data?.backPipelineType) {
+        const valveBackPipelineType = group.equipment.valve.data.backPipelineType;
+        if (valveBackPipelineType === '單套管') {
+          return '單管';
+        }
+        if (valveBackPipelineType === '雙套管') {
+          return '雙管';
+        }
+        return '';
+      }
+      
+      // 最後判斷：源頭資訊的管線類型
+      const source = moduleSet.source?.data || {};
+      const pipelineType = source.pipelineType || '';
+      if (pipelineType === '單套管') {
+        return '單管';
+      }
+      if (pipelineType === '雙套管') {
+        return '雙管';
+      }
+      
+      return '';
+    },
+
+    /**
+     * 获取 long-type (超長米數Range)
+     * 管線長度有大於等於47才顯示，否則留空
+     * R1: 47M~76M, R2: 77M~106M, R3: 107~136M, R4: 137~166M, R5: 167~196M, R6: 197~226M
+     * @param {Number} pipelineLength - 管線長度
+     * @returns {String} R1-R6 或空字符串
+     */
+    getLongType(pipelineLength) {
+      if (!pipelineLength || pipelineLength < 47) {
+        return '';
+      }
+      
+      if (pipelineLength >= 47 && pipelineLength <= 76) {
+        return 'R1';
+      }
+      if (pipelineLength >= 77 && pipelineLength <= 106) {
+        return 'R2';
+      }
+      if (pipelineLength >= 107 && pipelineLength <= 136) {
+        return 'R3';
+      }
+      if (pipelineLength >= 137 && pipelineLength <= 166) {
+        return 'R4';
+      }
+      if (pipelineLength >= 167 && pipelineLength <= 196) {
+        return 'R5';
+      }
+      if (pipelineLength >= 197 && pipelineLength <= 226) {
+        return 'R6';
+      }
+      
+      // 超過 226M 的情況，可能需要根據實際需求處理
+      return '';
+    },
+
+    /**
+     * 获取 long-m (超長米數)
+     * 管線長度有大於等於47才顯示，顯示管線長度，否則留空
+     * @param {Number} pipelineLength - 管線長度
+     * @returns {String} 管線長度或空字符串
+     */
+    getLongM(pipelineLength) {
+      if (!pipelineLength || pipelineLength < 47) {
+        return '';
+      }
+      
+      return String(pipelineLength);
+    },
+
+    /**
+     * 获取 b1-type (X1/X0)
+     * 判斷此筆是否為源頭資訊貫穿到第一個設備資訊的為X1，其餘則為X0
+     * 如有新源頭第一筆亦為X1
+     * @param {Object} moduleSet - 模組組
+     * @param {number} groupIndex - 群組索引
+     * @param {boolean} isFirstEquipment - 是否為第一個設備
+     * @returns {String} X1 或 X0
+     */
+    getB1Type(moduleSet, groupIndex, isFirstEquipment) {
+      // 如果是第一個模組組的第一個設備，返回 X1
+      if (isFirstEquipment) {
+        return 'X1';
+      }
+      
+      // 其他情況返回 X0
+      return 'X0';
+    },
+
+    /**
+     * 获取 dp-con (盤面資訊 -> Valve接頭)
+     * 選SWG:SM, 選VCR-M、VCR-F:VM, 如盤面未啟用則顯示:NA
+     * @param {Object} panel - Panel 数据
+     * @returns {String} SM, VM, 或 NA
+     */
+    getDPCon(panel) {
+      if (!panel.enablePanel) {
+        return 'NA';
+      }
+      
+      const valveConnector = panel.valveConnector || '';
+      if (valveConnector === 'SWG') {
+        return 'SM';
+      }
+      if (valveConnector === 'VCR-M' || valveConnector === 'VCR-F') {
+        return 'VM';
+      }
+      
+      return '';
+    },
+
+    /**
+     * 获取 dp-tv (盤面後方是否有分支或閥件)
+     * 控制閥盤面後無分支,無設置閥件,填NV
+     * 控制閥盤面後有分支,無設置閥件,填TNV
+     * 控制閥盤面後有分支,有設置閥件,填TV
+     * @param {Object} moduleSet - 模組組
+     * @param {Object} group - Panel+Equipment 群組
+     * @returns {String} NV, TNV, 或 TV
+     */
+    getDPTV(moduleSet, group) {
+      const panel = group.panel?.data || {};
+      if (!panel.enablePanel) {
+        return '';
+      }
+      
+      // 檢查是否有額外設備卡片（表示有分支）
+      const hasAdditionalEquipment = group.additionalEquipmentCards && 
+                                     group.additionalEquipmentCards.length > 0;
+      
+      // 檢查設備是否有閥件
+      const equipment = group.equipment?.data || {};
+      const hasEquipmentValve = group.equipment?.valve?.data && 
+                                group.equipment.valve.data.size;
+      
+      if (!hasAdditionalEquipment && !hasEquipmentValve) {
+        return 'NV';
+      }
+      if (hasAdditionalEquipment && !hasEquipmentValve) {
+        return 'TNV';
+      }
+      if (hasAdditionalEquipment && hasEquipmentValve) {
+        return 'TV';
+      }
+      
+      return '';
+    },
+
+    /**
+     * 获取 vpanel-line (設備資訊 -> 三合一)
+     * 三合一新增:O7, 三合一修改:O7R, 未填或無設備:欄位留空
+     * @param {Object} equipment - Equipment 数据
+     * @returns {String} O7, O7R, 或空字符串
+     */
+    getVPanelLine(equipment) {
+      const threeInOne = equipment.threeInOne || '';
+      if (threeInOne === '三合一新增') {
+        return 'O7';
+      }
+      if (threeInOne === '三合一修改') {
+        return 'O7R';
+      }
+      return '';
+    },
+
+    /**
+     * 验证所有必填字段
+     * @returns {Object} { isValid: boolean, message: string }
+     */
+    validateRequiredFields() {
+      const errors = [];
+
+      this.allModuleSets.forEach((moduleSet, moduleSetIndex) => {
+        const moduleNumber = moduleSetIndex + 1;
+        
+        // 验证源頭資訊
+        const source = moduleSet.source?.data || {};
+        if (!source.pipelineType) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：管線類別為必填`);
+        }
+        if (!source.gasType) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：氣體別為必填`);
+        }
+        if (!source.valveNumber) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：閥件編號為必填`);
+        }
+        if (!source.sourceSize) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：源頭尺寸為必填`);
+        }
+        if (source.pipelineType === '雙套管' && !source.doubleSleeveSize) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：雙套管尺寸為必填`);
+        }
+        if (!source.connectorSpec) {
+          errors.push(`模組 ${moduleNumber} - 源頭資訊：接頭規格為必填`);
+        }
+
+        // 验证管線資訊
+        const pipeline = moduleSet.pipeline?.data || {};
+        if (!pipeline.length) {
+          errors.push(`模組 ${moduleNumber} - 管線資訊：管線長度為必填`);
+        }
+        if (!pipeline.material) {
+          errors.push(`模組 ${moduleNumber} - 管線資訊：管線材質為必填`);
+        }
+
+        // 验证樓層資訊
+        const floor = moduleSet.floor?.data || {};
+        if (!floor.sourceFloor) {
+          errors.push(`模組 ${moduleNumber} - 樓層資訊：源頭樓層為必填`);
+        }
+        if (!floor.equipmentFloor) {
+          errors.push(`模組 ${moduleNumber} - 樓層資訊：設備樓層為必填`);
+        }
+
+        // 验证閥件資訊
+        if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
+          moduleSet.valveCards.forEach((valveCard, valveIndex) => {
+            const valveData = valveCard.data || {};
+            if (!valveData.connectorType) {
+              errors.push(`模組 ${moduleNumber} - 閥件資訊 ${valveIndex + 1}：閥件接頭形式為必填`);
+            }
+            if (!valveData.size) {
+              errors.push(`模組 ${moduleNumber} - 閥件資訊 ${valveIndex + 1}：閥件尺寸為必填`);
+            }
+            if (!valveData.valveType) {
+              errors.push(`模組 ${moduleNumber} - 閥件資訊 ${valveIndex + 1}：閥件種類為必填`);
+            }
+          });
+        }
+
+        // 验证分支源頭資訊
+        if (moduleSet.branchSourceCards && moduleSet.branchSourceCards.length > 0) {
+          moduleSet.branchSourceCards.forEach((branchSourceCard, branchIndex) => {
+            const branchSource = branchSourceCard.data || {};
+            if (!branchSource.gasType) {
+              errors.push(`模組 ${moduleNumber} - 分支源頭資訊 ${branchIndex + 1}：氣體別為必填`);
+            }
+            if (!branchSource.valveNumber) {
+              errors.push(`模組 ${moduleNumber} - 分支源頭資訊 ${branchIndex + 1}：閥件編號為必填`);
+            }
+            if (!branchSource.sourceSize) {
+              errors.push(`模組 ${moduleNumber} - 分支源頭資訊 ${branchIndex + 1}：源頭尺寸為必填`);
+            }
+            if (branchSource.pipelineType === '雙套管' && !branchSource.doubleSleeveSize) {
+              errors.push(`模組 ${moduleNumber} - 分支源頭資訊 ${branchIndex + 1}：雙套管尺寸為必填`);
+            }
+            if (!branchSource.connectorSpec) {
+              errors.push(`模組 ${moduleNumber} - 分支源頭資訊 ${branchIndex + 1}：接頭規格為必填`);
+            }
+          });
+        }
+
+        // 验证 Panel 和 Equipment
+        const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
+        panelEquipmentGroups.forEach((group, groupIndex) => {
+          const panel = group.panel?.data || {};
+          const equipment = group.equipment?.data || {};
+          
+          // 验证盤面資訊（如果啟用）
+          if (panel.enablePanel) {
+            if (!panel.valve) {
+              errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：Valve為必填`);
+            }
+            if (!panel.size) {
+              errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：尺寸為必填`);
+            }
+            if (!panel.valveConnector) {
+              errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：Valve接頭為必填`);
+            }
+            if (!panel.backPipelineType) {
+              errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：後方管線類別為必填`);
+            }
+          }
+
+          // 验证設備資訊
+          if (!equipment.gasType) {
+            errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1}：氣體別為必填`);
+          }
+          if (!equipment.size) {
+            errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1}：尺寸為必填`);
+          }
+          if (!equipment.connector) {
+            errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1}：接頭為必填`);
+          }
+          if (!equipment.threeInOne) {
+            errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1}：三合一為必填`);
+          }
+
+          // 验证額外設備卡片
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach((additionalEquipment, additionalIndex) => {
+              const additionalData = additionalEquipment.data || {};
+              if (!additionalData.gasType) {
+                errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1}：氣體別為必填`);
+              }
+              if (!additionalData.size) {
+                errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1}：尺寸為必填`);
+              }
+              if (!additionalData.connector) {
+                errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1}：接頭為必填`);
+              }
+              if (!additionalData.threeInOne) {
+                errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1}：三合一為必填`);
+              }
+              
+              // 验证額外設備卡片的閥件資訊（如果有）
+              if (additionalEquipment.valve?.data) {
+                const additionalValve = additionalEquipment.valve.data;
+                if (!additionalValve.connectorType) {
+                  errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1} - 閥件：閥件接頭形式為必填`);
+                }
+                if (!additionalValve.size) {
+                  errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1} - 閥件：閥件尺寸為必填`);
+                }
+                if (!additionalValve.valveType) {
+                  errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1} - 閥件：閥件種類為必填`);
+                }
+                if (!additionalValve.backPipelineType) {
+                  errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 額外設備 ${additionalIndex + 1} - 閥件：後方管線類別為必填`);
+                }
+              }
+            });
+          }
+
+          // 验证設備閥件資訊
+          if (group.equipment?.valve?.data) {
+            const equipmentValve = group.equipment.valve.data;
+            if (!equipmentValve.backPipelineType) {
+              errors.push(`模組 ${moduleNumber} - 設備資訊 ${groupIndex + 1} - 設備閥件：後方管線類別為必填`);
+            }
+          }
+
+          // 验证分支模組
+          if (moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > 0) {
+            moduleSet.branchModuleCards.forEach((branchModule, branchModuleIndex) => {
+              // 验证分支閥件
+              if (branchModule.valve?.data) {
+                const branchValve = branchModule.valve.data;
+                if (!branchValve.connectorType) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 分支閥件：閥件接頭形式為必填`);
+                }
+                if (!branchValve.size) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 分支閥件：閥件尺寸為必填`);
+                }
+                if (!branchValve.valveType) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 分支閥件：閥件種類為必填`);
+                }
+              }
+
+              // 验证分支管線
+              if (branchModule.pipeline?.data) {
+                const branchPipeline = branchModule.pipeline.data;
+                if (!branchPipeline.length) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 管線資訊：管線長度為必填`);
+                }
+                if (!branchPipeline.material) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 管線資訊：管線材質為必填`);
+                }
+              }
+
+              // 验证分支樓層資訊
+              if (branchModule.floor?.data) {
+                const branchFloor = branchModule.floor.data;
+                if (!branchFloor.sourceFloor) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 樓層資訊：源頭樓層為必填`);
+                }
+                if (!branchFloor.equipmentFloor) {
+                  errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 樓層資訊：設備樓層為必填`);
+                }
+              }
+
+              // 验证分支盤面和設備
+              if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
+                branchModule.panelEquipmentGroups.forEach((branchGroup, branchGroupIndex) => {
+                  const branchPanel = branchGroup.panel?.data || {};
+                  const branchEquipment = branchGroup.equipment?.data || {};
+                  
+                  if (branchPanel.enablePanel) {
+                    if (!branchPanel.valve) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：Valve為必填`);
+                    }
+                    if (!branchPanel.size) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：尺寸為必填`);
+                    }
+                    if (!branchPanel.valveConnector) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：Valve接頭為必填`);
+                    }
+                    if (!branchPanel.backPipelineType) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：後方管線類別為必填`);
+                    }
+                  }
+
+                  if (!branchEquipment.gasType) {
+                    errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1}：氣體別為必填`);
+                  }
+                  if (!branchEquipment.size) {
+                    errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1}：尺寸為必填`);
+                  }
+                  if (!branchEquipment.connector) {
+                    errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1}：接頭為必填`);
+                  }
+                  if (!branchEquipment.threeInOne) {
+                    errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1}：三合一為必填`);
+                  }
+                  
+                  // 验证分支設備閥件資訊（如果有）
+                  if (branchGroup.equipment?.valve?.data) {
+                    const branchEquipmentValve = branchGroup.equipment.valve.data;
+                    if (!branchEquipmentValve.backPipelineType) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 設備閥件：後方管線類別為必填`);
+                    }
+                  }
+                  
+                  // 验证分支額外設備卡片
+                  if (branchGroup.additionalEquipmentCards && branchGroup.additionalEquipmentCards.length > 0) {
+                    branchGroup.additionalEquipmentCards.forEach((branchAdditionalEquipment, branchAdditionalIndex) => {
+                      const branchAdditionalData = branchAdditionalEquipment.data || {};
+                      if (!branchAdditionalData.gasType) {
+                        errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1}：氣體別為必填`);
+                      }
+                      if (!branchAdditionalData.size) {
+                        errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1}：尺寸為必填`);
+                      }
+                      if (!branchAdditionalData.connector) {
+                        errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1}：接頭為必填`);
+                      }
+                      if (!branchAdditionalData.threeInOne) {
+                        errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1}：三合一為必填`);
+                      }
+                      
+                      // 验证分支額外設備卡片的閥件資訊（如果有）
+                      if (branchAdditionalEquipment.valve?.data) {
+                        const branchAdditionalValve = branchAdditionalEquipment.valve.data;
+                        if (!branchAdditionalValve.connectorType) {
+                          errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1} - 閥件：閥件接頭形式為必填`);
+                        }
+                        if (!branchAdditionalValve.size) {
+                          errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1} - 閥件：閥件尺寸為必填`);
+                        }
+                        if (!branchAdditionalValve.valveType) {
+                          errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1} - 閥件：閥件種類為必填`);
+                        }
+                        if (!branchAdditionalValve.backPipelineType) {
+                          errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 設備資訊 ${branchGroupIndex + 1} - 額外設備 ${branchAdditionalIndex + 1} - 閥件：後方管線類別為必填`);
+                        }
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+      });
+
+      if (errors.length > 0) {
+        // 限制错误消息长度，最多显示前5个错误
+        const displayErrors = errors.slice(0, 5);
+        const remainingCount = errors.length - 5;
+        let message = '以下必填項目尚未填寫：\n\n' + displayErrors.join('\n');
+        if (remainingCount > 0) {
+          message += `\n\n還有 ${remainingCount} 個錯誤未顯示...`;
+        }
+        return { isValid: false, message };
+      }
+
+      return { isValid: true, message: '' };
+    },
+
+    /**
+     * 获取列索引（根据模板的列名和类型）
      * @param {String} columnKey - 列键名
+     * @param {String} hierarchyType - 類型（'bulkGas' 或 'specialGas'）
      * @returns {Number} 列索引（0-based）
      */
-    getColumnIndex(columnKey) {
-      const columnMap = {
-        'util-cat': 0,    // A
-        'sm-no': 1,       // B
-        'sm-size': 2,     // C
-        'sm-floor': 3,    // D
-        'b1-size': 4,     // E
-        'b1-floor': 5,    // F
-        'b2-size': 6,     // G
-        'b2-floor': 7,    // H
-        'b3-size': 8,     // I
-        'b3-floor': 9,    // J
-        'dp-size': 10,    // K
-        'dp-type': 11,    // L
-        'dp-tag': 12,     // M
-        'pou-size': 13,   // N
-        'pou-ptype': 14,  // O
-        'pou-comp': 15,   // P
+    getColumnIndex(columnKey, hierarchyType = 'bulkGas') {
+      // Bulk Gas 的列映射
+      const bulkGasColumnMap = {
+        'util-cat': 0,      // A
+        'sm-no': 1,         // B
+        'sm-size': 2,       // C
+        'sm-floor': 3,      // D
+        'b1-size': 4,       // E
+        'b1-floor': 5,      // F
+        'b2-size': 6,       // G
+        'b2-floor': 7,      // H
+        'b3-size': 8,       // I
+        'b3-floor': 9,      // J
+        'dp-size': 10,      // K
+        'dp-type': 11,      // L
+        'dp-tag': 12,       // M
+        'pou-size': 13,     // N
+        'pou-ptype': 14,    // O
+        'pou-comp': 15,     // P
+        'Accessory1': 16,   // Q
+        'Accessory2': 17,   // R
+        'Accessory3': 18,   // S
+        'Accessory4': 19,   // T
+        'Accessory5': 20,   // U
+        'Accessory6': 21,   // V
+        'b1-type': 22,      // W
+        'dp-con': 23,       // X
+        'dp-tv': 24,        // Y
+        'n-labor': 25,      // Z
+        'l1-labor': 26,     // AA
+        'vpanel-line': 27,  // AB
+        'sup-qty': 28,      // AC
+        'n2-temp': 29,      // AD
+        'gt-loop4': 30,     // AE
+        'gt-loop8': 31,     // AF
+        'ht-m': 32,         // AG
+        'ins-m': 33,        // AH
+        'long-type': 34,    // AI
+        'long-m': 35,       // AJ
+        'dl-type': 36,      // AK
       };
+
+      // Special Gas 的列映射（字段顺序不同）
+      const specialGasColumnMap = {
+        'util-cat': 0,      // A
+        'sm-no': 1,         // B
+        'sm-size': 2,       // C
+        'sm-floor': 3,      // D
+        'b1-size': 4,       // E
+        'b1-floor': 5,      // F
+        'b2-size': 6,       // G
+        'b2-floor': 7,      // H
+        'b3-size': 8,       // I
+        'b3-floor': 9,      // J
+        'dp-size': 10,      // K
+        'dp-type': 11,      // L
+        'dp-tag': 12,       // M
+        'pou-size': 13,     // N
+        'pou-ptype': 14,    // O
+        'pou-comp': 15,     // P
+        'Accessory1': 16,   // Q
+        'Accessory2': 17,   // R
+        'Accessory3': 18,   // S
+        'Accessory4': 19,   // T
+        'Accessory5': 20,   // U
+        'dp-con': 21,       // V (Special Gas 在 V 列)
+        'n-labor': 22,      // W
+        'l1-labor': 23,     // X
+        'vpanel-line': 24,  // Y
+        'sup-qty': 25,      // Z
+        'gas-conta': 26,    // AA (Special Gas 專用)
+        'ht-m': 27,         // AB
+        'ins-m': 28,        // AC
+        'gt-loop4': 29,     // AD
+        'gt-loop8': 30,     // AE
+        'long-type': 31,    // AF
+        'long-m': 32,       // AG
+        'dl-type': 33,      // AH
+      };
+
+      const columnMap = hierarchyType === 'specialGas' ? specialGasColumnMap : bulkGasColumnMap;
       return columnMap[columnKey] !== undefined ? columnMap[columnKey] : -1;
     },
 
@@ -2585,6 +3302,20 @@ export default {
           this.allModuleSets[setIndex].branchSourceCards && 
           this.allModuleSets[setIndex].branchSourceCards[branchIndex]) {
         this.allModuleSets[setIndex].branchSourceCards[branchIndex].data = data;
+      }
+    },
+
+    /**
+     * 更新閥件數據
+     * @param {number} setIndex - 模組組索引
+     * @param {number} valveIndex - 閥件卡片索引
+     * @param {Object} data - 新的數據
+     */
+    updateValveData(setIndex, valveIndex, data) {
+      if (this.allModuleSets[setIndex] && 
+          this.allModuleSets[setIndex].valveCards && 
+          this.allModuleSets[setIndex].valveCards[valveIndex]) {
+        this.allModuleSets[setIndex].valveCards[valveIndex].data = data;
       }
     },
 
@@ -5392,7 +6123,15 @@ export default {
       return {
         id: `valve-card-${Date.now()}`,
         type: 'valve',
-        position: { x: pipelineCard.position.x, y: pipelineCard.position.y }
+        position: { x: pipelineCard.position.x, y: pipelineCard.position.y },
+        data: {
+          connectorType: '',
+          size: '',
+          valveType: '',
+          enableValve: false,
+          branchSize: '',
+          backPipelineType: '單套管'
+        }
       };
     },
     
