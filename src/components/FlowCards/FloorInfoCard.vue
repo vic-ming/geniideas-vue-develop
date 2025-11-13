@@ -60,8 +60,8 @@ export default {
     cardData: {
       type: Object,
       default: () => ({
-        sourceFloor: '',
-        equipmentFloor: ''
+        sourceFloor: '1F',
+        equipmentFloor: '1F'
       })
     }
   },

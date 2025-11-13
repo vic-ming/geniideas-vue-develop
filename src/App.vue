@@ -124,6 +124,7 @@
                       :initialPosition="valveCard.position"
                       :cardData="valveCard.data"
                       :module-set-index="setIndex"
+                      :is-delete-disabled="hasBranchValve(moduleSet)"
                       @update-data="(data) => updateValveData(setIndex, valveIndex, data)"
                       @delete-valve="handleDeleteValve"
                     />
@@ -163,7 +164,9 @@
                           :cardData="panelEquipmentGroup.panel.data"
                           :isBranchModule="true"
                           :canDelete="groupIndex > 0"
+                          :sourcePipelineType="moduleSet.source?.data?.pipelineType || ''"
                           @update-data="(data) => updateBranchPanelData(setIndex, branchModuleIndex, groupIndex, data)"
+                          @back-pipeline-type-change="(event) => handleBackPipelineTypeChange(setIndex, groupIndex, event, true, branchModuleIndex)"
                           @delete-panel-group="(data) => handleDeleteBranchPanelGroup(setIndex, branchModuleIndex, groupIndex, data)"
                         />
                         <EquipmentInfoCard 
@@ -228,7 +231,9 @@
                     :initialPosition="panelEquipmentGroup.panel.position"
                     :cardData="panelEquipmentGroup.panel.data"
                     :canDelete="groupIndex > 0"
+                    :sourcePipelineType="moduleSet.source?.data?.pipelineType || ''"
                     @update-data="(data) => updatePanelData(setIndex, groupIndex, data)"
+                    @back-pipeline-type-change="(event) => handleBackPipelineTypeChange(setIndex, groupIndex, event, false)"
                     @delete-panel-group="(data) => handleDeletePanelGroup(setIndex, groupIndex, data)"
                   />
                   <!-- Panel 和 Equipment 之間的閥件 -->
@@ -345,6 +350,7 @@ export default {
       allModuleSets: [],
       // 設定資料
       settings: {
+        projectName: '',
         customer: '',
         vendorInfo: '',
         surveySupervisor: '',
@@ -356,7 +362,7 @@ export default {
         constructionVendor: '',
         drawingDate: '',
         notes: '',
-        hierarchyType: 'specialGas'
+        hierarchyType: 'bulkGas'
       }
     }
   },
@@ -508,7 +514,12 @@ export default {
           } else if (conn.to === 'branch-source') {
             // 分支源頭資訊卡片
             const branchIndex = conn.branchCardIndex !== undefined ? conn.branchCardIndex : 0
-            toCard = { position: moduleSet.branchSourceCards[branchIndex].position }
+            if (moduleSet.branchSourceCards && moduleSet.branchSourceCards[branchIndex]) {
+              toCard = { position: moduleSet.branchSourceCards[branchIndex].position }
+            } else {
+              console.warn('Invalid branch source card index:', branchIndex);
+              return; // 跳過此連接線
+            }
           } else if (conn.to === 'valve') {
             // 對於 valve，從 valveCards 陣列中獲取
             const valveIndex = conn.valveCardIndex !== undefined ? conn.valveCardIndex : 0
@@ -729,6 +740,17 @@ export default {
     }
   },
   methods: {
+    // ==================== 工具方法 ====================
+    /**
+     * 檢查模組組是否有分支閥件
+     * @param {Object} moduleSet - 模組組對象
+     * @returns {boolean} 是否有分支閥件
+     */
+    hasBranchValve(moduleSet) {
+      return (moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > 0) ||
+             (moduleSet.valveCards && moduleSet.valveCards.some(card => card.type === 'branch-valve'));
+    },
+    
     // ==================== 設置相關方法 ====================
     openSetting() {
       if (this.allModuleSets.length > 0) {
@@ -760,7 +782,7 @@ export default {
         constructionVendor: '',
         drawingDate: '',
         notes: '',
-        hierarchyType: 'specialGas'
+        hierarchyType: 'bulkGas'
       };
       this.isSetting = true
     },
@@ -874,8 +896,8 @@ export default {
           floor: {
             position: { x: 790, y: 80 },
             data: {
-              sourceFloor: '',
-              equipmentFloor: ''
+              sourceFloor: '1F',
+              equipmentFloor: '1F'
             }
           },
           // 閥件卡片
@@ -895,7 +917,7 @@ export default {
                   valveConnector: '',
                   regulator: false,
                   pressureGauge: 'none',
-                  backPipelineType: ''
+                  backPipelineType: '單套管' // 默认与源头资讯的管线类别相同
                 }
               },
               equipment: {
@@ -903,7 +925,7 @@ export default {
                 data: {
                   gasType: '',
                   size: '',
-                  connector: '',
+                  connector: 'WELD',
                   connectionName: '',
                   threeInOne: ''
                 }
@@ -1589,7 +1611,7 @@ export default {
       }
 
       // 检查 hierarchyType
-      const hierarchyType = this.settings.hierarchyType || 'specialGas';
+      const hierarchyType = this.settings.hierarchyType || 'bulkGas';
       if (hierarchyType !== 'bulkGas' && hierarchyType !== 'specialGas') {
         this.showPopup({
           title: '',
@@ -1754,21 +1776,47 @@ export default {
         const valveCard = this.getFirstValveCard(moduleSet);
         const b1Size = valveCard?.data?.size || '';
         
+        // 获取分支源頭資訊
+        const branchSourceCards = moduleSet.branchSourceCards || [];
+        
         // 获取 Panel 和 Equipment 数据
         const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
         
+        // 用于跟踪当前设备的全局索引（跨越所有 group 和 additionalEquipmentCards）
+        let globalEquipmentIndex = 0;
+        
+        // 为每个设备生成一行
         panelEquipmentGroups.forEach((group, groupIndex) => {
           const panel = group.panel?.data || {};
           const equipment = group.equipment?.data || {};
+          const isFirstEquipment = groupIndex === 0;
           
-          // 判断是否为第一个设备（用于 b1-type）
-          const isFirstEquipment = moduleSetIndex === 0 && groupIndex === 0;
+          // 确定 ABC 欄位的來源（基于全局设备索引）
+          let utilCat = '';
+          let smNo = '';
+          let smSize = '';
           
-          // 创建 Excel 行数据
+          if (globalEquipmentIndex === 0) {
+            // 第一个设备：使用源頭資訊
+            utilCat = source.gasType || '';
+            smNo = source.valveNumber || '';
+            smSize = source.sourceSize || '';
+          } else {
+            // 第二个及以后的设备：使用对应的分支源頭資訊（索引 = globalEquipmentIndex - 1）
+            const branchIndex = globalEquipmentIndex - 1;
+            if (branchIndex < branchSourceCards.length) {
+              const branchSource = branchSourceCards[branchIndex].data || {};
+              utilCat = branchSource.gasType || '';
+              smNo = branchSource.valveNumber || '';
+              smSize = branchSource.sourceSize || '';
+            }
+            // 如果没有对应的分支源頭資訊，ABC 欄位留空（已经是空字符串了）
+          }
+          
           const row = {
-            'util-cat': source.gasType || '', // A: 源頭資訊 -> 氣體別
-            'sm-no': source.valveNumber || '', // B: 源頭資訊 -> 閥件編號
-            'sm-size': source.sourceSize || '', // C: 源頭資訊 -> 源頭尺寸
+            'util-cat': utilCat, // A: 根據全局設備索引決定
+            'sm-no': smNo, // B: 根據全局設備索引決定
+            'sm-size': smSize, // C: 根據全局設備索引決定
             'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
             'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
             'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
@@ -1806,20 +1854,129 @@ export default {
           };
           
           excelRows.push(row);
+          globalEquipmentIndex++; // 主设备计数
           
-          // 如果有额外的设备卡片，也为每个设备创建一行
+          // 如果有额外的设备卡片，也为每个设备创建一行（ABC 欄位根据全局索引决定）
           if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
             group.additionalEquipmentCards.forEach((additionalEquipment) => {
-              const additionalRow = { ...row };
               const additionalData = additionalEquipment.data || {};
-              additionalRow['pou-size'] = additionalData.size || '';
-              additionalRow['pou-ptype'] = this.getPOUType(moduleSet, group, additionalData, 'bulkGas');
-              additionalRow['pou-comp'] = additionalData.connectionName || '';
-              additionalRow['vpanel-line'] = this.getVPanelLine(additionalData);
+              
+              // 为额外设备确定 ABC 欄位的來源
+              let additionalUtilCat = '';
+              let additionalSmNo = '';
+              let additionalSmSize = '';
+              
+              if (globalEquipmentIndex === 0) {
+                additionalUtilCat = source.gasType || '';
+                additionalSmNo = source.valveNumber || '';
+                additionalSmSize = source.sourceSize || '';
+              } else {
+                const branchIndex = globalEquipmentIndex - 1;
+                if (branchIndex < branchSourceCards.length) {
+                  const branchSource = branchSourceCards[branchIndex].data || {};
+                  additionalUtilCat = branchSource.gasType || '';
+                  additionalSmNo = branchSource.valveNumber || '';
+                  additionalSmSize = branchSource.sourceSize || '';
+                }
+              }
+              
+              const additionalRow = {
+                'util-cat': additionalUtilCat, // A: 根據全局設備索引決定
+                'sm-no': additionalSmNo, // B: 根據全局設備索引決定
+                'sm-size': additionalSmSize, // C: 根據全局設備索引決定
+                'sm-floor': floor.sourceFloor || '',
+                'b1-size': b1Size,
+                'b1-floor': floor.equipmentFloor || '',
+                'b2-size': '',
+                'b2-floor': '',
+                'b3-size': '',
+                'b3-floor': '',
+                'dp-size': panel.size || '',
+                'dp-type': this.getPanelType(panel),
+                'dp-tag': '',
+                'pou-size': additionalData.size || '',
+                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'bulkGas'),
+                'pou-comp': additionalData.connectionName || '',
+                'Accessory1': '',
+                'Accessory2': '',
+                'Accessory3': '',
+                'Accessory4': '',
+                'Accessory5': '',
+                'Accessory6': '',
+                'b1-type': 'X0', // 額外設備卡片都是 X0（不是第一個設備）
+                'dp-con': this.getDPCon(panel),
+                'dp-tv': this.getDPTV(moduleSet, group),
+                'n-labor': '',
+                'l1-labor': '',
+                'vpanel-line': this.getVPanelLine(additionalData),
+                'sup-qty': '',
+                'n2-temp': '',
+                'gt-loop4': '',
+                'gt-loop8': '',
+                'ht-m': '',
+                'ins-m': '',
+                'long-type': '',
+                'long-m': '',
+                'dl-type': '',
+              };
+              
               excelRows.push(additionalRow);
+              globalEquipmentIndex++; // 额外设备计数
             });
           }
         });
+        
+        // 如果还有多余的分支源頭資訊，为它们创建空行（只有 ABC 列有数据）
+        if (branchSourceCards.length > globalEquipmentIndex - 1) {
+          for (let i = globalEquipmentIndex - 1; i < branchSourceCards.length; i++) {
+            const branchSource = branchSourceCards[i].data || {};
+            const emptyRow = {
+              'util-cat': branchSource.gasType || '', // A: 分支源頭資訊 -> 氣體別
+              'sm-no': branchSource.valveNumber || '', // B: 分支源頭資訊 -> 閥件編號
+              'sm-size': branchSource.sourceSize || '', // C: 分支源頭資訊 -> 源頭尺寸
+              'sm-floor': '', // D: 無設備留空
+              'b1-size': '', // E: 無設備留空
+              'b1-floor': '', // F: 無設備留空
+              'b2-size': '',
+              'b2-floor': '',
+              'b3-size': '',
+              'b3-floor': '',
+              'dp-size': '',
+              'dp-type': '',
+              'dp-tag': '',
+              'pou-size': '',
+              'pou-ptype': '',
+              'pou-comp': '',
+              'Accessory1': '',
+              'Accessory2': '',
+              'Accessory3': '',
+              'Accessory4': '',
+              'Accessory5': '',
+              'Accessory6': '',
+              'b1-type': '',
+              'dp-con': '',
+              'dp-tv': '',
+              'n-labor': '',
+              'l1-labor': '',
+              'vpanel-line': '',
+              'sup-qty': '',
+              'n2-temp': '',
+              'gt-loop4': '',
+              'gt-loop8': '',
+              'ht-m': '',
+              'ins-m': '',
+              'long-type': '',
+              'long-m': '',
+              'dl-type': '',
+            };
+            excelRows.push(emptyRow);
+          }
+        }
+        
+        // 每個模組之間空一列（最後一個模組不需要）
+        if (moduleSetIndex < moduleSets.length - 1) {
+          excelRows.push({});
+        }
       });
 
       return excelRows;
@@ -1888,24 +2045,50 @@ export default {
         const valveCard = this.getFirstValveCard(moduleSet);
         const b1Size = valveCard?.data?.size || '';
         
+        // 获取分支源頭資訊
+        const branchSourceCards = moduleSet.branchSourceCards || [];
+        
         // 获取 Panel 和 Equipment 数据
         const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
         
+        // 获取管线长度（用于 long-type 和 long-m）
+        const pipelineLength = parseFloat(pipeline.length) || 0;
+        
+        // 用于跟踪当前设备的全局索引（跨越所有 group 和 additionalEquipmentCards）
+        let globalEquipmentIndex = 0;
+        
+        // 为每个设备生成一行
         panelEquipmentGroups.forEach((group, groupIndex) => {
           const panel = group.panel?.data || {};
           const equipment = group.equipment?.data || {};
+          const isFirstEquipment = groupIndex === 0;
           
-          // 判断是否为第一个设备（用于 b1-type）
-          const isFirstEquipment = moduleSetIndex === 0 && groupIndex === 0;
+          // 确定 ABC 欄位的來源（基于全局设备索引）
+          let utilCat = '';
+          let smNo = '';
+          let smSize = '';
           
-          // 获取管线长度（用于 long-type 和 long-m）
-          const pipelineLength = parseFloat(pipeline.length) || 0;
+          if (globalEquipmentIndex === 0) {
+            // 第一个设备：使用源頭資訊
+            utilCat = source.gasType || '';
+            smNo = source.valveNumber || '';
+            smSize = source.sourceSize || '';
+          } else {
+            // 第二个及以后的设备：使用对应的分支源頭資訊（索引 = globalEquipmentIndex - 1）
+            const branchIndex = globalEquipmentIndex - 1;
+            if (branchIndex < branchSourceCards.length) {
+              const branchSource = branchSourceCards[branchIndex].data || {};
+              utilCat = branchSource.gasType || '';
+              smNo = branchSource.valveNumber || '';
+              smSize = branchSource.sourceSize || '';
+            }
+            // 如果没有对应的分支源頭資訊，ABC 欄位留空（已经是空字符串了）
+          }
           
-          // 创建 Excel 行数据（Special Gas 字段顺序不同）
           const row = {
-            'util-cat': source.gasType || '', // A: 源頭資訊 -> 氣體別
-            'sm-no': source.valveNumber || '', // B: 源頭資訊 -> 閥件編號
-            'sm-size': source.sourceSize || '', // C: 源頭資訊 -> 源頭尺寸
+            'util-cat': utilCat, // A: 根據全局設備索引決定
+            'sm-no': smNo, // B: 根據全局設備索引決定
+            'sm-size': smSize, // C: 根據全局設備索引決定
             'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
             'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
             'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
@@ -1940,21 +2123,123 @@ export default {
           };
           
           excelRows.push(row);
+          globalEquipmentIndex++; // 主设备计数
           
-          // 如果有额外的设备卡片，也为每个设备创建一行
+          // 如果有额外的设备卡片，也为每个设备创建一行（ABC 欄位根据全局索引决定）
           if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
             group.additionalEquipmentCards.forEach((additionalEquipment) => {
-              const additionalRow = { ...row };
               const additionalData = additionalEquipment.data || {};
-              additionalRow['pou-size'] = additionalData.size || '';
-              additionalRow['pou-ptype'] = this.getPOUType(moduleSet, group, additionalData, 'specialGas');
-              additionalRow['pou-comp'] = additionalData.connectionName || '';
-              additionalRow['vpanel-line'] = this.getVPanelLine(additionalData);
-              additionalRow['gas-conta'] = this.getGasConta(moduleSet, group, additionalData);
+              
+              // 为额外设备确定 ABC 欄位的來源
+              let additionalUtilCat = '';
+              let additionalSmNo = '';
+              let additionalSmSize = '';
+              
+              if (globalEquipmentIndex === 0) {
+                additionalUtilCat = source.gasType || '';
+                additionalSmNo = source.valveNumber || '';
+                additionalSmSize = source.sourceSize || '';
+              } else {
+                const branchIndex = globalEquipmentIndex - 1;
+                if (branchIndex < branchSourceCards.length) {
+                  const branchSource = branchSourceCards[branchIndex].data || {};
+                  additionalUtilCat = branchSource.gasType || '';
+                  additionalSmNo = branchSource.valveNumber || '';
+                  additionalSmSize = branchSource.sourceSize || '';
+                }
+              }
+              
+              const additionalRow = {
+                'util-cat': additionalUtilCat, // A: 根據全局設備索引決定
+                'sm-no': additionalSmNo, // B: 根據全局設備索引決定
+                'sm-size': additionalSmSize, // C: 根據全局設備索引決定
+                'sm-floor': floor.sourceFloor || '',
+                'b1-size': b1Size,
+                'b1-floor': floor.equipmentFloor || '',
+                'b2-size': '',
+                'b2-floor': '',
+                'b3-size': '',
+                'b3-floor': '',
+                'dp-size': panel.size || '',
+                'dp-type': this.getPanelType(panel),
+                'dp-tag': '',
+                'pou-size': additionalData.size || '',
+                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'specialGas'),
+                'pou-comp': additionalData.connectionName || '',
+                'Accessory1': '',
+                'Accessory2': '',
+                'Accessory3': '',
+                'Accessory4': '',
+                'Accessory5': '',
+                'dp-con': this.getDPCon(panel),
+                'n-labor': '',
+                'l1-labor': '',
+                'vpanel-line': this.getVPanelLine(additionalData),
+                'sup-qty': '',
+                'gas-conta': this.getGasConta(moduleSet, group, additionalData),
+                'ht-m': '',
+                'ins-m': '',
+                'gt-loop4': '',
+                'gt-loop8': '',
+                'long-type': this.getLongType(pipelineLength),
+                'long-m': this.getLongM(pipelineLength),
+                'dl-type': '',
+              };
+              
               excelRows.push(additionalRow);
+              globalEquipmentIndex++; // 额外设备计数
             });
           }
         });
+        
+        // 如果还有多余的分支源頭資訊，为它们创建空行（只有 ABC 列有数据）
+        if (branchSourceCards.length > globalEquipmentIndex - 1) {
+          for (let i = globalEquipmentIndex - 1; i < branchSourceCards.length; i++) {
+            const branchSource = branchSourceCards[i].data || {};
+            const emptyRow = {
+              'util-cat': branchSource.gasType || '', // A: 分支源頭資訊 -> 氣體別
+              'sm-no': branchSource.valveNumber || '', // B: 分支源頭資訊 -> 閥件編號
+              'sm-size': branchSource.sourceSize || '', // C: 分支源頭資訊 -> 源頭尺寸
+              'sm-floor': '', // D: 無設備留空
+              'b1-size': '', // E: 無設備留空
+              'b1-floor': '', // F: 無設備留空
+              'b2-size': '',
+              'b2-floor': '',
+              'b3-size': '',
+              'b3-floor': '',
+              'dp-size': '',
+              'dp-type': '',
+              'dp-tag': '',
+              'pou-size': '',
+              'pou-ptype': '',
+              'pou-comp': '',
+              'Accessory1': '',
+              'Accessory2': '',
+              'Accessory3': '',
+              'Accessory4': '',
+              'Accessory5': '',
+              'dp-con': '', // V: Special Gas 在 V 列
+              'n-labor': '',
+              'l1-labor': '',
+              'vpanel-line': '',
+              'sup-qty': '',
+              'gas-conta': '', // AA: Special Gas 專用
+              'ht-m': '',
+              'ins-m': '',
+              'gt-loop4': '',
+              'gt-loop8': '',
+              'long-type': '',
+              'long-m': '',
+              'dl-type': '',
+            };
+            excelRows.push(emptyRow);
+          }
+        }
+        
+        // 每個模組之間空一列（最後一個模組不需要）
+        if (moduleSetIndex < moduleSets.length - 1) {
+          excelRows.push({});
+        }
       });
 
       return excelRows;
@@ -2113,15 +2398,14 @@ export default {
 
     /**
      * 获取 b1-type (X1/X0)
-     * 判斷此筆是否為源頭資訊貫穿到第一個設備資訊的為X1，其餘則為X0
-     * 如有新源頭第一筆亦為X1
+     * 每一個模組的第一個設備都應是 X1，其餘的才是 X0
      * @param {Object} moduleSet - 模組組
      * @param {number} groupIndex - 群組索引
-     * @param {boolean} isFirstEquipment - 是否為第一個設備
+     * @param {boolean} isFirstEquipment - 是否為該模組的第一個設備
      * @returns {String} X1 或 X0
      */
     getB1Type(moduleSet, groupIndex, isFirstEquipment) {
-      // 如果是第一個模組組的第一個設備，返回 X1
+      // 如果是該模組的第一個設備，返回 X1
       if (isFirstEquipment) {
         return 'X1';
       }
@@ -2310,6 +2594,9 @@ export default {
             if (!panel.valveConnector) {
               errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：Valve接頭為必填`);
             }
+            if (panel.regulator && (!panel.pressureGauge || panel.pressureGauge === 'none')) {
+              errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：壓力錶錶頭為必填`);
+            }
             if (!panel.backPipelineType) {
               errors.push(`模組 ${moduleNumber} - 盤面資訊 ${groupIndex + 1}：後方管線類別為必填`);
             }
@@ -2427,6 +2714,9 @@ export default {
                     }
                     if (!branchPanel.valveConnector) {
                       errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：Valve接頭為必填`);
+                    }
+                    if (branchPanel.regulator && (!branchPanel.pressureGauge || branchPanel.pressureGauge === 'none')) {
+                      errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：壓力錶錶頭為必填`);
                     }
                     if (!branchPanel.backPipelineType) {
                       errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 盤面資訊 ${branchGroupIndex + 1}：後方管線類別為必填`);
@@ -3174,13 +3464,16 @@ export default {
       const baseX = position.x;
       const baseY = position.y;
       
+      // 默认源头管线类别
+      const defaultPipelineType = '單套管';
+      
       return {
         id: `module-set-${Date.now()}`,
         source: { 
           position: { x: baseX, y: baseY },
           data: {
             title: '',
-            pipelineType: '單套管',
+            pipelineType: defaultPipelineType,
             gasType: '',
             valveNumber: '',
             sourceSize: '',
@@ -3200,8 +3493,8 @@ export default {
         floor: { 
           position: { x: baseX + 690, y: baseY },
           data: {
-            sourceFloor: '',
-            equipmentFloor: ''
+            sourceFloor: '1F',
+            equipmentFloor: '1F'
           }
         },
         valveCards: [],
@@ -3218,7 +3511,7 @@ export default {
                 valveConnector: '',
                 regulator: false,
                 pressureGauge: 'none',
-                backPipelineType: ''
+                backPipelineType: defaultPipelineType // 默认与源头资讯的管线类别相同
               }
             },
             equipment: { 
@@ -3226,7 +3519,7 @@ export default {
               data: {
                 gasType: '',
                 size: '',
-                connector: '',
+                connector: 'WELD',
                 connectionName: '',
                 threeInOne: ''
               }
@@ -3259,8 +3552,100 @@ export default {
      */
     updateCardData(setIndex, cardType, data) {
       if (this.allModuleSets[setIndex] && this.allModuleSets[setIndex][cardType]) {
+        const oldData = { ...this.allModuleSets[setIndex][cardType].data };
         this.allModuleSets[setIndex][cardType].data = data;
+        
+        // 如果更新的是源头资讯的管线类别，同步更新所有相关盘面卡片的后方管线类别
+        if (cardType === 'source' && data.pipelineType !== oldData.pipelineType && data.pipelineType) {
+          this.syncBackPipelineTypeFromSource(setIndex, data.pipelineType);
+        }
       }
+    },
+    
+    /**
+     * 同步更新所有盘面卡片的后方管线类别（从源头资讯）
+     * @param {number} setIndex - 模組組索引
+     * @param {string} pipelineType - 源头管线类别
+     */
+    syncBackPipelineTypeFromSource(setIndex, pipelineType) {
+      const moduleSet = this.allModuleSets[setIndex];
+      if (!moduleSet) return;
+      
+      // 更新主分支的所有盘面卡片
+      if (moduleSet.panelEquipmentGroups) {
+        moduleSet.panelEquipmentGroups.forEach(group => {
+          if (group.panel && group.panel.data) {
+            group.panel.data.backPipelineType = pipelineType;
+          }
+        });
+      }
+      
+      // 更新分支的所有盘面卡片
+      if (moduleSet.branchModuleCards) {
+        moduleSet.branchModuleCards.forEach(branchModule => {
+          if (branchModule.panelEquipmentGroups) {
+            branchModule.panelEquipmentGroups.forEach(group => {
+              if (group.panel && group.panel.data) {
+                group.panel.data.backPipelineType = pipelineType;
+              }
+            });
+          }
+        });
+      }
+    },
+    
+    /**
+     * 处理盘面卡片后方管线类别改变事件
+     * @param {number} setIndex - 模組組索引
+     * @param {number} groupIndex - Panel+Equipment群組索引
+     * @param {Object} event - 事件对象
+     * @param {boolean} isBranch - 是否为分支模块
+     * @param {number} branchModuleIndex - 分支模块索引（如果是分支）
+     */
+    handleBackPipelineTypeChange(setIndex, groupIndex, event, isBranch = false, branchModuleIndex = null) {
+      const { newValue, sourceValue, oldValue, cardData } = event;
+      
+      // 显示确认窗口
+      this.showPopup({
+        title: '',
+        message: '是否要改變後方管線類別?',
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: () => {
+              // 取消：恢复为源头管线类别
+              const restoreValue = sourceValue || oldValue;
+              if (isBranch && branchModuleIndex !== null) {
+                const branchModule = this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex];
+                if (branchModule && branchModule.panelEquipmentGroups[groupIndex]) {
+                  branchModule.panelEquipmentGroups[groupIndex].panel.data.backPipelineType = restoreValue;
+                  // 触发更新事件
+                  this.updateBranchPanelData(setIndex, branchModuleIndex, groupIndex, branchModule.panelEquipmentGroups[groupIndex].panel.data);
+                }
+              } else {
+                const moduleSet = this.allModuleSets[setIndex];
+                if (moduleSet && moduleSet.panelEquipmentGroups[groupIndex]) {
+                  moduleSet.panelEquipmentGroups[groupIndex].panel.data.backPipelineType = restoreValue;
+                  // 触发更新事件
+                  this.updatePanelData(setIndex, groupIndex, moduleSet.panelEquipmentGroups[groupIndex].panel.data);
+                }
+              }
+              this.closePopup();
+            }
+          },
+          {
+            text: '確定',
+            class: 'primary',
+            action: () => {
+              // 确定：保持新值（数据已经在 cardData 中更新了）
+              this.closePopup();
+            }
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      });
     },
 
     /**
@@ -3550,34 +3935,53 @@ export default {
       
       this.showConfirmPopup('是否確定刪除此分支源頭資訊?', () => {
         this.closePopup();
+        let found = false;
+        
         for (let moduleIndex = 0; moduleIndex < this.allModuleSets.length; moduleIndex++) {
           const moduleSet = this.allModuleSets[moduleIndex];
           
           if (moduleSet.branchSourceCards?.length > 0) {
-            const branchIndex = moduleSet.branchSourceCards.findIndex(branchCard => 
-              branchCard.position.x === branchData.position.x && 
-              branchCard.position.y === branchData.position.y
-            );
+            const branchIndex = moduleSet.branchSourceCards.findIndex(branchCard => {
+              // 允許小的位置誤差（1像素以內）
+              const xDiff = Math.abs(branchCard.position.x - branchData.position.x);
+              const yDiff = Math.abs(branchCard.position.y - branchData.position.y);
+              return xDiff < 1 && yDiff < 1;
+            });
             
             if (branchIndex !== -1) {
-              moduleSet.branchSourceCards.splice(branchIndex, 1);
+              // 先刪除連接線
               this.removeBranchSourceConnection(moduleSet, branchIndex);
+              
+              // 刪除卡片
+              moduleSet.branchSourceCards.splice(branchIndex, 1);
+              
+              // 更新所有連接線中的 branchCardIndex（如果它們指向被刪除的卡片之後的索引，需要減1）
+              moduleSet.connections.forEach(conn => {
+                if (conn.branchCardIndex !== undefined && conn.branchCardIndex > branchIndex) {
+                  conn.branchCardIndex -= 1;
+                }
+              });
+              
+              // 更新剩餘分支源頭資訊卡片的位置（向上遞補空缺）
+              this.updateBranchSourceCardsPositions(moduleSet);
               
               // 更新所有模組組的位置（因為該模組組高度可能改變）
               this.updateAllModuleSetPositions();
               
               console.log(`已從模組 ${moduleIndex} 中刪除分支源頭資訊卡片`);
+              found = true;
               return;
             }
           }
         }
         
+        // 只有在所有模組組都檢查完後，如果還沒找到才打印錯誤
+        if (!found) {
+          console.error('找不到要刪除的分支源頭資訊卡片');
+        }
       }, () => {
         this.closePopup();
-      }); 
-    
-      
-      console.error('找不到要刪除的分支源頭資訊卡片');
+      });
     },
     // ==================== 連接線管理 ====================
     /**
@@ -3673,6 +4077,41 @@ export default {
     },
     
     /**
+     * 更新所有分支源頭資訊卡片的位置（向上遞補空缺）
+     * @param {Object} moduleSet - 模組組對象
+     */
+    updateBranchSourceCardsPositions(moduleSet) {
+      if (!moduleSet.branchSourceCards || moduleSet.branchSourceCards.length === 0) {
+        return;
+      }
+      
+      const branchCardHeight = this.getCardHeight('branch-source');
+      const sourceCardBottomY = moduleSet.source.position.y + this.getCardHeight('source');
+      
+      // 重新計算所有分支卡片的位置
+      moduleSet.branchSourceCards.forEach((branchCard, index) => {
+        const branchY = sourceCardBottomY + (index * (branchCardHeight + BRANCH_SPACING)) + BRANCH_SPACING;
+        branchCard.position.y = branchY;
+      });
+      
+      // 更新所有分支源頭資訊連接線的位置
+      moduleSet.connections.forEach(conn => {
+        if (conn.from === 'branch-source-connection' && conn.branchCardIndex !== undefined) {
+          const branchIndex = conn.branchCardIndex;
+          if (moduleSet.branchSourceCards && moduleSet.branchSourceCards[branchIndex]) {
+            const branchCard = moduleSet.branchSourceCards[branchIndex];
+            // 更新連接線的終點位置
+            if (conn.toPosition) {
+              conn.toPosition.y = branchCard.position.y + CARD_HEIGHT_OFFSET;
+            }
+          }
+        }
+      });
+      
+      console.log('已更新所有分支源頭資訊卡片位置');
+    },
+    
+    /**
      * 根據連接找到對應的模組組索引
      * @param {Object} connection - 連接對象
      * @returns {number} 模組組索引，找不到返回 -1
@@ -3752,10 +4191,33 @@ export default {
       const baseX = lastGroup.panel.position.x;
       const baseY = maxBottomY + PANEL_EQUIPMENT_GROUP_SPACING;
       
+      // 获取源头资讯的管线类别
+      const sourcePipelineType = moduleSet.source?.data?.pipelineType || '單套管';
+      
       return {
         id: `panel-equipment-group-${Date.now()}`,
-        panel: { position: { x: baseX, y: baseY } },
-        equipment: { position: { x: baseX + 430, y: baseY } }, // Panel 和 Equipment 之間間距 430px
+        panel: { 
+          position: { x: baseX, y: baseY },
+          data: {
+            enablePanel: true,
+            valve: '',
+            size: '',
+            valveConnector: '',
+            regulator: false,
+            pressureGauge: 'none',
+            backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
+          }
+        },
+        equipment: { 
+          position: { x: baseX + 430, y: baseY },
+          data: {
+            gasType: '',
+            size: '',
+            connector: 'WELD',
+            connectionName: '',
+            threeInOne: ''
+          }
+        }, // Panel 和 Equipment 之間間距 430px
         additionalEquipmentCards: []
       };
     },
@@ -3826,7 +4288,7 @@ export default {
         return;
       }
       
-      const newGroup = this.createBranchPanelEquipmentGroup(branchModule);
+      const newGroup = this.createBranchPanelEquipmentGroup(branchModule, currentModuleSet);
       branchModule.panelEquipmentGroups.push(newGroup);
       this.addBranchConnectionLinesForNewGroup(currentModuleSet, branchModule, newGroup, moduleSetIndex, branchModuleIndex);
       
@@ -3842,9 +4304,10 @@ export default {
     /**
      * 創建分支的新 Panel+Equipment 群組
      * @param {Object} branchModule - 分支模組對象
+     * @param {Object} moduleSet - 模組組對象（用于获取源头资讯）
      * @returns {Object} 新的群組對象
      */
-    createBranchPanelEquipmentGroup(branchModule) {
+    createBranchPanelEquipmentGroup(branchModule, moduleSet = null) {
       const lastGroup = branchModule.panelEquipmentGroups[branchModule.panelEquipmentGroups.length - 1];
       
       // 找到該群組中最底部的設備卡片位置
@@ -3861,17 +4324,36 @@ export default {
       const baseX = lastGroup.panel.position.x;
       const baseY = maxBottomY + PANEL_EQUIPMENT_GROUP_SPACING;
       
+      // 获取源头资讯的管线类别
+      const sourcePipelineType = moduleSet?.source?.data?.pipelineType || '單套管';
+      
       return {
         id: `branch-panel-equipment-group-${Date.now()}`,
         panel: {
           id: `branch-panel-card-${Date.now()}`,
           type: 'branch-panel',
-          position: { x: baseX, y: baseY }
+          position: { x: baseX, y: baseY },
+          data: {
+            enablePanel: true,
+            valve: '',
+            size: '',
+            valveConnector: '',
+            regulator: false,
+            pressureGauge: 'none',
+            backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
+          }
         },
         equipment: {
           id: `branch-equipment-card-${Date.now()}`,
           type: 'branch-equipment',
-          position: { x: baseX + 430, y: baseY }
+          position: { x: baseX + 430, y: baseY },
+          data: {
+            gasType: '',
+            size: '',
+            connector: 'WELD',
+            connectionName: '',
+            threeInOne: ''
+          }
         },
         additionalEquipmentCards: []
       };
@@ -3968,7 +4450,7 @@ export default {
         data: {
           gasType: '',
           size: '',
-          connector: '',
+          connector: 'WELD',
           connectionName: '',
           threeInOne: ''
         }
@@ -4050,7 +4532,7 @@ export default {
         data: {
           gasType: '',
           size: '',
-          connector: '',
+          connector: 'WELD',
           connectionName: '',
           threeInOne: ''
         }
@@ -4155,7 +4637,7 @@ export default {
         data: {
           gasType: '',
           size: '',
-          connector: '',
+          connector: 'WELD',
           connectionName: '',
           threeInOne: ''
         }
@@ -6210,7 +6692,7 @@ export default {
       };
       
       // 創建分支模組的後續卡片
-      const branchModuleCards = this.createBranchModuleCards(newBranchValveCard);
+      const branchModuleCards = this.createBranchModuleCards(newBranchValveCard, currentModuleSet);
       
       // 將分支閥件添加到閥件卡片數組
       currentModuleSet.valveCards.push(newBranchValveCard);
@@ -6417,164 +6899,72 @@ export default {
         branchModule.pipeline.position.y = newBranchValveY;
         branchModule.floor.position.y = newBranchValveY;
         
-        // 更新所有 panel-equipment 群組的位置（與主分支對齊）
+        // 更新所有 panel-equipment 群組的位置（與分支樓層資訊對齊）
         if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
           branchModule.panelEquipmentGroups.forEach((group, groupIndex) => {
-            // 第一個群組應該與主分支對應群組對齊
+            // 第一個群組應該與分支樓層資訊對齊
             if (groupIndex === 0) {
-              // 獲取主分支對應的群組，確保與主分支對齊
-              const mainGroup = moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups[groupIndex] 
-                ? moduleSet.panelEquipmentGroups[groupIndex] 
-                : null;
+              // 分支的盤面和設備卡片應該與分支的樓層資訊對齊（Y軸相同）
+              const branchFloorY = branchModule.floor.position.y;
+              group.panel.position.y = branchFloorY;
+              group.equipment.position.y = branchFloorY;
               
-              if (mainGroup) {
-                // 與主分支的第一個群組對齊（閥件對閥件、設備對設備）
-                group.panel.position.y = mainGroup.panel.position.y;
-                group.equipment.position.y = mainGroup.equipment.position.y;
-              } else {
-                // 如果主分支沒有對應群組，使用分支閥件位置
-                group.panel.position.y = newBranchValveY;
-                group.equipment.position.y = newBranchValveY;
-              }
-              
-              // 更新額外的設備卡片位置（與主分支對齊：閥件對閥件、設備對設備）
+              // 更新額外的設備卡片位置（基於分支equipment位置）
               if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
-                // 獲取主分支對應的群組
-                const mainGroup = moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups[groupIndex] 
-                  ? moduleSet.panelEquipmentGroups[groupIndex] 
-                  : null;
+                const equipmentCardHeight = this.getCardHeight('equipment');
+                const spacing = 50;
                 
                 group.additionalEquipmentCards.forEach((card, cardIndex) => {
-                  // 檢查主分支是否有對應位置的設備卡片
-                  if (mainGroup && mainGroup.additionalEquipmentCards && 
-                      cardIndex < mainGroup.additionalEquipmentCards.length) {
-                    // 主分支有對應位置的設備卡片，使用其位置對齊（X和Y都對齊）
-                    const mainEquipmentCard = mainGroup.additionalEquipmentCards[cardIndex];
-                    card.position.x = mainEquipmentCard.position.x; // 設備對設備：X軸對齊
-                    card.position.y = mainEquipmentCard.position.y; // 設備對設備：Y軸對齊
-                    
-                    // 如果該設備卡片有閥件，也需要對齊主分支對應位置的閥件
-                    if (card.valve && mainEquipmentCard.valve) {
-                      card.valve.position.x = mainEquipmentCard.valve.position.x; // 閥件對閥件：X軸對齊
-                      card.valve.position.y = mainEquipmentCard.valve.position.y; // 閥件對閥件：Y軸對齊
-                    } else if (card.valve && !mainEquipmentCard.valve) {
-                      // 如果分支有閥件但主分支沒有，閥件X位置應該對齊主分支equipment位置
-                      card.valve.position.x = mainGroup.equipment.position.x;
-                      card.valve.position.y = mainEquipmentCard.position.y; // Y軸與設備對齊
-                    }
-                  } else if (mainGroup && mainGroup.additionalEquipmentCards && mainGroup.additionalEquipmentCards.length > 0) {
-                    // 主分支有設備卡片但沒有對應索引的卡片，與主分支最後一個設備卡片對齊Y軸模式
-                    const lastMainCard = mainGroup.additionalEquipmentCards[mainGroup.additionalEquipmentCards.length - 1];
-                    const equipmentCardHeight = this.getCardHeight('equipment');
-                    const spacing = 50;
-                    // 計算應該對齊的位置：基於主分支最後一個卡片的位置 + 間距
-                    const offsetFromMainLast = cardIndex - (mainGroup.additionalEquipmentCards.length - 1);
-                    card.position.y = lastMainCard.position.y + (offsetFromMainLast * (equipmentCardHeight + spacing));
-                    card.position.x = lastMainCard.position.x; // X軸與主分支最後一個卡片對齊
-                    
-                    // 如果有閥件，也需要處理
-                    if (card.valve) {
-                      // 如果主分支最後一個卡片有閥件，閥件對齊主分支閥件位置
-                      if (lastMainCard.valve) {
-                        card.valve.position.x = lastMainCard.valve.position.x;
-                      } else {
-                        card.valve.position.x = mainGroup.equipment.position.x;
-                      }
-                      card.valve.position.y = card.position.y; // Y軸與設備對齊
-                    }
+                  // 基於分支equipment位置計算額外設備卡片的位置
+                  if (cardIndex === 0) {
+                    // 第一個設備卡片基於 equipment 位置
+                    card.position.y = group.equipment.position.y + equipmentCardHeight + spacing;
                   } else {
-                    // 主分支沒有任何設備卡片，基於前一個卡片位置計算
-                    const equipmentCardHeight = this.getCardHeight('equipment');
-                    const spacing = 50;
-                    if (cardIndex === 0) {
-                      // 第一個設備卡片基於 equipment 位置
-                      card.position.y = group.equipment.position.y + equipmentCardHeight + spacing;
-                    } else {
-                      // 後續設備卡片基於前一個卡片的位置
-                      const prevCard = group.additionalEquipmentCards[cardIndex - 1];
-                      card.position.y = prevCard.position.y + equipmentCardHeight + spacing;
-                    }
+                    // 後續設備卡片基於前一個卡片的位置
+                    const prevCard = group.additionalEquipmentCards[cardIndex - 1];
+                    card.position.y = prevCard.position.y + equipmentCardHeight + spacing;
+                  }
+                  
+                  // 如果有閥件，閥件Y軸與設備對齊
+                  if (card.valve) {
+                    card.valve.position.y = card.position.y;
                   }
                 });
               }
             } else {
-              // 其他群組應該與主分支對應群組對齊
-              const mainGroup = moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups[groupIndex] 
-                ? moduleSet.panelEquipmentGroups[groupIndex] 
-                : null;
+              // 其他群組應該與分支樓層資訊對齊，並保持與第一個群組的相對間距
+              const branchFloorY = branchModule.floor.position.y;
+              const firstGroup = branchModule.panelEquipmentGroups[0];
+              const firstGroupPanelY = firstGroup.panel.position.y;
+              const firstGroupEquipmentY = firstGroup.equipment.position.y;
               
-              if (mainGroup) {
-                // 與主分支的對應群組對齊（閥件對閥件、設備對設備）
-                group.panel.position.y = mainGroup.panel.position.y;
-                group.equipment.position.y = mainGroup.equipment.position.y;
-              } else {
-                // 如果主分支沒有對應群組，保持與第一個群組的相對位置
-                const relativeY = group.panel.position.y - originalValveY;
-                group.panel.position.y = newBranchValveY + relativeY;
-                group.equipment.position.y = newBranchValveY + relativeY;
-              }
+              // 計算第一個群組與樓層資訊的相對位置（用於計算後續群組的位置）
+              const panelEquipmentGroupSpacing = PANEL_EQUIPMENT_GROUP_SPACING;
               
-              // 更新額外的設備卡片位置（與主分支對齊：閥件對閥件、設備對設備）
+              // 計算該群組應該在的位置（基於第一個群組的位置 + 群組間距）
+              const relativeY = (groupIndex - 0) * panelEquipmentGroupSpacing;
+              group.panel.position.y = firstGroupPanelY + relativeY;
+              group.equipment.position.y = firstGroupEquipmentY + relativeY;
+              
+              // 更新額外的設備卡片位置（基於分支equipment位置）
               if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
-                // 獲取主分支對應的群組
-                const mainGroup = moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups[groupIndex] 
-                  ? moduleSet.panelEquipmentGroups[groupIndex] 
-                  : null;
+                const equipmentCardHeight = this.getCardHeight('equipment');
+                const spacing = 50;
                 
                 group.additionalEquipmentCards.forEach((card, cardIndex) => {
-                  // 檢查主分支是否有對應位置的設備卡片
-                  if (mainGroup && mainGroup.additionalEquipmentCards && 
-                      cardIndex < mainGroup.additionalEquipmentCards.length) {
-                    // 主分支有對應位置的設備卡片，使用其位置對齊（X和Y都對齊）
-                    const mainEquipmentCard = mainGroup.additionalEquipmentCards[cardIndex];
-                    card.position.x = mainEquipmentCard.position.x; // 設備對設備：X軸對齊
-                    card.position.y = mainEquipmentCard.position.y; // 設備對設備：Y軸對齊
-                    
-                    // 如果該設備卡片有閥件，也需要對齊主分支對應位置的閥件
-                    if (card.valve && mainEquipmentCard.valve) {
-                      card.valve.position.x = mainEquipmentCard.valve.position.x; // 閥件對閥件：X軸對齊
-                      card.valve.position.y = mainEquipmentCard.valve.position.y; // 閥件對閥件：Y軸對齊
-                    } else if (card.valve && !mainEquipmentCard.valve) {
-                      // 如果分支有閥件但主分支沒有，閥件X位置應該對齊主分支equipment位置
-                      card.valve.position.x = mainGroup.equipment.position.x;
-                      card.valve.position.y = mainEquipmentCard.position.y; // Y軸與設備對齊
-                    }
-                  } else if (mainGroup && mainGroup.additionalEquipmentCards && mainGroup.additionalEquipmentCards.length > 0) {
-                    // 主分支有設備卡片但沒有對應索引的卡片，與主分支最後一個設備卡片對齊Y軸模式
-                    const lastMainCard = mainGroup.additionalEquipmentCards[mainGroup.additionalEquipmentCards.length - 1];
-                    const equipmentCardHeight = this.getCardHeight('equipment');
-                    const spacing = 50;
-                    // 計算應該對齊的位置：基於主分支最後一個卡片的位置 + 間距
-                    const offsetFromMainLast = cardIndex - (mainGroup.additionalEquipmentCards.length - 1);
-                    card.position.y = lastMainCard.position.y + (offsetFromMainLast * (equipmentCardHeight + spacing));
-                    card.position.x = lastMainCard.position.x; // X軸與主分支最後一個卡片對齊
-                    
-                    // 如果有閥件，也需要處理
-                    if (card.valve) {
-                      // 如果主分支最後一個卡片有閥件，閥件對齊主分支閥件位置
-                      if (lastMainCard.valve) {
-                        card.valve.position.x = lastMainCard.valve.position.x;
-                      } else {
-                        card.valve.position.x = mainGroup.equipment.position.x;
-                      }
-                      card.valve.position.y = card.position.y; // Y軸與設備對齊
-                    }
+                  // 基於分支equipment位置計算額外設備卡片的位置
+                  if (cardIndex === 0) {
+                    // 第一個設備卡片基於 equipment 位置
+                    card.position.y = group.equipment.position.y + equipmentCardHeight + spacing;
                   } else {
-                    // 主分支沒有任何設備卡片，保持相對位置
-                    const equipmentCardHeight = this.getCardHeight('equipment');
-                    const spacing = 50;
-                    // 第一個設備卡片的相對位置
-                    const firstAdditionalCardOriginalY = group.additionalEquipmentCards[0].position.y;
-                    const firstAdditionalCardOriginalRelativeY = firstAdditionalCardOriginalY - originalValveY;
-                    const firstCardNewY = newBranchValveY + firstAdditionalCardOriginalRelativeY;
-                    
-                    if (cardIndex === 0) {
-                      card.position.y = firstCardNewY;
-                    } else {
-                      // 後續設備卡片基於前一個卡片的位置
-                      const prevCard = group.additionalEquipmentCards[cardIndex - 1];
-                      card.position.y = prevCard.position.y + equipmentCardHeight + spacing;
-                    }
+                    // 後續設備卡片基於前一個卡片的位置
+                    const prevCard = group.additionalEquipmentCards[cardIndex - 1];
+                    card.position.y = prevCard.position.y + equipmentCardHeight + spacing;
+                  }
+                  
+                  // 如果有閥件，閥件Y軸與設備對齊
+                  if (card.valve) {
+                    card.valve.position.y = card.position.y;
                   }
                 });
               }
@@ -6945,9 +7335,10 @@ export default {
     /**
      * 創建分支模組的後續卡片
      * @param {Object} branchValveCard - 分支閥件卡片對象
+     * @param {Object} moduleSet - 模組組對象（用于获取源头资讯）
      * @returns {Object} 包含所有後續卡片的對象
      */
-    createBranchModuleCards(branchValveCard) {
+    createBranchModuleCards(branchValveCard, moduleSet = null) {
       // 調整分支模組的卡片間距
       const valveToPipelineSpacing = 260;  // 分支資訊到管線資訊的間距（縮短）
       const pipelineToFloorSpacing = 260;  // 790 - 520 = 270px
@@ -6959,6 +7350,9 @@ export default {
       const floorX = pipelineX + pipelineToFloorSpacing;
       const panelX = floorX + floorToPanelSpacing;
       const equipmentX = panelX + panelToEquipmentSpacing;
+      
+      // 获取源头资讯的管线类别
+      const sourcePipelineType = moduleSet?.source?.data?.pipelineType || '單套管';
       
       return {
         valve: {
@@ -6987,8 +7381,8 @@ export default {
           type: 'branch-floor',
           position: { x: floorX, y: branchValveCard.position.y },
           data: {
-            sourceFloor: '',
-            equipmentFloor: ''
+            sourceFloor: '1F',
+            equipmentFloor: '1F'
           }
         },
         // 使用 panelEquipmentGroups 數組來支持多個面板群組
@@ -7006,7 +7400,7 @@ export default {
                 valveConnector: '',
                 regulator: false,
                 pressureGauge: 'none',
-                backPipelineType: ''
+                backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
               }
             },
             equipment: {
@@ -7016,7 +7410,7 @@ export default {
               data: {
                 gasType: '',
                 size: '',
-                connector: '',
+                connector: 'WELD',
                 connectionName: '',
                 threeInOne: ''
               }

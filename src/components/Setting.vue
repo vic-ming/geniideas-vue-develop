@@ -5,6 +5,17 @@
     </div>
     <div class="setting-content">
       <form @submit.prevent="handleSave">
+        <!-- 工程名稱 -->
+        <div class="form-group">
+          <label>工程名稱</label>
+          <input 
+            v-model="formData.projectName" 
+            type="text" 
+            class="form-input" 
+            placeholder="請輸入工程名稱"
+          />
+        </div>
+
         <!-- 客户 -->
         <div class="form-group">
           <label>客户</label>
@@ -13,6 +24,7 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入客戶名稱"
+            maxlength="20"
           />
         </div>
 
@@ -24,39 +36,48 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入廠商資訊"
+            maxlength="20"
           />
         </div>
 
         <!-- 会勘监工 -->
         <div class="form-group">
-          <label>會勘監工</label>
+          <label>會勘監工<span class="required">*</span></label>
           <input 
             v-model="formData.surveySupervisor" 
             type="text" 
-            class="form-input" 
+            class="form-input"
+            :class="{ 'input-error': errors.surveySupervisor }"
             placeholder="請輸入會勘監工"
+            @input="errors.surveySupervisor = false"
+            maxlength="20"
           />
         </div>
 
         <!-- 会勘日期 -->
         <div class="form-group">
-          <label>會勘日期</label>
+          <label>會勘日期<span class="required">*</span></label>
           <input 
             v-model="formData.surveyDate" 
             type="date" 
-            class="form-input date-input" 
+            class="form-input date-input"
+            :class="{ 'input-error': errors.surveyDate }"
             placeholder="Select Date"
+            @input="errors.surveyDate = false"
           />
         </div>
 
         <!-- 机台名称 -->
         <div class="form-group">
-          <label>機台名稱</label>
+          <label>機台名稱<span class="required">*</span></label>
           <input 
             v-model="formData.machineName" 
             type="text" 
-            class="form-input" 
+            class="form-input"
+            :class="{ 'input-error': errors.machineName }"
             placeholder="請輸入機台名稱"
+            @input="errors.machineName = false"
+            maxlength="50"
           />
         </div>
 
@@ -68,6 +89,7 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入Location ID"
+            maxlength="50"
           />
         </div>
 
@@ -79,6 +101,7 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入CODE"
+            maxlength="50"
           />
         </div>
 
@@ -90,6 +113,7 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入工程師聯絡資訊"
+            maxlength="50"
           />
         </div>
 
@@ -101,6 +125,7 @@
             type="text" 
             class="form-input" 
             placeholder="請輸入施工廠商"
+            maxlength="50"
           />
         </div>
 
@@ -123,6 +148,7 @@
             class="form-textarea" 
             placeholder="請輸入備註資訊"
             rows="5"
+            maxlength="100"
           ></textarea>
         </div>
 
@@ -176,6 +202,7 @@ export default {
     settings: {
       type: Object,
       default: () => ({
+        projectName: '',
         customer: '',
         vendorInfo: '',
         surveySupervisor: '',
@@ -187,13 +214,14 @@ export default {
         constructionVendor: '',
         drawingDate: '',
         notes: '',
-        hierarchyType: 'specialGas'
+        hierarchyType: 'bulkGas'
       })
     }
   },
   data() {
     return {
       formData: {
+        projectName: '',
         customer: '',
         vendorInfo: '',
         surveySupervisor: '',
@@ -205,7 +233,12 @@ export default {
         constructionVendor: '',
         drawingDate: '',
         notes: '',
-        hierarchyType: 'specialGas'
+        hierarchyType: 'bulkGas'
+      },
+      errors: {
+        surveySupervisor: false,
+        surveyDate: false,
+        machineName: false
       }
     }
   },
@@ -227,6 +260,45 @@ export default {
       this.closeSetting()
     },
     handleSave() {
+      // 重置錯誤狀態
+      this.errors = {
+        surveySupervisor: false,
+        surveyDate: false,
+        machineName: false
+      }
+
+      // 驗證必填欄位
+      let hasError = false
+
+      // if (!this.formData.surveySupervisor || this.formData.surveySupervisor.trim() === '') {
+      //   this.errors.surveySupervisor = true
+      //   hasError = true
+      // }
+
+      // if (!this.formData.surveyDate || this.formData.surveyDate.trim() === '') {
+      //   this.errors.surveyDate = true
+      //   hasError = true
+      // }
+
+      // if (!this.formData.machineName || this.formData.machineName.trim() === '') {
+      //   this.errors.machineName = true
+      //   hasError = true
+      // }
+
+      // 如果有錯誤，阻止儲存
+      if (hasError) {
+        // 滾動到第一個錯誤欄位
+        this.$nextTick(() => {
+          const firstError = document.querySelector('.input-error')
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            firstError.focus()
+          }
+        })
+        return
+      }
+
+      // 驗證通過，執行儲存
       this.$emit('save', this.formData)
       this.closeSetting()
     }
@@ -286,6 +358,9 @@ export default {
     font-size: 14px;
     font-weight: 500;
     color: #737373;
+    .required {
+      color: #FF0000;
+    }
   }
 }
 
@@ -308,6 +383,17 @@ export default {
     outline: none;
   }
 
+  &.input-error {
+    background: #FEF2F2;
+    border: 1px solid #FCA5A5;
+  }
+}
+
+.error-message {
+  color: #DC2626;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
 }
 
 .date-input {
@@ -320,6 +406,10 @@ export default {
 
   &:focus,
   &:valid {
+    color: #171717;
+  }
+
+  &.input-error {
     color: #171717;
   }
 }

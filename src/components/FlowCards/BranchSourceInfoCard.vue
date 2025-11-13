@@ -26,7 +26,7 @@
       </div>
       
       <div class="info-item">
-        <label class="info-label">管線類別</label>
+        <label class="info-label">管線類別<span class="required">*</span></label>
         <select class="info-select" :class="{ empty: !sourceData.pipelineType }" v-model="sourceData.pipelineType">
           <option value="">請選擇管線類別</option>
           <option v-for="type in $constants.pipelineTypes" :key="type" :value="type">{{ type }}</option>

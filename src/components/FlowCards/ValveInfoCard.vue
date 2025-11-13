@@ -4,12 +4,12 @@
       <div class="card-icon">
         <img src="@/assets/images/type-f.svg" alt="valve-info" />
       </div>
-      <h3 class="card-title"> {{ isBranchModule ? '分支資訊' : '閥件資訊' }}  </h3>
+      <h3 class="card-title"> {{ isBranchModule ? '分支閥件資訊' : '閥件資訊' }}  </h3>
       <img 
-        @click="handleDeleteButtonClick" 
+        @click="canDelete && !isDeleteDisabled ? handleDeleteButtonClick() : null" 
         src="@/assets/images/delete.svg" 
         alt="delete" 
-        class="clickable-icon"
+        :class="['clickable-icon', { 'disabled': isDeleteDisabled || !canDelete }]"
       />
     </div>
     
@@ -111,6 +111,10 @@ export default {
     canDelete: {
       type: Boolean,
       default: true
+    },
+    isDeleteDisabled: {
+      type: Boolean,
+      default: false
     },
     isBranchModule: {
       type: Boolean,
@@ -274,13 +278,18 @@ export default {
 .clickable-icon {
   cursor: pointer;
   transition: transform 0.2s ease;
+  
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
 }
 
-.clickable-icon:hover {
+.clickable-icon:hover:not(.disabled) {
   opacity: 0.8;
 }
 
-.clickable-icon:active {
+.clickable-icon:active:not(.disabled) {
   transform: scale(0.95);
 }
 

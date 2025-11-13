@@ -65,6 +65,9 @@
         <textarea 
           class="info-textarea" 
           v-model="cardData.connectionName"
+          @keydown="handleConnectionNameKeydown"
+          @paste="handleConnectionNamePaste"
+          @input="handleConnectionNameInput"
           placeholder="請輸入設備接點名稱"
           rows="3"
           maxlength="50"
@@ -109,7 +112,7 @@ export default {
       default: () => ({
         gasType: '',
         size: '',
-        connector: '',
+        connector: 'WELD',
         connectionName: '',
         threeInOne: ''
       })
@@ -164,6 +167,53 @@ export default {
     handleDataChange() {
       this.$emit('update-data', this.cardData);
       this.$forceUpdate();
+    },
+    handleConnectionNameKeydown(event) {
+      // 如果按下 Enter 鍵，檢查是否已經有2個換行符（即3行）
+      if (event.key === 'Enter') {
+        const currentValue = event.target.value;
+        const lineBreaks = (currentValue.match(/\n/g) || []).length;
+        
+        // 如果已經有2個換行符（即3行），阻止輸入
+        if (lineBreaks >= 2) {
+          event.preventDefault();
+          return false;
+        }
+      }
+    },
+    handleConnectionNamePaste(event) {
+      // 延遲處理，讓粘貼內容先插入
+      setTimeout(() => {
+        const value = event.target.value;
+        const lineBreaks = (value.match(/\n/g) || []).length;
+        
+        // 如果超過2個換行符（即超過3行），則截斷到前3行
+        if (lineBreaks > 2) {
+          const lines = value.split('\n');
+          const limitedValue = lines.slice(0, 3).join('\n');
+          this.cardData.connectionName = limitedValue;
+          event.target.value = limitedValue;
+        }
+      }, 0);
+    },
+    handleConnectionNameInput(event) {
+      const value = event.target.value;
+      // 計算換行符的數量（\n）
+      const lineBreaks = (value.match(/\n/g) || []).length;
+      
+      // 如果超過2個換行符（即超過3行），則截斷到前3行
+      if (lineBreaks > 2) {
+        const lines = value.split('\n');
+        const limitedValue = lines.slice(0, 3).join('\n');
+        // 立即更新值，防止超過3行
+        this.cardData.connectionName = limitedValue;
+        // 強制更新 textarea 的值
+        this.$nextTick(() => {
+          if (event.target.value !== limitedValue) {
+            event.target.value = limitedValue;
+          }
+        });
+      }
     },
     handleDeleteButtonClick() {
       console.log('刪除設備卡片按鈕被點擊');
@@ -276,7 +326,7 @@ export default {
   transition: all 0.2s ease;
   font-family: inherit;
   box-sizing: border-box;
-  resize: vertical;
+  resize: none;
   min-height: 60px;
   
   &:focus {

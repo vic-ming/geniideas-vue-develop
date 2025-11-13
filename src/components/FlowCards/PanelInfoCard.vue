@@ -34,6 +34,7 @@
           :class="{ empty: cardData.valve === '' }" 
           v-model="cardData.valve"
           @change="handleDataChange"
+          :disabled="!cardData.enablePanel"
         >
           <option value="">請選擇Valve</option>
           <option v-for="valveType in $constants.valveTypes" :key="valveType" :value="valveType">{{ valveType }}</option>
@@ -48,6 +49,7 @@
           :class="{ empty: cardData.size === '' }" 
           v-model="cardData.size"
           @change="handleDataChange"
+          :disabled="!cardData.enablePanel"
         >
           <option value="">請選擇尺寸</option>
           <option v-for="size in $constants.sourceSizes" :key="size" :value="size">{{ size }}</option>
@@ -62,6 +64,7 @@
           :class="{ empty: cardData.valveConnector === '' }" 
           v-model="cardData.valveConnector"
           @change="handleDataChange"
+          :disabled="!cardData.enablePanel"
         >
           <option value="">請選擇Valve接頭</option>
           <option value="SWG">SWG</option>
@@ -78,11 +81,12 @@
             type="checkbox" 
             class="info-checkbox" 
             v-model="cardData.regulator"
+            :disabled="!cardData.enablePanel"
           />
         </label>
       </div>
       
-      <div class="info-item">
+      <div class="info-item" v-if="cardData.regulator">
         <label class="info-label">壓力錶錶頭<span class="required">*</span></label>
         <select 
           :key="`pressureGauge-${cardData.pressureGauge || ''}`"
@@ -90,6 +94,7 @@
           :class="{ empty: cardData.pressureGauge === '' || !cardData.pressureGauge }" 
           v-model="cardData.pressureGauge"
           @change="handleDataChange"
+          :disabled="!cardData.enablePanel"
         >
           <option value="none">無</option>
           <option value="Gauge">Gauge</option>
@@ -105,6 +110,7 @@
           :class="{ empty: cardData.backPipelineType === '' }" 
           v-model="cardData.backPipelineType"
           @change="handleDataChange"
+          :disabled="!cardData.enablePanel"
         >
           <option value="">請選擇管線類別</option>
           <option v-for="pipelineType in $constants.pipelineTypes" :key="pipelineType" :value="pipelineType">{{ pipelineType }}</option>
@@ -137,11 +143,17 @@ export default {
         pressureGauge: 'none',
         backPipelineType: ''
       })
+    },
+    sourcePipelineType: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      isSyncingFromSource: false, // 标记是否正在从源头同步更新
+      previousBackPipelineType: '' // 保存之前的值，用于取消时恢复
     }
   },
   computed: {
@@ -163,6 +175,20 @@ export default {
       },
       deep: true,
       immediate: true
+    },
+    // 监听源头管线类别的变化，自动同步更新
+    sourcePipelineType: {
+      handler(newVal, oldVal) {
+        if (newVal && newVal !== oldVal && !this.isSyncingFromSource) {
+          this.isSyncingFromSource = true;
+          this.previousBackPipelineType = this.cardData.backPipelineType;
+          this.cardData.backPipelineType = newVal;
+          this.$nextTick(() => {
+            this.isSyncingFromSource = false;
+          });
+        }
+      },
+      immediate: false
     }
   },
   methods: {
@@ -170,8 +196,36 @@ export default {
       this.showMenu = !this.showMenu;
     },
     handleDataChange() {
-      this.$emit('update-data', this.cardData);
-      this.$forceUpdate();
+      // 如果是同步更新，直接更新数据，不触发确认窗口
+      if (this.isSyncingFromSource) {
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        this.$emit('update-data', this.cardData);
+        this.$forceUpdate();
+        return;
+      }
+      
+      // 检查后方管线类别是否与源头不同
+      // 只有当后方管线类别有值且与源头不同时才弹出确认窗口
+      if (this.sourcePipelineType && 
+          this.cardData.backPipelineType && 
+          this.cardData.backPipelineType !== '' &&
+          this.cardData.backPipelineType !== this.sourcePipelineType) {
+        // 保存之前的值
+        const oldValue = this.previousBackPipelineType || this.sourcePipelineType;
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        // 发出事件，请求显示确认窗口
+        this.$emit('back-pipeline-type-change', {
+          newValue: this.cardData.backPipelineType,
+          sourceValue: this.sourcePipelineType,
+          oldValue: oldValue,
+          cardData: { ...this.cardData }
+        });
+      } else {
+        // 相同或源头为空，直接更新
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        this.$emit('update-data', this.cardData);
+        this.$forceUpdate();
+      }
     },
     handleDeleteButtonClick() {
       console.log('刪除盤面卡片按鈕被點擊');
@@ -271,6 +325,13 @@ export default {
   &.empty {
     color: #A3A3A3;
   }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #E5E5E5 url('@/assets/images/chevron-down.svg') no-repeat right 12px center;
+    background-size: 16px;
+  }
 }
 
 .toggle-item {
@@ -369,8 +430,13 @@ export default {
     }
   }
   
-  &:hover {
+  &:hover:not(:disabled) {
     border-color: #999;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
