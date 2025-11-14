@@ -88,7 +88,7 @@
           class="info-select" 
           :class="{ empty: cardData.backPipelineType === '' }" 
           v-model="cardData.backPipelineType"
-          @change="handleDataChange"
+          @change="handleBackPipelineTypeChange"
         >
           <option value="">請選擇後方管線類別</option>
           <option v-for="pipelineType in $constants.pipelineTypes" :key="pipelineType" :value="pipelineType">{{ pipelineType }}</option>
@@ -132,6 +132,10 @@ export default {
       type: Number,
       default: undefined
     },
+    panelBackPipelineType: {
+      type: String,
+      default: ''
+    },
     cardData: {
       type: Object,
       default: () => ({
@@ -146,7 +150,15 @@ export default {
   },
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      previousBackPipelineType: '',
+      isSyncingFromPanel: false
+    }
+  },
+  mounted() {
+    // 初始化 previousBackPipelineType
+    if (this.isPanelEquipmentValve) {
+      this.previousBackPipelineType = this.cardData.backPipelineType || this.panelBackPipelineType;
     }
   },
   computed: {
@@ -168,12 +180,62 @@ export default {
       },
       deep: true,
       immediate: true
+    },
+    panelBackPipelineType: {
+      handler(newVal, oldVal) {
+        // 只有当设备阀件且从 Panel 同步时才自动更新
+        if (this.isPanelEquipmentValve && newVal && newVal !== oldVal && !this.isSyncingFromPanel) {
+          this.isSyncingFromPanel = true;
+          this.previousBackPipelineType = this.cardData.backPipelineType;
+          this.cardData.backPipelineType = newVal;
+          this.$nextTick(() => {
+            this.isSyncingFromPanel = false;
+            this.$emit('update-data', this.cardData);
+          });
+        }
+      },
+      immediate: false
     }
   },
   methods: {
     handleDataChange() {
+      // 通用数据变化处理，直接更新数据
       this.$emit('update-data', this.cardData);
       this.$forceUpdate();
+    },
+    handleBackPipelineTypeChange() {
+      // 专门处理"后方管线类别"变化
+      
+      // 如果是从 Panel 同步更新，直接更新数据，不触发确认窗口
+      if (this.isSyncingFromPanel) {
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        this.$emit('update-data', this.cardData);
+        this.$forceUpdate();
+        return;
+      }
+
+      // 只有当是设备阀件且后方管线类别有值且与 Panel 不同时才弹出确认窗口
+      if (this.isPanelEquipmentValve && 
+          this.panelBackPipelineType && 
+          this.cardData.backPipelineType && 
+          this.cardData.backPipelineType !== '' &&
+          this.cardData.backPipelineType !== this.panelBackPipelineType) {
+        // 保存之前的值
+        const oldValue = this.previousBackPipelineType || this.panelBackPipelineType;
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        // 发出事件，请求显示确认窗口
+        this.$emit('back-pipeline-type-change', {
+          newValue: this.cardData.backPipelineType,
+          panelValue: this.panelBackPipelineType,
+          oldValue: oldValue,
+          cardData: { ...this.cardData }
+        });
+      } else {
+        // 相同或 Panel 为空，直接更新
+        this.previousBackPipelineType = this.cardData.backPipelineType;
+        this.$emit('update-data', this.cardData);
+        this.$forceUpdate();
+      }
     },
     handleDeleteButtonClick() {
       console.log('閥件資訊卡片刪除按鈕被點擊');

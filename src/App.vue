@@ -110,10 +110,13 @@
                   :initialPosition="moduleSet.source.position"
                   :cardData="moduleSet.source.data"
                   :canDelete="canDeleteModule"
+                  :totalModules="allModuleSets.length"
+                  :moduleIndex="setIndex"
                   @update-data="(data) => updateCardData(setIndex, 'source', data)"
                   @add-module="handleAddModule"
                   @add-branch-source="handleAddBranchSource"
                   @delete-module="handleDeleteModule"
+                  @move-module="handleMoveModule"
                 />
                 
                 <!-- 動態添加的閥件資訊卡片 -->
@@ -184,8 +187,10 @@
                               :initialPosition="additionalCard.valve.position"
                               :cardData="additionalCard.valve.data"
                               :isPanelEquipmentValve="true"
+                              :panelBackPipelineType="panelEquipmentGroup.panel.data.backPipelineType"
                               @update-data="(data) => updateBranchAdditionalEquipmentValveData(setIndex, branchModuleIndex, groupIndex, cardIndex, data)"
                               @delete-valve="(data) => handleDeleteBranchAdditionalEquipmentValve(setIndex, branchModuleIndex, groupIndex, cardIndex, data)"
+                              @back-pipeline-type-change="(event) => handleBranchAdditionalEquipmentValveBackPipelineTypeChange(setIndex, branchModuleIndex, groupIndex, cardIndex, event)"
                             />
                             <EquipmentInfoCard 
                               :initialPosition="additionalCard.position"
@@ -242,8 +247,10 @@
                     :initialPosition="panelEquipmentGroup.valve.position"
                     :cardData="panelEquipmentGroup.valve.data"
                     :isPanelEquipmentValve="true"
+                    :panelBackPipelineType="panelEquipmentGroup.panel.data.backPipelineType"
                     @update-data="(data) => updatePanelEquipmentValveData(setIndex, groupIndex, data)"
                     @delete-valve="(data) => handleDeletePanelEquipmentValve(setIndex, groupIndex, data)"
+                    @back-pipeline-type-change="(event) => handlePanelEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, event)"
                   />
                   <EquipmentInfoCard 
                     :initialPosition="panelEquipmentGroup.equipment.position"
@@ -259,8 +266,10 @@
                         :initialPosition="additionalCard.valve.position"
                         :cardData="additionalCard.valve.data"
                         :isPanelEquipmentValve="true"
+                        :panelBackPipelineType="panelEquipmentGroup.panel.data.backPipelineType"
                         @update-data="(data) => updateAdditionalEquipmentValveData(setIndex, groupIndex, cardIndex, data)"
                         @delete-valve="(data) => handleDeleteAdditionalEquipmentValve(setIndex, groupIndex, cardIndex, data)"
+                        @back-pipeline-type-change="(event) => handleAdditionalEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, cardIndex, event)"
                       />
                       <EquipmentInfoCard 
                         :initialPosition="additionalCard.position"
@@ -712,6 +721,101 @@ export default {
             }
           }
           
+          // 決定該連接線使用的管線類別
+          let pipelineType = moduleSet.source?.data?.pipelineType || '單套管'; // 預設使用源頭的管線類別
+          const originalPipelineType = pipelineType; // 保存原始值用於調試
+          
+          // 特例1：檢查是否為設備閥件後方的連接線（valve → equipment）
+          // 只有這段連接線才使用閥件的 backPipelineType
+          if ((conn.from === 'panel-equipment-valve' || conn.from === 'additional-equipment-valve' || conn.from === 'branch-additional-equipment-valve') &&
+              (conn.to === 'equipment' || conn.to === 'branch-additional-equipment')) {
+            // 找到對應的閥件
+            let valveBackPipelineType = null;
+            
+            if (conn.from === 'panel-equipment-valve' && conn.groupIndex !== undefined && conn.equipmentCardIndex === undefined) {
+              // 主分支主設備閥件 - 必須有明確的 groupIndex，且沒有 equipmentCardIndex
+              const group = moduleSet.panelEquipmentGroups?.[conn.groupIndex];
+              valveBackPipelineType = group?.valve?.data?.backPipelineType;
+            } else if (conn.from === 'additional-equipment-valve' && conn.groupIndex !== undefined && conn.equipmentCardIndex !== undefined) {
+              // 主分支附加設備閥件 - 必須有明確的 groupIndex 和 equipmentCardIndex
+              const additionalCard = moduleSet.panelEquipmentGroups?.[conn.groupIndex]?.additionalEquipmentCards?.[conn.equipmentCardIndex];
+              valveBackPipelineType = additionalCard?.valve?.data?.backPipelineType;
+            } else if (conn.from === 'branch-additional-equipment-valve' && conn.branchModuleIndex !== undefined && conn.panelEquipmentGroupIndex !== undefined && conn.equipmentCardIndex !== undefined) {
+              // 分支附加設備閥件 - 必須有明確的所有索引（注意這裡使用 panelEquipmentGroupIndex 而不是 groupIndex）
+              const branchModule = moduleSet.branchModuleCards?.[conn.branchModuleIndex];
+              const additionalCard = branchModule?.panelEquipmentGroups?.[conn.panelEquipmentGroupIndex]?.additionalEquipmentCards?.[conn.equipmentCardIndex];
+              valveBackPipelineType = additionalCard?.valve?.data?.backPipelineType;
+            }
+            
+            // 只有成功獲取到閥件的 backPipelineType 時才使用
+            if (valveBackPipelineType) {
+              pipelineType = valveBackPipelineType;
+            }
+          }
+          // 特例2：檢查是否為盤面後方的連接線
+          // 處理：panel → equipment（主設備無閥件）或 panel → valve（主設備有閥件）
+          else if (conn.from === 'panel' && conn.groupIndex !== undefined) {
+            // 主分支盤面到主設備 - 必須有明確的 groupIndex
+            if (conn.to === 'equipment' || conn.to === 'panel-equipment-valve') {
+              const group = moduleSet.panelEquipmentGroups?.[conn.groupIndex];
+              const panelBackPipelineType = group?.panel?.data?.backPipelineType;
+              
+              // 使用盤面的 backPipelineType（如果存在）
+              if (panelBackPipelineType) {
+                pipelineType = panelBackPipelineType;
+              }
+            }
+          }
+          // 特例3：檢查是否為盤面到附加設備的連接線
+          // 處理：panel-equipment-connection → additional-equipment（無閥件）
+          // 或 panel-equipment-connection → additional-equipment-valve（有閥件）
+          // 或 panel-equipment-valve → additional-equipment-valve（主設備有閥件，附加設備也有閥件）
+          // 或 panel-equipment-valve → additional-equipment（主設備有閥件，附加設備無閥件）
+          else if ((conn.from === 'panel-equipment-connection' || conn.from === 'panel-equipment-valve') && 
+                   conn.groupIndex !== undefined &&
+                   (conn.to === 'additional-equipment' || conn.to === 'additional-equipment-valve')) {
+            // 主分支盤面到附加設備 - 使用盤面的 backPipelineType
+            const group = moduleSet.panelEquipmentGroups?.[conn.groupIndex];
+            const panelBackPipelineType = group?.panel?.data?.backPipelineType;
+            
+            // 使用盤面的 backPipelineType（如果存在）
+            if (panelBackPipelineType) {
+              pipelineType = panelBackPipelineType;
+            }
+          }
+          // 特例4：檢查是否為分支盤面後方的連接線
+          else if (conn.from === 'branch-panel' && conn.branchModuleIndex !== undefined && conn.panelEquipmentGroupIndex !== undefined) {
+            // 分支盤面 - 必須有明確的所有索引
+            if (conn.to === 'branch-equipment' || conn.to === 'branch-valve') {
+              const branchModule = moduleSet.branchModuleCards?.[conn.branchModuleIndex];
+              const group = branchModule?.panelEquipmentGroups?.[conn.panelEquipmentGroupIndex];
+              const panelBackPipelineType = group?.panel?.data?.backPipelineType;
+              
+              console.log(`[特例4-分支盤面] branchModuleIndex=${conn.branchModuleIndex}, panelEquipmentGroupIndex=${conn.panelEquipmentGroupIndex}, panelBackPipelineType=${panelBackPipelineType}, to=${conn.to}`);
+              
+              // 使用盤面的 backPipelineType（如果存在）
+              if (panelBackPipelineType) {
+                pipelineType = panelBackPipelineType;
+                console.log(`[特例4-分支盤面] 設置 pipelineType = ${pipelineType}`);
+              }
+            }
+          }
+          // 特例5：檢查是否為分支盤面到附加設備的連接線
+          else if (conn.from === 'branch-panel-equipment-connection' && 
+                   conn.branchModuleIndex !== undefined && 
+                   conn.panelEquipmentGroupIndex !== undefined &&
+                   (conn.to === 'branch-additional-equipment' || conn.to === 'branch-additional-equipment-valve')) {
+            // 分支盤面到附加設備
+            const branchModule = moduleSet.branchModuleCards?.[conn.branchModuleIndex];
+            const group = branchModule?.panelEquipmentGroups?.[conn.panelEquipmentGroupIndex];
+            const panelBackPipelineType = group?.panel?.data?.backPipelineType;
+            
+            // 使用盤面的 backPipelineType（如果存在）
+            if (panelBackPipelineType) {
+              pipelineType = panelBackPipelineType;
+            }
+          }
+          
           connections.push({
             id: `line-${setIndex}-${connIndex}`,
             from: {
@@ -726,7 +830,8 @@ export default {
             showFaIcon: conn.showFaIcon,
             isBranchSource: conn.from === 'branch-source-connection', // 標識分支源頭資訊連接線
             isBranchValve: conn.from === 'source' && conn.to === 'branch-valve', // 標識分支閥件連接線
-            isAdditionalEquipment: conn.from === 'panel-equipment-connection' || conn.from === 'branch-panel-equipment-connection' || conn.from === 'panel-equipment-valve' || conn.from === 'additional-equipment-valve' || conn.from === 'branch-additional-equipment-valve' // 標識額外設備卡片連接線
+            isAdditionalEquipment: conn.from === 'panel-equipment-connection' || conn.from === 'branch-panel-equipment-connection' || conn.from === 'panel-equipment-valve' || conn.from === 'additional-equipment-valve' || conn.from === 'branch-additional-equipment-valve', // 標識額外設備卡片連接線
+            pipelineType: pipelineType // 管線類別，用於決定線條樣式
           })
         })
       })
@@ -950,12 +1055,14 @@ export default {
             { 
               from: 'floor', 
               to: 'panel',
+              groupIndex: 0,
               showAdditionalIcon: true,
               showFaIcon: false
             },
             { 
               from: 'panel', 
               to: 'equipment',
+              groupIndex: 0,
               showAdditionalIcon: true,
               showFaIcon: true
             }
@@ -1828,7 +1935,7 @@ export default {
             'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
             'dp-tag': '', // M: 無須填寫
             'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
-            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'bulkGas'), // O: 根據管線類型判斷
+            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'bulkGas', group.valve), // O: 根據管線類型判斷
             'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
             'Accessory1': '', // Q: 無須填寫
             'Accessory2': '', // R: 無須填寫
@@ -1895,7 +2002,7 @@ export default {
                 'dp-type': this.getPanelType(panel),
                 'dp-tag': '',
                 'pou-size': additionalData.size || '',
-                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'bulkGas'),
+                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'bulkGas', additionalEquipment.valve),
                 'pou-comp': additionalData.connectionName || '',
                 'Accessory1': '',
                 'Accessory2': '',
@@ -2100,7 +2207,7 @@ export default {
             'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
             'dp-tag': '', // M: 無須填寫
             'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
-            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'specialGas'), // O: 根據管線類型判斷（Special Gas 不會用到軟管）
+            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'specialGas', group.valve), // O: 根據管線類型判斷（Special Gas 不會用到軟管）
             'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
             'Accessory1': '', // Q: 無須填寫
             'Accessory2': '', // R: 無須填寫
@@ -2164,7 +2271,7 @@ export default {
                 'dp-type': this.getPanelType(panel),
                 'dp-tag': '',
                 'pou-size': additionalData.size || '',
-                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'specialGas'),
+                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'specialGas', additionalEquipment.valve),
                 'pou-comp': additionalData.connectionName || '',
                 'Accessory1': '',
                 'Accessory2': '',
@@ -2253,10 +2360,21 @@ export default {
      * @param {Object} group - Panel+Equipment 群組
      * @param {Object} equipment - Equipment 数据
      * @param {String} hierarchyType - 類型（'bulkGas' 或 'specialGas'）
+     * @param {Object} valve - 設備閥件對象（可選）
      * @returns {String} 軟管或硬管
      */
-    getPOUType(moduleSet, group, equipment, hierarchyType = 'bulkGas') {
-      // 優先判斷：盤面資訊的後方管線類別
+    getPOUType(moduleSet, group, equipment, hierarchyType = 'bulkGas', valve = null) {
+      // 優先判斷：設備閥件資訊的後方管線類別
+      // 如果有傳入 valve 參數，使用該閥件的後方管線類別
+      if (valve?.data?.backPipelineType) {
+        const valveBackPipelineType = valve.data.backPipelineType;
+        if (valveBackPipelineType === '單套管' || valveBackPipelineType === '雙套管') {
+          return '硬管';
+        }
+        return '軟管';
+      }
+      
+      // 其次判斷：盤面資訊的後方管線類別
       const panel = group.panel?.data || {};
       if (panel.backPipelineType) {
         const backPipelineType = panel.backPipelineType;
@@ -2266,32 +2384,13 @@ export default {
         return '軟管';
       }
       
-      // 其次判斷：設備閥件資訊的後方管線類別
-      // 檢查是否有設備閥件
-      if (group.equipment?.valve?.data?.backPipelineType) {
-        const valveBackPipelineType = group.equipment.valve.data.backPipelineType;
-        if (valveBackPipelineType === '單套管' || valveBackPipelineType === '雙套管') {
-          return '硬管';
-        }
-        return '軟管';
-      }
-      
-      // 最後判斷：源頭資訊的管線類型
-      const source = moduleSet.source?.data || {};
-      const pipelineType = source.pipelineType || '';
-      if (pipelineType === '單套管' || pipelineType === '雙套管') {
-        return '硬管';
-      }
-      
-      // 默認判斷：根據 connector 類型
-      const connector = equipment.connector || '';
-      
       // Special Gas 不會用到軟管
       if (hierarchyType === 'specialGas') {
         return '硬管';
       }
       
-      // Bulk Gas 的判斷邏輯
+      // 默認判斷：根據 connector 類型（Bulk Gas）
+      const connector = equipment.connector || '';
       if (connector.includes('軟') || connector.toLowerCase().includes('soft') || 
           connector.toLowerCase().includes('quick') || connector === '快速接頭') {
         return '軟管';
@@ -3456,6 +3555,166 @@ export default {
     },
     
     /**
+     * 處理模組移動事件
+     * @param {Object} moveData - 包含 currentIndex 和 direction 的對象
+     */
+    handleMoveModule(moveData) {
+      const { currentIndex, direction } = moveData;
+      const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+      
+      // 檢查目標索引是否有效
+      if (targetIndex < 0 || targetIndex >= this.allModuleSets.length) {
+        console.warn('無效的移動操作');
+        return;
+      }
+      
+      console.log(`移動模組從 ${currentIndex} 到 ${targetIndex}`);
+      
+      // 交換數組中的兩個模組
+      const temp = this.allModuleSets[currentIndex];
+      this.allModuleSets[currentIndex] = this.allModuleSets[targetIndex];
+      this.allModuleSets[targetIndex] = temp;
+      
+      // 將第一個模組移動到基準點
+      const baseY = 74;
+      const firstModule = this.allModuleSets[0];
+      const offsetY = baseY - firstModule.source.position.y;
+      
+      if (Math.abs(offsetY) > 0.01) {
+        console.log(`將第一個模組移動到基準點 Y=${baseY}, 偏移=${offsetY}`);
+        this.moveModuleByOffset(firstModule, offsetY);
+      }
+      
+      // 重新計算所有模組的位置和連接線
+      // 這會自動處理：
+      // 1. 所有模組的卡片位置
+      // 2. 模組之間的正確間距
+      // 3. 所有連接線的位置（包括分支設備和分支源頭）
+      // 4. 設備卡片的連接線
+      this.updateAllModuleSetPositions();
+      
+      // 強制觸發響應式更新
+      this.$nextTick(() => {
+        this.$forceUpdate();
+      });
+      
+      console.log(`已交換模組 ${currentIndex} 和 ${targetIndex} 的位置並更新所有連接線`);
+    },
+    
+    /**
+     * 將模組按偏移量移動
+     * @param {Object} moduleSet - 模組組對象
+     * @param {Number} offsetY - Y 軸偏移量
+     */
+    moveModuleByOffset(moduleSet, offsetY) {
+      // 更新源頭資訊卡片
+      moduleSet.source.position.y += offsetY;
+      
+      // 更新管線資訊卡片
+      moduleSet.pipeline.position.y += offsetY;
+      
+      // 更新樓層資訊卡片
+      moduleSet.floor.position.y += offsetY;
+      
+      // 更新閥件卡片
+      if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
+        moduleSet.valveCards.forEach(valveCard => {
+          valveCard.position.y += offsetY;
+        });
+      }
+      
+      // 更新分支源頭資訊卡片
+      if (moduleSet.branchSourceCards && moduleSet.branchSourceCards.length > 0) {
+        moduleSet.branchSourceCards.forEach(branchCard => {
+          branchCard.position.y += offsetY;
+        });
+      }
+      
+      // 更新分支模組卡片
+      if (moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > 0) {
+        moduleSet.branchModuleCards.forEach(branchModule => {
+          // 更新分支閥件
+          if (branchModule.valve) {
+            branchModule.valve.position.y += offsetY;
+          }
+          
+          // 更新分支管線
+          if (branchModule.pipeline) {
+            branchModule.pipeline.position.y += offsetY;
+          }
+          
+          // 更新分支樓層
+          if (branchModule.floor) {
+            branchModule.floor.position.y += offsetY;
+          }
+          
+          // 更新分支的盤面設備組
+          if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
+            branchModule.panelEquipmentGroups.forEach(group => {
+              // 更新盤面
+              if (group.panel) {
+                group.panel.position.y += offsetY;
+              }
+              
+              // 更新設備
+              if (group.equipment) {
+                group.equipment.position.y += offsetY;
+              }
+              
+              // 更新盤面設備閥件
+              if (group.valve) {
+                group.valve.position.y += offsetY;
+              }
+              
+              // 更新附加設備
+              if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                group.additionalEquipmentCards.forEach(additionalCard => {
+                  additionalCard.position.y += offsetY;
+                  
+                  // 更新附加設備的閥件
+                  if (additionalCard.valve) {
+                    additionalCard.valve.position.y += offsetY;
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+      
+      // 更新主分支的盤面設備組
+      if (moduleSet.panelEquipmentGroups && moduleSet.panelEquipmentGroups.length > 0) {
+        moduleSet.panelEquipmentGroups.forEach(group => {
+          // 更新盤面
+          group.panel.position.y += offsetY;
+          
+          // 更新設備
+          group.equipment.position.y += offsetY;
+          
+          // 更新盤面設備閥件
+          if (group.valve) {
+            group.valve.position.y += offsetY;
+          }
+          
+          // 更新附加設備
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach(additionalCard => {
+              additionalCard.position.y += offsetY;
+              
+              // 更新附加設備的閥件
+              if (additionalCard.valve) {
+                additionalCard.valve.position.y += offsetY;
+              }
+            });
+          }
+        });
+      }
+      
+      // 更新連接線位置
+      this.updateModuleSetConnections(moduleSet, offsetY);
+    },
+    
+    /**
      * 創建新的模組組
      * @param {Object} position - 位置坐標
      * @returns {Object} 新的模組組對象
@@ -3630,6 +3889,134 @@ export default {
                   // 触发更新事件
                   this.updatePanelData(setIndex, groupIndex, moduleSet.panelEquipmentGroups[groupIndex].panel.data);
                 }
+              }
+              this.closePopup();
+            }
+          },
+          {
+            text: '確定',
+            class: 'primary',
+            action: () => {
+              // 确定：保持新值（数据已经在 cardData 中更新了）
+              this.closePopup();
+            }
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      });
+    },
+
+    /**
+     * 處理主模組設備閥件的後方管線類別變更
+     */
+    handlePanelEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, event) {
+      const { newValue, panelValue, oldValue, cardData } = event;
+      
+      // 显示确认窗口
+      this.showPopup({
+        title: '',
+        message: '是否要改變後方管線類別?',
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: () => {
+              // 取消：恢复为盘面管线类别
+              const restoreValue = panelValue || oldValue;
+              const moduleSet = this.allModuleSets[setIndex];
+              if (moduleSet && moduleSet.panelEquipmentGroups[groupIndex] && moduleSet.panelEquipmentGroups[groupIndex].valve) {
+                moduleSet.panelEquipmentGroups[groupIndex].valve.data.backPipelineType = restoreValue;
+                // 触发更新事件
+                this.updatePanelEquipmentValveData(setIndex, groupIndex, moduleSet.panelEquipmentGroups[groupIndex].valve.data);
+              }
+              this.closePopup();
+            }
+          },
+          {
+            text: '確定',
+            class: 'primary',
+            action: () => {
+              // 确定：保持新值（数据已经在 cardData 中更新了）
+              this.closePopup();
+            }
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      });
+    },
+
+    /**
+     * 處理主模組額外設備閥件的後方管線類別變更
+     */
+    handleAdditionalEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, cardIndex, event) {
+      const { newValue, panelValue, oldValue, cardData } = event;
+      
+      // 显示确认窗口
+      this.showPopup({
+        title: '',
+        message: '是否要改變後方管線類別?',
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: () => {
+              // 取消：恢复为盘面管线类别
+              const restoreValue = panelValue || oldValue;
+              const moduleSet = this.allModuleSets[setIndex];
+              if (moduleSet && 
+                  moduleSet.panelEquipmentGroups[groupIndex] && 
+                  moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards &&
+                  moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex] &&
+                  moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve) {
+                moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data.backPipelineType = restoreValue;
+                // 触发更新事件
+                this.updateAdditionalEquipmentValveData(setIndex, groupIndex, cardIndex, moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data);
+              }
+              this.closePopup();
+            }
+          },
+          {
+            text: '確定',
+            class: 'primary',
+            action: () => {
+              // 确定：保持新值（数据已经在 cardData 中更新了）
+              this.closePopup();
+            }
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      });
+    },
+
+    /**
+     * 處理分支模組額外設備閥件的後方管線類別變更
+     */
+    handleBranchAdditionalEquipmentValveBackPipelineTypeChange(setIndex, branchModuleIndex, groupIndex, cardIndex, event) {
+      const { newValue, panelValue, oldValue, cardData } = event;
+      
+      // 显示确认窗口
+      this.showPopup({
+        title: '',
+        message: '是否要改變後方管線類別?',
+        buttons: [
+          {
+            text: '取消',
+            class: 'default',
+            action: () => {
+              // 取消：恢复为盘面管线类别
+              const restoreValue = panelValue || oldValue;
+              const branchModule = this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex];
+              if (branchModule && 
+                  branchModule.panelEquipmentGroups[groupIndex] && 
+                  branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards &&
+                  branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex] &&
+                  branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve) {
+                branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data.backPipelineType = restoreValue;
+                // 触发更新事件
+                this.updateBranchAdditionalEquipmentValveData(setIndex, branchModuleIndex, groupIndex, cardIndex, branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data);
               }
               this.closePopup();
             }
@@ -5919,7 +6306,7 @@ export default {
             valveType: '',
             enableValve: false,
             branchSize: '',
-            backPipelineType: '單套管'
+            backPipelineType: panel.data.backPipelineType || '單套管' // 預設為前方盤面的後方管線類別
           }
         };
         
@@ -6007,7 +6394,7 @@ export default {
           valveType: '',
           enableValve: false,
           branchSize: '',
-          backPipelineType: '單套管'
+          backPipelineType: panel.data.backPipelineType || '單套管' // 預設為前方盤面的後方管線類別
         }
       };
       
@@ -6157,7 +6544,7 @@ export default {
           valveType: '',
           enableValve: false,
           branchSize: '',
-          backPipelineType: '單套管'
+          backPipelineType: panelEquipmentGroup.panel.data.backPipelineType || '單套管' // 預設為前方盤面的後方管線類別
         }
       };
       
@@ -7048,16 +7435,13 @@ export default {
       
       moduleSet.connections.forEach(conn => {
         // 更新從源頭到分支閥件的連接線終點
-        // 檢查連接線是否對應這個分支模組
-        const isThisBranchModuleConnection = 
-          (conn.from === 'source' && conn.to === 'branch-valve') ||
-          (conn.branchModuleIndex === branchModuleIndex);
-        
-        if (isThisBranchModuleConnection) {
+        // 只更新對應當前分支模組索引的連接線
+        if (conn.branchModuleIndex === branchModuleIndex && 
+            conn.from === 'source' && 
+            conn.to === 'branch-valve' && 
+            conn.toPosition) {
           // 更新連接線的終點位置（從源頭到分支閥件）
-          if (conn.to === 'branch-valve' && conn.toPosition) {
-            conn.toPosition.y = branchValveCard.valve.position.y + CARD_HEIGHT_OFFSET;
-          }
+          conn.toPosition.y = branchValveCard.valve.position.y + CARD_HEIGHT_OFFSET;
         }
       });
     },
@@ -7533,7 +7917,7 @@ export default {
         showFaIcon: false,
         valveCardIndex: moduleSet.valveCards.length - 2, // 源閥件索引
         branchValveCardIndex: moduleSet.valveCards.length - 1, // 分支閥件索引（新添加的）
-        branchModuleIndex: moduleSet.branchModuleCards.length, // 對應的分支模組索引（即將添加）
+        branchModuleIndex: moduleSet.branchModuleCards.length - 1, // 對應的分支模組索引（已添加）
         moduleSetIndex: moduleSetIndex,
         fromPosition: { x: fromX, y: fromY },
         toPosition: { x: toX, y: toY }

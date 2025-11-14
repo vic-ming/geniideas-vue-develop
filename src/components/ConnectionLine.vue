@@ -1,13 +1,41 @@
 <template>
   <svg class="connection-lines" :style="svgStyle">
     <g v-for="connection in connections" :key="connection.id">
-      <!-- 連接線 -->
-      <path
-        :d="getConnectionPath(connection)"
-        stroke="#999"
-        stroke-width="2"
-        fill="none"
-      />
+      <!-- 雙套管：雙線 -->
+      <template v-if="connection.pipelineType === '雙套管'">
+        <path
+          :d="getConnectionPath(connection, -3)"
+          stroke="#999"
+          stroke-width="2"
+          fill="none"
+        />
+        <path
+          :d="getConnectionPath(connection, 3)"
+          stroke="#999"
+          stroke-width="2"
+          fill="none"
+        />
+      </template>
+      
+      <!-- 軟管：波浪線 -->
+      <template v-else-if="connection.pipelineType === '軟管'">
+        <path
+          :d="getWavyPath(connection)"
+          stroke="#999"
+          stroke-width="2"
+          fill="none"
+        />
+      </template>
+      
+      <!-- 單套管：單線（默認） -->
+      <template v-else>
+        <path
+          :d="getConnectionPath(connection)"
+          stroke="#999"
+          stroke-width="2"
+          fill="none"
+        />
+      </template>
       
       <!-- 起點圓點 (只在非向下的連接線顯示) -->
       <circle
@@ -85,29 +113,114 @@ export default {
     }
   },
   methods: {
-    // 生成直角連接路徑
-    getConnectionPath(connection) {
+    // 生成直角連接路徑（支持平行線偏移）
+    getConnectionPath(connection, offset = 0) {
       const from = connection.from
       const to = connection.to
       
       // 檢查是否是分支連接線（分支源頭資訊或分支閥件或額外設備）
-      // 分支源頭資訊連接線的特徵：起始點在紫色icon左側，結束點在分支卡片右側
-      // 分支閥件連接線的特徵：從閥件右側連接到分支閥件左側
-      // 額外設備連接線的特徵：從 panel 與 equipment 之間連接到額外設備左側
       const isBranchConnection = connection.isBranchSource || 
         connection.isBranchValve ||
         connection.isAdditionalEquipment ||
-        (from.x < to.x && Math.abs(from.y - to.y) > 100); // 分支連接線通常有較大的Y軸差異
+        (from.x < to.x && Math.abs(from.y - to.y) > 100);
       
       if (isBranchConnection) {
         // 分支連接線：先垂直向下，再水平向右
-        // 確保垂直線延伸到目標Y位置，然後水平連接到目標X位置
+        // 對於垂直線使用 X 軸偏移，水平線使用 Y 軸偏移
+        if (offset !== 0) {
+          return `M ${from.x + offset} ${from.y} L ${from.x + offset} ${to.y - offset} L ${to.x} ${to.y - offset}`
+        }
         return `M ${from.x} ${from.y} L ${from.x} ${to.y} L ${to.x} ${to.y}`
       }
       
       // 標準連接線：先水平移動，再垂直移動
       const midY = from.y + (to.y - from.y) * 1
+      if (offset !== 0) {
+        // 水平線使用 Y 軸偏移
+        return `M ${from.x} ${from.y + offset} L ${from.x} ${midY + offset} L ${to.x} ${midY + offset} L ${to.x} ${to.y + offset}`
+      }
       return `M ${from.x} ${from.y} L ${from.x} ${midY} L ${to.x} ${midY} L ${to.x} ${to.y}`
+    },
+    
+    // 生成波浪線路徑（軟管）
+    getWavyPath(connection) {
+      const from = connection.from
+      const to = connection.to
+      
+      const isBranchConnection = connection.isBranchSource || 
+        connection.isBranchValve ||
+        connection.isAdditionalEquipment ||
+        (from.x < to.x && Math.abs(from.y - to.y) > 100);
+      
+      if (isBranchConnection) {
+        // 分支連接線：先垂直波浪，再水平波浪
+        const verticalDistance = Math.abs(to.y - from.y)
+        const horizontalDistance = Math.abs(to.x - from.x)
+        const waveAmplitude = 8 // 波浪幅度
+        const waveFrequency = 20 // 波浪頻率（每20px一個波）
+        
+        let path = `M ${from.x} ${from.y}`
+        
+        // 垂直波浪段
+        if (verticalDistance > 0) {
+          const verticalWaves = Math.floor(verticalDistance / waveFrequency)
+          for (let i = 0; i < verticalWaves; i++) {
+            const y1 = from.y + (i * 2 + 1) * waveFrequency / 2
+            const y2 = from.y + (i + 1) * waveFrequency
+            const xOffset = (i % 2 === 0) ? waveAmplitude : -waveAmplitude
+            path += ` Q ${from.x + xOffset} ${y1}, ${from.x} ${y2}`
+          }
+          // 連接到轉角
+          if (verticalDistance % waveFrequency !== 0) {
+            path += ` L ${from.x} ${to.y}`
+          }
+        }
+        
+        // 水平波浪段
+        if (horizontalDistance > 0) {
+          const horizontalWaves = Math.floor(horizontalDistance / waveFrequency)
+          const startX = from.x
+          for (let i = 0; i < horizontalWaves; i++) {
+            const x1 = startX + (i * 2 + 1) * waveFrequency / 2
+            const x2 = startX + (i + 1) * waveFrequency
+            const yOffset = (i % 2 === 0) ? waveAmplitude : -waveAmplitude
+            path += ` Q ${x1} ${to.y + yOffset}, ${x2} ${to.y}`
+          }
+          // 連接到終點
+          if (horizontalDistance % waveFrequency !== 0) {
+            path += ` L ${to.x} ${to.y}`
+          }
+        }
+        
+        return path
+      }
+      
+      // 標準連接線的波浪
+      const distance = Math.abs(to.x - from.x)
+      const waveAmplitude = 8
+      const waveFrequency = 20
+      const waves = Math.floor(distance / waveFrequency)
+      
+      let path = `M ${from.x} ${from.y}`
+      
+      for (let i = 0; i < waves; i++) {
+        const x1 = from.x + (i * 2 + 1) * waveFrequency / 2
+        const x2 = from.x + (i + 1) * waveFrequency
+        const yOffset = (i % 2 === 0) ? waveAmplitude : -waveAmplitude
+        path += ` Q ${x1} ${from.y + yOffset}, ${x2} ${from.y}`
+      }
+      
+      // 連接剩餘部分
+      if (distance % waveFrequency !== 0) {
+        path += ` L ${to.x} ${from.y}`
+      }
+      
+      // 垂直部分（如果有）
+      if (to.y !== from.y) {
+        path += ` L ${to.x} ${to.y}`
+      }
+      
+      return path
     },
     
     // 計算加號圖標位置（在連接線的水平段上）

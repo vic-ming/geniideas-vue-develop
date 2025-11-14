@@ -5,6 +5,20 @@
         <img src="@/assets/images/type-a.svg" alt="source-info" />
       </div>
       <h3 class="card-title">源頭資訊</h3>
+      <img 
+        v-if="totalModules > 1 && moduleIndex > 0"
+        @click="handleMoveUp" 
+        src="@/assets/images/arrow-up.svg" 
+        alt="arrow-up" 
+        class="clickable-icon" 
+      />
+      <img 
+        v-if="totalModules > 1 && moduleIndex < totalModules - 1"
+        @click="handleMoveDown" 
+        src="@/assets/images/arrow-down.svg" 
+        alt="arrow-down" 
+        class="clickable-icon" 
+      />
      <img 
        @click="canDelete ? handleDeleteButtonClick() : null" 
        src="@/assets/images/delete.svg" 
@@ -118,6 +132,14 @@ export default {
       type: Boolean,
       default: true
     },
+    totalModules: {
+      type: Number,
+      default: 1
+    },
+    moduleIndex: {
+      type: Number,
+      default: 0
+    },
     cardData: {
       type: Object,
       default: () => ({
@@ -191,6 +213,20 @@ export default {
           x: this.initialPosition.x,
           y: this.initialPosition.y
         }
+      });
+    },
+    handleMoveUp() {
+      console.log('向上移動模組', this.moduleIndex);
+      this.$emit('move-module', {
+        currentIndex: this.moduleIndex,
+        direction: 'up'
+      });
+    },
+    handleMoveDown() {
+      console.log('向下移動模組', this.moduleIndex);
+      this.$emit('move-module', {
+        currentIndex: this.moduleIndex,
+        direction: 'down'
       });
     }
   }
