@@ -20,10 +20,13 @@ export default async function handler(req, res) {
   const id = query.id;
 
   try {
+    // 确保数据库已初始化
+    const statements = stmt;
+    
     switch (method) {
       case 'GET':
         // 取得單一檔案
-        const flowchart = stmt.getById.get(id);
+        const flowchart = statements.getById.get(id);
         if (!flowchart) {
           return res.status(404).json({ success: false, error: 'Flowchart not found' });
         }
@@ -35,7 +38,7 @@ export default async function handler(req, res) {
         if (!project_name || !data) {
           return res.status(400).json({ success: false, error: 'project_name and data are required' });
         }
-        const updateResult = stmt.update.run(project_name, JSON.stringify(data), id);
+        const updateResult = statements.update.run(project_name, JSON.stringify(data), id);
         if (updateResult.changes === 0) {
           return res.status(404).json({ success: false, error: 'Flowchart not found' });
         }
@@ -43,7 +46,7 @@ export default async function handler(req, res) {
 
       case 'DELETE':
         // 刪除檔案
-        const deleteResult = stmt.delete.run(id);
+        const deleteResult = statements.delete.run(id);
         if (deleteResult.changes === 0) {
           return res.status(404).json({ success: false, error: 'Flowchart not found' });
         }
@@ -55,10 +58,24 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error('API Error:', error);
+    console.error('Error stack:', error.stack);
+    
+    // 如果是数据库初始化错误
+    if (error.message && error.message.includes('better-sqlite3')) {
+      return res.status(500).json({ 
+        success: false, 
+        error: '数据库初始化失败，请检查服务器日志' 
+      });
+    }
+    
     if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
       return res.status(409).json({ success: false, error: '系統存在同名檔案' });
     }
-    return res.status(500).json({ success: false, error: error.message });
+    
+    return res.status(500).json({ 
+      success: false, 
+      error: error.message || '服务器内部错误' 
+    });
   }
 }
 
