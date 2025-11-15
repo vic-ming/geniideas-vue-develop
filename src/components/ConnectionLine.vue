@@ -228,7 +228,23 @@ export default {
       const from = connection.from
       const to = connection.to
       
-      // 計算轉折點
+      // 檢查是否是 panel → equipment 連接線（使用固定偏移量）
+      if (connection.isPanelEquipment) {
+        // 使用固定偏移量：標準距離 430px 時，加號 icon 約在 128px
+        const iconX = from.x + 57; // 固定偏移量
+        const iconY = from.y
+        return { x: iconX, y: iconY }
+      }
+      
+      // 檢查是否是分支 panel → equipment 連接線（使用固定偏移量）
+      if (connection.isBranchPanelEquipment) {
+        // 使用固定偏移量：標準距離 430px 時，加號 icon 約在 128px
+        const iconX = from.x + 57; // 固定偏移量
+        const iconY = from.y
+        return { x: iconX, y: iconY }
+      }
+      
+      // 計算轉折點（其他連接線仍使用百分比）
       const midX = from.x + (to.x - from.x) * 0.9
       
       // 加號位置在水平段上
@@ -251,7 +267,34 @@ export default {
         return { x: iconX, y: iconY }
       }
       
-      // 計算轉折點
+      // 檢查是否是 panel → additional-equipment-valve 連接線（使用固定偏移量）
+      // 這種連接線的 fromPosition 已經設置為 panelRightX + 88，所以 icon 位置應該基於 fromPosition
+      if (connection.isPanelToAdditionalEquipmentValve) {
+        // 使用固定偏移量：從 from.x（已經是 panelRightX + 88）開始，紫色 icon 在 126px 位置
+        // 但由於 from.x 已經是 panelRightX + 88，所以 icon 位置應該是 from.x + (126 - 88) = from.x + 38
+        const iconX = to.x - 72; // 固定偏移量（126 - 88 = 38，因為 from.x 已經是 panelRightX + 88）
+        const iconY = to.y
+        return { x: iconX, y: iconY }
+      }
+      
+      // 檢查是否是 panel → equipment 連接線（使用固定偏移量）
+      // 標準距離 430px 時，紫色 icon 在 67% 位置，即 288px
+      if (connection.isPanelEquipment) {
+        // 使用固定偏移量：從 from.x（panel 右側）開始，固定偏移 126px
+        const iconX = from.x + 126; // 固定偏移量
+        const iconY = from.y
+        return { x: iconX, y: iconY }
+      }
+      
+      // 檢查是否是分支 panel → equipment 連接線（使用固定偏移量）
+      if (connection.isBranchPanelEquipment) {
+        // 使用固定偏移量：從 from.x（分支 panel 右側）開始，固定偏移 126px
+        const iconX = from.x + 126; // 固定偏移量
+        const iconY = from.y
+        return { x: iconX, y: iconY }
+      }
+      
+      // 計算轉折點（其他連接線仍使用百分比）
       const midX = from.x + (to.x - from.x) * 0.67
       
       if (connection.showAdditionalIcon !== false) {

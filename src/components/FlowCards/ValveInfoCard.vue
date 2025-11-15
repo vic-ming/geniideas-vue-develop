@@ -4,7 +4,7 @@
       <div class="card-icon">
         <img src="@/assets/images/type-f.svg" alt="valve-info" />
       </div>
-      <h3 class="card-title"> {{ isBranchModule ? '分支閥件資訊' : '閥件資訊' }}  </h3>
+      <h3 class="card-title"> {{ (isBranchModule && !isPanelEquipmentValve) ? '分支閥件資訊' : '閥件資訊' }}  </h3>
       <img 
         @click="canDelete && !isDeleteDisabled ? handleDeleteButtonClick() : null" 
         src="@/assets/images/delete.svg" 
@@ -14,7 +14,7 @@
     </div>
     
     <div class="card-content">
-      <div v-if="isBranchModule" class="info-item toggle-item">
+      <div v-if="isBranchModule && !isPanelEquipmentValve" class="info-item toggle-item">
         <label class="info-label">是否啟用後方區塊</label>
         <label class="toggle-switch">
           <input 
@@ -25,7 +25,7 @@
         </label>
       </div>
 
-      <div v-if="isBranchModule" class="info-item">
+      <div v-if="isBranchModule && !isPanelEquipmentValve" class="info-item">
         <label class="info-label">連結分支尺寸<span class="required">*</span></label>
         <select 
           :key="`branchSize-${cardData.branchSize || ''}`"
@@ -40,7 +40,7 @@
       </div>
 
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件接頭形式' : '閥件接頭形式' }}<span class="required">*</span></label>
+        <label class="info-label">{{ (isBranchModule && !isPanelEquipmentValve) ? '分支閥件接頭形式' : '閥件接頭形式' }}<span class="required">*</span></label>
         <select 
           :key="`connectorType-${cardData.connectorType || ''}`"
           class="info-select" 
@@ -48,13 +48,13 @@
           v-model="cardData.connectorType"
           @change="handleDataChange"
         >
-          <option value="">{{ isBranchModule ? '請輸入分支閥件接頭形式' : '請輸入閥件接頭形式' }}</option>
+          <option value="">{{ (isBranchModule && !isPanelEquipmentValve) ? '請輸入分支閥件接頭形式' : '請輸入閥件接頭形式' }}</option>
          <option v-for="connectorType in $constants.connectorSpecs" :key="connectorType" :value="connectorType">{{ connectorType }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件尺寸' : '閥件尺寸' }}<span class="required">*</span></label>
+        <label class="info-label">{{ (isBranchModule && !isPanelEquipmentValve) ? '分支閥件尺寸' : '閥件尺寸' }}<span class="required">*</span></label>
         <select 
           :key="`size-${cardData.size || ''}`"
           class="info-select" 
@@ -62,13 +62,13 @@
           v-model="cardData.size"
           @change="handleDataChange"
         >
-          <option value="">{{ isBranchModule ? '請輸入分支閥件尺寸' : '請輸入閥件尺寸' }}</option>
+          <option value="">{{ (isBranchModule && !isPanelEquipmentValve) ? '請輸入分支閥件尺寸' : '請輸入閥件尺寸' }}</option>
           <option v-for="size in $constants.sourceSizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
       
       <div class="info-item">
-        <label class="info-label">{{ isBranchModule ? '分支閥件種類' : '閥件種類' }}<span class="required">*</span></label>
+        <label class="info-label">{{ (isBranchModule && !isPanelEquipmentValve) ? '分支閥件種類' : '閥件種類' }}<span class="required">*</span></label>
         <select 
           :key="`valveType-${cardData.valveType || ''}`"
           class="info-select" 
@@ -76,7 +76,7 @@
           v-model="cardData.valveType"
           @change="handleDataChange"
         >
-          <option value="">{{ isBranchModule ? '請輸入分支閥件種類' : '請輸入閥件種類' }}</option>
+          <option value="">{{ (isBranchModule && !isPanelEquipmentValve) ? '請輸入分支閥件種類' : '請輸入閥件種類' }}</option>
           <option v-for="valveType in $constants.valveTypes" :key="valveType" :value="valveType">{{ valveType }}</option>
         </select>
       </div>
