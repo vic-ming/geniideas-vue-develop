@@ -1,11 +1,34 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const db = new Database(path.join(__dirname, 'flowcharts.db'));
+// 在 Vercel 上使用 /tmp 目录，本地使用项目目录
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_ENV;
+const dbDir = isVercel ? '/tmp' : __dirname;
+const dbPath = path.join(dbDir, 'flowcharts.db');
+
+// 确保目录存在
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
+// 如果在 Vercel 上且数据库文件不存在，尝试从项目目录复制（如果有）
+if (isVercel && !fs.existsSync(dbPath)) {
+  const localDbPath = path.join(__dirname, 'flowcharts.db');
+  if (fs.existsSync(localDbPath)) {
+    try {
+      fs.copyFileSync(localDbPath, dbPath);
+    } catch (error) {
+      console.log('Could not copy existing database, will create new one');
+    }
+  }
+}
+
+const db = new Database(dbPath);
 
 // 啟用外鍵約束
 db.pragma('foreign_keys = ON');

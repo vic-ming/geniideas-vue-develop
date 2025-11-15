@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import { api } from '../utils/api.js';
+
 export default {
   name: 'FileManager',
   props: {
@@ -187,8 +189,7 @@ export default {
   methods: {
     async loadFiles() {
       try {
-        const response = await fetch('http://localhost:3001/api/flowcharts')
-        const result = await response.json()
+        const result = await api.getAllFlowcharts()
         
         if (result.success) {
           this.files = result.data
@@ -202,8 +203,7 @@ export default {
     
     async handleReadFile(file) {
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`)
-        const result = await response.json()
+        const result = await api.getFlowchart(file.id)
         
         if (result.success) {
           const data = JSON.parse(result.data.data)

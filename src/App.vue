@@ -319,6 +319,7 @@ import Popup from './components/Popup.vue'
 import { VueZoomable } from 'vue-zoomable'
 import 'vue-zoomable/dist/style.css'
 import ExcelJS from 'exceljs'
+import { api } from './utils/api.js'
 
 const CARD_WIDTH = 232
 const CARD_HEIGHT_OFFSET = 150
@@ -1327,18 +1328,7 @@ export default {
      */
     async handleFileManagerSave({ project_name, data }) {
       try {
-        const response = await fetch('http://localhost:3001/api/flowcharts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            project_name,
-            data
-          })
-        });
-        
-        const result = await response.json();
+        const result = await api.createFlowchart(project_name, data);
         
         if (result.success) {
           this.currentFilename = project_name;
@@ -1567,18 +1557,7 @@ export default {
           return;
         }
         
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            project_name: this.currentFilename,
-            data: this.getCurrentData()
-          })
-        });
-        
-        const result = await response.json();
+        const result = await api.updateFlowchart(this.currentFileId, this.currentFilename, this.getCurrentData());
         
         if (result.success) {
           console.log('File updated successfully before loading new file');
@@ -1625,10 +1604,7 @@ export default {
 
       this.showConfirmPopup(`確定要刪除檔案「${file.project_name}」嗎？`, async () => {
         try {
-          const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`, {
-            method: 'DELETE'
-          });
-          const result = await response.json();
+          const result = await api.deleteFlowchart(file.id);
           
           if (result.success) {
             // 重新載入檔案列表
@@ -1656,18 +1632,7 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            project_name: this.currentFilename,
-            data: this.getCurrentData()
-          })
-        });
-        
-        const result = await response.json();
+        const result = await api.updateFlowchart(this.currentFileId, this.currentFilename, this.getCurrentData());
         
         if (result.success) {
           console.log('File updated successfully');
@@ -1719,8 +1684,7 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`);
-        const result = await response.json();
+        const result = await api.getFlowchart(this.currentFileId);
         
         if (result.success && result.data) {
           this.lastSavedAt = result.data.updated_at || null;
@@ -1738,8 +1702,7 @@ export default {
     async replaceExistingFile(project_name, data) {
       try {
         // 首先獲取所有檔案，找到同名檔案
-        const response = await fetch('http://localhost:3001/api/flowcharts');
-        const result = await response.json();
+        const result = await api.getAllFlowcharts();
         
         if (!result.success) {
           throw new Error('無法獲取檔案列表');
@@ -1768,18 +1731,7 @@ export default {
         }
         
         // 更新該檔案
-        const updateResponse = await fetch(`http://localhost:3001/api/flowcharts/${existingFile.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            project_name,
-            data
-          })
-        });
-        
-        const updateResult = await updateResponse.json();
+        const updateResult = await api.updateFlowchart(existingFile.id, project_name, data);
         
         if (updateResult.success) {
           this.currentFilename = project_name;
@@ -3205,18 +3157,7 @@ export default {
       console.log('儲存檔案:', this.currentFilename);
       
       try {
-        const response = await fetch('http://localhost:3001/api/flowcharts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            project_name: this.currentFilename,
-            data: this.getCurrentData()
-          })
-        });
-        
-        const result = await response.json();
+        const result = await api.createFlowchart(this.currentFilename, this.getCurrentData());
         
         if (result.success) {
           this.currentFileId = result.data.id;
