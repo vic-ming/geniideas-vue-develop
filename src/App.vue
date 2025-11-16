@@ -43,7 +43,7 @@
             <img src="./assets/images/menu-pdf.svg" alt="pdf" className="nav-icon" />
             <div v-if="!isSetting" className="hover-menu-container">
               <div className="hover-menu-list"> 
-                <button className="hover-menu-btn">單線圖</button>
+                <button className="hover-menu-btn" @click="handleExportFlowchart">單線圖</button>
               </div>
             </div>
           </button>
@@ -117,6 +117,7 @@
                   @add-branch-source="handleAddBranchSource"
                   @delete-module="handleDeleteModule"
                   @move-module="handleMoveModule"
+                  @show-page-break-menu="handleShowPageBreakMenu"
                 />
                 
                 <!-- 動態添加的閥件資訊卡片 -->
@@ -296,8 +297,38 @@
                 </template>
               </template>
             </div>
+
+            <!-- 分頁線顯示 -->
+            <template v-for="line in pageBreakLines" :key="`page-break-${line.index}`">
+              <div
+                class="page-break-indicator"
+                :style="{
+                  top: `${line.top}px`,
+                  left: `${line.left}px`,
+                  width: `${line.width}px`
+                }"
+              >
+                <span class="page-break-label">分頁線</span>
+                <button
+                  class="page-break-delete"
+                  title="移除分頁線"
+                  @click.stop="handleRemovePageBreakByIndex(line.index)"
+                >
+                  ✕
+                </button>
+              </div>
+            </template>
           </div>
         </VueZoomable>
+      </div>
+
+      <!-- 分頁線操作選單 -->
+      <div
+        v-if="pageBreakMenu.visible"
+        class="page-break-menu"
+        :style="{ top: `${pageBreakMenu.y}px`, left: `${pageBreakMenu.x}px` }"
+      >
+        <button @click.stop="handleAddPageBreak">在下方新增分頁線</button>
       </div>
     </div>
   </div>
@@ -319,7 +350,7 @@ import Popup from './components/Popup.vue'
 import { VueZoomable } from 'vue-zoomable'
 import 'vue-zoomable/dist/style.css'
 import ExcelJS from 'exceljs'
-import { api } from './utils/api.js'
+import { renderFlowchartPages } from './utils/flowchartRenderer'
 
 const CARD_WIDTH = 232
 const CARD_HEIGHT_OFFSET = 150
@@ -386,14 +417,28 @@ export default {
         drawingDate: '',
         notes: '',
         hierarchyType: 'bulkGas'
+      },
+      pageBreaks: [],
+      pageBreakMenu: {
+        visible: false,
+        x: 0,
+        y: 0,
+        moduleIndex: null
       }
     }
+  },
+  mounted() {
+    window.addEventListener('click', this.handleGlobalClick, true);
+  },
+  beforeUnmount() {
+    window.removeEventListener('click', this.handleGlobalClick, true);
   },
   computed: {
     currentFlowchartData() {
       return {
         allModuleSets: this.allModuleSets,
-        settings: this.settings
+        settings: this.settings,
+        pageBreaks: this.pageBreaks
       };
     },
 
@@ -494,11 +539,23 @@ export default {
           } else if (conn.from === 'valve') {
             // 對於 valve，從 valveCards 陣列中獲取
             const valveIndex = conn.valveCardIndex !== undefined ? conn.valveCardIndex : 0
-            fromCard = { position: moduleSet.valveCards[valveIndex].position }
+            const valveCard = moduleSet.valveCards?.[valveIndex]
+            if (valveCard) {
+              fromCard = { position: valveCard.position }
+            } else {
+              console.warn('Invalid valveCard index for connection:', conn);
+              return;
+            }
           } else if (conn.from === 'branch-valve') {
             // 對於 branch-valve，從 valveCards 陣列中獲取
             const branchValveIndex = conn.branchValveCardIndex !== undefined ? conn.branchValveCardIndex : 0
-            fromCard = { position: moduleSet.valveCards[branchValveIndex].position }
+            const branchValveCard = moduleSet.valveCards?.[branchValveIndex]
+            if (branchValveCard) {
+              fromCard = { position: branchValveCard.position }
+            } else {
+              console.warn('Invalid branchValveCard index for connection:', conn);
+              return;
+            }
           } else if (conn.from === 'branch-floor' && conn.fromPosition) {
             // 分支 floor → panel 連接線使用自定義起始位置（加號 icon 的右側）
             fromCard = { position: conn.fromPosition }
@@ -603,11 +660,23 @@ export default {
           } else if (conn.to === 'valve') {
             // 對於 valve，從 valveCards 陣列中獲取
             const valveIndex = conn.valveCardIndex !== undefined ? conn.valveCardIndex : 0
-            toCard = { position: moduleSet.valveCards[valveIndex].position }
+            const valveCard = moduleSet.valveCards?.[valveIndex]
+            if (valveCard) {
+              toCard = { position: valveCard.position }
+            } else {
+              console.warn('Invalid valveCard index for connection:', conn);
+              return;
+            }
           } else if (conn.to === 'branch-valve') {
             // 對於 branch-valve，從 valveCards 陣列中獲取
             const branchValveIndex = conn.branchValveCardIndex !== undefined ? conn.branchValveCardIndex : 0
-            toCard = { position: moduleSet.valveCards[branchValveIndex].position }
+            const branchValveCard = moduleSet.valveCards?.[branchValveIndex]
+            if (branchValveCard) {
+              toCard = { position: branchValveCard.position }
+            } else {
+              console.warn('Invalid branchValveCard index for connection:', conn);
+              return;
+            }
           } else if (conn.to === 'branch-pipeline' || conn.to === 'branch-floor') {
             // 對於分支模組的基本卡片，從 branchModuleCards 陣列中獲取
             const branchModuleIndex = conn.branchModuleIndex !== undefined ? conn.branchModuleIndex : 0
@@ -1004,12 +1073,191 @@ export default {
       return connections
     },
     
+    flowchartBounds() {
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        return { minX: 0, maxX: 0 };
+      }
+
+      let minX = Infinity;
+      let maxX = -Infinity;
+
+      this.allModuleSets.forEach((moduleSet) => {
+        const bounds = this.getModuleSetBounds(moduleSet);
+        if (!bounds) return;
+        minX = Math.min(minX, bounds.minX);
+        maxX = Math.max(maxX, bounds.maxX);
+      });
+
+      if (!isFinite(minX) || !isFinite(maxX)) {
+        return { minX: 0, maxX: 0 };
+      }
+
+      const padding = 60;
+      return {
+        minX: minX - padding,
+        maxX: maxX + padding
+      };
+    },
+
+    pageBreakLines() {
+      if (!Array.isArray(this.pageBreaks) || this.pageBreaks.length === 0) {
+        return [];
+      }
+      const { minX, maxX } = this.flowchartBounds;
+      const width = Math.max(maxX - minX, CARD_WIDTH);
+
+      return this.pageBreaks
+        .filter((index) => index >= 0 && index < this.allModuleSets.length - 1)
+        .map((index) => {
+          const moduleSet = this.allModuleSets[index];
+          if (!moduleSet) return null;
+          const top =
+            moduleSet.source.position.y +
+            this.calculateModuleSetTotalHeight(moduleSet) +
+            MODULE_SPACING / 2;
+          return {
+            index,
+            top,
+            left: minX,
+            width
+          };
+        })
+        .filter(Boolean);
+    },
+    
     // 檢查是否可以刪除模組（至少需要保留一個模組組）
     canDeleteModule() {
       return this.allModuleSets.length > 1;
     }
   },
   methods: {
+    handleGlobalClick(event) {
+      if (!this.pageBreakMenu.visible) return;
+      const target = event.target;
+      if (target && target.closest && target.closest('.page-break-menu')) {
+        return;
+      }
+      this.hidePageBreakMenu();
+    },
+    handleShowPageBreakMenu({ moduleIndex, x, y }) {
+      if (
+        !Array.isArray(this.allModuleSets) ||
+        moduleIndex === null ||
+        moduleIndex === undefined ||
+        moduleIndex >= this.allModuleSets.length - 1
+      ) {
+        this.hidePageBreakMenu();
+        return;
+      }
+      this.pageBreakMenu.visible = true;
+      this.pageBreakMenu.moduleIndex = moduleIndex;
+      this.pageBreakMenu.x = x;
+      this.pageBreakMenu.y = y;
+    },
+    getModuleSetBounds(moduleSet) {
+      if (!moduleSet) {
+        return null;
+      }
+
+      let minX = Infinity;
+      let maxX = -Infinity;
+      const consider = (position, width = CARD_WIDTH) => {
+        if (!position || typeof position.x !== 'number') return;
+        minX = Math.min(minX, position.x);
+        maxX = Math.max(maxX, position.x + width);
+      };
+
+      consider(moduleSet.source?.position);
+      consider(moduleSet.pipeline?.position);
+      consider(moduleSet.floor?.position);
+
+      if (Array.isArray(moduleSet.valveCards)) {
+        moduleSet.valveCards.forEach((card) => consider(card.position));
+      }
+
+      if (Array.isArray(moduleSet.branchSourceCards)) {
+        moduleSet.branchSourceCards.forEach((card) => consider(card.position));
+      }
+
+      if (Array.isArray(moduleSet.panelEquipmentGroups)) {
+        moduleSet.panelEquipmentGroups.forEach((group) => {
+          consider(group.panel?.position);
+          consider(group.equipment?.position);
+          if (group.valve) consider(group.valve.position);
+          if (Array.isArray(group.additionalEquipmentCards)) {
+            group.additionalEquipmentCards.forEach((card) => {
+              consider(card.position);
+              if (card.valve) consider(card.valve.position);
+            });
+          }
+        });
+      }
+
+      if (Array.isArray(moduleSet.branchModuleCards)) {
+        moduleSet.branchModuleCards.forEach((branchModule) => {
+          consider(branchModule.valve?.position);
+          consider(branchModule.pipeline?.position);
+          consider(branchModule.floor?.position);
+
+          if (Array.isArray(branchModule.panelEquipmentGroups)) {
+            branchModule.panelEquipmentGroups.forEach((group) => {
+              consider(group.panel?.position);
+              consider(group.equipment?.position);
+              if (group.valve) consider(group.valve.position);
+              if (Array.isArray(group.additionalEquipmentCards)) {
+                group.additionalEquipmentCards.forEach((card) => {
+                  consider(card.position);
+                  if (card.valve) consider(card.valve.position);
+                });
+              }
+            });
+          }
+        });
+      }
+
+      if (!isFinite(minX) || !isFinite(maxX)) {
+        return null;
+      }
+
+      return { minX, maxX };
+    },
+    handleAddPageBreak() {
+      const index = this.pageBreakMenu.moduleIndex;
+      if (index === null || index === undefined) return;
+      if (index >= this.allModuleSets.length - 1) {
+        this.hidePageBreakMenu();
+        return;
+      }
+      if (!this.isPageBreakAfter(index)) {
+        this.pageBreaks.push(index);
+        this.sanitizePageBreaks();
+      }
+      this.hidePageBreakMenu();
+    },
+    handleRemovePageBreakByIndex(index) {
+      if (index === null || index === undefined) return;
+      this.pageBreaks = this.pageBreaks.filter((value) => value !== index);
+      this.sanitizePageBreaks();
+      this.hidePageBreakMenu();
+    },
+    hidePageBreakMenu() {
+      this.pageBreakMenu.visible = false;
+      this.pageBreakMenu.moduleIndex = null;
+    },
+    isPageBreakAfter(index) {
+      return this.pageBreaks.includes(index);
+    },
+    sanitizePageBreaks() {
+      this.pageBreaks = Array.from(new Set(this.pageBreaks))
+        .filter((index) => index >= 0 && index < this.allModuleSets.length - 1)
+        .sort((a, b) => a - b);
+    },
+    adjustPageBreaksAfterRemoval(removedIndex) {
+      this.pageBreaks = this.pageBreaks
+        .filter((index) => index !== removedIndex)
+        .map((index) => (index > removedIndex ? index - 1 : index));
+      this.sanitizePageBreaks();
+    },
     // ==================== 工具方法 ====================
     /**
      * 檢查模組組是否有分支閥件
@@ -1054,6 +1302,7 @@ export default {
         notes: '',
         hierarchyType: 'bulkGas'
       };
+      this.pageBreaks = [];
       this.isSetting = true
     },
     
@@ -1130,6 +1379,7 @@ export default {
       if (this.allModuleSets.length === 0) {
         this.isDefault = true;
         this.allModuleSets = this.createDefaultModuleSets();
+        this.pageBreaks = [];
       }
     },
 
@@ -1328,7 +1578,19 @@ export default {
      */
     async handleFileManagerSave({ project_name, data }) {
       try {
-        const result = await api.createFlowchart(project_name, data);
+        this.sanitizePageBreaks();
+        const response = await fetch('http://localhost:3001/api/flowcharts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name,
+            data
+          })
+        });
+        
+        const result = await response.json();
         
         if (result.success) {
           this.currentFilename = project_name;
@@ -1525,6 +1787,8 @@ export default {
       // 從讀取的資料重建模組
       if (loadData && loadData.data && loadData.data.allModuleSets) {
         this.allModuleSets = loadData.data.allModuleSets;
+        this.pageBreaks = Array.isArray(loadData.data.pageBreaks) ? loadData.data.pageBreaks.slice() : [];
+        this.sanitizePageBreaks();
         
         // 從讀取的資料還原設定（如果有）
         if (loadData.data.settings) {
@@ -1557,7 +1821,18 @@ export default {
           return;
         }
         
-        const result = await api.updateFlowchart(this.currentFileId, this.currentFilename, this.getCurrentData());
+        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
         
         if (result.success) {
           console.log('File updated successfully before loading new file');
@@ -1604,7 +1879,10 @@ export default {
 
       this.showConfirmPopup(`確定要刪除檔案「${file.project_name}」嗎？`, async () => {
         try {
-          const result = await api.deleteFlowchart(file.id);
+          const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`, {
+            method: 'DELETE'
+          });
+          const result = await response.json();
           
           if (result.success) {
             // 重新載入檔案列表
@@ -1632,7 +1910,18 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const result = await api.updateFlowchart(this.currentFileId, this.currentFilename, this.getCurrentData());
+        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
         
         if (result.success) {
           console.log('File updated successfully');
@@ -1684,7 +1973,8 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const result = await api.getFlowchart(this.currentFileId);
+        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`);
+        const result = await response.json();
         
         if (result.success && result.data) {
           this.lastSavedAt = result.data.updated_at || null;
@@ -1702,7 +1992,8 @@ export default {
     async replaceExistingFile(project_name, data) {
       try {
         // 首先獲取所有檔案，找到同名檔案
-        const result = await api.getAllFlowcharts();
+        const response = await fetch('http://localhost:3001/api/flowcharts');
+        const result = await response.json();
         
         if (!result.success) {
           throw new Error('無法獲取檔案列表');
@@ -1731,7 +2022,18 @@ export default {
         }
         
         // 更新該檔案
-        const updateResult = await api.updateFlowchart(existingFile.id, project_name, data);
+        const updateResponse = await fetch(`http://localhost:3001/api/flowcharts/${existingFile.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name,
+            data
+          })
+        });
+        
+        const updateResult = await updateResponse.json();
         
         if (updateResult.success) {
           this.currentFilename = project_name;
@@ -1804,7 +2106,8 @@ export default {
     getCurrentData() {
       return {
         allModuleSets: this.allModuleSets,
-        settings: this.settings
+        settings: this.settings,
+        pageBreaks: this.pageBreaks
       };
     },
 
@@ -1981,6 +2284,448 @@ export default {
           closeOnOverlay: true
         });
       }
+    },
+
+    /**
+     * 导出單線圖 Excel（使用圖框對應表.xlsx模板）
+     */
+    async handleExportFlowchart() {
+      // 檢查是否有單線圖資料
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      // 验证必填字段
+      if (!this.settings.machineName || !this.settings.machineName.trim()) {
+        this.showPopup({
+          title: '',
+          message: '請在設定中填寫機台名稱（必填）',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      if (!this.settings.locationId || !this.settings.locationId.trim()) {
+        this.showPopup({
+          title: '',
+          message: '請在設定中填寫Location ID（必填）',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      if (!this.settings.engineerContact || !this.settings.engineerContact.trim()) {
+        this.showPopup({
+          title: '',
+          message: '請在設定中填寫工程師聯絡資訊（必填）',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      if (!this.settings.surveySupervisor || !this.settings.surveySupervisor.trim()) {
+        this.showPopup({
+          title: '',
+          message: '請在設定中填寫會勘監工（必填）',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      if (!this.settings.surveyDate || !this.settings.surveyDate.trim()) {
+        this.showPopup({
+          title: '',
+          message: '請在設定中填寫會勘日期（必填）',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      const validationResult = this.validateRequiredFields();
+      if (!validationResult.isValid) {
+        this.showPopup({
+          title: '',
+          message: validationResult.message,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      try {
+        // 加载圖框對應表.xlsx模板
+        const templatePath = `/assets/export/圖框對應表.xlsx`;
+        const response = await fetch(templatePath);
+        
+        if (!response.ok) {
+          throw new Error(`無法載入模板文件: 圖框對應表.xlsx (HTTP ${response.status})`);
+        }
+
+        // 使用 ExcelJS 加载模板（保留格式）
+        const arrayBuffer = await response.arrayBuffer();
+        
+        if (!arrayBuffer || arrayBuffer.byteLength === 0) {
+          throw new Error('模板文件為空或無法讀取');
+        }
+
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.load(arrayBuffer);
+        
+        const worksheet = workbook.getWorksheet('工作表1');
+        
+        if (!worksheet) {
+          throw new Error('無法找到工作表: 工作表1');
+        }
+
+        // 設定列印頁面參數（約 2mm 邊界）
+        const marginInches = 0.08;
+        worksheet.pageSetup.margins = {
+          left: marginInches,
+          right: marginInches,
+          top: marginInches,
+          bottom: marginInches,
+          header: marginInches,
+          footer: marginInches
+        };
+        worksheet.pageSetup.paperSize = 9; // A4
+        worksheet.pageSetup.orientation = 'portrait';
+        worksheet.pageSetup.fitToPage = true;
+        worksheet.pageSetup.fitToWidth = 1;
+        worksheet.pageSetup.fitToHeight = 1;
+        worksheet.pageSetup.horizontalCentered = false;
+        worksheet.pageSetup.verticalCentered = false;
+        worksheet.pageSetup.printArea = 'A1:L60';
+
+        // 填充数据到对应位置（值放在"選填"或"必填"说明所在的单元格）
+        // 第3行 F3:G3 合并单元格 - 公司名称（保留原值）
+        
+        // 第47行：機台名稱 - 值放在 F47（"必填，50字元"所在的合并单元格 F47:L47）
+        this.setCellValuePreserveStyle(worksheet, 'F47', " " + this.settings.machineName || '');
+        
+        // 第48行：Location ID - 值放在 F48（"必填，50字元"所在的合并单元格 F48:L48）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'F48',
+          this.settings.locationId ? ` ${this.settings.locationId}` : ''
+        );
+        
+        // 第49行：CODE - 值放在 F49（"選填，50字元"所在的合并单元格 F49:L49）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'F49',
+          this.settings.code ? ` ${this.settings.code}` : ''
+        );
+        
+        // 第50行：客戶 - 值放在 B50（"選填，20字元"所在的合并单元格 B50:C50）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'B50',
+          this.settings.customer ? ` ${this.settings.customer}` : ''
+        );
+        
+        // 第50行：工程師聯絡資訊 - 值放在 F50（"必填，50字元"所在的合并单元格 F50:L50）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'F50',
+          this.settings.engineerContact ? ` ${this.settings.engineerContact}` : ''
+        );
+        
+        // 第51行：廠區資訊 - 值放在 B51（"選填，20字元"所在的合并单元格 B51:C51）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'B51',
+          this.settings.vendorInfo ? ` ${this.settings.vendorInfo}` : ''
+        );
+        
+        // 第51行：施工廠商 - 值放在 F51（"選填，50字元"所在的合并单元格 F51:L51）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'F51',
+          this.settings.constructionVendor ? ` ${this.settings.constructionVendor}` : ''
+        );
+        
+        // 第52行：會勘監工 - 值放在 B52（"必填，20字元"所在的合并单元格 B52:C52）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'B52',
+          this.settings.surveySupervisor ? ` ${this.settings.surveySupervisor}` : ''
+        );
+        
+        // 第52行：備註資訊 - 值放在 F52（"選填，約100字元"所在的合并单元格 F52:L53）
+        this.setCellValuePreserveStyle(
+          worksheet,
+          'F52',
+          this.settings.notes ? ` ${this.settings.notes}` : ''
+        );
+        
+        // 第53行：會勘日期 - 值放在 B53（"必填，20字元"所在的合并单元格 B53:C53）
+        // 将日期格式转换为 YYYY/MM/DD 格式
+        let formattedDate = '';
+        if (this.settings.surveyDate) {
+          const date = new Date(this.settings.surveyDate);
+          if (!isNaN(date.getTime())) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            formattedDate = `${year}/${month}/${day}`;
+          } else {
+            formattedDate = this.settings.surveyDate;
+          }
+        }
+        this.setCellValuePreserveStyle(worksheet, 'B53', formattedDate || '');
+
+        // 生成文件名
+        const filename = this.currentFilename || '新檔案';
+        const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const exportBaseName = `${filename}_單線圖_${timestamp}`;
+
+        const flowchartImages = renderFlowchartPages(this.allModuleSets, this.pageBreaks, {
+          settings: this.settings
+        });
+
+        const pageCount = flowchartImages.length > 0 ? flowchartImages.length : 1;
+        worksheet.pageSetup.fitToHeight = pageCount;
+        const rowsPerPage = 60;
+        const imageTopRow = 3;
+        const imageBottomRow = 45;
+        const tableStartRow = 48;
+
+        if (pageCount > 1) {
+          const extraRows = (pageCount - 1) * rowsPerPage;
+          const blankRows = Array.from({ length: extraRows }, () => []);
+          worksheet.spliceRows(tableStartRow, 0, ...blankRows);
+          worksheet.pageSetup.printArea = `A1:L${60 + extraRows}`;
+        } else {
+          worksheet.pageSetup.printArea = 'A1:L60';
+        }
+
+        flowchartImages.forEach((imageDataUrl, index) => {
+          const base64Image = imageDataUrl.replace(/^data:image\/png;base64,/, '');
+          const imageId = workbook.addImage({
+            base64: base64Image,
+            extension: 'png'
+          });
+
+          const rowOffset = index * rowsPerPage;
+          worksheet.addImage(imageId, {
+            tl: { col: 0.1, row: imageTopRow + rowOffset },
+            br: { col: 11.1, row: imageBottomRow + rowOffset }
+          });
+
+          // 目前使用 fitToHeight=pageCount 控制，暫不設定 addRowBreak
+        });
+
+        if (flowchartImages.length === 0) {
+          worksheet.pageSetup.printArea = 'A1:L60';
+        }
+
+        // 產生 Excel Buffer，供後端轉換 PDF
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        // 顯示匯出中提示
+        this.showPopup({
+          title: '',
+          message: 'PDF 匯出中，請稍候...',
+          buttons: [],
+          showIcon: false,
+          closeOnOverlay: false
+        });
+
+        try {
+          await this.exportFlowchartPdf(buffer, exportBaseName);
+          this.closePopup();
+          this.showPopup({
+            title: '',
+            message: '單線圖 PDF 匯出成功！',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        } catch (pdfError) {
+          this.closePopup();
+          throw pdfError;
+        }
+      } catch (error) {
+        console.error('导出失败:', error);
+        this.showPopup({
+          title: '',
+          message: `导出失败: ${error.message}`,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      }
+    },
+
+    setCellValuePreserveStyle(worksheet, address, value) {
+      const cell = worksheet.getCell(address);
+      const clone = (obj) => (obj ? JSON.parse(JSON.stringify(obj)) : null);
+      const originalFont = clone(cell.font);
+      const originalAlignment = clone(cell.alignment);
+      const originalBorder = clone(cell.border);
+      const originalFill = clone(cell.fill);
+      const originalNumFmt = cell.numFmt;
+
+      cell.value = value;
+
+      if (originalFont) {
+        cell.font = {
+          ...originalFont,
+          name: originalFont.name || 'Microsoft JhengHei'
+        };
+      } else {
+        cell.font = {
+          name: 'Microsoft JhengHei'
+        };
+      }
+      if (originalAlignment) cell.alignment = originalAlignment;
+      if (originalBorder) cell.border = originalBorder;
+      if (originalFill) cell.fill = originalFill;
+      if (originalNumFmt) cell.numFmt = originalNumFmt;
+    },
+
+    arrayBufferToBase64(buffer) {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const chunkSize = 0x8000;
+
+      for (let i = 0; i < bytes.length; i += chunkSize) {
+        const chunk = bytes.subarray(i, i + chunkSize);
+        binary += String.fromCharCode(...chunk);
+      }
+
+      return btoa(binary);
+    },
+
+    async exportFlowchartPdf(buffer, exportFilename) {
+      const pdfBaseName = exportFilename
+        ? exportFilename.replace(/\.xlsx$/i, '')
+        : 'flowchart';
+      const excelBase64 = this.arrayBufferToBase64(buffer);
+
+      const response = await fetch('/api/export-flowchart/pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          fileName: pdfBaseName,
+          excelBase64
+        })
+      });
+
+      if (!response.ok) {
+        let errorMessage = `PDF 轉檔失敗 (HTTP ${response.status})`;
+        try {
+          const errorBody = await response.json();
+          if (errorBody && errorBody.error) {
+            errorMessage = errorBody.error;
+          }
+        } catch (parseError) {
+          // ignore parse error
+        }
+        throw new Error(errorMessage);
+      }
+
+      const pdfBlob = await response.blob();
+      const pdfUrl = window.URL.createObjectURL(pdfBlob);
+      const pdfLink = document.createElement('a');
+      pdfLink.href = pdfUrl;
+      pdfLink.download = `${pdfBaseName}.pdf`;
+      document.body.appendChild(pdfLink);
+      pdfLink.click();
+      document.body.removeChild(pdfLink);
+      window.URL.revokeObjectURL(pdfUrl);
     },
 
     /**
@@ -3157,7 +3902,18 @@ export default {
       console.log('儲存檔案:', this.currentFilename);
       
       try {
-        const result = await api.createFlowchart(this.currentFilename, this.getCurrentData());
+        const response = await fetch('http://localhost:3001/api/flowcharts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            project_name: this.currentFilename,
+            data: this.getCurrentData()
+          })
+        });
+        
+        const result = await response.json();
         
         if (result.success) {
           this.currentFileId = result.data.id;
@@ -3426,6 +4182,11 @@ export default {
               if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
                 group.additionalEquipmentCards.forEach(card => {
                   card.position.y += offsetY;
+                  
+                  // 更新額外設備的閥件位置
+                  if (card.valve) {
+                    card.valve.position.y += offsetY;
+                  }
                 });
               }
             });
@@ -3448,6 +4209,11 @@ export default {
                   if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
                     group.additionalEquipmentCards.forEach(card => {
                       card.position.y += offsetY;
+                      
+                      // 更新額外設備的閥件位置
+                      if (card.valve) {
+                        card.valve.position.y += offsetY;
+                      }
                     });
                   }
                 });
@@ -3704,6 +4470,13 @@ export default {
       const temp = this.allModuleSets[currentIndex];
       this.allModuleSets[currentIndex] = this.allModuleSets[targetIndex];
       this.allModuleSets[targetIndex] = temp;
+
+      this.pageBreaks = this.pageBreaks.map((index) => {
+        if (index === currentIndex) return targetIndex;
+        if (index === targetIndex) return currentIndex;
+        return index;
+      });
+      this.sanitizePageBreaks();
       
       // 將第一個模組移動到基準點
       const baseY = 74;
@@ -4423,6 +5196,7 @@ export default {
         if (moduleIndex !== -1) {
           this.allModuleSets.splice(moduleIndex, 1);
           console.log(`已刪除模組組，剩餘模組數量: ${this.allModuleSets.length}`);
+          this.adjustPageBreaksAfterRemoval(moduleIndex);
           
           // 更新所有模組組的位置（因為刪除模組後，後續模組位置會改變）
           this.updateAllModuleSetPositions();
@@ -4903,6 +5677,7 @@ export default {
       this.alignEquipmentCardsAndValvesX(currentModuleSet);
       
       console.log('已為分支添加 Panel+Equipment 群組:', newGroup);
+      this.updateAllModuleSetPositions();
     },
     
     /**
@@ -8860,6 +9635,31 @@ export default {
     },
     
     /**
+     * 取得指定分支模組在 valveCards 陣列中的分支閥件索引
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} branchModuleIndex - 分支模組索引
+     * @returns {number} 分支閥件在 valveCards 陣列中的索引，找不到則回傳 -1
+     */
+    findBranchValveCardIndex(moduleSet, branchModuleIndex) {
+      if (!moduleSet?.valveCards || moduleSet.valveCards.length === 0) {
+        return -1;
+      }
+      
+      let currentBranchIndex = 0;
+      for (let i = 0; i < moduleSet.valveCards.length; i++) {
+        const valveCard = moduleSet.valveCards[i];
+        if (valveCard.type === 'branch-valve') {
+          if (currentBranchIndex === branchModuleIndex) {
+            return i;
+          }
+          currentBranchIndex++;
+        }
+      }
+      
+      return -1;
+    },
+    
+    /**
      * 更新額外設備卡片的連接線位置
      * @param {Object} moduleSet - 模組組對象
      * @param {number} branchModuleIndex - 分支模組索引（如果是主分支則為 -1）
@@ -10411,27 +11211,34 @@ export default {
           );
           
           if (branchModuleIndex !== -1) {
-            // 刪除分支模組卡片
-            currentModuleSet.branchModuleCards.splice(branchModuleIndex, 1);
+            // 在刪除之前先找到對應的 valveCards 索引（用於後續更新連接線）
+            let branchValveIndex = this.findBranchValveCardIndex(currentModuleSet, branchModuleIndex);
             
-            // 如果valveCards中有對應的分支閥件，也刪除它
-            if (currentModuleSet?.valveCards?.length > 0) {
-              const branchValveIndex = currentModuleSet.valveCards.findIndex(valveCard => 
+            // fallback：若未找到索引，改以座標比對
+            if (branchValveIndex === -1 && currentModuleSet?.valveCards?.length > 0) {
+              branchValveIndex = currentModuleSet.valveCards.findIndex(valveCard => 
                 valveCard.type === 'branch-valve' &&
                 valveCard.position.x === valveData.position.x && 
                 valveCard.position.y === valveData.position.y
               );
-              
-              if (branchValveIndex !== -1) {
-                currentModuleSet.valveCards.splice(branchValveIndex, 1);
-              }
+            }
+
+            // 刪除分支模組卡片
+            currentModuleSet.branchModuleCards.splice(branchModuleIndex, 1);
+            
+            // 如果 valveCards 中有對應的分支閥件，也刪除它
+            if (branchValveIndex !== -1) {
+              currentModuleSet.valveCards.splice(branchValveIndex, 1);
             }
             
             // 刪除相關的連接線
-            this.removeBranchValveConnections(currentModuleSet, branchModuleIndex);
+            this.removeBranchValveConnections(currentModuleSet, branchModuleIndex, branchValveIndex);
             
             // 更新剩餘連接線的索引
-            this.updateConnectionIndices(currentModuleSet, branchModuleIndex);
+            this.updateConnectionIndices(currentModuleSet, branchModuleIndex, branchValveIndex);
+            
+            // 更新剩餘分支閥件位置（確保向上補位）
+            this.updateAllBranchValvePositions(currentModuleSet);
             
             // 更新所有模組組的位置（因為該模組組高度可能改變）
             this.updateAllModuleSetPositions();
@@ -10452,50 +11259,48 @@ export default {
      * 刪除分支閥件相關的連接線
      * @param {Object} moduleSet - 模組組對象
      * @param {number} branchModuleIndex - 分支模組索引
+     * @param {number} branchValveIndex - 分支閥件在 valveCards 中的索引
      */
-    removeBranchValveConnections(moduleSet, branchModuleIndex) {
+    removeBranchValveConnections(moduleSet, branchModuleIndex, branchValveIndex) {
       console.log('刪除分支閥件連接線');
       
-      // 刪除分支閥件的連接線（從源頭到分支閥件）
-      // 需要找到對應這個branchModuleIndex的連接線
-      const connectionsToRemove = [];
+      if (!moduleSet?.connections || moduleSet.connections.length === 0) {
+        return;
+      }
+      
+      const connectionsToRemove = new Set();
       
       moduleSet.connections.forEach((conn, index) => {
-        // 檢查是否是分支閥件連接線
-        if (conn.from === 'source' && conn.to === 'branch-valve') {
-          // 如果連接線的branchValveCardIndex對應這個branchModuleIndex
-          // branchValveCardIndex是valveCards中的索引，需要轉換為branchModuleCards索引
-          // 假設第一個閥件是普通閥件，之後都是分支閥件
-          // branchValveCardIndex = 1 對應 branchModuleIndex = 0
-          // branchValveCardIndex = 2 對應 branchModuleIndex = 1
-          if (conn.branchValveCardIndex !== undefined) {
-            const valveIndexInBranchModuleCards = conn.branchValveCardIndex - 1; // 減去第一個普通閥件
-            if (valveIndexInBranchModuleCards === branchModuleIndex) {
-              connectionsToRemove.push(index);
-            }
-          }
+        const isBranchValveConnection = conn.from === 'source' && conn.to === 'branch-valve';
+        
+        if (isBranchValveConnection &&
+            branchValveIndex !== -1 &&
+            conn.branchValveCardIndex !== undefined &&
+            conn.branchValveCardIndex === branchValveIndex) {
+          connectionsToRemove.add(index);
         }
         
-        // 檢查是否是分支模組內部的連接線
         if (conn.branchModuleIndex === branchModuleIndex) {
-          connectionsToRemove.push(index);
+          connectionsToRemove.add(index);
         }
       });
       
-      // 從後往前刪除，避免索引改變
-      connectionsToRemove.reverse().forEach(index => {
-        moduleSet.connections.splice(index, 1);
-      });
+      Array.from(connectionsToRemove)
+        .sort((a, b) => b - a)
+        .forEach(index => {
+          moduleSet.connections.splice(index, 1);
+        });
       
-      console.log(`已刪除 ${connectionsToRemove.length} 條分支閥件相關連接線`);
+      console.log(`已刪除 ${connectionsToRemove.size} 條分支閥件相關連接線`);
     },
     
     /**
      * 更新連接線索引
      * @param {Object} moduleSet - 模組組對象
      * @param {number} deletedBranchModuleIndex - 被刪除的分支模組索引
+     * @param {number} deletedBranchValveIndex - 被刪除的分支閥件在 valveCards 中的索引
      */
-    updateConnectionIndices(moduleSet, deletedBranchModuleIndex) {
+    updateConnectionIndices(moduleSet, deletedBranchModuleIndex, deletedBranchValveIndex) {
       console.log('更新連接線索引');
       
       // 更新所有分支模組相關連接線的索引
@@ -10505,8 +11310,9 @@ export default {
           conn.branchModuleIndex = conn.branchModuleIndex - 1;
         }
         
-        if (conn.branchValveCardIndex !== undefined && 
-            conn.branchValveCardIndex > deletedBranchModuleIndex + 1) {
+        if (deletedBranchValveIndex !== -1 &&
+            conn.branchValveCardIndex !== undefined && 
+            conn.branchValveCardIndex > deletedBranchValveIndex) {
           conn.branchValveCardIndex = conn.branchValveCardIndex - 1;
         }
       });
@@ -10985,3 +11791,89 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.canvas-content {
+  position: relative;
+}
+
+.page-break-indicator {
+  position: absolute;
+  height: 0;
+  border-top: 2px dashed #66d59f;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-break-label {
+  position: absolute;
+  top: -14px;
+  padding: 2px 12px;
+  background: #66d59f;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.page-break-delete {
+  position: absolute;
+  top: -14px;
+  right: -30px;
+  background: #66d59f;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(102, 213, 159, 0.35);
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.page-break-delete:hover {
+  background: #4bb782;
+  transform: scale(1.05);
+}
+
+.page-break-delete:active {
+  transform: scale(0.95);
+}
+
+.page-break-menu {
+  position: fixed;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+  padding: 8px 0;
+  z-index: 10000;
+  min-width: 220px;
+}
+
+.page-break-menu button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  color: #1f2937;
+}
+
+.page-break-menu button:hover {
+  background: #f3f4f6;
+}
+
+.page-break-menu button.remove {
+  color: #dc2626;
+}
+</style>
+

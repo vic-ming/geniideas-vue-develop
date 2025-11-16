@@ -109,7 +109,7 @@
           class="info-select" 
           :class="{ empty: cardData.backPipelineType === '' }" 
           v-model="cardData.backPipelineType"
-          @change="handleDataChange"
+          @change="handleBackPipelineTypeChange"
           :disabled="!cardData.enablePanel"
         >
           <option value="">請選擇管線類別</option>
@@ -196,6 +196,11 @@ export default {
       this.showMenu = !this.showMenu;
     },
     handleDataChange() {
+      // 处理其他字段的更新，不触发确认窗口
+      this.$emit('update-data', this.cardData);
+      this.$forceUpdate();
+    },
+    handleBackPipelineTypeChange() {
       // 如果是同步更新，直接更新数据，不触发确认窗口
       if (this.isSyncingFromSource) {
         this.previousBackPipelineType = this.cardData.backPipelineType;

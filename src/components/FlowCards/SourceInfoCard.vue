@@ -1,5 +1,10 @@
 <template>
-  <div class="source-info-card" :style="cardStyle" @mousedown.stop>
+  <div
+    class="source-info-card"
+    :style="cardStyle"
+    @mousedown.stop
+    @contextmenu.prevent="handleContextMenu"
+  >
     <div class="card-header">
       <div class="card-icon">
         <img src="@/assets/images/type-a.svg" alt="source-info" />
@@ -227,6 +232,13 @@ export default {
       this.$emit('move-module', {
         currentIndex: this.moduleIndex,
         direction: 'down'
+      });
+    },
+    handleContextMenu(event) {
+      this.$emit('show-page-break-menu', {
+        moduleIndex: this.moduleIndex,
+        x: event.clientX,
+        y: event.clientY
       });
     }
   }

@@ -1,13 +1,29 @@
 import express from 'express';
 import cors from 'cors';
+import fs from 'fs/promises';
+import path from 'path';
+import os from 'os';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+import { randomUUID } from 'crypto';
 import { stmt } from './db/database.js';
 
 const app = express();
 const PORT = 3001;
+const execFileAsync = promisify(execFile);
+
+const sanitizeFilename = (name = 'flowchart') => {
+  const raw = String(name).trim() || 'flowchart';
+  const fallback = raw.replace(/[\\/?%*:|"<>]/g, '_').replace(/[^\x20-\x7E]/g, '_');
+  return {
+    fallback: fallback || 'flowchart',
+    original: raw
+  };
+};
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '25mb' }));
 
 // ==================== API Routes ====================
 
@@ -112,6 +128,79 @@ app.delete('/api/flowcharts/:id', (req, res) => {
   } catch (error) {
     console.error('Error deleting flowchart:', error);
     res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// 轉換 Excel 為 PDF
+app.post('/api/export-flowchart/pdf', async (req, res) => {
+  let tempDir;
+  let excelPath;
+  let pdfPath;
+  const cleanupTasks = [];
+
+  try {
+    const { fileName = 'flowchart', excelBase64 } = req.body || {};
+
+    if (!excelBase64) {
+      return res.status(400).json({ success: false, error: '缺少 excelBase64' });
+    }
+
+    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'flowchart-'));
+    const fileId = randomUUID();
+    excelPath = path.join(tempDir, `${fileId}.xlsx`);
+    pdfPath = path.join(tempDir, `${fileId}.pdf`);
+    cleanupTasks.push(() => fs.rm(tempDir, { recursive: true, force: true }).catch(() => {}));
+
+    const base64Payload = excelBase64.includes(',')
+      ? excelBase64.split(',').pop()
+      : excelBase64;
+
+    const excelBuffer = Buffer.from(base64Payload, 'base64');
+    if (excelBuffer.length === 0) {
+      return res.status(400).json({ success: false, error: '收到的 Excel 檔案為空' });
+    }
+
+    await fs.writeFile(excelPath, excelBuffer);
+    cleanupTasks.push(() => fs.unlink(excelPath).catch(() => {}));
+
+    const sofficeBinary = process.env.LIBREOFFICE_BIN
+      ? process.env.LIBREOFFICE_BIN
+      : (process.platform === 'win32' ? 'soffice.exe' : 'soffice');
+
+    try {
+      await execFileAsync(sofficeBinary, [
+        '--headless',
+        '--nologo',
+        '--convert-to',
+        'pdf',
+        '--outdir',
+        tempDir,
+        excelPath
+      ]);
+    } catch (error) {
+      console.error('LibreOffice convert error:', error);
+      throw new Error('LibreOffice 轉檔失敗，請確認已安裝 LibreOffice 並可執行 soffice 指令');
+    }
+
+    cleanupTasks.push(() => fs.unlink(pdfPath).catch(() => {}));
+
+    const pdfBuffer = await fs.readFile(pdfPath);
+    const { fallback, original } = sanitizeFilename(fileName);
+    const encoded = encodeURIComponent(original);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="${fallback}.pdf"; filename*=UTF-8''${encoded}.pdf`
+    );
+    res.setHeader('Content-Length', pdfBuffer.length);
+
+    return res.status(200).send(pdfBuffer);
+  } catch (error) {
+    console.error('PDF export failed:', error);
+    return res.status(500).json({ success: false, error: error.message || 'PDF 轉檔失敗' });
+  } finally {
+    await Promise.allSettled(cleanupTasks.map((task) => task()));
   }
 });
 

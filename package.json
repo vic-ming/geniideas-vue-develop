@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "exceljs": "^4.4.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
     "vue": "^3.4.0",
     "vue-zoomable": "^1.2.8",
-    "xlsx": "^0.18.5",
-    "better-sqlite3": "^9.2.2"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.0",
