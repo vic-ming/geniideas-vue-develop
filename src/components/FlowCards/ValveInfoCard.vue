@@ -81,7 +81,7 @@
         </select>
       </div>
 
-      <div v-if="isPanelEquipmentValve" class="info-item">
+      <div v-if="isPanelEquipmentValve || (isBranchModule && !isPanelEquipmentValve)" class="info-item">
         <label class="info-label">後方管線類別<span class="required">*</span></label>
         <select 
           :key="`backPipelineType-${cardData.backPipelineType || ''}`"
@@ -94,8 +94,6 @@
           <option v-for="pipelineType in $constants.pipelineTypes" :key="pipelineType" :value="pipelineType">{{ pipelineType }}</option>
         </select>
       </div>
-
-      
     </div>
   </div>
 </template>
@@ -160,6 +158,12 @@ export default {
     if (this.isPanelEquipmentValve) {
       this.previousBackPipelineType = this.cardData.backPipelineType || this.panelBackPipelineType;
     }
+    if (this.isBranchModule && !this.isPanelEquipmentValve) {
+      if (!this.cardData.backPipelineType) {
+        this.cardData.backPipelineType = this.panelBackPipelineType || '單套管';
+      }
+      this.previousBackPipelineType = this.cardData.backPipelineType;
+    }
   },
   computed: {
     valveData() {
@@ -193,6 +197,11 @@ export default {
             this.$emit('update-data', this.cardData);
           });
         }
+        if (this.isBranchModule && !this.isPanelEquipmentValve && newVal && newVal !== oldVal) {
+          this.cardData.backPipelineType = newVal;
+          this.previousBackPipelineType = newVal;
+          this.$emit('update-data', this.cardData);
+        }
       },
       immediate: false
     }
@@ -204,9 +213,8 @@ export default {
       this.$forceUpdate();
     },
     handleBackPipelineTypeChange() {
-      // 专门处理"后方管线类别"变化
+      const isBranchValve = this.isBranchModule && !this.isPanelEquipmentValve;
       
-      // 如果是从 Panel 同步更新，直接更新数据，不触发确认窗口
       if (this.isSyncingFromPanel) {
         this.previousBackPipelineType = this.cardData.backPipelineType;
         this.$emit('update-data', this.cardData);
@@ -214,16 +222,13 @@ export default {
         return;
       }
 
-      // 只有当是设备阀件且后方管线类别有值且与 Panel 不同时才弹出确认窗口
-      if (this.isPanelEquipmentValve && 
-          this.panelBackPipelineType && 
-          this.cardData.backPipelineType && 
+      if ((this.isPanelEquipmentValve || isBranchValve) &&
+          this.panelBackPipelineType &&
+          this.cardData.backPipelineType &&
           this.cardData.backPipelineType !== '' &&
           this.cardData.backPipelineType !== this.panelBackPipelineType) {
-        // 保存之前的值
         const oldValue = this.previousBackPipelineType || this.panelBackPipelineType;
         this.previousBackPipelineType = this.cardData.backPipelineType;
-        // 发出事件，请求显示确认窗口
         this.$emit('back-pipeline-type-change', {
           newValue: this.cardData.backPipelineType,
           panelValue: this.panelBackPipelineType,
@@ -231,8 +236,7 @@ export default {
           cardData: { ...this.cardData }
         });
       } else {
-        // 相同或 Panel 为空，直接更新
-        this.previousBackPipelineType = this.cardData.backPipelineType;
+        this.previousBackPipelineType = this.cardData.backPipelineType || this.panelBackPipelineType;
         this.$emit('update-data', this.cardData);
         this.$forceUpdate();
       }

@@ -85,17 +85,105 @@ function drawValveSymbol(ctx, centerX, centerY, size, label) {
 
 function buildSourceLines(source = {}, settings = {}) {
   const lines = [];
-  if (settings.machineName) lines.push(`機台名稱：${settings.machineName}`);
-  if (settings.locationId) lines.push(`Location ID：${settings.locationId}`);
-  if (settings.customer) lines.push(`客戶：${settings.customer}`);
-  if (source.title) lines.push(source.title);
-  const pipelineLine = [source.pipelineType, source.gasType].filter(Boolean).join(' / ');
-  if (pipelineLine) lines.push(pipelineLine);
-  const valveLine = [source.valveNumber, source.sourceSize].filter(Boolean).join(' / ');
-  if (valveLine) lines.push(valveLine);
-  if (source.heatInsulation) lines.push('保溫加熱');
-  if (source.locationInfo) lines.push(source.locationInfo);
+
+  const machineName = settings.machineName ? String(settings.machineName).trim() : '';
+  const locationId = settings.locationId ? String(settings.locationId).trim() : '';
+  const customer = settings.customer ? String(settings.customer).trim() : '';
+
+  lines.push(`機台名稱：${machineName}`);
+  lines.push(`Location ID：${locationId}`);
+  lines.push(`客戶：${customer}`);
+
+  const pipelineParts = [];
+  if (source.pipelineType) pipelineParts.push(String(source.pipelineType).trim());
+  if (source.gasType) pipelineParts.push(String(source.gasType).trim());
+  if (source.heatInsulation) pipelineParts.push('保溫加熱');
+  if (pipelineParts.length) {
+    lines.push(pipelineParts.join(' / '));
+  }
+
+  const valveParts = [];
+  if (source.valveNumber) valveParts.push(String(source.valveNumber).trim());
+  if (source.sourceSize) valveParts.push(String(source.sourceSize).trim());
+  if (valveParts.length) {
+    lines.push(valveParts.join(' / '));
+  }
+
+  if (source.locationInfo) {
+    lines.push(String(source.locationInfo).trim());
+  }
+
   return lines;
+}
+
+function buildSourceCardBoxLines(source = {}) {
+  const lines = [];
+  const title = source.title ? String(source.title).trim() : '源頭資訊';
+  if (title) {
+    lines.push(title);
+  }
+
+  const pipelineParts = [];
+  if (source.pipelineType) pipelineParts.push(String(source.pipelineType).trim());
+  if (source.gasType) pipelineParts.push(String(source.gasType).trim());
+  if (source.doubleSleeveSize) pipelineParts.push(String(source.doubleSleeveSize).trim());
+  if (source.heatInsulation) pipelineParts.push('保溫加熱');
+  if (pipelineParts.length) {
+    lines.push(pipelineParts.join(' / '));
+  }
+
+  if (source.valveNumber) {
+    lines.push(String(source.valveNumber).trim());
+  }
+
+  const sizeConnectorParts = [];
+  if (source.sourceSize) sizeConnectorParts.push(String(source.sourceSize).trim());
+  if (source.connectorSpec) sizeConnectorParts.push(String(source.connectorSpec).trim());
+  if (sizeConnectorParts.length) {
+    lines.push(sizeConnectorParts.join(' / '));
+  }
+
+  if (source.locationInfo) {
+    lines.push(String(source.locationInfo).trim());
+  }
+
+  return lines.filter((line) => line && line.length);
+}
+
+function buildBranchSourceCardBoxLines(branchSource = {}, options = {}) {
+  const { index = 0 } = options;
+  const lines = [];
+  const defaultTitle = index === 0 ? '分支源頭資訊' : `分支源頭資訊 ${index + 1}`;
+  const title = branchSource.title ? String(branchSource.title).trim() : defaultTitle;
+  if (title) {
+    lines.push(title);
+  }
+
+  const pipelineParts = [];
+  if (branchSource.pipelineType) pipelineParts.push(String(branchSource.pipelineType).trim());
+  if (branchSource.gasType) pipelineParts.push(String(branchSource.gasType).trim());
+  if (branchSource.doubleSleeveSize) pipelineParts.push(String(branchSource.doubleSleeveSize).trim());
+  if (branchSource.heatInsulation) pipelineParts.push('保溫加熱');
+  if (pipelineParts.length) {
+    lines.push(pipelineParts.join(' / '));
+  }
+
+  if (branchSource.valveNumber) {
+    lines.push(String(branchSource.valveNumber).trim());
+  }
+
+  const sizeConnectorParts = [];
+  if (branchSource.sourceSize) sizeConnectorParts.push(String(branchSource.sourceSize).trim());
+  if (branchSource.connectorSpec) sizeConnectorParts.push(String(branchSource.connectorSpec).trim());
+  if (sizeConnectorParts.length) {
+    lines.push(sizeConnectorParts.join(' / '));
+  }
+
+  if (branchSource.locationInfo) {
+    lines.push(String(branchSource.locationInfo).trim());
+  }
+
+  return lines.filter((line) => line && line.length);
 }
 
 function buildPipelineLabel(pipeline = {}, floor = {}) {
@@ -173,6 +261,7 @@ function drawModule(ctx, moduleSet, options) {
   const pipeline = moduleSet?.pipeline?.data || {};
   const floor = moduleSet?.floor?.data || {};
   const valves = moduleSet?.valveCards || [];
+  const branchSourceCards = moduleSet?.branchSourceCards || [];
   const panelEquipmentGroups = moduleSet?.panelEquipmentGroups || [];
 
   const sourceX = margin;
@@ -223,6 +312,26 @@ function drawModule(ctx, moduleSet, options) {
     ctx.fillText(pipelineLabel, textX, mainLineY - 28);
   }
 
+  const boxEntries = [];
+
+  const sourceBoxLines = buildSourceCardBoxLines(source);
+  if (sourceBoxLines.length) {
+    boxEntries.push({
+      type: 'source',
+      lines: sourceBoxLines
+    });
+  }
+
+  branchSourceCards.forEach((branchCard, branchIndex) => {
+    const branchLines = buildBranchSourceCardBoxLines(branchCard?.data || {}, { index: branchIndex });
+    if (branchLines.length) {
+      boxEntries.push({
+        type: 'branch',
+        lines: branchLines
+      });
+    }
+  });
+
   // Build equipment rows
   const equipmentRows = [];
 
@@ -251,8 +360,24 @@ function drawModule(ctx, moduleSet, options) {
     });
   }
 
-  equipmentRows.forEach((row, index) => {
-    const lines = buildEquipmentLines(row.equipment, row.panel, { index });
+  let equipmentIndex = 0;
+  equipmentRows.forEach((row) => {
+    const lines = buildEquipmentLines(row.equipment, row.panel, { index: equipmentIndex });
+    boxEntries.push({
+      type: 'equipment',
+      lines: lines.length ? lines : ['']
+    });
+    equipmentIndex += 1;
+  });
+
+  if (boxEntries.length === 0) {
+    boxEntries.push({
+      type: 'placeholder',
+      lines: ['']
+    });
+  }
+
+  boxEntries.forEach((entry, index) => {
     drawEquipmentBranch(ctx, {
       branchIndex: index,
       mainLineY,
@@ -261,7 +386,7 @@ function drawModule(ctx, moduleSet, options) {
       boxWidth: BOX_WIDTH,
       boxHeight: BOX_HEIGHT,
       branchSpacing: BRANCH_SPACING,
-      lines
+      lines: entry.lines
     });
   });
 }
