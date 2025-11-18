@@ -11,15 +11,15 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // 设置超时（Vercel serverless functions 默认 10 秒，我们设置 8 秒安全边界）
+  // 设置超时（已增加 maxDuration 到 30 秒，这里设置 25 秒安全边界）
   const timeout = setTimeout(() => {
     if (!res.headersSent) {
       res.status(504).json({ 
         success: false, 
-        error: 'Request timeout. Database connection may be slow.' 
+        error: 'Request timeout. Please check Vercel function logs for details.' 
       });
     }
-  }, 8000);
+  }, 25000);
 
   try {
     console.log(`[${req.method}] /api/flowcharts - Starting...`);

@@ -10,12 +10,12 @@ function getClient() {
     return client;
   }
 
-  // 检查环境变量
-  const postgresUrl = process.env.POSTGRES_URL || 
-                      process.env.POSTGRES_PRISMA_URL || 
-                      process.env.POSTGRES_URL_NON_POOLING ||
-                      process.env.STORAGE_URL ||  // 如果使用 STORAGE 前缀
-                      process.env.DATABASE_URL;   // 通用数据库 URL
+  // 检查环境变量（优先使用池化连接字符串，速度更快）
+  const postgresUrl = process.env.POSTGRES_PRISMA_URL ||  // 池化连接（推荐）
+                      process.env.POSTGRES_URL ||          // 标准连接
+                      process.env.STORAGE_URL ||            // 如果使用 STORAGE 前缀
+                      process.env.POSTGRES_URL_NON_POOLING || // 非池化连接（较慢）
+                      process.env.DATABASE_URL;            // 通用数据库 URL
   
   if (!postgresUrl) {
     throw new Error(
@@ -33,10 +33,12 @@ function getClient() {
   }
 
   // 使用 createClient() 创建客户端
+  // 注意：@vercel/postgres 会自动处理连接池
   client = createClient({
     connectionString: postgresUrl
   });
   
+  console.log('🔌 Database client created');
   return client;
 }
 
@@ -46,10 +48,29 @@ let initialized = false;
 async function ensureInitialized() {
   if (initialized) return;
   
+  const startTime = Date.now();
   const client = getClient();
   
   try {
     console.log('🔄 Starting database initialization...');
+    
+    // 先快速检查表是否存在（避免长时间等待）
+    try {
+      const checkResult = await client.sql`
+        SELECT EXISTS (
+          SELECT FROM information_schema.tables 
+          WHERE table_name = 'flowcharts'
+        );
+      `;
+      
+      if (checkResult.rows[0]?.exists) {
+        initialized = true;
+        console.log('✅ Table already exists, skipping initialization');
+        return;
+      }
+    } catch (checkError) {
+      console.warn('⚠️ Table check failed, proceeding with creation:', checkError.message);
+    }
     
     // 只创建表，不创建触发器和函数（简化初始化，提高速度）
     // updated_at 会在 UPDATE 语句中手动更新
@@ -65,31 +86,35 @@ async function ensureInitialized() {
     
     console.log('✅ Table created');
     
-    // 创建索引（使用并发创建，如果支持）
-    try {
-      await client.sql`
-        CREATE INDEX IF NOT EXISTS idx_flowcharts_updated_at 
-        ON flowcharts(updated_at DESC);
-      `;
-      
-      await client.sql`
-        CREATE INDEX IF NOT EXISTS idx_flowcharts_project_name 
-        ON flowcharts(project_name);
-      `;
-      
-      console.log('✅ Indexes created');
-    } catch (indexError) {
-      // 索引创建失败不影响主要功能
-      console.warn('⚠️ Index creation warning:', indexError.message);
-    }
+    // 索引创建改为异步，不阻塞主要流程
+    // 使用 setImmediate 让主流程先完成
+    setImmediate(async () => {
+      try {
+        await client.sql`
+          CREATE INDEX IF NOT EXISTS idx_flowcharts_updated_at 
+          ON flowcharts(updated_at DESC);
+        `;
+        
+        await client.sql`
+          CREATE INDEX IF NOT EXISTS idx_flowcharts_project_name 
+          ON flowcharts(project_name);
+        `;
+        
+        console.log('✅ Indexes created');
+      } catch (indexError) {
+        // 索引创建失败不影响主要功能
+        console.warn('⚠️ Index creation warning:', indexError.message);
+      }
+    });
     
     initialized = true;
-    console.log('✅ Database initialized successfully');
+    const duration = Date.now() - startTime;
+    console.log(`✅ Database initialized successfully (${duration}ms)`);
   } catch (error) {
     // 如果表已存在，忽略错误
     if (error.message.includes('already exists') || 
         error.message.includes('duplicate') ||
-        error.message.includes('relation') && error.message.includes('already exists')) {
+        (error.message.includes('relation') && error.message.includes('already exists'))) {
       initialized = true;
       console.log('✅ Database already initialized');
       return;
