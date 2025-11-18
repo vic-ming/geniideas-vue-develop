@@ -1,4 +1,6 @@
-import { getStatements } from '../db-utils.js';
+// 备用路由处理：如果 [id].js 不工作，可以使用这个文件
+// 需要在 vercel.json 中配置路由重写
+import { getStatements } from './db-utils.js';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -11,70 +13,37 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Vercel 的动态路由参数在 req.query 中，参数名就是文件名中方括号内的名称
-    // 对于 [id].js，参数应该是 req.query.id
-    let id = req.query.id;
-    
-    // 调试日志（生产环境可以移除）
+    // 从 URL 路径中解析 id
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const pathParts = url.pathname.split('/');
+    const idIndex = pathParts.indexOf('flowcharts') + 1;
+    const id = pathParts[idIndex];
+
     console.log('Request URL:', req.url);
-    console.log('Request query:', req.query);
+    console.log('Path parts:', pathParts);
     console.log('Extracted id:', id);
-    
-    // 如果 query 中没有 id，尝试从 URL 路径解析
-    if (!id && req.url) {
-      const match = req.url.match(/\/flowcharts\/(\d+)/);
-      if (match) {
-        id = match[1];
-        console.log('Extracted id from URL:', id);
-      }
-    }
-    
-    // 如果还是没有 id，返回错误
+
     if (!id) {
-      console.error('Missing id parameter. URL:', req.url, 'Query:', req.query);
       return res.status(400).json({ 
         success: false, 
         error: 'Missing id parameter',
         debug: {
           url: req.url,
-          query: req.query
+          pathname: url.pathname,
+          pathParts: pathParts
         }
       });
     }
-    
-    // 确保 ID 是数字类型（SQLite INTEGER）
-    const numericId = parseInt(id, 10);
-    if (isNaN(numericId)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid id parameter. Must be a number.' 
-      });
-    }
 
-    console.log('Querying database with id:', numericId, '(type:', typeof numericId, ')');
-    
     const stmt = getStatements();
 
     if (req.method === 'GET') {
-      // 获取单个流程图
-      const flowchart = stmt.getById.get(numericId);
-      
-      console.log('Query result:', flowchart ? 'Found' : 'Not found');
+      const flowchart = stmt.getById.get(id);
 
       if (!flowchart) {
-        // 添加调试信息：列出所有记录的 ID
-        const allFlowcharts = stmt.getAll.all();
-        const allIds = allFlowcharts.map(f => f.id);
-        console.log('Available flowchart IDs:', allIds);
-        
         return res.status(404).json({ 
           success: false, 
-          error: 'Flowchart not found',
-          debug: {
-            requestedId: numericId,
-            availableIds: allIds,
-            totalCount: allFlowcharts.length
-          }
+          error: 'Flowchart not found' 
         });
       }
 
@@ -82,7 +51,6 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-      // 更新流程图
       const { project_name, data } = req.body;
 
       if (!project_name || !data) {
@@ -93,7 +61,7 @@ export default async function handler(req, res) {
       }
 
       try {
-        const result = stmt.update.run(project_name, JSON.stringify(data), numericId);
+        const result = stmt.update.run(project_name, JSON.stringify(data), id);
 
         if (result.changes === 0) {
           return res.status(404).json({ 
@@ -118,8 +86,7 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'DELETE') {
-      // 删除流程图
-      const result = stmt.delete.run(numericId);
+      const result = stmt.delete.run(id);
 
       if (result.changes === 0) {
         return res.status(404).json({ 
