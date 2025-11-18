@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>流程图测试 - Flowchart Renderer Test</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 2400px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #result {
+      margin-top: 30px;
+      text-align: center;
+    }
+    #result img {
+      border: 1px solid #ddd;
+      max-width: 100%;
+      height: auto;
+    }
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>流程图渲染测试</h1>
+    <div class="info">
+      <strong>说明：</strong>这个测试页面会渲染一个和参考图片一模一样的流程图（垂直分支布局）
+    </div>
+    <div id="result">
+      <p>正在生成流程图...</p>
+    </div>
+  </div>
+
+  <script type="module">
+    // Constants - adjusted for vertical branch layout
+    const DEFAULT_CANVAS_WIDTH = 2200;
+    const DEFAULT_CANVAS_HEIGHT = 1600;
+    const SOURCE_BLOCK_WIDTH = 320;
+    const SOURCE_BLOCK_HEIGHT = 160;
+    const VALVE_SPACING = 80;
+    const VALVE_SIZE = 60;
+    const VERTICAL_LINE_LENGTH = 600;
+    const BRANCH_SPACING = 230;
+    const BOX_WIDTH = 220;
+    const BOX_HEIGHT = 100;
+    const CHILLER_BOX_WIDTH = 300;  // Further reduced for equipment cards
+
+    const FONT_PRIMARY = '24px "Microsoft JhengHei", "微軟正黑體", Arial';
+    const FONT_SECONDARY = '22px "Microsoft JhengHei", "微軟正黑體", Arial';
+    const FONT_SMALL = '20px "Microsoft JhengHei", "微軟正黑體", Arial';
+    const FONT_SMALL_ROTATED = '16px "Microsoft JhengHei", "微軟正黑體", Arial';
+
+    function drawTextBlock(ctx, lines, x, y, options = {}) {
+      if (!lines || lines.length === 0) return;
+      const {
+        font = FONT_PRIMARY,
+        color = '#1f1f1f',
+        lineHeight = 28,
+        align = 'left'
+      } = options;
+
+      ctx.fillStyle = color;
+      ctx.font = font;
+      ctx.textAlign = align;
+      
+      lines.forEach((line, index) => {
+        const text = line ?? '';
+        if (!text) return;
+        const drawY = y + index * lineHeight;
+        ctx.fillText(text, x, drawY);
+      });
+      
+      ctx.textAlign = 'left';
+    }
+
+    function drawValveSymbol(ctx, centerX, centerY, size, label, verticalLabel, isVertical = false) {
+      const half = size / 2;
+      const height = isVertical ? size * 0.85 : size * 0.7;  // Horizontal valve has lower triangle height
+      
+      if (isVertical) {
+        // Draw vertical valve (rotated 90 degrees) - narrower width
+        const narrowWidth = half * 0.6;  // Make it narrower
+        
+        // Top triangle (pointing down)
+        ctx.beginPath();
+        ctx.moveTo(centerX - narrowWidth, centerY - height / 2);
+        ctx.lineTo(centerX, centerY);
+        ctx.lineTo(centerX + narrowWidth, centerY - height / 2);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Bottom triangle (pointing up)
+        ctx.beginPath();
+        ctx.moveTo(centerX - narrowWidth, centerY + height / 2);
+        ctx.lineTo(centerX, centerY);
+        ctx.lineTo(centerX + narrowWidth, centerY + height / 2);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw X inside the valve (cross lines)
+        ctx.beginPath();
+        ctx.moveTo(centerX - narrowWidth + 4, centerY - height / 2 + 5);
+        ctx.lineTo(centerX + narrowWidth - 4, centerY + height / 2 - 5);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX + narrowWidth - 4, centerY - height / 2 + 5);
+        ctx.lineTo(centerX - narrowWidth + 4, centerY + height / 2 - 5);
+        ctx.stroke();
+        
+        // Draw horizontal T shape on the left side of vertical valve
+        const tWidth = 15;
+        const tHeight = narrowWidth * 2;
+        const tLeftX = centerX - narrowWidth - tWidth - 5;
+        
+        // Vertical bar of T (for horizontal T, this is the main line)
+        ctx.beginPath();
+        ctx.moveTo(tLeftX + 19, centerY - tHeight / 2 + 3);
+        ctx.lineTo(tLeftX + 19, centerY + tHeight / 2 - 3);
+        ctx.stroke();
+        
+        // Horizontal bar of T (perpendicular line)
+        ctx.beginPath();
+        ctx.moveTo(tLeftX + 19, centerY );
+        ctx.lineTo(tLeftX + tWidth + 22, centerY);
+        ctx.stroke();
+      } else {
+        // Draw horizontal valve (original orientation)
+        ctx.beginPath();
+        ctx.moveTo(centerX - half, centerY - height / 2);
+        ctx.lineTo(centerX, centerY);
+        ctx.lineTo(centerX - half, centerY + height / 2);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(centerX + half, centerY - height / 2);
+        ctx.lineTo(centerX, centerY);
+        ctx.lineTo(centerX + half, centerY + height / 2);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw X inside the valve (cross lines)
+        ctx.beginPath();
+        ctx.moveTo(centerX - half + 5, centerY - height / 2 + 5);
+        ctx.lineTo(centerX + half - 5, centerY + height / 2 - 5);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX + half - 5, centerY - height / 2 + 5);
+        ctx.lineTo(centerX - half + 5, centerY + height / 2 - 5);
+        ctx.stroke();
+
+        // Draw T shape on top of horizontal valve (similar to check valve)
+        const tWidth = size * 0.7;
+        const tHeight = 15;
+        const tTopY = centerY - height / 2 - tHeight;
+        
+        // Horizontal bar of T (the top horizontal line)
+        ctx.beginPath();
+        ctx.moveTo(centerX - tWidth / 2, tTopY + 13);
+        ctx.lineTo(centerX + tWidth / 2, tTopY + 13);
+        ctx.stroke();
+        
+        // Vertical bar of T (the vertical line from top down to horizontal bar)
+        // Starts from above (tTopY + 30) and connects to horizontal bar (tTopY + tHeight - 5)
+        ctx.beginPath();
+        ctx.moveTo(centerX, tTopY + 32);
+        ctx.lineTo(centerX, tTopY + tHeight + 1);
+        ctx.stroke();
+
+        // Label below valve (similar to check valve)
+        if (label) {
+          ctx.font = FONT_SMALL;
+          ctx.fillStyle = '#1f1f1f';
+          ctx.textAlign = 'center';
+          ctx.fillText(label, centerX, centerY + height / 2 + 18);
+          ctx.textAlign = 'left';
+        }
+      }
+      
+      // Vertical label next to the vertical line (will be drawn later)
+      return { centerX, centerY, height, verticalLabel };
+    }
+
+    function drawCheckValve(ctx, centerX, centerY, size, label) {
+      const width = size;
+      const height = size * 0.7;  // Lower triangle height for horizontal valve
+      
+      // Draw butterfly valve (two triangles facing each other) instead of single triangle
+      // Left triangle (pointing right)
+      ctx.beginPath();
+      ctx.moveTo(centerX - width / 2, centerY - height / 2);
+      ctx.lineTo(centerX, centerY);
+      ctx.lineTo(centerX - width / 2, centerY + height / 2);
+      ctx.closePath();
+      ctx.stroke();
+      
+      // Right triangle (pointing left)
+      ctx.beginPath();
+      ctx.moveTo(centerX + width / 2, centerY - height / 2);
+      ctx.lineTo(centerX, centerY);
+      ctx.lineTo(centerX + width / 2, centerY + height / 2);
+      ctx.closePath();
+      ctx.stroke();
+      
+      // Draw X inside the butterfly valve
+      ctx.beginPath();
+      ctx.moveTo(centerX - width / 2 + 5, centerY - height / 2 + 5);
+      ctx.lineTo(centerX + width / 2 - 5, centerY + height / 2 - 5);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(centerX + width / 2 - 5, centerY - height / 2 + 5);
+      ctx.lineTo(centerX - width / 2 + 5, centerY + height / 2 - 5);
+      ctx.stroke();
+      
+      // Vertical line on the right side
+      ctx.beginPath();
+      ctx.moveTo(centerX + width / 2, centerY - height / 2 - 2);
+      ctx.lineTo(centerX + width / 2, centerY + height / 2 + 2);
+      ctx.stroke();
+      
+      // Draw T shape on top of butterfly valve
+      const tWidth = width * 0.7;
+      const tHeight = 15;
+      const tTopY = centerY - height / 2 - tHeight;
+      
+      // Horizontal bar of T
+      ctx.beginPath();
+      ctx.moveTo(centerX - tWidth / 2, tTopY + 13);
+      ctx.lineTo(centerX + tWidth / 2, tTopY + 13);
+      ctx.stroke();
+      
+      // Vertical bar of T
+      ctx.beginPath();
+      ctx.moveTo(centerX, tTopY + 33);
+      ctx.lineTo(centerX, tTopY + tHeight + 1);
+      ctx.stroke();
+
+      // Label below butterfly valve
+      if (label) {
+        ctx.font = FONT_SMALL;
+        ctx.fillStyle = '#1f1f1f';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, centerX, centerY + height / 2 + 18);
+        ctx.textAlign = 'left';
+      }
+    }
+
+    function renderFlowchart(data) {
+      const canvas = document.createElement('canvas');
+      canvas.width = DEFAULT_CANVAS_WIDTH;
+      canvas.height = DEFAULT_CANVAS_HEIGHT;
+
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#1f1f1f';
+      ctx.lineWidth = 3;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+
+      const margin = 40;
+      
+      // Draw source block
+      const sourceX = margin;
+      const sourceY = margin;
+      
+      ctx.strokeRect(sourceX, sourceY, SOURCE_BLOCK_WIDTH, SOURCE_BLOCK_HEIGHT);
+      
+      // Calculate text position for vertical centering
+      const lineHeight = 30;
+      const numLines = data.sourceLines.length;
+      const totalTextHeight = numLines * lineHeight;
+      // Center the text block vertically: (block height - text height) / 2 + first line offset
+      const textStartY = sourceY + (SOURCE_BLOCK_HEIGHT - totalTextHeight) / 2 + lineHeight - 5;
+      
+      drawTextBlock(ctx, data.sourceLines, sourceX + 15, textStartY, {
+        font: FONT_PRIMARY,
+        lineHeight: lineHeight
+      });
+
+      // Starting point after source block
+      let currentX = sourceX + SOURCE_BLOCK_WIDTH;
+      const mainY = sourceY + SOURCE_BLOCK_HEIGHT / 2;
+
+      // Draw horizontal line to valves
+      const valveStartX = currentX + 30;
+      ctx.beginPath();
+      ctx.moveTo(currentX, mainY);
+      ctx.lineTo(valveStartX, mainY);
+      ctx.stroke();
+
+      // Draw main horizontal line first
+      const mainLineEndX = valveStartX + VALVE_SPACING * 4;
+      ctx.beginPath();
+      ctx.moveTo(valveStartX, mainY);
+      ctx.lineTo(mainLineEndX, mainY);
+      ctx.stroke();
+      
+      // Draw 4 valves hanging from the main line
+      const valveSizes = ['3/4"', '3/4"', '3/4"', '3/4"'];
+      const valveLabels = ['1/2"', '1/2"', '1/4"', '1/2"'];
+      const valveBottomPositions = [];  // Store bottom positions for branch connections
+      
+      valveSizes.forEach((sizeLabel, index) => {
+        const valveCenterX = valveStartX + VALVE_SPACING * index + VALVE_SPACING / 2;
+        
+        // Draw vertical line from main line down to valve (increased distance)
+        const topVertLineLength = 80;  // Increased from 30 to 50
+        const valveTopY = mainY + topVertLineLength;
+        
+        ctx.beginPath();
+        ctx.moveTo(valveCenterX, mainY);
+        ctx.lineTo(valveCenterX, valveTopY);
+        ctx.stroke();
+        
+        // Size label above main line
+        ctx.font = FONT_SMALL;
+        ctx.fillStyle = '#1f1f1f';
+        ctx.textAlign = 'center';
+        ctx.fillText(sizeLabel, valveCenterX, mainY - 8);
+        ctx.textAlign = 'left';
+        
+        // Pipe size label next to top vertical line (rotated -90 degrees)
+        ctx.font = FONT_SMALL;
+        ctx.fillStyle = '#1f1f1f';
+        ctx.textAlign = 'center';
+        ctx.save();
+        ctx.translate(valveCenterX + 25, mainY + topVertLineLength / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText(valveLabels[index], 0, 0);
+        ctx.restore();
+        ctx.textAlign = 'left';
+        
+        // Draw valve symbol at the end of vertical line (vertical orientation)
+        const valveCenterY = valveTopY + VALVE_SIZE / 2 + 5;
+        drawValveSymbol(ctx, valveCenterX, valveCenterY, VALVE_SIZE, null, valveLabels[index], true);
+        
+        // Add label to the right of the valve (rotated -90 degrees)
+        ctx.font = FONT_SMALL_ROTATED;
+        ctx.fillStyle = '#1f1f1f';
+        ctx.textAlign = 'center';
+        ctx.save();
+        ctx.translate(valveCenterX + VALVE_SIZE / 2 + 5, valveCenterY);  // Moved left (from +10 to +5)
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText(`${valveLabels[index]} SWG`, 0, 0);
+        ctx.restore();
+        ctx.textAlign = 'left';
+        
+        // Only draw bottom line and triangle for valves 3 and 4 (index 2 and 3) which connect to branches
+        if (index === 2 || index === 3) {
+          // Draw vertical line below valve (adjusted for vertical valve orientation)
+          const bottomVertLineLength = 40;
+          const bottomVertLineStartY = valveCenterY + VALVE_SIZE / 2;  // Adjusted for vertical valve
+          const bottomVertLineEndY = bottomVertLineStartY + bottomVertLineLength;
+          
+          ctx.beginPath();
+          ctx.moveTo(valveCenterX, bottomVertLineStartY);
+          ctx.lineTo(valveCenterX, bottomVertLineEndY);
+          ctx.stroke();
+          
+          // Store the bottom position for branch connections (no triangle)
+          valveBottomPositions.push({
+            x: valveCenterX,
+            y: bottomVertLineEndY
+          });
+        } else {
+          // For valves without branches, just store null
+          valveBottomPositions.push(null);
+        }
+      });
+
+      // After all valves
+      const afterValvesX = valveStartX + VALVE_SPACING * 4;
+      
+      // First branch continues on the main line (horizontal)
+      const firstBranchY = mainY;
+      const firstBranchStartX = afterValvesX;
+      
+      // No vertical line needed since main branch continues horizontally
+      const verticalLineX = afterValvesX;
+
+      // Define unified label X position for all branches
+      const unifiedLabelX = afterValvesX + 200;
+      
+      // Draw 3 branches
+      data.branches.forEach((branch, index) => {
+        let branchY, branchStartX;
+        
+        if (index === 0) {
+          // Main branch continues from main line (horizontal)
+          branchY = firstBranchY;
+          branchStartX = firstBranchStartX;
+        } else if (index === 1) {
+          // First branch from 4th valve (index 3) - positioned below manifold
+          const valve4Pos = valveBottomPositions[3];
+          branchStartX = valve4Pos.x;
+          
+          // Start below manifold bottom with sufficient gap (considering box height)
+          const manifoldBottom = window.manifoldBottomY || (firstBranchY + 200);
+          branchY = Math.max(valve4Pos.y + 50, manifoldBottom + BOX_HEIGHT + 100);
+          
+          // Draw vertical line from triangle to branch start
+          ctx.beginPath();
+          ctx.moveTo(valve4Pos.x, valve4Pos.y);
+          ctx.lineTo(valve4Pos.x, branchY);
+          ctx.stroke();
+        } else if (index === 2) {
+          // Second branch from 3rd valve (index 2) - positioned below first branch
+          const valve3Pos = valveBottomPositions[2];
+          const valve4Pos = valveBottomPositions[3];
+          branchStartX = valve3Pos.x;
+          
+          // Calculate Y position: below manifold and below previous branch
+          const manifoldBottom = window.manifoldBottomY || (firstBranchY + 200);
+          const prevBranchY = Math.max(valve4Pos.y + 50, manifoldBottom + BOX_HEIGHT + 100);
+          branchY = prevBranchY + 200;  // Maintain spacing with previous branch
+          
+          // Draw vertical line from triangle to branch start
+          ctx.beginPath();
+          ctx.moveTo(valve3Pos.x, valve3Pos.y);
+          ctx.lineTo(valve3Pos.x, branchY);
+          ctx.stroke();
+        }
+        
+        // Draw branch line based on branch type
+        let beforeVertLineX;
+        
+        if (index === 0) {
+          // Main branch: with check valve
+          const lineBeforeValveEndX = branchStartX + 50;
+          ctx.beginPath();
+          ctx.moveTo(branchStartX, branchY);
+          ctx.lineTo(lineBeforeValveEndX, branchY);
+          ctx.stroke();
+          
+          // Check valve (triangle)
+          const checkValveX = lineBeforeValveEndX + 35;
+          drawCheckValve(ctx, checkValveX, branchY, 50, '1/2"');
+          
+          // Line after check valve to pipeline label area
+          const afterCheckValveX = checkValveX + 35;
+          const labelAreaEndX = afterCheckValveX + 250;
+          
+          ctx.beginPath();
+          ctx.moveTo(afterCheckValveX, branchY);
+          ctx.lineTo(labelAreaEndX, branchY);
+          ctx.stroke();
+
+          // Pipeline label (40M SUS316LBA) - aligned with other branches
+          ctx.font = FONT_SECONDARY;
+          ctx.fillStyle = '#1f1f1f';
+          ctx.fillText(branch.pipelineLabel, unifiedLabelX - 40, branchY - 12);
+          
+          beforeVertLineX = labelAreaEndX + 20;
+          
+          ctx.beginPath();
+          ctx.moveTo(labelAreaEndX, branchY);
+          ctx.lineTo(beforeVertLineX, branchY);
+          ctx.stroke();
+        } else {
+          // Other branches: no check valve, just line and label
+          const labelAreaEndX = branchStartX + 400;
+          
+          ctx.beginPath();
+          ctx.moveTo(branchStartX, branchY);
+          ctx.lineTo(labelAreaEndX, branchY);
+          ctx.stroke();
+
+          // Pipeline label (40M SUS316LBA) - aligned with other branches
+          ctx.font = FONT_SECONDARY;
+          ctx.fillStyle = '#1f1f1f';
+          ctx.fillText(branch.pipelineLabel, unifiedLabelX - 40, branchY - 12);
+          
+          beforeVertLineX = labelAreaEndX + 20;
+          
+          ctx.beginPath();
+          ctx.moveTo(labelAreaEndX, branchY);
+          ctx.lineTo(beforeVertLineX, branchY);
+          ctx.stroke();
+        }
+
+        // Calculate positions from right side (end of canvas)
+        const canvasRightMargin = 0;  // Move Chiller to the rightmost edge
+        const chillerBoxRightX = canvas.width - canvasRightMargin;
+        const chillerBoxLeftX = chillerBoxRightX - CHILLER_BOX_WIDTH;
+        
+        // Second box (Chiller) - positioned at the right edge
+        const boxTop = branchY - BOX_HEIGHT / 2;
+        ctx.strokeRect(chillerBoxLeftX, boxTop, CHILLER_BOX_WIDTH, BOX_HEIGHT);
+        
+        // Calculate vertical center for text
+        const lineHeight = 26;
+        const numLines = branch.chillerLines.length;
+        const totalTextHeight = numLines * lineHeight;
+        const textStartY = boxTop + (BOX_HEIGHT - totalTextHeight) / 2 + lineHeight;
+        
+        drawTextBlock(ctx, branch.chillerLines, chillerBoxLeftX + 15, textStartY, {
+          font: FONT_SECONDARY,
+          lineHeight: lineHeight
+        });
+        
+        // Line before second box (increased distance for SWG to move left)
+        const lineBeforeChillerX = chillerBoxLeftX - 400;  // Moved further left for SWG box
+        
+        // Draw valve before Chiller (positioned at left side of Chiller)
+        const valveSize = 50;
+        const valveCenterX = chillerBoxLeftX - valveSize / 2 - 30;  // Valve positioned at left side of Chiller
+        
+        // Line from SWG area to valve
+        ctx.beginPath();
+        ctx.moveTo(lineBeforeChillerX, branchY);
+        ctx.lineTo(valveCenterX - valveSize / 2 - 10, branchY);
+        ctx.stroke();
+        
+        // Draw valve symbol
+        drawValveSymbol(ctx, valveCenterX, branchY, valveSize, '1/2"', null, false);
+        
+        // Line from valve to Chiller
+        ctx.beginPath();
+        ctx.moveTo(valveCenterX + valveSize / 2 + 10, branchY);
+        ctx.lineTo(chillerBoxLeftX, branchY);
+        ctx.stroke();
+        
+        // First box (SWG) - before the line
+        const firstBoxRightX = lineBeforeChillerX;
+        const firstBoxLeftX = firstBoxRightX - BOX_WIDTH;
+        ctx.strokeRect(firstBoxLeftX, boxTop, BOX_WIDTH, BOX_HEIGHT);
+        drawTextBlock(ctx, [branch.swgLabel], firstBoxLeftX + 15, boxTop + BOX_HEIGHT / 2 + 8, {
+          font: FONT_SECONDARY,
+          align: 'left'
+        });
+        
+        // Line before first box (keep floor labels position unchanged)
+        const lineBeforeSWGX = firstBoxLeftX - 170;  // Increased offset to compensate SWG box movement
+        ctx.beginPath();
+        ctx.moveTo(lineBeforeSWGX, branchY);
+        ctx.lineTo(firstBoxLeftX, branchY);
+        ctx.stroke();
+        
+        // Vertical line with 2F 3F labels
+        const vertLineX = lineBeforeSWGX;
+        const vertLineTop = branchY - 50;
+        const vertLineBottom = branchY + 50;
+        
+        ctx.beginPath();
+        ctx.moveTo(vertLineX, vertLineTop);
+        ctx.lineTo(vertLineX, vertLineBottom);
+        ctx.stroke();
+
+        // Floor labels
+        ctx.font = FONT_SMALL;
+        ctx.fillStyle = '#1f1f1f';
+        ctx.textAlign = 'center';
+        ctx.fillText('2F', vertLineX - 20, vertLineTop + 35);
+        ctx.fillText('3F', vertLineX + 20, vertLineTop + 35);
+        ctx.textAlign = 'left';
+
+        // Connect to the pipeline
+        ctx.beginPath();
+        ctx.moveTo(beforeVertLineX, branchY);
+        ctx.lineTo(vertLineX, branchY);
+        ctx.stroke();
+        
+        // Add manifold panel for main branch only (index 0)
+        if (index === 0) {
+          // Draw manifold vertical line to the right of floor labels
+          const manifoldX = vertLineX + 75;  // Moved right for manifold branches
+          const manifoldTopY = branchY;
+          const manifoldBranchSpacing = 140;  // Spacing between manifold branches
+          const numManifoldBranches = 2;  // 2 manifold panel branches (removed first one)
+          const manifoldBottomY = branchY + numManifoldBranches * manifoldBranchSpacing;  // Extended to include all branches
+          
+          // Horizontal line from floor marker to manifold
+          ctx.beginPath();
+          ctx.moveTo(vertLineX, branchY);
+          ctx.lineTo(manifoldX, branchY);
+          ctx.stroke();
+          
+          // Vertical manifold line
+          ctx.beginPath();
+          ctx.moveTo(manifoldX, manifoldTopY);
+          ctx.lineTo(manifoldX, manifoldBottomY);
+          ctx.stroke();
+          
+          // Draw 2 manifold branches with boxes (removed first branch)
+          const manifoldBranchYPositions = [
+            branchY + manifoldBranchSpacing,      // Branch 1 (was Branch 0, Chiller Panel 2)
+            branchY + manifoldBranchSpacing * 2  // Branch 2 (was Branch 1, Chiller Panel 3 with equipment)
+          ];
+          
+          // Connection mapping: line order -> branch order (removed first branch)
+          // Line 0 (first, leftmost) -> Branch 2 (second, bottom with equipment)
+          // Line 1 (second) -> Branch 1 (first, top)
+          // Branch 0 removed
+          const connectionMap = [1, 0];  // Line index -> Branch index (map to branchIdx 1 and 2, but use 0 and 1 in array)
+          
+          manifoldBranchYPositions.forEach((yPos, branchIdx) => {
+            // Find which line connects to this branch
+            // branchIdx 0 -> Branch 1 (was Branch 0) -> Line 1
+            // branchIdx 1 -> Branch 2 (was Branch 1) -> Line 0
+            const lineIdx = branchIdx === 0 ? 1 : 0;  // Reverse mapping
+            
+            // All lines start from same Y (branchY), but different X positions
+            const startY = branchY;
+            const lineOffsetX = lineIdx * 20;  // X offset for each line (reduced from 40 to 20)
+            const lineStartX = manifoldX + lineOffsetX;
+            
+            // Draw vertical line from start to branch height
+            ctx.beginPath();
+            ctx.moveTo(lineStartX, startY);
+            ctx.lineTo(lineStartX, yPos);
+            ctx.stroke();
+            
+            // Draw horizontal line from vertical line to boxes
+            const lineAfterBranch = lineStartX + 30;  // Reduced to move SWG cards left
+            ctx.beginPath();
+            ctx.moveTo(lineStartX, yPos);
+            ctx.lineTo(lineAfterBranch, yPos);
+            ctx.stroke();
+            
+            // Calculate positions from right side (same as main branches)
+            const manifoldBoxTop = yPos - BOX_HEIGHT / 2;
+            
+            // Second box (Chiller) - positioned at the right edge
+            ctx.strokeRect(chillerBoxLeftX, manifoldBoxTop, CHILLER_BOX_WIDTH, BOX_HEIGHT);
+            
+            // Use test data for manifold branches
+            const manifoldChillerLines = [
+              '1/2" F-VCR',
+              `Chiller Panel ${branchIdx + 2}`  // branchIdx 0 -> Panel 2, branchIdx 1 -> Panel 3 (first panel removed)
+            ];
+            
+            const lineHeight = 26;
+            const numLines = manifoldChillerLines.length;
+            const totalTextHeight = numLines * lineHeight;
+            const textStartY = manifoldBoxTop + (BOX_HEIGHT - totalTextHeight) / 2 + lineHeight;
+            
+            drawTextBlock(ctx, manifoldChillerLines, chillerBoxLeftX + 15, textStartY, {
+              font: FONT_SECONDARY,
+              lineHeight: lineHeight
+            });
+            
+            // Line before chiller box (increased distance for SWG to move left)
+            const manifoldLineBeforeChillerX = chillerBoxLeftX - 400;  // Moved further left for SWG box
+            
+            // Draw valve before Chiller (positioned at left side of Chiller, aligned with main branch)
+            const manifoldValveSize = 50;
+            const manifoldValveCenterX = chillerBoxLeftX - manifoldValveSize / 2 - 30;  // Valve positioned at left side of Chiller, same as main branch
+            
+            // Line from SWG area to valve
+            ctx.beginPath();
+            ctx.moveTo(manifoldLineBeforeChillerX, yPos);
+            ctx.lineTo(manifoldValveCenterX - manifoldValveSize / 2 - 10, yPos);
+            ctx.stroke();
+            
+            // Draw valve symbol
+            drawValveSymbol(ctx, manifoldValveCenterX, yPos, manifoldValveSize, '1/2"', null, false);
+            
+            // Line from valve to Chiller
+            ctx.beginPath();
+            ctx.moveTo(manifoldValveCenterX + manifoldValveSize / 2 + 10, yPos);
+            ctx.lineTo(chillerBoxLeftX, yPos);
+            ctx.stroke();
+            
+            // First box (SWG)
+            const manifoldFirstBoxRightX = manifoldLineBeforeChillerX;
+            const manifoldFirstBoxLeftX = manifoldFirstBoxRightX - BOX_WIDTH;
+            ctx.strokeRect(manifoldFirstBoxLeftX, manifoldBoxTop, BOX_WIDTH, BOX_HEIGHT);
+            drawTextBlock(ctx, ['1/2" SWG'], manifoldFirstBoxLeftX + 15, manifoldBoxTop + BOX_HEIGHT / 2 + 8, {
+              font: FONT_SECONDARY,
+              align: 'left'
+            });
+            
+            // Line from branch to SWG
+            ctx.beginPath();
+            ctx.moveTo(lineAfterBranch, yPos);
+            ctx.lineTo(manifoldFirstBoxLeftX, yPos);
+            ctx.stroke();
+            
+            // Add 2 equipment branch valves connected to the horizontal panel equipment (yPos) for the third panel (branchIdx === 1)
+            if (branchIdx === 1) {
+              // Draw 2 parallel equipment branch valves connected to the left side of the equipment (Chiller Panel 3)
+              const branchSpacing = 60;  // Reduced horizontal spacing between branches
+              // Position branches to the left of the equipment valve
+              const leftOffset = 100;  // Increased offset to move branches further left
+              const branchXPositions = [
+                manifoldValveCenterX - branchSpacing / 2 - leftOffset,  // Left branch (to the left of equipment valve)
+                manifoldValveCenterX + branchSpacing / 2 - leftOffset   // Right branch (to the left of equipment valve)
+              ];
+              
+              // Draw horizontal connection line on the panel equipment line, from left side of equipment
+              const horizontalLineLeftX = branchXPositions[0];
+              const horizontalLineRightX = branchXPositions[1];
+              const connectionPointX = manifoldValveCenterX - manifoldValveSize / 2 - 10;  // Left side of equipment valve
+              ctx.beginPath();
+              ctx.moveTo(horizontalLineLeftX, yPos);
+              ctx.lineTo(horizontalLineRightX, yPos);
+              ctx.stroke();
+              
+              // Draw connecting line from equipment valve left side to branch connection line
+              ctx.beginPath();
+              ctx.moveTo(connectionPointX, yPos);
+              ctx.lineTo(horizontalLineRightX, yPos);
+              ctx.stroke();
+              
+              const branchSizes = ['1/4"', '1/2"'];  // Different sizes for each branch
+              const branchValveSpacing = 80;  // Vertical distance from equipment line to valve
+              
+              branchXPositions.forEach((branchX, branchValveIdx) => {
+                // Draw vertical line from panel equipment line down to branch valve
+                const branchValveTopY = yPos + branchValveSpacing;
+                const branchValveSize = 50;
+                const branchValveCenterY = branchValveTopY + branchValveSize / 2 + 5;
+                
+                ctx.beginPath();
+                ctx.moveTo(branchX, yPos);
+                ctx.lineTo(branchX, branchValveTopY);
+                ctx.stroke();
+                
+                // Add size label above each branch valve connection line
+                ctx.font = FONT_SMALL;
+                ctx.fillStyle = '#1f1f1f';
+                ctx.textAlign = 'center';
+                const textY = yPos - 10;  // Position text above the connection line
+                ctx.fillText(branchSizes[branchValveIdx], branchX, textY);
+                ctx.textAlign = 'left';
+                
+                // Pipe size label next to vertical line (rotated -90 degrees)
+                ctx.font = FONT_SMALL;
+                ctx.fillStyle = '#1f1f1f';
+                ctx.textAlign = 'center';
+                ctx.save();
+                ctx.translate(branchX + 25, yPos + branchValveSpacing / 2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText(branchSizes[branchValveIdx], 0, 0);
+                ctx.restore();
+                ctx.textAlign = 'left';
+                
+                // Draw branch valve (vertical orientation)
+                drawValveSymbol(ctx, branchX, branchValveCenterY, branchValveSize, null, branchSizes[branchValveIdx], true);
+                
+                // Add label to the right of the branch valve (rotated -90 degrees)
+                ctx.font = FONT_SMALL_ROTATED;
+                ctx.fillStyle = '#1f1f1f';
+                ctx.textAlign = 'center';
+                ctx.save();
+                ctx.translate(branchX + branchValveSize / 2 + 5, branchValveCenterY);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText(`${branchSizes[branchValveIdx]} SWG`, 0, 0);
+                ctx.restore();
+                ctx.textAlign = 'left';
+                
+                // For the right branch valve (branchValveIdx === 1), draw L-shaped line and equipment card
+                if (branchValveIdx === 1) {
+                  // Calculate valve bottom position
+                  const branchValveBottomY = branchValveCenterY + branchValveSize / 2;
+                  
+                  // L-shaped line: first vertical down, then horizontal right
+                  const verticalLineLength = 100;  // Vertical distance
+                  const verticalLineEndY = branchValveBottomY + verticalLineLength;
+                  
+                  // Calculate equipment card position: X aligned with other equipment cards, Y moved up
+                  const equipCardLeftX = chillerBoxLeftX;  // Align X with other equipment cards
+                  const upwardOffset = 30;  // Move Y up by this amount
+                  const equipCardCenterY = verticalLineEndY - upwardOffset;
+                  const equipCardTop = equipCardCenterY - BOX_HEIGHT / 2;
+                  
+                  // Draw vertical line down from valve
+                  ctx.beginPath();
+                  ctx.moveTo(branchX, branchValveBottomY);
+                  ctx.lineTo(branchX, verticalLineEndY);
+                  ctx.stroke();
+                  
+                  // Draw horizontal line to the right (L-shaped, right angle)
+                  ctx.beginPath();
+                  ctx.moveTo(branchX, verticalLineEndY);
+                  ctx.lineTo(equipCardLeftX, verticalLineEndY);
+                  ctx.stroke();
+                  
+                  // Draw vertical line up to equipment card center (if needed)
+                  if (equipCardCenterY !== verticalLineEndY) {
+                    ctx.beginPath();
+                    ctx.moveTo(equipCardLeftX, verticalLineEndY);
+                    ctx.lineTo(equipCardLeftX, equipCardCenterY);
+                    ctx.stroke();
+                  }
+                  ctx.strokeRect(equipCardLeftX, equipCardTop, CHILLER_BOX_WIDTH, BOX_HEIGHT);
+                  
+                  // Equipment card text
+                  const equipCardLines = [
+                    '1/4" M-VCR',
+                    'Equipment 1'
+                  ];
+                  
+                  const lineHeight = 26;
+                  const numLines = equipCardLines.length;
+                  const totalTextHeight = numLines * lineHeight;
+                  const textStartY = equipCardTop + (BOX_HEIGHT - totalTextHeight) / 2 + lineHeight;
+                  
+                  drawTextBlock(ctx, equipCardLines, equipCardLeftX + 15, textStartY, {
+                    font: FONT_SECONDARY,
+                    lineHeight: lineHeight
+                  });
+                }
+              });
+            }
+            
+            // Add equipment branches for the last manifold branch (now index 1, was index 2)
+            if (branchIdx === 1) {
+              // Equipment branch base X position
+              const equipmentBaseX = manifoldFirstBoxRightX + 30;
+              const equipmentBranchSpacing = 150;  // Increased spacing between equipment
+              
+              // Calculate the bottom of the branch valves to position equipment 2 and 3 below them
+              const branchValveHeight = 80 + 25 + 5 + 25 + 40;  // branchValveSpacing + branchValveSize/2 + offset + branchValveSize/2 + branchBottomLineLength
+              const extraSpacing = 20;
+              const branchValveBottomY = yPos + branchValveHeight + extraSpacing;
+              
+              // Draw 2 equipment branches (removed first equipment)
+              // Equipment 2 and 3 should start below the branch valves of Equipment 1
+              const equipmentYPositions = [
+                branchValveBottomY + equipmentBranchSpacing,      // Equipment 2 (was Equipment 1, now below branch valves)
+                branchValveBottomY + equipmentBranchSpacing * 2  // Equipment 3 (was Equipment 2, now below branch valves)
+              ];
+              
+              // Connection mapping: line order -> equipment order (removed first equipment)
+              // Line 0 (first, leftmost) -> Equipment 2 (second, bottom)
+              // Line 1 (second) -> Equipment 1 (first, top)
+              // Equipment 0 removed
+              const equipConnectionMap = [1, 0];  // Map to equipment indices 1 and 2 (but use 0 and 1 in array)
+              
+              equipmentYPositions.forEach((equipY, equipBranchIdx) => {
+                // Find which line connects to this equipment
+                // equipBranchIdx 0 -> Equipment 1 (was Equipment 0) -> Line 1
+                // equipBranchIdx 1 -> Equipment 2 (was Equipment 1) -> Line 0
+                const equipLineIdx = equipBranchIdx === 0 ? 1 : 0;  // Reverse mapping
+                
+                // All lines start from same Y (yPos), but different X positions
+                const equipStartY = yPos;
+                const equipLineOffsetX = equipLineIdx * 20;  // X offset for each line
+                const equipLineStartX = equipmentBaseX + equipLineOffsetX;
+                
+                // Draw vertical line from start to equipment height
+                ctx.beginPath();
+                ctx.moveTo(equipLineStartX, equipStartY);
+                ctx.lineTo(equipLineStartX, equipY);
+                ctx.stroke();
+                
+                // Draw horizontal line from vertical line
+                const equipLineEndX = equipLineStartX + 50;
+                ctx.beginPath();
+                ctx.moveTo(equipLineStartX, equipY);
+                ctx.lineTo(equipLineEndX, equipY);
+                ctx.stroke();
+                
+                // Draw valve before Equipment (positioned at left side of Equipment, aligned with main branch)
+                const equipValveSize = 50;
+                const equipValveCenterX = chillerBoxLeftX - equipValveSize / 2 - 30;  // Valve positioned at left side of Equipment, same as main branch
+                
+                // Line from horizontal line to valve
+                ctx.beginPath();
+                ctx.moveTo(equipLineEndX, equipY);
+                ctx.lineTo(equipValveCenterX - equipValveSize / 2 - 10, equipY);
+                ctx.stroke();
+                
+                // Draw valve symbol
+                drawValveSymbol(ctx, equipValveCenterX, equipY, equipValveSize, '1/4"', null, false);
+                
+                // Line from valve to Equipment box
+                ctx.beginPath();
+                ctx.moveTo(equipValveCenterX + equipValveSize / 2 + 10, equipY);
+                ctx.lineTo(chillerBoxLeftX, equipY);
+                ctx.stroke();
+                
+                // Equipment box (Chiller)
+                const equipBoxTop = equipY - BOX_HEIGHT / 2;
+                ctx.strokeRect(chillerBoxLeftX, equipBoxTop, CHILLER_BOX_WIDTH, BOX_HEIGHT);
+                
+                const equipChillerLines = [
+                  '1/4" M-VCR',
+                  'Chiller AirGun'
+                ];
+                
+                const lineHeight = 26;
+                const numLines = equipChillerLines.length;
+                const totalTextHeight = numLines * lineHeight;
+                const textStartY = equipBoxTop + (BOX_HEIGHT - totalTextHeight) / 2 + lineHeight;
+                
+                drawTextBlock(ctx, equipChillerLines, chillerBoxLeftX + 15, textStartY, {
+                  font: FONT_SECONDARY,
+                  lineHeight: lineHeight
+                });
+              });
+            }
+          });
+          
+          // Store manifold bottom for positioning other branches (including equipment branches)
+          const lastManifoldY = manifoldBranchYPositions[manifoldBranchYPositions.length - 1];
+          const equipmentExtension = 150 * 2;  // Use same spacing as equipment branches (2 equipment now)
+          
+          // Calculate additional space needed for the 2 branch valves (only for the last manifold branch which has equipment)
+          // branchValveSpacing (80) + branchValveSize/2 (25) + offset (5) + branchValveSize/2 (25) + branchBottomLineLength (40) = 175
+          // Total height from yPos (panel equipment line) to bottom of branch valve
+          const branchValveHeight = 80 + 25 + 5 + 25 + 40;  // branchValveSpacing + branchValveSize/2 + offset + branchValveSize/2 + branchBottomLineLength
+          // Only add extension if this is the second branch (index 1) which has equipment branches
+          const branchValveExtension = (manifoldBranchYPositions.length > 1) ? branchValveHeight : 0;
+          // Add extra spacing for better visual separation
+          const extraSpacing = 20;
+          
+          window.manifoldBottomY = lastManifoldY + equipmentExtension + branchValveExtension + extraSpacing;
+        }
+      });
+
+      return canvas.toDataURL('image/png');
+    }
+
+    // Test data matching the reference image exactly
+    const testData = {
+      sourceLines: [
+        'XCDA 保溫加熱',
+        'XCDA-MPR-B-R-20',
+        '20A',
+        '(3/R.5)'
+      ],
+      branches: [
+        {
+          pipelineLabel: '40M SUS316LBA',
+          swgLabel: '1/2" SWG',
+          chillerLines: ['1/2" M-VCR', 'Chiller PT1']
+        },
+        {
+          pipelineLabel: '40M SUS316LBA',
+          swgLabel: '1/2" SWG',
+          chillerLines: ['1/2" F-VCR', 'Chiller DI SOLVER']
+        },
+        {
+          pipelineLabel: '40M SUS316LBA',
+          swgLabel: '1/4" SWG',
+          chillerLines: ['1/4" M-VCR', 'Chiller AirGun']
+        }
+      ]
+    };
+
+    // Render and display
+    const dataUrl = renderFlowchart(testData);
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `<img src="${dataUrl}" alt="Generated Flowchart">`;
+  </script>
+</body>
+</html>

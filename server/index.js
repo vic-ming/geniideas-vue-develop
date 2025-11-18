@@ -6,11 +6,36 @@ import os from 'os';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { randomUUID } from 'crypto';
-import { stmt } from './db/database.js';
+import { stmt, createBackup, listBackups } from './db/database.js';
 
 const app = express();
 const PORT = 3001;
 const execFileAsync = promisify(execFile);
+
+// ==================== 備份節流機制 ====================
+let lastBackupTime = 0;
+const BACKUP_COOLDOWN = 30000; // 30秒內不重複備份
+
+/**
+ * 異步備份，不阻塞 API 響應
+ * @param {string} reason - 備份原因
+ */
+function asyncBackup(reason) {
+  const now = Date.now();
+  if (now - lastBackupTime < BACKUP_COOLDOWN) {
+    console.log(`⏭️  跳過備份（${reason}）- 距離上次備份未滿 30 秒`);
+    return;
+  }
+  
+  lastBackupTime = now;
+  setImmediate(() => {
+    try {
+      createBackup(reason);
+    } catch (error) {
+      console.error(`⚠️  異步備份失敗（${reason}）:`, error.message);
+    }
+  });
+}
 
 const sanitizeFilename = (name = 'flowchart') => {
   const raw = String(name).trim() || 'flowchart';
@@ -78,6 +103,10 @@ app.post('/api/flowcharts', (req, res) => {
     }
     
     const result = stmt.create.run(project_name, JSON.stringify(data));
+    
+    // 異步備份，不阻塞響應
+    asyncBackup('auto-create');
+    
     res.json({ success: true, data: { id: result.lastInsertRowid, project_name, data } });
   } catch (error) {
     if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
@@ -104,6 +133,9 @@ app.put('/api/flowcharts/:id', (req, res) => {
       return res.status(404).json({ success: false, error: 'Flowchart not found' });
     }
     
+    // 異步備份，不阻塞響應
+    asyncBackup('auto-update');
+    
     res.json({ success: true, message: 'Flowchart updated successfully' });
   } catch (error) {
     if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
@@ -127,6 +159,37 @@ app.delete('/api/flowcharts/:id', (req, res) => {
     res.json({ success: true, message: 'Flowchart deleted successfully' });
   } catch (error) {
     console.error('Error deleting flowchart:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// ==================== 備份管理 API ====================
+
+// 創建手動備份
+app.post('/api/backup', (req, res) => {
+  try {
+    const backupPath = createBackup('manual');
+    res.json({ 
+      success: true, 
+      message: '備份成功',
+      backupPath 
+    });
+  } catch (error) {
+    console.error('Error creating backup:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// 列出所有備份
+app.get('/api/backups', (req, res) => {
+  try {
+    const backups = listBackups();
+    res.json({ 
+      success: true, 
+      data: backups 
+    });
+  } catch (error) {
+    console.error('Error listing backups:', error);
     res.status(500).json({ success: false, error: error.message });
   }
 });

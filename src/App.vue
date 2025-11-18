@@ -1746,7 +1746,7 @@ export default {
     async handleFileManagerSave({ project_name, data }) {
       try {
         this.sanitizePageBreaks();
-        const response = await fetch('http://localhost:3001/api/flowcharts', {
+        const response = await fetch('/api/flowcharts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1988,7 +1988,7 @@ export default {
           return;
         }
         
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+        const response = await fetch(`/api/flowcharts/${this.currentFileId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -2046,7 +2046,7 @@ export default {
 
       this.showConfirmPopup(`確定要刪除檔案「${file.project_name}」嗎？`, async () => {
         try {
-          const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`, {
+          const response = await fetch(`/api/flowcharts/${file.id}`, {
             method: 'DELETE'
           });
           const result = await response.json();
@@ -2077,7 +2077,7 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`, {
+        const response = await fetch(`/api/flowcharts/${this.currentFileId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -2140,7 +2140,7 @@ export default {
       if (!this.currentFileId) return;
       
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${this.currentFileId}`);
+        const response = await fetch(`/api/flowcharts/${this.currentFileId}`);
         const result = await response.json();
         
         if (result.success && result.data) {
@@ -2159,7 +2159,7 @@ export default {
     async replaceExistingFile(project_name, data) {
       try {
         // 首先獲取所有檔案，找到同名檔案
-        const response = await fetch('http://localhost:3001/api/flowcharts');
+        const response = await fetch('/api/flowcharts');
         const result = await response.json();
         
         if (!result.success) {
@@ -2189,7 +2189,7 @@ export default {
         }
         
         // 更新該檔案
-        const updateResponse = await fetch(`http://localhost:3001/api/flowcharts/${existingFile.id}`, {
+        const updateResponse = await fetch(`/api/flowcharts/${existingFile.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -3006,6 +3006,8 @@ export default {
 
         enforceFontForAllPages(pageCount);
 
+        // 插入高解析度單線圖圖片
+        // 圖片已通過 1.5x 縮放因子提高解析度，確保在 PDF 中清晰呈現
         flowchartImages.forEach((imageDataUrl, index) => {
           const base64Image = imageDataUrl.replace(/^data:image\/png;base64,/, '');
           const imageId = workbook.addImage({
@@ -3014,9 +3016,10 @@ export default {
           });
 
           const rowOffset = index * rowsPerPage;
+          // 圖片位置：從第 4 行到第 45 行，橫跨 A 到 M 列（加寬）
           worksheet.addImage(imageId, {
             tl: { col: 0.1, row: imageTopRow + rowOffset },
-            br: { col: 11.1, row: imageBottomRow + rowOffset }
+            br: { col: 11.8, row: imageBottomRow + rowOffset }
           });
         });
 
@@ -3926,9 +3929,11 @@ export default {
           errors.push(`模組 ${moduleNumber} - 樓層資訊：設備樓層為必填`);
         }
 
-        // 验证閥件資訊
+        // 验证閥件資訊（只驗證主分支的閥件卡片，過濾掉 branch-valve 類型的卡片）
         if (moduleSet.valveCards && moduleSet.valveCards.length > 0) {
-          moduleSet.valveCards.forEach((valveCard, valveIndex) => {
+          // 過濾出主分支的閥件卡片（type !== 'branch-valve'）
+          const mainBranchValveCards = moduleSet.valveCards.filter(valveCard => valveCard.type !== 'branch-valve');
+          mainBranchValveCards.forEach((valveCard, valveIndex) => {
             const valveData = valveCard.data || {};
             if (!valveData.connectorType) {
               errors.push(`模組 ${moduleNumber} - 閥件資訊 ${valveIndex + 1}：閥件接頭形式為必填`);
@@ -4064,8 +4069,11 @@ export default {
                 }
               }
 
-              // 验证分支管線
-              if (branchModule.pipeline?.data) {
+              // 檢查源頭閥件分支是否啟用
+              const isBranchValveEnabled = branchModule.valve?.data?.enableValve === true;
+
+              // 验证分支管線（只有當源頭閥件分支啟用時才驗證）
+              if (isBranchValveEnabled && branchModule.pipeline?.data) {
                 const branchPipeline = branchModule.pipeline.data;
                 if (!branchPipeline.length) {
                   errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 管線資訊：管線長度為必填`);
@@ -4075,8 +4083,8 @@ export default {
                 }
               }
 
-              // 验证分支樓層資訊
-              if (branchModule.floor?.data) {
+              // 验证分支樓層資訊（只有當源頭閥件分支啟用時才驗證）
+              if (isBranchValveEnabled && branchModule.floor?.data) {
                 const branchFloor = branchModule.floor.data;
                 if (!branchFloor.sourceFloor) {
                   errors.push(`模組 ${moduleNumber} - 分支模組 ${branchModuleIndex + 1} - 樓層資訊：源頭樓層為必填`);
@@ -4086,8 +4094,8 @@ export default {
                 }
               }
 
-              // 验证分支盤面和設備
-              if (branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
+              // 验证分支盤面和設備（只有當源頭閥件分支啟用時才驗證）
+              if (isBranchValveEnabled && branchModule.panelEquipmentGroups && branchModule.panelEquipmentGroups.length > 0) {
                 branchModule.panelEquipmentGroups.forEach((branchGroup, branchGroupIndex) => {
                   const branchPanel = branchGroup.panel?.data || {};
                   const branchEquipment = branchGroup.equipment?.data || {};
@@ -4329,7 +4337,7 @@ export default {
       console.log('儲存檔案:', this.currentFilename);
       
       try {
-        const response = await fetch('http://localhost:3001/api/flowcharts', {
+        const response = await fetch('/api/flowcharts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -8883,8 +8891,23 @@ export default {
      */
     removeAdditionalEquipmentCardConnection(moduleSet, groupIndex, cardIndex) {
       moduleSet.connections = moduleSet.connections.filter(conn => {
+        // 删除从 panel/panel-equipment-valve 到设备的连接线
         if ((conn.from === 'panel-equipment-connection' || conn.from === 'panel-equipment-valve') && 
             conn.groupIndex === groupIndex && 
+            conn.equipmentCardIndex === cardIndex) {
+          return false;
+        }
+        // 删除从 panel/panel-equipment-valve 到设备阀件的连接线
+        if ((conn.from === 'panel' || conn.from === 'panel-equipment-valve') &&
+            conn.to === 'additional-equipment-valve' &&
+            conn.groupIndex === groupIndex &&
+            conn.equipmentCardIndex === cardIndex) {
+          return false;
+        }
+        // 删除从设备阀件到设备的连接线
+        if (conn.from === 'additional-equipment-valve' &&
+            conn.to === 'additional-equipment' &&
+            conn.groupIndex === groupIndex &&
             conn.equipmentCardIndex === cardIndex) {
           return false;
         }
@@ -9032,9 +9055,26 @@ export default {
      */
     updateAdditionalEquipmentCardIndices(moduleSet, groupIndex, deletedCardIndex) {
       moduleSet.connections.forEach(conn => {
+        // 更新从 panel-equipment-connection 或 panel-equipment-valve 到设备的连接线索引
         if ((conn.from === 'panel-equipment-connection' || conn.from === 'panel-equipment-valve') && 
             conn.groupIndex === groupIndex && 
             conn.equipmentCardIndex !== undefined && 
+            conn.equipmentCardIndex > deletedCardIndex) {
+          conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
+        }
+        // 更新从 panel/panel-equipment-valve 到设备阀件的连接线索引
+        if ((conn.from === 'panel' || conn.from === 'panel-equipment-valve') &&
+            conn.to === 'additional-equipment-valve' &&
+            conn.groupIndex === groupIndex &&
+            conn.equipmentCardIndex !== undefined &&
+            conn.equipmentCardIndex > deletedCardIndex) {
+          conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
+        }
+        // 更新从设备阀件到设备的连接线索引
+        if (conn.from === 'additional-equipment-valve' &&
+            conn.to === 'additional-equipment' &&
+            conn.groupIndex === groupIndex &&
+            conn.equipmentCardIndex !== undefined &&
             conn.equipmentCardIndex > deletedCardIndex) {
           conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
         }
@@ -9144,9 +9184,34 @@ export default {
      */
     removeBranchAdditionalEquipmentCardConnection(moduleSet, branchModuleIndex, groupIndex, cardIndex) {
       moduleSet.connections = moduleSet.connections.filter(conn => {
+        // 删除从 branch-panel-equipment-connection 到设备的连接线
         if (conn.from === 'branch-panel-equipment-connection' && 
             conn.branchModuleIndex === branchModuleIndex && 
             conn.panelEquipmentGroupIndex === groupIndex && 
+            conn.equipmentCardIndex === cardIndex) {
+          return false;
+        }
+        // 删除从 branch-panel-equipment-connection 到设备阀件的连接线
+        if (conn.from === 'branch-panel-equipment-connection' &&
+            conn.to === 'branch-additional-equipment-valve' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
+            conn.equipmentCardIndex === cardIndex) {
+          return false;
+        }
+        // 删除从 branch-panel-equipment-valve 到设备阀件的连接线
+        if (conn.from === 'branch-panel-equipment-valve' &&
+            conn.to === 'branch-additional-equipment-valve' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
+            conn.equipmentCardIndex === cardIndex) {
+          return false;
+        }
+        // 删除从设备阀件到设备的连接线
+        if (conn.from === 'branch-additional-equipment-valve' &&
+            conn.to === 'branch-additional-equipment' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
             conn.equipmentCardIndex === cardIndex) {
           return false;
         }
@@ -9163,10 +9228,38 @@ export default {
      */
     updateBranchAdditionalEquipmentCardIndices(moduleSet, branchModuleIndex, groupIndex, deletedCardIndex) {
       moduleSet.connections.forEach(conn => {
+        // 更新从 branch-panel-equipment-connection 到设备的连接线索引
         if (conn.from === 'branch-panel-equipment-connection' && 
             conn.branchModuleIndex === branchModuleIndex && 
             conn.panelEquipmentGroupIndex === groupIndex && 
             conn.equipmentCardIndex !== undefined && 
+            conn.equipmentCardIndex > deletedCardIndex) {
+          conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
+        }
+        // 更新从 branch-panel-equipment-connection 到设备阀件的连接线索引
+        if (conn.from === 'branch-panel-equipment-connection' &&
+            conn.to === 'branch-additional-equipment-valve' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
+            conn.equipmentCardIndex !== undefined &&
+            conn.equipmentCardIndex > deletedCardIndex) {
+          conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
+        }
+        // 更新从 branch-panel-equipment-valve 到设备阀件的连接线索引
+        if (conn.from === 'branch-panel-equipment-valve' &&
+            conn.to === 'branch-additional-equipment-valve' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
+            conn.equipmentCardIndex !== undefined &&
+            conn.equipmentCardIndex > deletedCardIndex) {
+          conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
+        }
+        // 更新从设备阀件到设备的连接线索引
+        if (conn.from === 'branch-additional-equipment-valve' &&
+            conn.to === 'branch-additional-equipment' &&
+            conn.branchModuleIndex === branchModuleIndex &&
+            conn.panelEquipmentGroupIndex === groupIndex &&
+            conn.equipmentCardIndex !== undefined &&
             conn.equipmentCardIndex > deletedCardIndex) {
           conn.equipmentCardIndex = conn.equipmentCardIndex - 1;
         }
@@ -11900,7 +11993,7 @@ export default {
             connectorType: '',
             size: '',
             valveType: '',
-            enableValve: true,
+            enableValve: false,
             branchSize: ''
           }
         },

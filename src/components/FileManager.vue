@@ -187,7 +187,7 @@ export default {
   methods: {
     async loadFiles() {
       try {
-        const response = await fetch('http://localhost:3001/api/flowcharts')
+        const response = await fetch('/api/flowcharts')
         const result = await response.json()
         
         if (result.success) {
@@ -202,7 +202,7 @@ export default {
     
     async handleReadFile(file) {
       try {
-        const response = await fetch(`http://localhost:3001/api/flowcharts/${file.id}`)
+        const response = await fetch(`/api/flowcharts/${file.id}`)
         const result = await response.json()
         
         if (result.success) {

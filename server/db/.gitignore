@@ -1,0 +1,8 @@
+# 資料庫檔案
+flowcharts.db
+flowcharts.db-shm
+flowcharts.db-wal
+
+# 備份目錄
+backups/
+

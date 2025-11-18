@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "better-sqlite3": "^9.2.2",
+    "cors": "^2.8.5",
     "exceljs": "^4.4.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.3",
