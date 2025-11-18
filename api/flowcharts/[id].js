@@ -1,4 +1,5 @@
-import { getStatements } from '../db-utils.js';
+// 使用 Postgres 版本（支持持久化存储）
+import { getStatements } from '../db-utils-postgres.js';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -53,17 +54,17 @@ export default async function handler(req, res) {
 
     console.log('Querying database with id:', numericId, '(type:', typeof numericId, ')');
     
-    const stmt = getStatements();
+    const stmt = await getStatements();
 
     if (req.method === 'GET') {
       // 获取单个流程图
-      const flowchart = stmt.getById.get(numericId);
+      const flowchart = await stmt.getById(numericId);
       
       console.log('Query result:', flowchart ? 'Found' : 'Not found');
 
       if (!flowchart) {
         // 添加调试信息：列出所有记录的 ID
-        const allFlowcharts = stmt.getAll.all();
+        const allFlowcharts = await stmt.getAll();
         const allIds = allFlowcharts.map(f => f.id);
         console.log('Available flowchart IDs:', allIds);
         
@@ -93,7 +94,7 @@ export default async function handler(req, res) {
       }
 
       try {
-        const result = stmt.update.run(project_name, JSON.stringify(data), numericId);
+        const result = await stmt.update(project_name, JSON.stringify(data), numericId);
 
         if (result.changes === 0) {
           return res.status(404).json({ 
@@ -107,7 +108,8 @@ export default async function handler(req, res) {
           message: 'Flowchart updated successfully' 
         });
       } catch (error) {
-        if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+        // PostgreSQL 唯一约束错误
+        if (error.code === '23505' || error.message.includes('unique') || error.message.includes('duplicate')) {
           return res.status(409).json({ 
             success: false, 
             error: '系統存在同名檔案' 
@@ -119,7 +121,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'DELETE') {
       // 删除流程图
-      const result = stmt.delete.run(numericId);
+      const result = await stmt.delete(numericId);
 
       if (result.changes === 0) {
         return res.status(404).json({ 

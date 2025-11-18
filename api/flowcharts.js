@@ -1,4 +1,5 @@
-import { getStatements } from './db-utils.js';
+// 使用 Postgres 版本（支持持久化存储）
+import { getStatements } from './db-utils-postgres.js';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -11,11 +12,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const stmt = getStatements();
+    const stmt = await getStatements();
 
     if (req.method === 'GET') {
       // 获取所有流程图
-      const flowcharts = stmt.getAll.all();
+      const flowcharts = await stmt.getAll();
       return res.status(200).json({ success: true, data: flowcharts });
     }
 
@@ -31,13 +32,14 @@ export default async function handler(req, res) {
       }
 
       try {
-        const result = stmt.create.run(project_name, JSON.stringify(data));
+        const result = await stmt.create(project_name, JSON.stringify(data));
         return res.status(200).json({ 
           success: true, 
           data: { id: result.lastInsertRowid, project_name, data } 
         });
       } catch (error) {
-        if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+        // PostgreSQL 唯一约束错误
+        if (error.code === '23505' || error.message.includes('unique') || error.message.includes('duplicate')) {
           return res.status(409).json({ 
             success: false, 
             error: '系統存在同名檔案' 

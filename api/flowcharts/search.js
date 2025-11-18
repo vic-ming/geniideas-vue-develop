@@ -1,4 +1,5 @@
-import { getStatements } from '../db-utils.js';
+// 使用 Postgres 版本（支持持久化存储）
+import { getStatements } from '../db-utils-postgres.js';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -17,8 +18,8 @@ export default async function handler(req, res) {
   try {
     const { q } = req.query;
     const searchTerm = `%${q}%`;
-    const stmt = getStatements();
-    const flowcharts = stmt.search.all(searchTerm);
+    const stmt = await getStatements();
+    const flowcharts = await stmt.search(searchTerm);
 
     return res.status(200).json({ success: true, data: flowcharts });
   } catch (error) {
