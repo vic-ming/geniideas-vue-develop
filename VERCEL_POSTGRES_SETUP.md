@@ -12,13 +12,22 @@
 
 ### 1. 在 Vercel Dashboard 中創建 Postgres 數據庫
 
+**重要**：Postgres 現在通過 **Marketplace** 提供！
+
 1. 登錄 [Vercel Dashboard](https://vercel.com/dashboard)
 2. 選擇你的項目
 3. 進入 **Storage** 標籤
-4. 點擊 **Create Database**
-5. 選擇 **Postgres**
-6. 選擇計劃（Hobby 計劃有免費額度）
-7. 創建數據庫
+4. 在 **Marketplace Database Providers** 區域，找到 **Prisma Postgres**
+5. 點擊 **Prisma Postgres**（會顯示藍色高亮）
+6. 按照提示完成設置：
+   - 選擇 **Hobby** 計劃（免費額度）
+   - 確認連接設置
+   - 點擊 **Create** 或 **Connect**
+
+**為什麼選擇 Prisma Postgres？**
+- 雖然名稱包含 "Prisma"，但這是 Vercel 提供的標準 Postgres 數據庫
+- 我們的代碼使用 `@vercel/postgres`，可以正常連接
+- Vercel 會自動設置 `POSTGRES_URL` 和 `POSTGRES_PRISMA_URL` 環境變數
 
 ### 2. 連接數據庫到項目
 
