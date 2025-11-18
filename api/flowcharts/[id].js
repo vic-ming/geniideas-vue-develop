@@ -11,23 +11,34 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 从 query 参数或 URL 路径中获取 id
-    // Vercel 的动态路由参数在 req.query 中
+    // Vercel 的动态路由参数在 req.query 中，参数名就是文件名中方括号内的名称
+    // 对于 [id].js，参数应该是 req.query.id
     let id = req.query.id;
+    
+    // 调试日志（生产环境可以移除）
+    console.log('Request URL:', req.url);
+    console.log('Request query:', req.query);
+    console.log('Extracted id:', id);
     
     // 如果 query 中没有 id，尝试从 URL 路径解析
     if (!id && req.url) {
       const match = req.url.match(/\/flowcharts\/(\d+)/);
       if (match) {
         id = match[1];
+        console.log('Extracted id from URL:', id);
       }
     }
     
     // 如果还是没有 id，返回错误
     if (!id) {
+      console.error('Missing id parameter. URL:', req.url, 'Query:', req.query);
       return res.status(400).json({ 
         success: false, 
-        error: 'Missing id parameter' 
+        error: 'Missing id parameter',
+        debug: {
+          url: req.url,
+          query: req.query
+        }
       });
     }
     
