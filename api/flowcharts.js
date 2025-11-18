@@ -11,8 +11,20 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // 设置超时（Vercel serverless functions 默认 10 秒，我们设置 8 秒安全边界）
+  const timeout = setTimeout(() => {
+    if (!res.headersSent) {
+      res.status(504).json({ 
+        success: false, 
+        error: 'Request timeout. Database connection may be slow.' 
+      });
+    }
+  }, 8000);
+
   try {
+    console.log(`[${req.method}] /api/flowcharts - Starting...`);
     const stmt = await getStatements();
+    console.log(`[${req.method}] /api/flowcharts - Database ready`);
 
     if (req.method === 'GET') {
       // 获取所有流程图
@@ -51,11 +63,15 @@ export default async function handler(req, res) {
 
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   } catch (error) {
-    console.error('Error in flowcharts API:', error);
-    return res.status(500).json({ 
-      success: false, 
-      error: error.message || 'Internal server error' 
-    });
+    console.error('❌ Error in flowcharts API:', error);
+    if (!res.headersSent) {
+      return res.status(500).json({ 
+        success: false, 
+        error: error.message || 'Internal server error' 
+      });
+    }
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

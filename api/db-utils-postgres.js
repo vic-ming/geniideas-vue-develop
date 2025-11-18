@@ -49,7 +49,10 @@ async function ensureInitialized() {
   const client = getClient();
   
   try {
-    // 创建表（如果不存在）
+    console.log('🔄 Starting database initialization...');
+    
+    // 只创建表，不创建触发器和函数（简化初始化，提高速度）
+    // updated_at 会在 UPDATE 语句中手动更新
     await client.sql`
       CREATE TABLE IF NOT EXISTS flowcharts (
         id SERIAL PRIMARY KEY,
@@ -60,57 +63,54 @@ async function ensureInitialized() {
       );
     `;
     
-    // 创建索引
-    await client.sql`
-      CREATE INDEX IF NOT EXISTS idx_flowcharts_updated_at 
-      ON flowcharts(updated_at DESC);
-    `;
+    console.log('✅ Table created');
     
-    await client.sql`
-      CREATE INDEX IF NOT EXISTS idx_flowcharts_project_name 
-      ON flowcharts(project_name);
-    `;
-    
-    // PostgreSQL 使用函数和触发器来更新 updated_at
-    await client.sql`
-      CREATE OR REPLACE FUNCTION update_updated_at_column()
-      RETURNS TRIGGER AS $$
-      BEGIN
-        NEW.updated_at = CURRENT_TIMESTAMP;
-        RETURN NEW;
-      END;
-      $$ language 'plpgsql';
-    `;
-    
-    await client.sql`
-      DROP TRIGGER IF EXISTS update_flowcharts_timestamp ON flowcharts;
-    `;
-    
-    await client.sql`
-      CREATE TRIGGER update_flowcharts_timestamp
-      BEFORE UPDATE ON flowcharts
-      FOR EACH ROW
-      EXECUTE FUNCTION update_updated_at_column();
-    `;
+    // 创建索引（使用并发创建，如果支持）
+    try {
+      await client.sql`
+        CREATE INDEX IF NOT EXISTS idx_flowcharts_updated_at 
+        ON flowcharts(updated_at DESC);
+      `;
+      
+      await client.sql`
+        CREATE INDEX IF NOT EXISTS idx_flowcharts_project_name 
+        ON flowcharts(project_name);
+      `;
+      
+      console.log('✅ Indexes created');
+    } catch (indexError) {
+      // 索引创建失败不影响主要功能
+      console.warn('⚠️ Index creation warning:', indexError.message);
+    }
     
     initialized = true;
-    console.log('✅ Database initialized');
+    console.log('✅ Database initialized successfully');
   } catch (error) {
     // 如果表已存在，忽略错误
-    if (error.message.includes('already exists') || error.message.includes('duplicate')) {
+    if (error.message.includes('already exists') || 
+        error.message.includes('duplicate') ||
+        error.message.includes('relation') && error.message.includes('already exists')) {
       initialized = true;
+      console.log('✅ Database already initialized');
       return;
     }
-    console.error('Database initialization error:', error);
+    console.error('❌ Database initialization error:', error);
     throw error;
   }
 }
+
+// 初始化 Promise（避免并发初始化）
+let initPromise = null;
 
 /**
  * 获取准备好的语句（PostgreSQL 版本）
  */
 export async function getStatements() {
-  await ensureInitialized();
+  // 确保只初始化一次
+  if (!initPromise) {
+    initPromise = ensureInitialized();
+  }
+  await initPromise;
   
   const client = getClient();
   
