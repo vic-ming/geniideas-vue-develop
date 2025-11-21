@@ -270,20 +270,20 @@ export default {
       // 驗證必填欄位
       let hasError = false
 
-      // if (!this.formData.surveySupervisor || this.formData.surveySupervisor.trim() === '') {
-      //   this.errors.surveySupervisor = true
-      //   hasError = true
-      // }
+      if (!this.formData.surveySupervisor || this.formData.surveySupervisor.trim() === '') {
+        this.errors.surveySupervisor = true
+        hasError = true
+      }
 
-      // if (!this.formData.surveyDate || this.formData.surveyDate.trim() === '') {
-      //   this.errors.surveyDate = true
-      //   hasError = true
-      // }
+      if (!this.formData.surveyDate || this.formData.surveyDate.trim() === '') {
+        this.errors.surveyDate = true
+        hasError = true
+      }
 
-      // if (!this.formData.machineName || this.formData.machineName.trim() === '') {
-      //   this.errors.machineName = true
-      //   hasError = true
-      // }
+      if (!this.formData.machineName || this.formData.machineName.trim() === '') {
+        this.errors.machineName = true
+        hasError = true
+      }
 
       // 如果有錯誤，阻止儲存
       if (hasError) {

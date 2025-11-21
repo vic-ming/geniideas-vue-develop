@@ -28,9 +28,9 @@ function asyncBackup(reason) {
   }
   
   lastBackupTime = now;
-  setImmediate(() => {
+  setImmediate(async () => {
     try {
-      createBackup(reason);
+      await createBackup(reason);
     } catch (error) {
       console.error(`⚠️  異步備份失敗（${reason}）:`, error.message);
     }
@@ -50,7 +50,19 @@ const sanitizeFilename = (name = 'flowchart') => {
 app.use(cors());
 app.use(express.json({ limit: '25mb' }));
 
+// 請求日誌中間件
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
+
 // ==================== API Routes ====================
+
+// 健康檢查端點
+app.get('/api/health', (req, res) => {
+  console.log('Health check endpoint called');
+  res.json({ success: true, message: 'Server is running', timestamp: new Date().toISOString() });
+});
 
 // 取得所有檔案列表
 app.get('/api/flowcharts', (req, res) => {
@@ -166,9 +178,9 @@ app.delete('/api/flowcharts/:id', (req, res) => {
 // ==================== 備份管理 API ====================
 
 // 創建手動備份
-app.post('/api/backup', (req, res) => {
+app.post('/api/backup', async (req, res) => {
   try {
-    const backupPath = createBackup('manual');
+    const backupPath = await createBackup('manual');
     res.json({ 
       success: true, 
       message: '備份成功',
@@ -181,9 +193,9 @@ app.post('/api/backup', (req, res) => {
 });
 
 // 列出所有備份
-app.get('/api/backups', (req, res) => {
+app.get('/api/backups', async (req, res) => {
   try {
-    const backups = listBackups();
+    const backups = await listBackups();
     res.json({ 
       success: true, 
       data: backups 
@@ -231,6 +243,7 @@ app.post('/api/export-flowchart/pdf', async (req, res) => {
       : (process.platform === 'win32' ? 'soffice.exe' : 'soffice');
 
     try {
+      console.log(`開始轉換 PDF: ${excelPath} -> ${pdfPath}`);
       await execFileAsync(sofficeBinary, [
         '--headless',
         '--nologo',
@@ -239,15 +252,46 @@ app.post('/api/export-flowchart/pdf', async (req, res) => {
         '--outdir',
         tempDir,
         excelPath
-      ]);
+      ], {
+        timeout: 60000, // 60秒超時
+        maxBuffer: 10 * 1024 * 1024 // 10MB buffer
+      });
+      
+      // 等待一下確保文件寫入完成
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // 檢查PDF文件是否存在
+      try {
+        await fs.access(pdfPath);
+      } catch (accessError) {
+        // 如果PDF文件不存在，檢查臨時目錄中的文件
+        const files = await fs.readdir(tempDir);
+        console.error('PDF文件不存在，臨時目錄中的文件:', files);
+        throw new Error(`PDF 轉換失敗：未找到生成的 PDF 文件。LibreOffice 可能未正確安裝或轉換過程出錯。`);
+      }
+      
+      console.log(`PDF 轉換成功: ${pdfPath}`);
     } catch (error) {
       console.error('LibreOffice convert error:', error);
-      throw new Error('LibreOffice 轉檔失敗，請確認已安裝 LibreOffice 並可執行 soffice 指令');
+      if (error.code === 'ENOENT') {
+        throw new Error('LibreOffice 未安裝或無法找到 soffice 指令。請確認已安裝 LibreOffice 並可執行 soffice 指令。');
+      } else if (error.code === 'ETIMEDOUT' || error.signal === 'SIGTERM') {
+        throw new Error('PDF 轉換超時。請稍後再試或檢查 LibreOffice 是否正常運行。');
+      } else {
+        throw new Error(`LibreOffice 轉檔失敗: ${error.message || '請確認已安裝 LibreOffice 並可執行 soffice 指令'}`);
+      }
     }
 
     cleanupTasks.push(() => fs.unlink(pdfPath).catch(() => {}));
 
+    // 檢查PDF文件大小
+    const pdfStats = await fs.stat(pdfPath);
+    if (pdfStats.size === 0) {
+      throw new Error('PDF 文件為空，轉換可能失敗');
+    }
+    
     const pdfBuffer = await fs.readFile(pdfPath);
+    console.log(`PDF 文件大小: ${pdfBuffer.length} bytes`);
     const { fallback, original } = sanitizeFilename(fileName);
     const encoded = encodeURIComponent(original);
 
@@ -271,5 +315,6 @@ app.post('/api/export-flowchart/pdf', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`API endpoints available at http://localhost:${PORT}/api`);
+  console.log('✅ 服務器已就緒，可以處理 API 請求');
 });
 

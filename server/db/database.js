@@ -2,6 +2,7 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { copyFile, readdir, stat, unlink } from 'fs/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -75,26 +76,26 @@ if (!fs.existsSync(backupDir)) {
 }
 
 /**
- * 創建資料庫備份
+ * 創建資料庫備份（異步版本，不阻塞）
  * @param {string} reason - 備份原因（用於檔名）
- * @returns {string} 備份檔案路徑
+ * @returns {Promise<string>} 備份檔案路徑
  */
-export function createBackup(reason = 'manual') {
+export async function createBackup(reason = 'manual') {
   try {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
     const backupFileName = `flowcharts_${reason}_${timestamp}.db`;
     const backupPath = path.join(backupDir, backupFileName);
     
-    // 執行 WAL checkpoint 確保所有數據寫入主資料庫
-    db.pragma('wal_checkpoint(FULL)');
+    // 執行 WAL checkpoint 確保所有數據寫入主資料庫（使用 TRUNCATE 而非 FULL 以減少阻塞時間）
+    db.pragma('wal_checkpoint(TRUNCATE)');
     
-    // 複製資料庫檔案
-    fs.copyFileSync(dbPath, backupPath);
+    // 異步複製資料庫檔案
+    await copyFile(dbPath, backupPath);
     
     console.log('💾 備份成功:', backupFileName);
     
-    // 清理舊備份（保留最近 30 個）
-    cleanOldBackups();
+    // 異步清理舊備份（保留最近 30 個）
+    await cleanOldBackups();
     
     return backupPath;
   } catch (error) {
@@ -104,9 +105,76 @@ export function createBackup(reason = 'manual') {
 }
 
 /**
- * 清理舊備份，保留最近 30 個
+ * 創建資料庫備份（同步版本，用於需要立即返回的情況）
+ * @param {string} reason - 備份原因（用於檔名）
+ * @returns {string} 備份檔案路徑
  */
-function cleanOldBackups() {
+export function createBackupSync(reason = 'manual') {
+  try {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+    const backupFileName = `flowcharts_${reason}_${timestamp}.db`;
+    const backupPath = path.join(backupDir, backupFileName);
+    
+    // 執行 WAL checkpoint 確保所有數據寫入主資料庫
+    db.pragma('wal_checkpoint(TRUNCATE)');
+    
+    // 複製資料庫檔案
+    fs.copyFileSync(dbPath, backupPath);
+    
+    console.log('💾 備份成功:', backupFileName);
+    
+    // 清理舊備份（保留最近 30 個）
+    cleanOldBackupsSync();
+    
+    return backupPath;
+  } catch (error) {
+    console.error('❌ 備份失敗:', error.message);
+    throw error;
+  }
+}
+
+/**
+ * 清理舊備份，保留最近 30 個（異步版本）
+ */
+async function cleanOldBackups() {
+  try {
+    const files = await readdir(backupDir);
+    const backupFiles = files
+      .filter(file => file.startsWith('flowcharts_') && file.endsWith('.db'))
+      .map(file => path.join(backupDir, file));
+    
+    const filesWithStats = await Promise.all(
+      backupFiles.map(async (filePath) => {
+        const stats = await stat(filePath);
+        return {
+          name: path.basename(filePath),
+          path: filePath,
+          time: stats.mtime.getTime()
+        };
+      })
+    );
+    
+    const sortedFiles = filesWithStats.sort((a, b) => b.time - a.time); // 按時間降序排列
+    
+    // 刪除第 30 個之後的備份
+    if (sortedFiles.length > 30) {
+      const filesToDelete = sortedFiles.slice(30);
+      await Promise.all(
+        filesToDelete.map(async (file) => {
+          await unlink(file.path);
+          console.log('🗑️  刪除舊備份:', file.name);
+        })
+      );
+    }
+  } catch (error) {
+    console.error('⚠️  清理舊備份時出錯:', error.message);
+  }
+}
+
+/**
+ * 清理舊備份，保留最近 30 個（同步版本）
+ */
+function cleanOldBackupsSync() {
   try {
     const files = fs.readdirSync(backupDir)
       .filter(file => file.startsWith('flowcharts_') && file.endsWith('.db'))
@@ -132,39 +200,43 @@ function cleanOldBackups() {
 
 /**
  * 列出所有備份
- * @returns {Array} 備份列表
+ * @returns {Promise<Array>} 備份列表
  */
-export function listBackups() {
+export async function listBackups() {
   try {
-    const files = fs.readdirSync(backupDir)
+    const files = await readdir(backupDir);
+    const backupFiles = files
       .filter(file => file.startsWith('flowcharts_') && file.endsWith('.db'))
-      .map(file => {
-        const stats = fs.statSync(path.join(backupDir, file));
+      .map(file => path.join(backupDir, file));
+    
+    const filesWithStats = await Promise.all(
+      backupFiles.map(async (filePath) => {
+        const stats = await stat(filePath);
         return {
-          name: file,
-          path: path.join(backupDir, file),
+          name: path.basename(filePath),
+          path: filePath,
           size: stats.size,
           created: stats.mtime
         };
       })
-      .sort((a, b) => b.created - a.created);
+    );
     
-    return files;
+    return filesWithStats.sort((a, b) => b.created - a.created);
   } catch (error) {
     console.error('❌ 無法列出備份:', error.message);
     return [];
   }
 }
 
-// 啟動時自動備份（異步執行，不阻塞啟動）
-console.log('💾 啟動備份任務...');
-setImmediate(() => {
+// 啟動時自動備份（延遲執行，確保不阻塞啟動和 API 請求）
+console.log('💾 啟動備份任務（將在 5 秒後執行）...');
+setTimeout(async () => {
   try {
-    createBackup('startup');
+    await createBackup('startup');
   } catch (error) {
     console.error('⚠️  啟動備份失敗（不影響運行）:', error.message);
   }
-});
+}, 5000); // 延遲 5 秒執行，確保服務器完全啟動
 
 // 準備好的語句
 export const stmt = {
