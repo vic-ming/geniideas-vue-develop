@@ -1,0 +1,73 @@
+{
+  "defaultOptions": [
+    { "label": "GENIIDEAS", "value": "GENIIDEAS" },
+    { "label": "CUSTOM", "value": "CUSTOM" },
+    { "label": "N/A", "value": "N/A" }
+  ],
+  "fieldOptions": {
+    "pipelineBrand": ["KUZE", "NEWBEST", "DAJA", "NIHON", "KOBE", "SUMIKIN", "AP TECH", "NICHIAS", "DAIKIN", "PU"],
+    "ballValveBrand": [
+      "OHNO",
+      "OHNO(IPP)",
+      "OHNO(OPP)",
+      "OHNO(IOPP)",
+      "DAJA",
+      "DAJA(IPP)",
+      "DAJA(OPP)",
+      "DAJA(IOPP)",
+      "KSK",
+      "KSK(OPP)",
+      "KSK(IOPP)",
+      "SWAGELOK"
+    ],
+    "diaphragmValveBrand": ["IHARA", "FUJIKIN", "FUJIKIN(HP)", "FUJIKIN(OPP)", "HMJ"],
+    "bellowValveBrand": [
+      "OHNO(OPP)",
+      "OHNO(IOPP)",
+      "IHARA",
+      "FUJIKIN",
+      "FUJIKIN(OPP)",
+      "FUJIKIN(IOPP)"
+    ],
+    "regulatorBrand": [
+      "SCV",
+      "TORR",
+      "TESCOM",
+      "AP TECH",
+      "AP TECH(4P)",
+      "PARKER",
+      "PARKER(3P)",
+      "PARKER(4P)"
+    ],
+    "springBrand": ["KUZE", "JSK", "NEWBEST"],
+    "overTubeBrand": ["KUZE", "JSK", "NEWBEST"],
+    "gaugeBrand": [
+      "SMC",
+      "NKS(直立式訊號錶-30inhg~160PSI)",
+      "NKS(背接式0-200 PSI)",
+      "NKS(背接式訊號)",
+      "NKS(背接式-30inhg~160 PSI)",
+      "NKS(直立式0-100 PSI)",
+      "NKS(直立式0-600 PSI)",
+      "NKS(直立式-30inhg~160 PSI)",
+      "NKS(電子式 VCR背接)",
+      "NKS(直立式訊號錶-30inhg~160PSI)",
+      "NKS(背接式-30inhg~160 PSI)",
+      "SWAGELOK",
+      "WIKA",
+      "WIKA(電子式 VCR背接)",
+      "Tem-Tech(電子式-15~3000psi)",
+      "華記"
+    ],
+    "glandBrand": ["JSK", "JSK(Hi)", "FUJIKIN", "BENKAN"],
+    "nutBrand": ["JSK", "JSK(Hi)", "FUJIKIN"],
+    "gasketBrand": ["JSK", "FUJIKIN"],
+    "reducerBrand": ["KUZE", "NEWBEST", "JSK", "NIHON", "BENKAN"],
+    "reducerTeeBrand": ["KUZE", "NEWBEST", "DAJA", "JSK", "NIHON", "BENKAN"],
+    "teeBrand": ["KUZE", "NEWBEST", "DAJA", "JSK(S)", "NIHON", "BENKAN", "BENKAN(S)"],
+    "elbowBrand": ["KUZE", "NEWBEST", "DAJA", "JSK(S)", "NIHON", "TTSFV", "BENKAN", "BENKAN(S)"],
+    "doubleElbowBrand": ["KUZE", "NEWBEST"]
+  }
+}
+
+

@@ -1,0 +1,10003 @@
+{
+  "stopSpacer": [
+    {
+      "match": {
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "partName": "STOP SPACER-316-1/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "partName": "STOP SPACER-316-1/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "partName": "STOP SPACER-316-3/8\"*5/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "partName": "STOP SPACER-316-3/8\"*5/8\"",
+        "unit": "EA"
+      }
+    }
+  ],
+  "spring": [
+    {
+      "match": {
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "partName": "彈簧--1/4\" * 1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "partName": "彈簧--3/8\" * 5/8\"",
+        "unit": "EA"
+      }
+    }
+  ],
+  "overTube": [
+    {
+      "match": {
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "partName": "Over Tube--1/4\" * 1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "partName": "Over Tube--3/8\" * 5/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "doubleSize": [
+          "3/4\"*1/2\""
+        ]
+      },
+      "output": {
+        "partName": "Over Tube-AP-3/4\"",
+        "unit": "EA"
+      }
+    }
+  ],
+  "gauge": [
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-VCR-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "5/8\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "SWG"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "GAUGE-Tube-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "D2-盤面-尺寸"
+        ],
+        "panelConnector": [
+          "D3-盤面-接頭"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "B3-閥件-尺寸"
+        ],
+        "panelConnector": [
+          "B2-閥件-閥件接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "F2-設備-尺寸"
+        ],
+        "panelConnector": [
+          "F3-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "A5-源頭-尺寸"
+        ],
+        "panelConnector": [
+          "A7-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L EP-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "S-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "L-Gland-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "D2-盤面-尺寸"
+        ],
+        "panelConnector": [
+          "D3-盤面-接頭"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "B3-閥件-尺寸"
+        ],
+        "panelConnector": [
+          "B2-閥件-閥件接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "F2-設備-尺寸"
+        ],
+        "panelConnector": [
+          "F3-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "A5-源頭-尺寸"
+        ],
+        "panelConnector": [
+          "A7-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "F-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "M-NUT--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "D2-盤面-尺寸"
+        ],
+        "panelConnector": [
+          "D3-盤面-接頭"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "B3-閥件-尺寸"
+        ],
+        "panelConnector": [
+          "B2-閥件-閥件接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "F2-設備-尺寸"
+        ],
+        "panelConnector": [
+          "F3-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "A5-源頭-尺寸"
+        ],
+        "panelConnector": [
+          "A7-設備-接頭型式"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "台積料表",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-M"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/8\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/2\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1\""
+        ],
+        "panelConnector": [
+          "VCR-F"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "Gasket--1\"",
+        "unit": "EA"
+      }
+    }
+  ]
+}

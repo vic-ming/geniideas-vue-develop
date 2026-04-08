@@ -35,10 +35,11 @@
       
       <div class="info-item">
         <label class="info-label">氣體別<span class="required">*</span></label>
-        <select class="info-select" :class="{ empty: !sourceData.gasType }" v-model="sourceData.gasType">
-          <option value="">請選擇氣體別</option>
-          <option v-for="gasType in $constants.gasTypes" :key="gasType" :value="gasType">{{ gasType }}</option>
-        </select>
+        <SearchableSelect
+          v-model="sourceData.gasType"
+          :options="$constants.gasTypes"
+          placeholder="請選擇氣體別"
+        />
       </div>
       
       <div class="info-item">
@@ -104,8 +105,13 @@
 </template>
 
 <script>
+import SearchableSelect from '@/components/SearchableSelect.vue';
+
 export default {
   name: 'BranchSourceInfoCard',
+  components: {
+    SearchableSelect
+  },
   props: {
     initialPosition: {
       type: Object,

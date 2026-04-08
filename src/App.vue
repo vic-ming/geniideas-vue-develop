@@ -52,8 +52,8 @@
             <div v-if="!isSetting" className="hover-menu-container">
               <div className="hover-menu-list"> 
                 <button className="hover-menu-btn" @click="handleExportHierarchy">Hierarchy</button>
-                <button className="hover-menu-btn">聚賢料表</button>
-                <button className="hover-menu-btn">台積料表</button>
+                <button className="hover-menu-btn" @click="openJuxianExportModal">聚賢料表</button>
+                <button className="hover-menu-btn" @click="handleExportTsmc">台積料表</button>
               </div>
             </div>
           </button>
@@ -88,12 +88,24 @@
         @button-click="handlePopupButtonClick"
       />
 
+      <JuxianExportModal
+        :is-open="isJuxianExportModalOpen"
+        :form-data="juxianExportSettings"
+        :columns="juxianExportColumns"
+        :default-options="juxianBrandOptions"
+        :field-options="juxianFieldOptions"
+        :regulator-enabled="hasRegulatorPanel"
+        @close="closeJuxianExportModal"
+        @update-field="handleJuxianSettingChange"
+        @confirm="handleConfirmJuxianExport"
+      />
+
       <!-- Canvas -->
       <div className="flow-container">
         <VueZoomable 
           style="width: 100%; height: 100%;"
           :initialZoom="1"
-          :wheelZoomStep="0.015"
+          :wheelZoomStep="0.05"
           :minZoom="0.1"
           :maxZoom="3"
         >
@@ -377,6 +389,11 @@
       >
         <button @click.stop="handleAddPageBreak">在下方新增分頁線</button>
       </div>
+      <!-- Activation Dialog -->
+      <ActivationDialog 
+        :visible="showActivationDialog" 
+        @activated="handleActivated" 
+      />
     </div>
   </div>
 </template>
@@ -394,10 +411,56 @@ import PanelInfoCard from './components/FlowCards/PanelInfoCard.vue'
 import EquipmentInfoCard from './components/FlowCards/EquipmentInfoCard.vue'
 import ValveInfoCard from './components/FlowCards/ValveInfoCard.vue'
 import Popup from './components/Popup.vue'
+import ActivationDialog from './components/ActivationDialog.vue'
+import JuxianExportModal from './components/JuxianExportModal.vue'
+import juxianBrandOptionsConfig from '@/assets/const/juxianBrandOptions.json'
 import { VueZoomable } from 'vue-zoomable'
 import 'vue-zoomable/dist/style.css'
 import ExcelJS from 'exceljs'
+import {
+  PIPELINE_TYPE,
+  resolvePipePart,
+  resolveValvePart,
+  resolveGaugePart,
+  resolveGlandPart,
+  resolveNutPart,
+  resolveGasketPart,
+  resolveFittingPart,
+  resolveStopSpacerPart,
+  resolveSpringPart,
+  resolveOverTubePart,
+  resolveElbowPart,
+  resolveReducerTeePart,
+  resolveReducerPart,
+  resolveTsmcDoubleElbowPart,
+  resolveTsmcDoubleTeePart
+} from './utils/tsmcRules'
+import {
+  resolveJuxianPipe,
+  resolveJuxianValve,
+  resolveJuxianGauge,
+  resolveJuxianElbow,
+  resolveJuxianReducer,
+  resolveJuxianReducerTee,
+  resolveJuxianTee,
+  resolveJuxianDoubleTee,
+  resolveJuxianDoubleElbow,
+  resolveJuxianStopSpacer,
+  resolveJuxianSpring,
+  resolveJuxianOverTube,
+  resolveJuxianGland,
+  resolveJuxianNut,
+  resolveJuxianGasket
+} from './utils/juxianRules'
 import { renderFlowchartPages } from './utils/flowchartRenderer'
+import { getApiUrl } from './config/api'
+
+// 導入 Excel 範本 (使用 ?url 讓 Vite 返回解析後的 URL)
+import bulkGasTemplateUrl from '@/assets/export/範本表格Bulk Gas_空白.xlsx?url'
+import specialGasTemplateUrl from '@/assets/export/範本表格Special Gas_空白.xlsx?url'
+import frameTemplateUrl from '@/assets/export/圖框對應表.xlsx?url'
+import tsmcTemplateUrl from '@/assets/export/台積料表yyyymmdd.xlsx?url'
+import juxianTemplateUrl from '@/assets/export/聚賢料表yyyymmdd.xlsx?url'
 
 const CARD_WIDTH = 232
 const CARD_HEIGHT_OFFSET = 150
@@ -407,6 +470,14 @@ const BRANCH_SPACING = 48 // 分支卡片間距
 const PANEL_EQUIPMENT_GROUP_SPACING = 150 // Panel+Equipment 群組之間的垂直間距
 const FIRST_BRANCH_VALVE_SPACING = 45 // 第一個分支閥件與主位置之間的垂直間距
 const BRANCH_VALVE_SPACING = 410 // 分支閥件之間的垂直間距（比 Panel+Equipment 群組間距大，避免重疊）
+
+const DEFAULT_BRAND_OPTIONS = juxianBrandOptionsConfig.defaultOptions || [
+  { label: 'GENIIDEAS', value: 'GENIIDEAS' },
+  { label: 'CUSTOM', value: 'CUSTOM' },
+  { label: 'N/A', value: 'N/A' }
+]
+
+const JUXIAN_FIELD_OPTIONS = juxianBrandOptionsConfig.fieldOptions || {}
 
 export default {
   name: 'App',
@@ -422,6 +493,8 @@ export default {
     EquipmentInfoCard,
     ValveInfoCard,
     Popup,
+    ActivationDialog,
+    JuxianExportModal,
     VueZoomable
   },
   data() {
@@ -446,6 +519,82 @@ export default {
         showIcon: true,
         closeOnOverlay: true
       },
+      isJuxianExportModalOpen: false,
+      juxianExportSettings: {
+        pipelineBrand: '',
+        ballValveBrand: '',
+        diaphragmValveBrand: '',
+        bellowValveBrand: '',
+        regulatorBrand: '',
+        springBrand: '',
+        overTubeBrand: '',
+        gaugeBrand: '',
+        glandBrand: '',
+        nutBrand: '',
+        gasketBrand: '',
+        stopSpacerBrand: '',
+        reducerBrand: '',
+        reducerTeeBrand: '',
+        teeBrand: '',
+        elbowBrand: '',
+        doubleElbowBrand: '',
+        doubleTeeBrand: ''
+      },
+      juxianExportColumns: [
+        {
+          id: 'column-1',
+          sections: [
+            {
+              title: '管線',
+              fields: [{ key: 'pipelineBrand', label: '管線品牌' }]
+            },
+            {
+              title: '閥件',
+              fields: [
+                { key: 'ballValveBrand', label: 'Ball Valve品牌' },
+                { key: 'diaphragmValveBrand', label: 'DIAPHRAGM Valve品牌' },
+                { key: 'bellowValveBrand', label: 'BELLOW Valve品牌' },
+                { key: 'regulatorBrand', label: 'REGULATOR品牌' }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'column-2',
+          sections: [
+            {
+              title: '其他元件',
+              fields: [
+                { key: 'springBrand', label: 'SPRING彈簧品牌' },
+                { key: 'overTubeBrand', label: 'Over Tube滑套品牌' },
+                { key: 'gaugeBrand', label: 'GAUGE壓力錶品牌' },
+                { key: 'glandBrand', label: 'GLAND品牌' },
+                { key: 'nutBrand', label: 'NUT品牌' },
+                { key: 'gasketBrand', label: 'GASKET品牌' },
+                { key: 'stopSpacerBrand', label: 'STOP SPACER 收尾環品牌' }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'column-3',
+          sections: [
+            {
+              title: '配件',
+              fields: [
+                { key: 'reducerBrand', label: 'REDUCER品牌' },
+                { key: 'reducerTeeBrand', label: 'REDUCER TEE品牌' },
+                { key: 'teeBrand', label: 'TEE品牌' },
+                { key: 'elbowBrand', label: 'ELBOW品牌' },
+                { key: 'doubleElbowBrand', label: 'DOUBLE ELBOW品牌' },
+                { key: 'doubleTeeBrand', label: 'DOUBLE TEE品牌' }
+              ]
+            }
+          ]
+        }
+      ],
+      juxianBrandOptions: DEFAULT_BRAND_OPTIONS,
+      juxianFieldOptions: JUXIAN_FIELD_OPTIONS,
       // 所有模組組（包括原始默認模組和動態添加的模組）
       // 初始化為空陣列，只有當用戶在設定中儲存時才會添加預設數據
       allModuleSets: [],
@@ -471,10 +620,16 @@ export default {
         x: 0,
         y: 0,
         moduleIndex: null
-      }
+      },
+      showActivationDialog: false
     }
   },
   mounted() {
+    // 檢查是否已啟用
+    const isActivated = localStorage.getItem('app_activated');
+    if (!isActivated) {
+      this.showActivationDialog = true;
+    }
     window.addEventListener('click', this.handleGlobalClick, true);
   },
   beforeUnmount() {
@@ -510,6 +665,18 @@ export default {
         return '新檔案';
       }
       return this.currentFilename;
+    },
+
+    hasRegulatorPanel() {
+      if (!Array.isArray(this.allModuleSets) || this.allModuleSets.length === 0) {
+        return false;
+      }
+      return this.allModuleSets.some((moduleSet) => {
+        return (
+          this.hasPanelWithRegulator(moduleSet?.panelEquipmentGroups) ||
+          this.hasRegulatorInBranchModules(moduleSet?.branchModuleCards)
+        );
+      });
     },
 
     
@@ -1392,6 +1559,1889 @@ export default {
     }
   },
   methods: {
+    stripWorkbookDefinedNames(workbook) {
+      // Excel 會因為 workbook.xml 的 definedNames 參照在 round-trip 後變成無效而跳「修復」視窗；
+      // 這裡直接移除 definedNames，避免輸出檔包含該節點。
+      if (!workbook) return;
+      try {
+        if (workbook.model && Array.isArray(workbook.model.definedNames)) {
+          workbook.model.definedNames = [];
+        }
+        if (workbook.definedNames && workbook.definedNames.matrixMap) {
+          workbook.definedNames.matrixMap = {};
+        }
+      } catch (e) {
+        // best-effort; ignore
+      }
+    },
+    getCellPlainText(value) {
+      if (value === null || value === undefined) {
+        return '';
+      }
+      if (typeof value === 'string') {
+        return value.trim();
+      }
+      if (typeof value === 'number') {
+        return `${value}`.trim();
+      }
+      if (typeof value === 'object') {
+        if (Array.isArray(value.richText)) {
+          return value.richText.map((item) => item.text || '').join('').trim();
+        }
+        if (value.text) {
+          return String(value.text).trim();
+        }
+      }
+      return '';
+    },
+    getPrimaryPanelSize(moduleSet) {
+      if (!moduleSet) return '';
+      const groups = Array.isArray(moduleSet.panelEquipmentGroups)
+        ? moduleSet.panelEquipmentGroups
+        : [];
+      for (const group of groups) {
+        const size = group?.panel?.data?.size;
+        if (size) return size;
+      }
+      return moduleSet.source?.data?.sourceSize || '';
+    },
+    getPrimaryEquipmentSize(moduleSet) {
+      if (!moduleSet) return '';
+      const groups = Array.isArray(moduleSet.panelEquipmentGroups)
+        ? moduleSet.panelEquipmentGroups
+        : [];
+      for (const group of groups) {
+        const size = group?.equipment?.data?.size;
+        if (size) return size;
+      }
+      return moduleSet.source?.data?.sourceSize || '';
+    },
+    buildTsmcPartQuantities() {
+      const partQuantities = new Map();
+      const unmatchedItems = [];
+
+      const addQuantity = (partName, quantity, unit = 'M') => {
+        if (!partName) return;
+        const value = Number(quantity);
+        if (!Number.isFinite(value) || value <= 0) return;
+        const existing = partQuantities.get(partName) || { quantity: 0, unit };
+        existing.quantity += value;
+        partQuantities.set(partName, existing);
+        console.log(`✅ [TSMC 成功比對]料號: ${partName}, 數量: ${value} ${unit}`);
+      };
+
+      const normalizeValveTypeForRule = (uiValveType) => {
+        const raw = (uiValveType || '').toString().trim();
+        const upper = raw.toUpperCase();
+        if (upper.startsWith('BALL VALVE')) return 'Ball Valve';
+        if (upper.startsWith('DIAPHRAGM VALVE')) return 'DIAPHRAGM VALVE';
+        if (upper.startsWith('REGULATOR')) return 'REGULATOR';
+        return '';
+      };
+
+      const countEnabledPanelsInModuleSet = (moduleSet) => {
+        let count = 0;
+        const groups = Array.isArray(moduleSet?.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        groups.forEach((g) => {
+          if (g?.panel?.data?.enablePanel) count += 1;
+        });
+        const branchModules = Array.isArray(moduleSet?.branchModuleCards) ? moduleSet.branchModuleCards : [];
+        branchModules.forEach((bm) => {
+          const bGroups = Array.isArray(bm?.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+          bGroups.forEach((g) => {
+            if (g?.panel?.data?.enablePanel) count += 1;
+          });
+        });
+        return count;
+      };
+
+      const addVCRMaterials = (size, connector, material, quantity, sysPipelineType, sysDoubleSize) => {
+        if (!size || !connector || !material || quantity <= 0) return;
+        const isVCR = connector === 'VCR-M' || connector === 'VCR-F';
+        if (!isVCR) return;
+
+        const gland = resolveGlandPart({ panelSize: size, panelConnector: connector, material });
+        if (gland?.partName) addQuantity(gland.partName, quantity, 'EA');
+        else unmatchedItems.push({ type: 'gland', size, connector, material });
+
+        let nutSize = size;
+        if (sysPipelineType === '雙套管' && sysDoubleSize) {
+          const parts = sysDoubleSize.split('*');
+          if (parts.length > 0) nutSize = parts[0].trim();
+        }
+
+        const nut = resolveNutPart({ panelSize: nutSize, panelConnector: connector, material });
+        if (nut?.partName) addQuantity(nut.partName, quantity, 'EA');
+        else unmatchedItems.push({ type: 'nut', size: nutSize, connector, material });
+
+        const gasket = resolveGasketPart({ panelSize: size, panelConnector: connector, material });
+        if (gasket?.partName) addQuantity(gasket.partName, quantity, 'EA');
+        else unmatchedItems.push({ type: 'gasket', size, connector, material });
+      };
+
+      const resolveTsmcTee = ({ size, material }) => {
+        const result = resolveFittingPart({ connector: 'WELD', fittingType: 'TEE', size, material, pipelineType: '單套管' });
+        return result ? { partName: result, unit: 'EA' } : null;
+      };
+
+      if (!Array.isArray(this.allModuleSets)) {
+        return { partQuantities, unmatchedItems };
+      }
+
+      console.log('--- [ TSMC 未比對之前的圖面原始數據 (allModuleSets) ] ---');
+      console.log(JSON.parse(JSON.stringify(this.allModuleSets)));
+      console.log('----------------------------------------------------');
+
+      this.allModuleSets.forEach((moduleSet) => {
+        if (!moduleSet) return;
+        
+        const sourceData = moduleSet.source?.data || {};
+        const pipelineData = moduleSet.pipeline?.data || {};
+        const pipelineType = sourceData.pipelineType || PIPELINE_TYPE.SINGLE;
+        const mainMaterial = (pipelineData.material || sourceData.pipelineMaterial || '').trim();
+
+        // 輔助函式：處理盤面群組內部元件
+        const processGroupComponents = (group, runSize, material, { isBranch = false, pipelineType = '', doubleSize = '' } = {}) => {
+          let localSize = runSize;
+          const panel = group.panel?.data || {};
+          
+          if (panel.enablePanel) {
+            const pSize = panel.size || runSize;
+            if (pipelineType === '雙套管' && doubleSize) {
+              const ss = resolveStopSpacerPart({ doubleSize });
+              if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA');
+              else unmatchedItems.push({ type: 'stop-spacer', doubleSize });
+              
+              if (isBranch) {
+                const dt = resolveTsmcDoubleTeePart({ doubleSize });
+                if (dt?.inner && dt?.outer) {
+                   addQuantity(dt.inner, 1, dt.unit || 'EA');
+                   addQuantity(dt.outer, 1, dt.unit || 'EA');
+                } else unmatchedItems.push({ type: 'double-tee', doubleSize });
+              }
+            }
+            if (pSize && pSize !== localSize) {
+              const mat = material;
+              const resR = resolveReducerPart({ fromSize: localSize, toSize: pSize, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: pSize, material });
+              if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: pSize, material });
+              localSize = pSize;
+            }
+
+            if (panel.valve && panel.valve !== 'none') {
+              const vType = normalizeValveTypeForRule(panel.valve);
+              const resV = resolveValvePart({ connector: panel.valveConnector || '', size: localSize, valveType: vType });
+              if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'valve', valveType: vType, size: localSize, connector: panel.valveConnector });
+            }
+            if (panel.regulator) {
+              const resReg = resolveValvePart({ connector: panel.valveConnector || '', size: localSize, valveType: 'REGULATOR' });
+              if (resReg?.partName) addQuantity(resReg.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'regulator', size: localSize, connector: panel.valveConnector });
+            }
+            if (panel.pressureGauge && panel.pressureGauge !== 'none') {
+              const conn = panel.valveConnector || '';
+              const resG = resolveGaugePart({ panelSize: '1/4"', panelConnector: conn, material });
+              if (resG?.partName) addQuantity(resG.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'gauge', panelSize: localSize, panelConnector: conn, material });
+              
+              if (conn !== 'SWG') {
+                 const resK = resolveGasketPart({ panelSize: localSize, panelConnector: conn, material });
+                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA');
+                 else unmatchedItems.push({ type: 'gasket', size: localSize, connector: conn, material });
+              }
+            }
+            addVCRMaterials(localSize, panel.valveConnector || panel.connector || '', material, 2, pipelineType, doubleSize);
+          }
+
+          const adds = Array.isArray(group.additionalEquipmentCards) ? group.additionalEquipmentCards : [];
+          adds.forEach(card => {
+            const vData = card.valve?.data || {};
+            const addSize = vData.size || card.connector || localSize; 
+            
+            if (addSize === localSize) {
+              const resT = resolveTsmcTee({ size: localSize, material });
+              if (resT?.partName) addQuantity(resT.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'tee', size: localSize, material });
+            } else {
+              const mat = material;
+              const resRT = resolveReducerTeePart({ mainSize: localSize, branchSize: addSize, material: mat }) || resolveReducerTeePart({ mainSize: localSize, branchSize: addSize, material });
+              if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'reducer-tee', mainSize: localSize, branchSize: addSize, material });
+            }
+
+            if (vData.enableValve) {
+               if (vData.size && vData.size !== localSize) {
+                  const mat = material;
+                  const res = resolveReducerPart({ fromSize: localSize, toSize: vData.size, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: vData.size, material });
+                  if (res?.partName) addQuantity(res.partName, 1, 'EA');
+                  else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: vData.size, material });
+                  localSize = vData.size;
+               }
+               const vType = normalizeValveTypeForRule(vData.valveType);
+               const resV = resolveValvePart({ connector: vData.connectorType || '', size: localSize, valveType: vType });
+               if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+               else unmatchedItems.push({ type: 'valve', valveType: vType, size: localSize, connector: vData.connectorType });
+               
+               
+               addVCRMaterials(localSize, vData.connectorType, material, 2, pipelineType, doubleSize);
+            }
+            if (card.pressureGauge && card.pressureGauge !== 'none') {
+               const conn = card.connector || panel.connector || '';
+               const resG = resolveGaugePart({ panelSize: '1/4"', panelConnector: conn, material });
+               if (resG?.partName) addQuantity(resG.partName, 1, 'EA');
+               else unmatchedItems.push({ type: 'gauge', panelSize: localSize, panelConnector: conn, material });
+               
+               if (conn !== 'SWG') {
+                 const resK = resolveGasketPart({ panelSize: localSize, panelConnector: conn, material });
+                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA');
+                 else unmatchedItems.push({ type: 'gasket', size: localSize, connector: conn, material });
+               }
+            }
+          });
+
+          // Equipment ...
+          const eqCard = group.equipment;
+          if (eqCard?.data) {
+            const eData = eqCard.data;
+            if (eData.size && eData.size !== localSize) {
+              const mat = material;
+              const resR = resolveReducerPart({ fromSize: localSize, toSize: eData.size, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: eData.size, material });
+              if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+              else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: eData.size, material });
+              localSize = eData.size;
+            }
+            addVCRMaterials(localSize, eData.connector, material, 1, pipelineType, doubleSize);
+          }
+        };
+
+        // ====== 遍歷資料開始 ======
+        let currentRunSize = sourceData.sourceSize || '';
+        const doubleSize = sourceData.doubleSleeveSize || '';
+        
+        if (pipelineType === '雙套管' && doubleSize) {
+          const ss = resolveStopSpacerPart({ doubleSize });
+          if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA');
+          else unmatchedItems.push({ type: 'stop-spacer', doubleSize });
+        }
+        if (sourceData.connectorSpec && (sourceData.connectorSpec === 'VCR-M' || sourceData.connectorSpec === 'VCR-F')) {
+          addVCRMaterials(currentRunSize, sourceData.connectorSpec, mainMaterial, 1, pipelineType, doubleSize);
+        }
+
+        // B / C 分支管線 => branchModules
+        const branchModules = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
+        branchModules.forEach((bm) => {
+          const branchEnabled = bm?.valve?.data?.enableValve !== false;
+
+          let branchSize = bm?.source?.data?.branchSourceSize || bm?.valve?.data?.size || '';
+          if (branchSize && branchSize !== currentRunSize) {
+            const mat = mainMaterial;
+            const resRT = resolveReducerTeePart({ mainSize: currentRunSize, branchSize, material: mat }) || resolveReducerTeePart({ mainSize: currentRunSize, branchSize, material: mainMaterial });
+            if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA');
+            else unmatchedItems.push({ type: 'reducer-tee', mainSize: currentRunSize, branchSize, material: mainMaterial });
+          } else {
+            const resT = resolveTsmcTee({ size: currentRunSize, material: mainMaterial });
+            if (resT?.partName) addQuantity(resT.partName, 1, 'EA');
+            else unmatchedItems.push({ type: 'tee', size: currentRunSize, material: mainMaterial });
+            branchSize = currentRunSize;
+          }
+
+          if (bm.source?.data?.connectorSpec) {
+             addVCRMaterials(branchSize, bm.source.data.connectorSpec, mainMaterial, 1, pipelineType, doubleSize);
+          }
+
+          // C區塊 -> 分支主閥件
+          const bValve = bm.valve?.data || {};
+          if (bValve.size && bValve.size !== branchSize) {
+            const mat = mainMaterial;
+            const resR = resolveReducerPart({ fromSize: branchSize, toSize: bValve.size, material: mat }) || resolveReducerPart({ fromSize: branchSize, toSize: bValve.size, material: mainMaterial });
+            if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+            else unmatchedItems.push({ type: 'reducer', fromSize: branchSize, toSize: bValve.size, material: mainMaterial });
+            branchSize = bValve.size;
+          }
+          
+          const vType = normalizeValveTypeForRule(bValve.valveType);
+          const resV = resolveValvePart({ connector: bValve.connectorType || '', size: branchSize, valveType: vType });
+          if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+          else unmatchedItems.push({ type: 'valve', valveType: vType, size: branchSize, connector: bValve.connectorType });
+          
+          
+          addVCRMaterials(branchSize, bValve.connectorType, mainMaterial, 2, pipelineType, doubleSize);
+
+          if (!branchEnabled) return;
+
+          // 分支盤面 G / H
+          const bGroups = Array.isArray(bm.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+          bGroups.forEach(group => {
+             processGroupComponents(group, branchSize, mainMaterial, { isBranch: true, pipelineType, doubleSize });
+          });
+        });
+
+        // D / F 區塊 主線閥件
+        const mainValves = Array.isArray(moduleSet.valveCards) ? moduleSet.valveCards : [];
+        mainValves.forEach((vCard) => {
+          const vData = vCard.data || {};
+          if (!vData.valveType || vData.valveType === 'NA') return;
+          
+          if (vData.size && vData.size !== currentRunSize) {
+            const mat = mainMaterial;
+            const resR = resolveReducerPart({ fromSize: currentRunSize, toSize: vData.size, material: mat }) || resolveReducerPart({ fromSize: currentRunSize, toSize: vData.size, material: mainMaterial });
+            if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+            else unmatchedItems.push({ type: 'reducer', fromSize: currentRunSize, toSize: vData.size, material: mainMaterial });
+            currentRunSize = vData.size;
+          }
+          
+          const vType = normalizeValveTypeForRule(vData.valveType);
+          const resV = resolveValvePart({ connector: vData.connectorType || '', size: currentRunSize, valveType: vType });
+          if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+          else unmatchedItems.push({ type: 'valve', valveType: vType, size: currentRunSize, connector: vData.connectorType });
+          
+          
+          addVCRMaterials(currentRunSize, vData.connectorType, mainMaterial, 2, pipelineType, doubleSize);
+        });
+
+        // L / M 區塊 主盤面
+        const mainGroups = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        mainGroups.forEach(group => {
+           processGroupComponents(group, currentRunSize, mainMaterial, { isBranch: false, pipelineType, doubleSize });
+        });
+
+        // 管線
+        const pipelineLength = parseFloat(moduleSet.pipeline?.data?.length || sourceData.pipelineLength);
+        if (Number.isFinite(pipelineLength) && pipelineLength > 0 && currentRunSize && mainMaterial) {
+          const pipeRes = resolvePipePart({ pipelineType, size: currentRunSize, material: mainMaterial, doubleSize });
+          if (pipeRes) {
+            if (pipelineType === '雙套管' && pipeRes.inner && pipeRes.outer) {
+               addQuantity(pipeRes.inner, pipelineLength, 'M');
+               addQuantity(pipeRes.outer, pipelineLength, 'M');
+            } else if (typeof pipeRes === 'string') {
+               addQuantity(pipeRes, pipelineLength, 'M');
+            }
+          } else {
+             unmatchedItems.push({ type: 'pipeline', pipelineType, size: currentRunSize, material: mainMaterial, quantity: pipelineLength });
+          }
+
+          if (pipelineType === '雙套管' && doubleSize) {
+            const springResolved = resolveSpringPart({ doubleSize });
+            if (springResolved?.partName) addQuantity(springResolved.partName, pipelineLength * 0.75, springResolved.unit || 'EA');
+            else unmatchedItems.push({ type: 'spring', doubleSize, length: pipelineLength });
+
+            const overTubeResolved = resolveOverTubePart({ doubleSize });
+            if (overTubeResolved?.partName) addQuantity(overTubeResolved.partName, pipelineLength * 0.5, overTubeResolved.unit || 'EA');
+            else unmatchedItems.push({ type: 'over-tube', doubleSize, length: pipelineLength });
+
+            const dElbow = resolveTsmcDoubleElbowPart({ doubleSize });
+            if (dElbow?.inner && dElbow?.outer) {
+              addQuantity(dElbow.inner, pipelineLength * 0.3, dElbow.unit || 'EA');
+              addQuantity(dElbow.outer, pipelineLength * 0.3, dElbow.unit || 'EA');
+            }
+            
+          } else {
+            // TSMC 獨有: ELBOW（依長度產生）
+            const elbowResolved = resolveElbowPart({ size: currentRunSize, material: mainMaterial });
+            if (elbowResolved?.partName) {
+              const divisor = Number(elbowResolved.divisor) || 3;
+              const raw = pipelineLength / divisor;
+              const qty = elbowResolved.round === 'floor' ? Math.floor(raw) : Math.ceil(raw);
+              if (qty > 0) {
+                addQuantity(elbowResolved.partName, qty, elbowResolved.unit || 'EA');
+              }
+            }
+          }
+        }
+      });
+
+      if (unmatchedItems.length > 0) {
+        console.warn('[buildTsmcPartQuantities] 未找到料號的資料', unmatchedItems);
+      }
+
+      console.log('--- [ TSMC 匯出原始數據 ] ---');
+      console.log('partQuantities:', Object.fromEntries(partQuantities));
+      console.log('unmatchedItems:', unmatchedItems);
+      console.log('-----------------------------');
+      return { partQuantities, unmatchedItems };
+    },
+    buildJuxianExportRows() {
+      const rowsByPartNo = new Map();
+      const unmatchedItems = [];
+
+      const addRow = ({ name, partNo, unit, quantity }) => {
+        if (!name || !partNo) return;
+        const qty = Number(quantity);
+        if (!Number.isFinite(qty) || qty <= 0) return;
+        const existing = rowsByPartNo.get(partNo);
+        if (existing) {
+          existing.quantity += qty;
+          console.log(`✅ [Juxian 成功比對 - 累加]品名: ${name}, 料號: ${partNo}, 新增數量: ${qty} ${unit} (總數: ${existing.quantity})`);
+          return;
+        }
+        rowsByPartNo.set(partNo, {
+          name,
+          partNo,
+          unit: unit || 'EA',
+          quantity: qty
+        });
+        console.log(`✅ [Juxian 成功比對 - 新增]品名: ${name}, 料號: ${partNo}, 數量: ${qty} ${unit}`);
+      };
+
+      if (!Array.isArray(this.allModuleSets)) {
+        return { rows: [], unmatchedItems };
+      }
+
+      console.log('--- [ Juxian 未比對之前的圖面原始數據 (allModuleSets) ] ---');
+      console.log(JSON.parse(JSON.stringify(this.allModuleSets)));
+      console.log('------------------------------------------------------');
+
+      const pipelineBrand = (this.juxianExportSettings?.pipelineBrand || '').trim();
+      const elbowBrand = (this.juxianExportSettings?.elbowBrand || '').trim();
+      const reducerBrand = (this.juxianExportSettings?.reducerBrand || '').trim();
+      const reducerTeeBrand = (this.juxianExportSettings?.reducerTeeBrand || '').trim();
+      const teeBrand = (this.juxianExportSettings?.teeBrand || '').trim();
+      const doubleTeeBrand = (this.juxianExportSettings?.doubleTeeBrand || '').trim();
+      const doubleElbowBrand = (this.juxianExportSettings?.doubleElbowBrand || '').trim();
+      const stopSpacerBrand = (this.juxianExportSettings?.stopSpacerBrand || '').trim();
+      const springBrand = (this.juxianExportSettings?.springBrand || '').trim();
+      const overTubeBrand = (this.juxianExportSettings?.overTubeBrand || '').trim();
+      const ballValveBrand = (this.juxianExportSettings?.ballValveBrand || '').trim();
+      const diaphragmValveBrand = (this.juxianExportSettings?.diaphragmValveBrand || '').trim();
+      const bellowValveBrand = (this.juxianExportSettings?.bellowValveBrand || '').trim();
+      const regulatorBrand = (this.juxianExportSettings?.regulatorBrand || '').trim();
+      const gaugeBrand = (this.juxianExportSettings?.gaugeBrand || '').trim();
+      const glandBrand = (this.juxianExportSettings?.glandBrand || '').trim();
+      const nutBrand = (this.juxianExportSettings?.nutBrand || '').trim();
+      const gasketBrand = (this.juxianExportSettings?.gasketBrand || '').trim();
+
+      console.log('--- [ Juxian User Selected Brands ] ---');
+      console.log(JSON.parse(JSON.stringify({ pipelineBrand, elbowBrand, reducerBrand, reducerTeeBrand, teeBrand, doubleTeeBrand, doubleElbowBrand, stopSpacerBrand, springBrand, overTubeBrand, ballValveBrand, diaphragmValveBrand, bellowValveBrand, regulatorBrand, gaugeBrand, glandBrand, nutBrand, gasketBrand })));
+
+      const normalizeJuxianValveType = (uiValveType) => {
+        const raw = (uiValveType || '').toString().trim();
+        const upper = raw.toUpperCase();
+        if (upper.includes('BALL')) return 'Ball Valve';
+        if (upper.includes('DIAPHRAGM')) return 'DIAPHRAGM VALVE';
+        if (upper.includes('BELLOW')) return 'BELLOW VALVE';
+        if (upper.includes('REGULATOR')) return 'REGULATOR';
+        return '';
+      };
+
+      const resolveValveBrandByType = (valveTypeRule) => {
+        if (valveTypeRule === 'Ball Valve') return ballValveBrand;
+        if (valveTypeRule === 'DIAPHRAGM VALVE') return diaphragmValveBrand;
+        if (valveTypeRule === 'BELLOW VALVE') return bellowValveBrand;
+        if (valveTypeRule === 'REGULATOR') return regulatorBrand;
+        return '';
+      };
+
+      const countEnabledPanelsInModuleSet = (moduleSet) => {
+        let count = 0;
+        const groups = Array.isArray(moduleSet?.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        groups.forEach((g) => {
+          if (g?.panel?.data?.enablePanel) count += 1;
+        });
+        const branchModules = Array.isArray(moduleSet?.branchModuleCards) ? moduleSet.branchModuleCards : [];
+        branchModules.forEach((bm) => {
+          const bGroups = Array.isArray(bm?.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+          bGroups.forEach((g) => {
+            if (g?.panel?.data?.enablePanel) count += 1;
+          });
+        });
+        return count;
+      };
+
+      this.allModuleSets.forEach((moduleSet, moduleIndex) => {
+        if (!moduleSet) return;
+        const sourceData = moduleSet.source?.data || {};
+        const pipelineType = sourceData.pipelineType || PIPELINE_TYPE.SINGLE;
+
+        const pipelineData = moduleSet.pipeline?.data || {};
+        const referenceSize =
+          pipelineType === PIPELINE_TYPE.FLEX
+            ? this.getPrimaryEquipmentSize(moduleSet)
+            : this.getPrimaryPanelSize(moduleSet);
+
+        const calcAndAddPipe = ({ pipelineData, referenceSize, materialFallback, meta }) => {
+          const length = parseFloat(pipelineData?.length);
+          const material = (pipelineData?.material || materialFallback || '').trim();
+          if (!Number.isFinite(length) || length <= 0 || !material || !referenceSize || !pipelineBrand) {
+            return { length: null, material: null };
+          }
+          const resolved = resolveJuxianPipe({
+            pipelineType,
+            size: referenceSize,
+            material,
+            brand: pipelineBrand
+          });
+          if (!resolved?.name || !resolved?.partNo) {
+            unmatchedItems.push({
+              type: 'pipeline',
+              moduleIndex,
+              ...meta,
+              pipelineType,
+              size: referenceSize,
+              material,
+              brand: pipelineBrand,
+              quantity: length,
+              unit: 'M'
+            });
+            return { length, material };
+          }
+          addRow({
+            name: resolved.name,
+            partNo: resolved.partNo,
+            unit: resolved.unit || 'M',
+            quantity: length
+          });
+          return { length, material };
+        };
+
+        const mainPipeResult = calcAndAddPipe({
+          pipelineData,
+          referenceSize,
+          materialFallback: '',
+          meta: { location: 'main' }
+        });
+        const mainMaterial = mainPipeResult.material || (pipelineData.material || '').trim();
+        const pipelineLength = mainPipeResult.length;
+        const doubleSize = sourceData.doubleSleeveSize || '';
+        const stopSpacerBrand = (this.juxianExportSettings?.stopSpacerBrand || '').trim();
+
+        // 雙套管 源頭 A-6 Stop Spacer
+        if (pipelineType === PIPELINE_TYPE.DOUBLE && doubleSize && stopSpacerBrand) {
+           const resolved = resolveJuxianStopSpacer({ pipelineType, doubleSize, brand: stopSpacerBrand });
+           if (resolved?.partNo) addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+           else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: stopSpacerBrand, quantity: 1, unit: 'EA' });
+        } else if (pipelineType === PIPELINE_TYPE.DOUBLE && doubleSize && !stopSpacerBrand) {
+           unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
+        }
+
+          // 配件 - ELBOW：聚賢不特別匯出 ELBOW (根據使用者比對列表移除)
+
+        // 分支管線 (H欄) - 來自 branchModule.pipeline
+        const branchModules = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
+        branchModules.forEach((bm, branchModuleIndex) => {
+          const branchEnabled = bm?.valve?.data?.enableValve !== false;
+          if (!branchEnabled) return;
+          const bmPipe = bm?.pipeline?.data || {};
+          const bmValveSize = bm?.valve?.data?.size || bm?.pipeline?.data?.size || '';
+          calcAndAddPipe({
+            pipelineData: bmPipe,
+            referenceSize: bmValveSize || referenceSize,
+            materialFallback: mainMaterial,
+            meta: { location: 'branch', branchModuleIndex }
+          });
+        });
+
+        // 配件 - 分支 REDUCER TEE (主尺寸 != 分支尺寸)
+        const mainValveSize = sourceData.sourceSize || '';
+        branchModules.forEach((bm, branchModuleIndex) => {
+          const branchSize = bm?.valve?.data?.size || '';
+          if (!mainValveSize || !branchSize || !mainMaterial || !reducerTeeBrand) return;
+          if (branchSize === mainValveSize) return;
+          const matSeam = mainMaterial.replace('無縫', '有縫');
+          const resolved = resolveJuxianReducerTee({
+            mainSize: mainValveSize,
+            branchSize,
+            material: mainMaterial,
+            brand: reducerTeeBrand
+          }) || resolveJuxianReducerTee({
+            mainSize: mainValveSize,
+            branchSize,
+            material: matSeam,
+            brand: reducerTeeBrand
+          });
+          if (resolved?.partNo) {
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+          } else {
+            unmatchedItems.push({
+              type: 'reducer-tee',
+              moduleIndex,
+              branchModuleIndex,
+              mainSize: mainValveSize,
+              branchSize,
+              material: mainMaterial,
+              brand: reducerTeeBrand,
+              quantity: 1,
+              unit: 'EA'
+            });
+          }
+        });
+
+        // 配件 - TEE 有分支 (主尺寸 == 分支尺寸)
+        branchModules.forEach((bm, branchModuleIndex) => {
+          const branchSize = bm?.valve?.data?.size || '';
+          if (!mainValveSize || !branchSize || !mainMaterial || !teeBrand) return;
+          if (branchSize !== mainValveSize) return;
+          const resolved = resolveJuxianTee({
+            size: mainValveSize,
+            material: mainMaterial,
+            brand: teeBrand
+          });
+          if (resolved?.partNo) {
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+          } else {
+            unmatchedItems.push({
+              type: 'tee',
+              moduleIndex,
+              branchModuleIndex,
+              size: mainValveSize,
+              material: mainMaterial,
+              brand: teeBrand,
+              quantity: 1,
+              unit: 'EA'
+            });
+          }
+        });
+
+        // 雙套管 盤面專屬邏輯 (D-2 / F-2)
+        if (pipelineType === PIPELINE_TYPE.DOUBLE && doubleSize) {
+          const dtBrand = (this.juxianExportSettings?.doubleTeeBrand || '').trim();
+          // 主盤面 F-2
+          const mainGroups = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+          mainGroups.forEach(group => {
+            if (group?.panel?.data?.enablePanel) {
+               if (stopSpacerBrand) {
+                 const resSS = resolveJuxianStopSpacer({ pipelineType, doubleSize, brand: stopSpacerBrand });
+                 if (resSS?.partNo) addRow({ name: resSS.name, partNo: resSS.partNo, unit: 'EA', quantity: 1 });
+                 else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: stopSpacerBrand, quantity: 1, unit: 'EA' });
+               } else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
+            }
+          });
+
+          // 分支盤面 D-2
+          const branchModules = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
+          branchModules.forEach((bm, branchModuleIndex) => {
+             const bGroups = Array.isArray(bm.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+             bGroups.forEach(group => {
+               if (group?.panel?.data?.enablePanel) {
+                 // Stop Spacer
+                 if (stopSpacerBrand) {
+                   const resSS = resolveJuxianStopSpacer({ pipelineType, doubleSize, brand: stopSpacerBrand });
+                   if (resSS?.partNo) addRow({ name: resSS.name, partNo: resSS.partNo, unit: 'EA', quantity: 1 });
+                   else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, branchModuleIndex, doubleSize, brand: stopSpacerBrand, quantity: 1, unit: 'EA' });
+                 } else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, branchModuleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
+                 
+                 // Double Tee
+                 if (dtBrand) {
+                   const resDT = resolveJuxianDoubleTee({ pipelineType, doubleSize, brand: dtBrand });
+                   if (resDT?.partNo) addRow({ name: resDT.name, partNo: resDT.partNo, unit: 'EA', quantity: 1 });
+                   else unmatchedItems.push({ type: 'double-tee', moduleIndex, branchModuleIndex, doubleSize, brand: dtBrand, quantity: 1, unit: 'EA' });
+                 } else unmatchedItems.push({ type: 'double-tee', moduleIndex, branchModuleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
+               }
+             });
+          });
+        }
+
+        // 配件 - REDUCER (盤面尺寸 != 設備尺寸)
+        const groupsForReducer = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        groupsForReducer.forEach((group) => {
+          const panel = group?.panel?.data || {};
+          const equipment = group?.equipment?.data || {};
+          if (!panel?.enablePanel) return;
+          const pSize = panel.size || '';
+          const eSize = equipment.size || '';
+          if (!pSize || !eSize || pSize === eSize || !mainMaterial || !reducerBrand) return;
+          const resolved = resolveJuxianReducer({
+            fromSize: pSize,
+            toSize: eSize,
+            material: mainMaterial,
+            brand: reducerBrand
+          });
+          if (resolved?.partNo) {
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+          } else {
+            unmatchedItems.push({
+              type: 'reducer',
+              moduleIndex,
+              fromSize: pSize,
+              toSize: eSize,
+              material: mainMaterial,
+              brand: reducerBrand,
+              quantity: 1,
+              unit: 'EA'
+            });
+          }
+        });
+
+        // DOUBLE TEE / DOUBLE ELBOW / STOP SPACER / SPRING / OVER TUBE (雙套管)
+        if (pipelineType === PIPELINE_TYPE.DOUBLE) {
+          const enabledPanels = countEnabledPanelsInModuleSet(moduleSet);
+          const doubleSize = sourceData.doubleSleeveSize || '';
+
+
+
+          if (doubleSize && Number.isFinite(pipelineLength) && pipelineLength > 0) {
+            const qty = Math.ceil(pipelineLength / 3);
+            if (qty > 0) {
+              if (doubleElbowBrand) {
+                const resolved = resolveJuxianDoubleElbow({
+                  pipelineType,
+                  doubleSize,
+                  brand: doubleElbowBrand
+                });
+                if (resolved?.partNo) {
+                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+                } else {
+                  unmatchedItems.push({
+                    type: 'double-elbow',
+                    moduleIndex,
+                    pipelineType,
+                    doubleSize,
+                    brand: doubleElbowBrand,
+                    quantity: qty,
+                    unit: 'EA'
+                  });
+                }
+              } else {
+                // 品牌為空，加入無對應料號
+                unmatchedItems.push({
+                  type: 'double-elbow',
+                  moduleIndex,
+                  pipelineType,
+                  doubleSize,
+                  brand: '',
+                  quantity: qty,
+                  unit: 'EA'
+                });
+              }
+            }
+          }
+
+          if (doubleSize) {
+            const qty = Math.max(2, enabledPanels + 1);
+            if (stopSpacerBrand) {
+              const resolved = resolveJuxianStopSpacer({
+                pipelineType,
+                doubleSize,
+                hasBranchPanel: enabledPanels > 0,
+                brand: stopSpacerBrand
+              });
+              if (resolved?.partNo) {
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+              } else {
+                unmatchedItems.push({
+                  type: 'stop-spacer',
+                  moduleIndex,
+                  pipelineType,
+                  doubleSize,
+                  enabledPanels,
+                  brand: stopSpacerBrand,
+                  quantity: qty,
+                  unit: 'EA'
+                });
+              }
+            } else {
+              // 品牌為空，加入無對應料號
+              unmatchedItems.push({
+                type: 'stop-spacer',
+                moduleIndex,
+                pipelineType,
+                doubleSize,
+                enabledPanels,
+                brand: '',
+                quantity: qty,
+                unit: 'EA'
+              });
+            }
+          }
+
+          if (doubleSize && Number.isFinite(pipelineLength) && pipelineLength > 0) {
+            const qty = pipelineLength * 0.75;
+            if (springBrand) {
+              const resolved = resolveJuxianSpring({ pipelineType, doubleSize, brand: springBrand });
+              if (resolved?.partNo) {
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+              } else {
+                unmatchedItems.push({
+                  type: 'spring',
+                  moduleIndex,
+                  pipelineType,
+                  doubleSize,
+                  brand: springBrand,
+                  quantity: qty,
+                  unit: 'EA'
+                });
+              }
+            } else {
+              // 品牌為空，加入無對應料號
+              unmatchedItems.push({
+                type: 'spring',
+                moduleIndex,
+                pipelineType,
+                doubleSize,
+                brand: '',
+                quantity: qty,
+                unit: 'EA'
+              });
+            }
+          }
+
+          if (doubleSize && Number.isFinite(pipelineLength) && pipelineLength > 0) {
+            const qty = pipelineLength * 0.5;
+            if (overTubeBrand) {
+              const resolved = resolveJuxianOverTube({ pipelineType, doubleSize, brand: overTubeBrand });
+              if (resolved?.partNo) {
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+              } else {
+                unmatchedItems.push({
+                  type: 'over-tube',
+                  moduleIndex,
+                  pipelineType,
+                  doubleSize,
+                  brand: overTubeBrand,
+                  quantity: qty,
+                  unit: 'EA'
+                });
+              }
+            } else {
+              // 品牌為空，加入無對應料號
+              unmatchedItems.push({
+                type: 'over-tube',
+                moduleIndex,
+                pipelineType,
+                doubleSize,
+                brand: '',
+                quantity: qty,
+                unit: 'EA'
+              });
+            }
+          }
+        }
+
+        // 閥件資訊卡片：主/分支/群組/額外設備 valve
+        const addValveFromCardData = ({ connector, size, valveType, meta }) => {
+          const valveTypeRule = normalizeJuxianValveType(valveType);
+          if (!connector || !size || !valveTypeRule) return;
+          const brand = resolveValveBrandByType(valveTypeRule);
+          if (!brand) {
+            // 品牌為空，加入無對應料號
+            unmatchedItems.push({
+              type: 'valve',
+              moduleIndex,
+              ...meta,
+              connector,
+              size,
+              valveType: valveTypeRule,
+              brand: '',
+              quantity: 1,
+              unit: 'EA'
+            });
+            return;
+          }
+          const resolved = resolveJuxianValve({
+            connector,
+            size,
+            valveType: valveTypeRule,
+            brand
+          });
+          if (resolved?.partNo) {
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+          } else {
+            unmatchedItems.push({
+              type: 'valve',
+              moduleIndex,
+              ...meta,
+              connector,
+              size,
+              valveType: valveTypeRule,
+              brand,
+              quantity: 1,
+              unit: 'EA'
+            });
+          }
+        };
+
+        let currentRunSize = sourceData.sourceSize || '';
+        const valveCards = Array.isArray(moduleSet.valveCards) ? moduleSet.valveCards : [];
+        valveCards.forEach((card, valveIndex) => {
+          const data = card?.data || {};
+
+          // REDUCER FOR MAIN VALVES (Fix missing 15Ax1/2")
+          if (data.size && data.size !== currentRunSize) {
+             if (reducerBrand) {
+                const resR = resolveJuxianReducer({ fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: reducerBrand });
+                if (resR?.partNo) {
+                   addRow({ name: resR.name, partNo: resR.partNo, unit: 'EA', quantity: 1 });
+                } else {
+                   unmatchedItems.push({ type: 'reducer', moduleIndex, fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: reducerBrand, quantity: 1, unit: 'EA' });
+                }
+             } else {
+                unmatchedItems.push({ type: 'reducer', moduleIndex, fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: '', quantity: 1, unit: 'EA' });
+             }
+             currentRunSize = data.size;
+          }
+
+          addValveFromCardData({
+            connector: data.connectorType,
+            size: data.size,
+            valveType: data.valveType,
+            meta: { valveIndex }
+          });
+        });
+
+        // 分支模組 valve card
+        branchModules.forEach((bm, branchModuleIndex) => {
+          const data = bm?.valve?.data || {};
+          addValveFromCardData({
+            connector: data.connectorType,
+            size: data.size,
+            valveType: data.valveType,
+            meta: { branchModuleIndex }
+          });
+
+          const branchEnabled = bm?.valve?.data?.enableValve !== false;
+          if (!branchEnabled) return;
+          const bGroups = Array.isArray(bm?.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+          bGroups.forEach((g, panelEquipmentGroupIndex) => {
+            const v = g?.valve?.data || {};
+            addValveFromCardData({
+              connector: v.connectorType,
+              size: v.size,
+              valveType: v.valveType,
+              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-valve' }
+            });
+            const bv = g?.branchValve?.data || {};
+            addValveFromCardData({
+              connector: bv.connectorType,
+              size: bv.size,
+              valveType: bv.valveType,
+              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-branchValve' }
+            });
+          });
+        });
+
+        const panelGroupsForValve = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        panelGroupsForValve.forEach((group, groupIndex) => {
+          const v = group?.valve?.data || {};
+          addValveFromCardData({
+            connector: v.connectorType,
+            size: v.size,
+            valveType: v.valveType,
+            meta: { groupIndex, location: 'group-valve' }
+          });
+          const bv = group?.branchValve?.data || {};
+          addValveFromCardData({
+            connector: bv.connectorType,
+            size: bv.size,
+            valveType: bv.valveType,
+            meta: { groupIndex, location: 'group-branchValve' }
+          });
+          const adds = Array.isArray(group?.additionalEquipmentCards) ? group.additionalEquipmentCards : [];
+          adds.forEach((ae, additionalIndex) => {
+            const av = ae?.valve?.data || {};
+            addValveFromCardData({
+              connector: av.connectorType,
+              size: av.size,
+              valveType: av.valveType,
+              meta: { groupIndex, additionalIndex, location: 'additionalEquipment-valve' }
+            });
+          });
+        });
+
+        // 盤面閥件/Regulator/Gauge + GLAND/NUT/GASKET：每個啟用盤面獨立計算
+        const allPanelGroups = [];
+        const topGroups = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        topGroups.forEach((g) => allPanelGroups.push({ group: g, meta: { location: 'main' } }));
+        const bms = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
+        bms.forEach((bm, branchModuleIndex) => {
+          const bg = Array.isArray(bm?.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
+          bg.forEach((g) => allPanelGroups.push({ group: g, meta: { location: 'branch', branchModuleIndex } }));
+        });
+        allPanelGroups.forEach(({ group, meta }) => {
+          const panel = group?.panel?.data || {};
+          if (!panel.enablePanel) return;
+          const panelSize = panel.size || '';
+          const panelConnector = panel.valveConnector || panel.connector || '';
+          if (!panelSize || !panelConnector || !mainMaterial) return;
+
+          // Panel Valve
+          if (panel.valve && panel.valve !== 'NA') {
+            const valveTypeRule = normalizeJuxianValveType(panel.valve);
+            const brand = resolveValveBrandByType(valveTypeRule);
+            if (valveTypeRule) {
+              if (brand) {
+                const resolved = resolveJuxianValve({
+                  connector: panelConnector,
+                  size: panelSize,
+                  valveType: valveTypeRule,
+                  brand
+                });
+                if (resolved?.partNo) {
+                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+                } else {
+                  unmatchedItems.push({
+                    type: 'panel-valve',
+                    moduleIndex,
+                    ...meta,
+                    connector: panelConnector,
+                    size: panelSize,
+                    valveType: valveTypeRule,
+                    brand,
+                    quantity: 1,
+                    unit: 'EA'
+                  });
+                }
+              } else {
+                // 品牌為空，加入無對應料號
+                unmatchedItems.push({
+                  type: 'panel-valve',
+                  moduleIndex,
+                  ...meta,
+                  connector: panelConnector,
+                  size: panelSize,
+                  valveType: valveTypeRule,
+                  brand: '',
+                  quantity: 1,
+                  unit: 'EA'
+                });
+              }
+            }
+          }
+
+          // Regulator
+          if (panel.regulator) {
+            const brand = regulatorBrand;
+            if (brand) {
+              const resolved = resolveJuxianValve({
+                connector: panelConnector,
+                size: panelSize,
+                valveType: 'REGULATOR',
+                brand
+              });
+              if (resolved?.partNo) {
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+              } else {
+                unmatchedItems.push({
+                  type: 'regulator',
+                  moduleIndex,
+                  ...meta,
+                  connector: panelConnector,
+                  size: panelSize,
+                  brand,
+                  quantity: 1,
+                  unit: 'EA'
+                });
+              }
+            } else {
+              // 品牌為空，加入無對應料號
+              unmatchedItems.push({
+                type: 'regulator',
+                moduleIndex,
+                ...meta,
+                connector: panelConnector,
+                size: panelSize,
+                brand: '',
+                quantity: 1,
+                unit: 'EA'
+              });
+            }
+          }
+
+          // Gauge（只有有調壓閥時才會選）
+          if (panel.regulator && panel.pressureGauge === 'Gauge' && gaugeBrand) {
+            const gaugeMat = mainMaterial.replace('無縫', '有縫'); // gauge prefers seamed in Juxian!
+            const resolved = resolveJuxianGauge({
+              panelSize: '1/4"',
+              panelConnector: 'TUBE',
+              material: mainMaterial,
+              brand: gaugeBrand
+            }) || resolveJuxianGauge({
+              panelSize: '1/4"',
+              panelConnector: 'TUBE',
+              material: gaugeMat,
+              brand: gaugeBrand
+            });
+            
+            if (resolved?.partNo) {
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+            } else {
+              unmatchedItems.push({
+                type: 'gauge',
+                moduleIndex,
+                ...meta,
+                panelSize: '1/4"',
+                panelConnector: 'TUBE',
+                material: gaugeMat,
+                brand: gaugeBrand,
+                quantity: 1,
+                unit: 'EA'
+              });
+            }
+          }
+
+          if (panelConnector === 'VCR' && glandBrand) {
+            const resolved = resolveJuxianGland({ panelSize, panelConnector, material: mainMaterial, brand: glandBrand });
+            if (resolved?.partNo) {
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+            } else {
+              unmatchedItems.push({
+                type: 'gland',
+                moduleIndex,
+                ...meta,
+                panelSize,
+                panelConnector,
+                material: mainMaterial,
+                brand: glandBrand,
+                quantity: 2,
+                unit: 'EA'
+              });
+            }
+          }
+          if (panelConnector === 'VCR' && nutBrand) {
+            const resolved = resolveJuxianNut({ panelSize, panelConnector, material: mainMaterial, brand: nutBrand });
+            if (resolved?.partNo) {
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+            } else {
+              unmatchedItems.push({
+                type: 'nut',
+                moduleIndex,
+                ...meta,
+                panelSize,
+                panelConnector,
+                material: mainMaterial,
+                brand: nutBrand,
+                quantity: 2,
+                unit: 'EA'
+              });
+            }
+          }
+          if (panelConnector === 'VCR' && gasketBrand) {
+            const resolved = resolveJuxianGasket({ panelSize, panelConnector, material: mainMaterial, brand: gasketBrand });
+            if (resolved?.partNo) {
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+            } else {
+              unmatchedItems.push({
+                type: 'gasket',
+                moduleIndex,
+                ...meta,
+                panelSize,
+                panelConnector,
+                material: mainMaterial,
+                brand: gasketBrand,
+                quantity: 2,
+                unit: 'EA'
+              });
+            }
+          }
+        });
+      });
+
+      const juxianRows = Array.from(rowsByPartNo.values());
+      console.log('--- [ Juxian 匯出原始數據 ] ---');
+      console.log('rows:', juxianRows);
+      console.log('unmatchedItems:', unmatchedItems);
+      console.log('-----------------------------');
+      return { rows: juxianRows, unmatchedItems };
+    },
+    buildTsmcUnmatchedCondition(item) {
+      if (!item) return '';
+      if (item.type === 'pipeline') {
+        const typeLabel = item.pipelineType === '單套管' ? '單線管' : item.pipelineType || '';
+        const segments = [
+          `源頭-管線類別:${typeLabel || '未填'}`,
+          `盤面-尺寸:${item.size || '未填'}`
+        ];
+        if (item.pipelineType === PIPELINE_TYPE.DOUBLE) {
+          segments.push(`雙套管尺寸:${item.doubleSize || '未填'}`);
+        }
+        const qty = Number.isFinite(item.quantity) ? Math.round(item.quantity * 1000) / 1000 : NaN;
+        const lengthText = Number.isFinite(qty) ? `${qty}米` : '未填';
+        segments.push(`管線-長度:${lengthText}`);
+        segments.push(`管線-材質:${item.material || '未填'}`);
+        return segments.join(',');
+      }
+
+      if (item.type === 'valve') {
+        const parts = [
+          '閥件',
+          `類型:${item.valveType || '未填'}`,
+          `尺寸:${item.size || '未填'}`,
+          `接頭:${item.connector || '未填'}`
+        ];
+        return parts.join(',');
+      }
+
+      if (item.type === 'panel-valve') {
+        return [
+          `盤面-Valve:${item.valveType || '未填'}`,
+          `盤面-尺寸:${item.size || '未填'}`,
+          `盤面-接頭:${item.connector || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'regulator') {
+        return [
+          '盤面-Regulator',
+          `盤面-尺寸:${item.size || '未填'}`,
+          `盤面-接頭:${item.connector || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'gauge' || item.type === 'eSensor') {
+        const label = item.type === 'gauge' ? '盤面-Gauge' : '盤面-eSensor';
+        return [
+          label,
+          `盤面-尺寸:${item.panelSize || item.size || '未填'}`,
+          `盤面-接頭:${item.panelConnector || item.connector || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'stop-spacer') {
+        return [
+          '其他元件-STOP SPACER',
+          '源頭-管線類別:雙套管',
+          `雙套管尺寸:${item.doubleSize || '未填'}`,
+          `啟用盤面數:${Number.isFinite(item.enabledPanels) ? item.enabledPanels : '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'spring' || item.type === 'over-tube') {
+        const label = item.type === 'spring' ? '其他元件-SPRING' : '其他元件-Over Tube';
+        const lengthText = Number.isFinite(item.length) ? `${Math.round(item.length * 1000) / 1000}米` : '未填';
+        return [
+          label,
+          '源頭-管線類別:雙套管',
+          `雙套管尺寸:${item.doubleSize || '未填'}`,
+          `管線-長度:${lengthText}`
+        ].join(',');
+      }
+
+      if (item.type === 'tee') {
+        return [
+          '配件-TEE',
+          `盤面/閥件-尺寸:${item.size || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'tee-panel') {
+        return [
+          '新增盤面-TEE',
+          `盤面-尺寸:${item.size || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'reducer-tee') {
+        return [
+          '配件-REDUCER TEE',
+          `主尺寸:${item.mainSize || '未填'}`,
+          `分支尺寸:${item.branchSize || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'reducer') {
+        return [
+          '配件-REDUCER',
+          `前尺寸:${item.fromSize || '未填'}`,
+          `後尺寸:${item.toSize || '未填'}`,
+          `管線-材質:${item.material || '未填'}`
+        ].join(',');
+      }
+
+      if (item.type === 'missing-row') {
+        return `Ver.9找不到列:${item.partName || ''}`;
+      }
+
+      return item.type || '';
+    },
+    buildJuxianUnmatchedCondition(item) {
+      if (!item) return '';
+      if (item.type === 'pipeline') {
+        const typeLabel = item.pipelineType === '單套管' ? '單線管' : item.pipelineType || '';
+        const segments = [
+          `源頭-管線類別:${typeLabel || '未填'}`,
+          `盤面-尺寸:${item.size || '未填'}`
+        ];
+        const qty = Number.isFinite(item.quantity) ? Math.round(item.quantity * 1000) / 1000 : NaN;
+        const lengthText = Number.isFinite(qty) ? `${qty}米` : '未填';
+        segments.push(`管線-長度:${lengthText}`);
+        segments.push(`管線-材質:${item.material || '未填'}`);
+        segments.push(`品牌:${item.brand || '未填'}`);
+        if (item.location === 'branch') {
+          segments.push(`分支:是`);
+        }
+        return segments.join(',');
+      }
+      if (item.type === 'valve' || item.type === 'panel-valve') {
+        return [
+          '閥件',
+          `類型:${item.valveType || '未填'}`,
+          `尺寸:${item.size || '未填'}`,
+          `接頭:${item.connector || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'regulator') {
+        return [
+          'Regulator',
+          `尺寸:${item.size || '未填'}`,
+          `接頭:${item.connector || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'gauge') {
+        return [
+          'GAUGE',
+          `盤面-尺寸:${item.panelSize || '未填'}`,
+          `盤面-接頭:${item.panelConnector || '未填'}`,
+          `管線-材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'tee') {
+        return [
+          '配件-TEE',
+          `尺寸:${item.size || '未填'}`,
+          `材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'reducer-tee') {
+        return [
+          '配件-REDUCER TEE',
+          `主尺寸:${item.mainSize || '未填'}`,
+          `分支尺寸:${item.branchSize || '未填'}`,
+          `材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'reducer') {
+        return [
+          '配件-REDUCER',
+          `前尺寸:${item.fromSize || '未填'}`,
+          `後尺寸:${item.toSize || '未填'}`,
+          `材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'elbow') {
+        return [
+          '配件-ELBOW',
+          `尺寸:${item.size || '未填'}`,
+          `材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'double-tee' || item.type === 'double-elbow') {
+        return [
+          `配件-${item.type === 'double-tee' ? 'DOUBLE TEE' : 'DOUBLE ELBOW'}`,
+          `雙套管尺寸:${item.doubleSize || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'stop-spacer' || item.type === 'spring' || item.type === 'over-tube') {
+        const label = item.type === 'stop-spacer' ? 'STOP SPACER' : item.type === 'spring' ? 'SPRING' : 'Over Tube';
+        return [
+          `其他元件-${label}`,
+          `雙套管尺寸:${item.doubleSize || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      if (item.type === 'gland' || item.type === 'nut' || item.type === 'gasket') {
+        const label = item.type.toUpperCase();
+        return [
+          `其他元件-${label}`,
+          `盤面-尺寸:${item.panelSize || '未填'}`,
+          `盤面-接頭:${item.panelConnector || '未填'}`,
+          `管線-材質:${item.material || '未填'}`,
+          `品牌:${item.brand || '未填'}`
+        ].join(',');
+      }
+      return item.type || '';
+    },
+    populateTsmcUnmatchedSheet(workbook, unmatchedItems) {
+      const sheetName = '無對應料號';
+      let sheet = workbook.getWorksheet(sheetName);
+      if (!sheet) {
+        sheet = workbook.addWorksheet(sheetName);
+      }
+
+      this.setCellValuePreserveStyle(sheet, 'A1', '條件');
+      this.setCellValuePreserveStyle(sheet, 'B1', '數量');
+
+      const lastRow = sheet.rowCount;
+      if (lastRow > 1) {
+        for (let rowNumber = 2; rowNumber <= lastRow; rowNumber++) {
+          const row = sheet.getRow(rowNumber);
+          row.eachCell((cell) => {
+            cell.value = null;
+          });
+        }
+      }
+
+      if (!Array.isArray(unmatchedItems) || unmatchedItems.length === 0) {
+        return;
+      }
+
+      const aggregated = new Map();
+      unmatchedItems.forEach((item) => {
+        const condition = this.buildTsmcUnmatchedCondition(item);
+        const quantity = Number.isFinite(item.quantity) ? item.quantity : 0;
+        const unit = item.unit || '';
+        const key = `${unit}||${condition}`;
+        const current = aggregated.get(key) || 0;
+        aggregated.set(key, current + quantity);
+      });
+
+      let rowIndex = 2;
+      aggregated.forEach((quantity, key) => {
+        const [unit, condition] = key.split('||');
+        const roundedQty = Math.round(Number(quantity) * 1000) / 1000;
+        const safeQty = Number.isFinite(roundedQty) ? roundedQty : 0;
+        const quantityText = unit ? `${safeQty} ${unit}` : `${safeQty}`;
+        this.setCellValuePreserveStyle(sheet, `A${rowIndex}`, condition);
+        this.setCellValuePreserveStyle(sheet, `B${rowIndex}`, quantityText);
+        rowIndex += 1;
+      });
+    },
+    populateJuxianUnmatchedSheet(workbook, unmatchedItems) {
+      const sheetName = '無對應料號';
+      const sheet = workbook.getWorksheet(sheetName);
+      if (!sheet) return;
+
+      this.setCellValuePreserveStyle(sheet, 'C1', '條件');
+      this.setCellValuePreserveStyle(sheet, 'D1', '數量');
+
+      const lastRow = sheet.rowCount;
+      if (lastRow > 1) {
+        for (let rowNumber = 2; rowNumber <= lastRow; rowNumber++) {
+          this.setCellValuePreserveStyle(sheet, `C${rowNumber}`, null);
+          this.setCellValuePreserveStyle(sheet, `D${rowNumber}`, null);
+        }
+      }
+      if (!Array.isArray(unmatchedItems) || unmatchedItems.length === 0) {
+        return;
+      }
+
+      const aggregated = new Map();
+      unmatchedItems.forEach((item) => {
+        const condition = this.buildJuxianUnmatchedCondition(item);
+        const parsed = Number(item.quantity);
+        const quantity = Number.isFinite(parsed) ? parsed : 0;
+        const unit = item.unit || '';
+        const key = `${unit}||${condition}`;
+        const current = aggregated.get(key) || 0;
+        aggregated.set(key, current + quantity);
+      });
+
+      let rowIndex = 2;
+      aggregated.forEach((quantity, key) => {
+        const [unit, condition] = key.split('||');
+        const roundedQty = Math.round(Number(quantity) * 1000) / 1000;
+        const safeQty = Number.isFinite(roundedQty) ? roundedQty : 0;
+        const quantityText = unit ? `${safeQty} ${unit}` : `${safeQty}`;
+        this.setCellValuePreserveStyle(sheet, `C${rowIndex}`, condition);
+        this.setCellValuePreserveStyle(sheet, `D${rowIndex}`, quantityText);
+        rowIndex += 1;
+      });
+    },
+    applyRowTemplateStyle(worksheet, targetRowNumber, templateRowNumber, maxCol = 11) {
+      const templateRow = worksheet.getRow(templateRowNumber);
+      const targetRow = worksheet.getRow(targetRowNumber);
+      const clone = (obj) => (obj ? JSON.parse(JSON.stringify(obj)) : null);
+      targetRow.height = templateRow.height;
+      for (let col = 1; col <= maxCol; col++) {
+        const from = templateRow.getCell(col);
+        const to = targetRow.getCell(col);
+        to.style = clone(from.style) || {};
+        if (from.numFmt) to.numFmt = from.numFmt;
+      }
+    },
+    handleActivated() {
+      localStorage.setItem('app_activated', 'true');
+      this.showActivationDialog = false;
+    },
+    hasPanelWithRegulator(panelGroups) {
+      if (!Array.isArray(panelGroups) || panelGroups.length === 0) {
+        return false;
+      }
+      return panelGroups.some((group) => {
+        const panelData = group?.panel?.data;
+        return Boolean(panelData?.enablePanel && panelData?.regulator);
+      });
+    },
+    hasRegulatorInBranchModules(branchModules) {
+      if (!Array.isArray(branchModules) || branchModules.length === 0) {
+        return false;
+      }
+      return branchModules.some((branchModule) => {
+        return (
+          this.hasPanelWithRegulator(branchModule?.panelEquipmentGroups) ||
+          this.hasRegulatorInBranchModules(branchModule?.branchModuleCards)
+        );
+      });
+    },
+    openJuxianExportModal() {
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      const validationResult = this.validateRequiredFields();
+      if (!validationResult.isValid) {
+        this.showPopup({
+          title: '',
+          message: validationResult.message,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+      this.isJuxianExportModalOpen = true;
+    },
+    closeJuxianExportModal() {
+      this.isJuxianExportModalOpen = false;
+    },
+    handleJuxianSettingChange({ key, value }) {
+      if (!key) return;
+      this.juxianExportSettings = {
+        ...this.juxianExportSettings,
+        [key]: value
+      };
+    },
+    async handleConfirmJuxianExport() {
+      this.isJuxianExportModalOpen = false;
+      await this.handleExportJuxian();
+    },
+    async handleExportJuxian() {
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      const validationResult = this.validateRequiredFields();
+      if (!validationResult.isValid) {
+        this.showPopup({
+          title: '',
+          message: validationResult.message,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      try {
+        const response = await fetch(juxianTemplateUrl);
+        if (!response.ok) {
+          throw new Error('無法載入聚賢料表模板');
+        }
+
+        const { rows, unmatchedItems } = this.buildJuxianExportRows();
+
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = new ExcelJS.Workbook();
+        // 避免 Excel 修復提示：模板內的 definedNames 在 ExcelJS round-trip 後容易變成無效參照，
+        // 會導致 Excel 開啟時提示「部分內容有問題」並移除具名範圍。
+        // 這裡直接忽略 definedNames，確保輸出檔不含該節點。
+        await workbook.xlsx.load(arrayBuffer, { ignoreNodes: ['definedNames'] });
+        this.stripWorkbookDefinedNames(workbook);
+
+        const sheet = workbook.getWorksheet('聚賢料表');
+        if (!sheet) {
+          throw new Error('無法找到「聚賢料表」工作表');
+        }
+
+        // 聚賢模板通常已預先格式化大量資料列；為避免破壞合併/表格/命名範圍，
+        // 這裡不做 insert/splice 變更列結構，只清值再填值。
+        const startRowNumber = 2; // 資料起始列（第 1 列為表頭）
+        const lastRow = sheet.rowCount;
+        for (let rowNumber = startRowNumber; rowNumber <= lastRow; rowNumber++) {
+          this.setCellValuePreserveStyle(sheet, `A${rowNumber}`, null);
+          this.setCellValuePreserveStyle(sheet, `B${rowNumber}`, null);
+          this.setCellValuePreserveStyle(sheet, `C${rowNumber}`, null);
+          this.setCellValuePreserveStyle(sheet, `D${rowNumber}`, null);
+          // 依需求：不填寫 J 欄（已存在品號），也不主動清除，保留模板原狀
+        }
+
+        const matchedTable = [];
+        if (Array.isArray(rows) && rows.length > 0) {
+          rows.forEach((item, index) => {
+            const rowNumber = startRowNumber + index;
+            if (rowNumber > lastRow) {
+              // 極端情況：模板預留列數不夠才新增列（盡量避免）
+              sheet.addRow([]);
+            }
+
+            const seq = String(index + 1).padStart(4, '0');
+            const qty = Math.round(Number(item.quantity) * 1000) / 1000;
+            this.setCellValuePreserveStyle(sheet, `A${rowNumber}`, seq);
+            this.setCellValuePreserveStyle(sheet, `B${rowNumber}`, item.name);
+            this.setCellValuePreserveStyle(sheet, `C${rowNumber}`, item.unit);
+            this.setCellValuePreserveStyle(sheet, `D${rowNumber}`, qty);
+            // 依需求：不填寫「已存在品號*(J欄)」
+
+            matchedTable.push({
+              seq,
+              name: item.name,
+              partNo: item.partNo,
+              unit: item.unit,
+              quantity: qty
+            });
+          });
+        }
+
+        this.populateJuxianUnmatchedSheet(workbook, unmatchedItems);
+
+        if (matchedTable.length > 0) {
+          console.table(matchedTable, ['seq', 'name', 'partNo', 'quantity', 'unit']);
+        }
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        });
+
+        const filename = this.currentFilename || '新檔案';
+        const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const exportFilename = `${filename}_聚賢料表_${timestamp}.xlsx`;
+
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = exportFilename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+        this.showPopup({
+          title: '',
+          message: '聚賢料表匯出成功！',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      } catch (error) {
+        console.error('[handleExportJuxian] 匯出失敗：', error);
+        this.showPopup({
+          title: '',
+          message: `匯出失敗：${error.message}`,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      }
+    },
+    async handleExportTsmc() {
+      if (!this.allModuleSets || this.allModuleSets.length === 0) {
+        this.showPopup({
+          title: '',
+          message: '請先建立或讀取單線圖',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      const validationResult = this.validateRequiredFields();
+      if (!validationResult.isValid) {
+        this.showPopup({
+          title: '',
+          message: validationResult.message,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+        return;
+      }
+
+      try {
+        const { partQuantities, unmatchedItems } = this.buildTsmcPartQuantities();
+
+        const response = await fetch(tsmcTemplateUrl);
+        if (!response.ok) {
+          throw new Error('無法載入台積料表模板');
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.load(arrayBuffer, { ignoreNodes: ['definedNames'] });
+        this.stripWorkbookDefinedNames(workbook);
+
+        const worksheet = workbook.getWorksheet('Ver.9');
+        if (!worksheet) {
+          throw new Error('無法找到 Ver.9 工作表');
+        }
+
+        const filledParts = new Set();
+        const matchedItems = [];
+        const writeQuantityToRow = (rowNumber, quantityInfo) => {
+          const safeValue = Math.round(quantityInfo.quantity * 1000) / 1000;
+          const unitLabel = quantityInfo.unit ? ` ${quantityInfo.unit}` : '';
+          const displayValue = `${safeValue}${unitLabel}`;
+          this.setCellValuePreserveStyle(worksheet, `F${rowNumber}`, displayValue);
+        };
+
+        worksheet.getColumn('B').eachCell((cell, rowNumber) => {
+          const partName = this.getCellPlainText(cell.value);
+          if (!partName) return;
+          const quantityInfo = partQuantities.get(partName);
+          if (!quantityInfo) return;
+          writeQuantityToRow(rowNumber, quantityInfo);
+          filledParts.add(partName);
+          matchedItems.push({
+            row: rowNumber,
+            name: partName,
+            quantity: Math.round(quantityInfo.quantity * 1000) / 1000,
+            unit: quantityInfo.unit || ''
+          });
+        });
+
+        const missingParts = [];
+        partQuantities.forEach((quantityInfo, partName) => {
+          if (!filledParts.has(partName)) {
+            missingParts.push(partName);
+            unmatchedItems.push({
+              type: 'missing-row',
+              partName,
+              quantity: quantityInfo?.quantity || 0,
+              unit: quantityInfo?.unit || ''
+            });
+          }
+        });
+        if (missingParts.length > 0) {
+          console.warn('[handleExportTsmc] 找不到對應列的料件', missingParts);
+        }
+        if (matchedItems.length > 0) {
+          console.table(matchedItems, ['row', 'name', 'quantity', 'unit']);
+        }
+
+        this.populateTsmcUnmatchedSheet(workbook, unmatchedItems);
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        });
+
+        const filename = this.currentFilename || '新檔案';
+        const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const exportFilename = `${filename}_台積料表_${timestamp}.xlsx`;
+
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = exportFilename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+        this.showPopup({
+          title: '',
+          message: '台積料表匯出成功！',
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      } catch (error) {
+        console.error('[handleExportTsmc] 匯出失敗：', error);
+        this.showPopup({
+          title: '',
+          message: `匯出失敗：${error.message}`,
+          buttons: [
+            {
+              text: '確定',
+              class: 'primary',
+              action: () => {
+                this.closePopup();
+              }
+            }
+          ],
+          showIcon: false,
+          closeOnOverlay: true
+        });
+      }
+    },
     handleGlobalClick(event) {
       if (!this.pageBreakMenu.visible) return;
       const target = event.target;
@@ -1698,7 +3748,7 @@ export default {
                   valveConnector: '',
                   regulator: false,
                   pressureGauge: 'none',
-                  backPipelineType: '單套管' // 默认与源头资讯的管线类别相同
+                  backPipelineType: '單套管' // 默認與源頭資訊的管線類別相同
                 }
               },
               equipment: {
@@ -1990,7 +4040,7 @@ export default {
           message = '將讀取其他檔案。<br>是否在關閉前儲存當前畫布?';
         }
         
-        // 保存 loadData 以便在用户确认后使用
+        // 保存 loadData 以便在用戶確認後使用
 
         this.pendingLoadData = loadData;
         // 根據檔案狀態決定按鈕文字
@@ -2024,10 +4074,12 @@ export default {
 
                 } else if (isExistingFile) {
                   // 先更新，再讀取
-                  await this.updateFileAndLoad(this.pendingLoadData);
-                  this.pendingLoadData = null;
-                  this.closePopup();
-                  this.closeFileManager();
+                  const success = await this.updateFileAndLoad(this.pendingLoadData);
+                  if (success) {
+                    this.pendingLoadData = null;
+                    this.closePopup();
+                    this.closeFileManager();
+                  }
                 }
               }
             }
@@ -2100,26 +4152,13 @@ export default {
           // 獲取更新後的時間
           await this.fetchFileUpdatedAt();
 
-          // 顯示儲存成功訊息
-          this.showPopup({
-            message: '已成功儲存檔案!',
-            buttons: [
-              {
-                text: '確定',
-                class: 'primary',
-                action: () => {
-                  this.closePopup();
-                  // 然後讀取新檔案
-                  this.executeLoad(loadData);
-                }
-              }
-            ],
-            showIcon: false,
-            closeOnOverlay: true
-          });
+          // 直接讀取新檔案，不顯示成功彈窗
+          this.executeLoad(loadData);
+          return true;
         } else {
           console.error('Error updating file:', result.error);
           this.showWarningPopup('儲存失敗：' + result.error);
+          return false;
         }
       } catch (error) {
         console.error('Failed to update file:', error);
@@ -2372,12 +4411,12 @@ export default {
       };
     },
 
-    // ==================== Excel 导出方法 ====================
+    // ==================== Excel 導出方法 ====================
     /**
-     * 导出 Hierarchy Excel
+     * 導出 Hierarchy Excel
      */
     async handleExportHierarchy() {
-      // 检查是否有数据
+      // 檢查是否有數據
       if (!this.allModuleSets || this.allModuleSets.length === 0) {
         this.showPopup({
           title: '',
@@ -2397,7 +4436,7 @@ export default {
         return;
       }
 
-      // 检查 hierarchyType
+      // 檢查 hierarchyType
       const hierarchyType = this.settings.hierarchyType || 'bulkGas';
       if (hierarchyType !== 'bulkGas' && hierarchyType !== 'specialGas') {
         this.showPopup({
@@ -2440,17 +4479,18 @@ export default {
       }
 
       try {
-        // 根据类型选择模板文件
-        const templateName = hierarchyType === 'bulkGas' 
-          ? '範本表格Bulk Gas_空白.xlsx'
-          : '範本表格Special Gas_空白.xlsx';
-        const sheetName = hierarchyType === 'bulkGas' ? 'Bulk Gas' : 'Special Gas';
-        const templatePath = `/assets/export/${templateName}`;
-        
-        const response = await fetch(templatePath);
+    // 根据类型选择模板文件 (使用導入的 URL)
+    const templatePath = hierarchyType === 'bulkGas' 
+      ? bulkGasTemplateUrl
+      : specialGasTemplateUrl;
+      
+    const sheetName = hierarchyType === 'bulkGas' ? 'Bulk Gas' : 'Special Gas';
+    
+    const response = await fetch(templatePath);
         
         if (!response.ok) {
-          throw new Error(`無法載入模板文件: ${templateName}`);
+          // Assuming templatePath is the relevant identifier for the error message now
+          throw new Error(`無法載入模板文件: ${templatePath}`);
         }
 
         // 使用 ExcelJS 加载模板（保留格式）
@@ -2464,17 +4504,17 @@ export default {
           throw new Error(`無法找到工作表: ${sheetName}`);
         }
 
-        // 将流程图数据转换为 Excel 格式（根据类型选择不同的转换方法）
+        // 將流程圖數據轉換為 Excel 格式（根據類型選擇不同的轉換方法）
         const excelData = hierarchyType === 'bulkGas' 
           ? this.convertToHierarchyExcelBulkGas(this.allModuleSets)
           : this.convertToHierarchyExcelSpecialGas(this.allModuleSets);
         
-        // 从第4行开始写入数据（前3行是标题）
+        // 從第4行開始寫入數據（前3行是標題）
         let rowIndex = 4;
         excelData.forEach((rowData) => {
           const row = worksheet.getRow(rowIndex);
           
-          // 写入每一列的数据，保留原有单元格格式
+          // 寫入每一列的數據，保留原有單元格格式
           Object.keys(rowData).forEach((key) => {
             const colIndex = this.getColumnIndex(key, hierarchyType);
             if (colIndex !== -1) {
@@ -2496,7 +4536,7 @@ export default {
         const typeName = hierarchyType === 'bulkGas' ? 'BulkGas' : 'SpecialGas';
         const exportFilename = `${filename}_Hierarchy_${typeName}_${timestamp}.xlsx`;
 
-        // 导出文件（使用 ExcelJS 的 writeBuffer 方法）
+        // 導出文件（使用 ExcelJS 的 writeBuffer 方法）
         const buffer = await workbook.xlsx.writeBuffer();
         const blob = new Blob([buffer], { 
           type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
@@ -2514,7 +4554,7 @@ export default {
 
         this.showPopup({
           title: '',
-          message: 'Hierarchy 导出成功！',
+          message: 'Hierarchy 導出成功！',
           buttons: [
             {
               text: '確定',
@@ -2528,10 +4568,10 @@ export default {
           closeOnOverlay: true
         });
       } catch (error) {
-        console.error('导出失败:', error);
+        console.error('導出失败:', error);
         this.showPopup({
           title: '',
-          message: `导出失败: ${error.message}`,
+          message: `導出失败: ${error.message}`,
           buttons: [
             {
               text: '確定',
@@ -2548,7 +4588,7 @@ export default {
     },
 
     /**
-     * 导出單線圖 Excel（使用圖框對應表.xlsx模板）
+     * 導出單線圖 Excel（使用圖框對應表.xlsx模板）
      */
     async handleExportFlowchart() {
       // 檢查是否有單線圖資料
@@ -2688,8 +4728,8 @@ export default {
       }
 
       try {
-        // 加载圖框對應表.xlsx模板
-        const templatePath = `/assets/export/圖框對應表.xlsx`;
+        // 加载圖框對應表.xlsx模板 (使用導入的 URL)
+        const templatePath = frameTemplateUrl;
         const response = await fetch(templatePath);
         
         if (!response.ok) {
@@ -2926,7 +4966,7 @@ export default {
           });
         };
 
-        // 将日期格式转换为 YYYY/MM/DD 格式
+        // 將日期格式轉換為 YYYY/MM/DD 格式
         let formattedDate = '';
         if (this.settings.surveyDate) {
           const date = new Date(this.settings.surveyDate);
@@ -3149,13 +5189,73 @@ export default {
         });
         } catch (pdfError) {
           this.closePopup();
-          throw pdfError;
+          
+          // 檢查是否為 LibreOffice 相關錯誤
+          const errorMessage = pdfError.message || '';
+          const isLibreOfficeError = 
+            errorMessage.includes('LibreOffice') || 
+            errorMessage.includes('soffice') ||
+            errorMessage.includes('找不到') ||
+            errorMessage.includes('not found') ||
+            errorMessage.includes('ENOENT');
+          
+          if (isLibreOfficeError) {
+            // 顯示 LibreOffice 安裝提示
+            this.showPopup({
+              title: 'PDF 匯出需要 LibreOffice',
+              message: `PDF 匯出功能需要安裝 LibreOffice 才能使用。
+
+📥 下載 LibreOffice:
+https://www.libreoffice.org/download/
+
+📋 安裝步驟:
+1. 訪問上方網址下載 Windows 64-bit 版本
+2. 使用默認安裝路徑進行安裝
+3. 重啟 Geniideas Flowchart
+4. 即可使用 PDF 匯出功能
+
+💡 提示:
+• Excel 匯出功能無需 LibreOffice,可直接使用
+• LibreOffice 是免費開源軟體
+• 安裝後可與 Microsoft Office 共存
+
+詳細安裝指南請參考應用目錄中的:
+LIBREOFFICE_INSTALL_GUIDE.md`,
+              buttons: [
+                {
+                  text: '稍後安裝',
+                  class: 'secondary',
+                  action: () => {
+                    this.closePopup();
+                  }
+                },
+                {
+                  text: '前往下載',
+                  class: 'primary',
+                  action: () => {
+                    // 在 Electron 環境中打開外部連結
+                    if (window.electronAPI) {
+                      window.open('https://www.libreoffice.org/download/', '_blank');
+                    } else {
+                      window.open('https://www.libreoffice.org/download/', '_blank');
+                    }
+                    this.closePopup();
+                  }
+                }
+              ],
+              showIcon: true,
+              closeOnOverlay: true
+            });
+          } else {
+            // 其他錯誤,顯示原始錯誤訊息
+            throw pdfError;
+          }
         }
       } catch (error) {
-        console.error('导出失败:', error);
+        console.error('導出失败:', error);
         this.showPopup({
           title: '',
-          message: `导出失败: ${error.message}`,
+          message: `導出失败: ${error.message}`,
           buttons: [
             {
               text: '確定',
@@ -3172,7 +5272,13 @@ export default {
     },
 
     setCellValuePreserveStyle(worksheet, address, value) {
-      const cell = worksheet.getCell(address);
+      const rawCell = worksheet.getCell(address);
+      // If the cell is part of a merged range, only the master cell should be written.
+      // Writing into a non-master merged cell can lead to Excel "repair" prompts.
+      const cell =
+        rawCell && rawCell.isMerged && rawCell.master && rawCell.master.address !== rawCell.address
+          ? rawCell.master
+          : rawCell;
       const clone = (obj) => (obj ? JSON.parse(JSON.stringify(obj)) : null);
       const originalFont = clone(cell.font);
       const originalAlignment = clone(cell.alignment);
@@ -3253,9 +5359,9 @@ export default {
     },
 
     /**
-     * 将流程图数据转换为 Hierarchy Excel 格式 (Bulk Gas)
+     * 將流程圖數據轉換為 Hierarchy Excel 格式 (Bulk Gas)
      * @param {Array} moduleSets - 所有模組組
-     * @returns {Array} Excel 数据行数组
+     * @returns {Array} Excel 數據行數組
      */
     convertToHierarchyExcelBulkGas(moduleSets) {
       const excelRows = [];
@@ -3271,196 +5377,282 @@ export default {
         // 获取分支源頭資訊
         const branchSourceCards = moduleSet.branchSourceCards || [];
         
-        // 获取 Panel 和 Equipment 数据
+        // 獲取 Panel 和 Equipment 數據
         const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
         
         // 用于跟踪当前设备的全局索引（跨越所有 group 和 additionalEquipmentCards）
         let globalEquipmentIndex = 0;
         
-        // 为每个设备生成一行
-        panelEquipmentGroups.forEach((group, groupIndex) => {
-          const panel = group.panel?.data || {};
-          const equipment = group.equipment?.data || {};
-          const isFirstEquipment = groupIndex === 0;
+        // 為每個設備生成一行
+        // 定義處理群組的內部函數
+        // 為每個設備生成一行
+        // 修改後的 processGroup：只回傳 row data，不負責 push 到 excelRows，也不負責處理 additionalEquipmentCards
+        // 這樣外層迴圈可以控制順序
+        // 但為了最小化改動，我們保持 processGroup 的功能，但增加參數 callback
+        // 或者，我們直接重寫 loop 邏輯，不再依賴這個大型 processGroup
+        
+        // 為了避免大規模重寫，我們保留 processGroup 用於 "生成單行" 的邏輯
+        // 但將 "遍歷 additionalEquipmentCards" 的部分移出
+        
+        // 重新定義 processGroup 為 generateRowAndPush
+        const processGroup = (group, groupIndex, currentFloor, currentB1Size, isBranchModule, isAdditional = false, additionalValve = null, additionalData = null) => {
+          let equipment, valve;
           
-          // 确定 ABC 欄位的來源（基于全局设备索引）
-          let utilCat = '';
-          let smNo = '';
-          let smSize = '';
-          
-          if (globalEquipmentIndex === 0) {
-            // 第一个设备：使用源頭資訊
-            utilCat = source.gasType || '';
-            smNo = source.valveNumber || '';
-            smSize = source.sourceSize || '';
+          if (isAdditional) {
+            equipment = additionalData || {};
+            valve = additionalValve;
+             // 若額外設備的閥件被禁用，則跳過此行
+              if (valve && 
+                  (valve.type === 'additional-equipment-valve') &&
+                  valve.data && 
+                  valve.data.enableValve === false) {
+                return;
+              }
           } else {
-            // 第二个及以后的设备：使用对应的分支源頭資訊（索引 = globalEquipmentIndex - 1）
-            const branchIndex = globalEquipmentIndex - 1;
-            if (branchIndex < branchSourceCards.length) {
-              const branchSource = branchSourceCards[branchIndex].data || {};
-              utilCat = branchSource.gasType || '';
-              smNo = branchSource.valveNumber || '';
-              smSize = branchSource.sourceSize || '';
-            }
-            // 如果没有对应的分支源頭資訊，ABC 欄位留空（已经是空字符串了）
+            equipment = group.equipment?.data || {};
+            valve = group.panel ? group.valve : group.branchValve;
+             // 若為分支相關閥件且被禁用 (enableValve === false)，則跳過此行
+              // 排除主分支的 panel-equipment-valve (因為它預設 enableValve false 且沒有開關)
+              if (valve && 
+                  (valve.type === 'branch-panel-equipment-valve' || 
+                   valve.type === 'branch-valve-equipment-valve' || 
+                   valve.type === 'branch-valve') && 
+                  valve.data && 
+                  valve.data.enableValve === false) {
+                return;
+              }
           }
-          
-          const row = {
-            'util-cat': utilCat, // A: 根據全局設備索引決定
-            'sm-no': smNo, // B: 根據全局設備索引決定
-            'sm-size': smSize, // C: 根據全局設備索引決定
-            'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
-            'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
-            'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
-            'b2-size': '', // G: 無須填寫
-            'b2-floor': '', // H: 無須填寫
-            'b3-size': '', // I: 無須填寫
-            'b3-floor': '', // J: 無須填寫
-            'dp-size': panel.size || '', // K: 盤面資訊 -> 尺寸
-            'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
-            'dp-tag': '', // M: 無須填寫
-            'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
-            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'bulkGas', group.valve), // O: 根據管線類型判斷
-            'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
-            'Accessory1': '', // Q: 無須填寫
-            'Accessory2': '', // R: 無須填寫
-            'Accessory3': '', // S: 無須填寫
-            'Accessory4': '', // T: 無須填寫
-            'Accessory5': '', // U: 無須填寫
-            'Accessory6': '', // V: 無須填寫
-            'b1-type': this.getB1Type(moduleSet, groupIndex, isFirstEquipment), // W: 判斷邏輯
-            'dp-con': this.getDPCon(panel), // X: 盤面資訊 -> Valve接頭
-            'dp-tv': this.getDPTV(moduleSet, group), // Y: 盤面後方是否有分支或閥件
-            'n-labor': '', // Z: 無須填寫
-            'l1-labor': '', // AA: 無須填寫
-            'vpanel-line': this.getVPanelLine(equipment), // AB: 設備資訊 -> 三合一
-            'sup-qty': '', // AC: 無須填寫
-            'n2-temp': '', // AD: 無須填寫
-            'gt-loop4': '', // AE: 無須填寫
-            'gt-loop8': '', // AF: 無須填寫
-            'ht-m': '', // AG: 無須填寫
-            'ins-m': '', // AH: 無須填寫
-            'long-type': '', // AI: 無須填寫
-            'long-m': '', // AJ: 無須填寫
-            'dl-type': '', // AK: 無須填寫
-          };
+
+          const isFirstEquipmentInModule = !isBranchModule && !isAdditional && groupIndex === 0;
+
+          const row = this.generateHierarchyRow(
+            moduleSet,
+            group,
+            equipment,
+            'bulkGas',
+            globalEquipmentIndex,
+            source,
+            branchSourceCards,
+            currentB1Size,
+            currentFloor,
+            valve,
+            0, // bulkGas don't need pipelineLength
+            isFirstEquipmentInModule
+          );
           
           excelRows.push(row);
-          globalEquipmentIndex++; // 主设备计数
-          
-          // 如果有额外的设备卡片，也为每个设备创建一行（ABC 欄位根据全局索引决定）
-          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
-            group.additionalEquipmentCards.forEach((additionalEquipment) => {
-              const additionalData = additionalEquipment.data || {};
-              
-              // 为额外设备确定 ABC 欄位的來源
-              let additionalUtilCat = '';
-              let additionalSmNo = '';
-              let additionalSmSize = '';
-              
-              if (globalEquipmentIndex === 0) {
-                additionalUtilCat = source.gasType || '';
-                additionalSmNo = source.valveNumber || '';
-                additionalSmSize = source.sourceSize || '';
-              } else {
-                const branchIndex = globalEquipmentIndex - 1;
-                if (branchIndex < branchSourceCards.length) {
-                  const branchSource = branchSourceCards[branchIndex].data || {};
-                  additionalUtilCat = branchSource.gasType || '';
-                  additionalSmNo = branchSource.valveNumber || '';
-                  additionalSmSize = branchSource.sourceSize || '';
-                }
+          globalEquipmentIndex++;
+        };
+
+        // 建立分支模組與主設備/額外設備的映射關係
+        const branchMap = {}; // key: "groupIndex" or "groupIndex-cardIndex"
+        const processedBranchIndices = new Set();
+        
+        // 遍歷連接線找出分支與主線的關係
+        if (moduleSet.connections) {
+          moduleSet.connections.forEach(conn => {
+            // 尋找連接到分支源頭 (branch-source) 的連接線
+            if (conn.branchModuleIndex !== undefined && (conn.to === 'branch-source' || conn.to === 'branch-valve')) {
+               // 確保是從主線連出去的 (from panel/valve/additional)
+               // 這裡假設如果設定了 groupIndex 且沒有 branchModuleIndex (在 from 端) 則是主線
+               // 但 connection 物件結構通常直接包含了來源資訊
+               
+               const key = conn.equipmentCardIndex !== undefined
+                ? `${conn.groupIndex}-${conn.equipmentCardIndex}`
+                : `${conn.groupIndex}`;
+               
+               if (!branchMap[key]) branchMap[key] = [];
+               // 避免重複添加相同分支 (可能有多條連接線?)
+               if (!branchMap[key].includes(conn.branchModuleIndex)) {
+                 branchMap[key].push(conn.branchModuleIndex);
+               }
+            }
+          });
+        }
+        
+        // 輔助函數：處理分支模組
+        const processBranchModule = (branchModuleIndex) => {
+           if (processedBranchIndices.has(branchModuleIndex)) return;
+           
+           if (moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > branchModuleIndex) {
+             const branchModule = moduleSet.branchModuleCards[branchModuleIndex];
+             const branchFloor = branchModule.floor?.data || {};
+             const branchValveSize = branchModule.valve?.data?.size || '';
+             const branchGroups = branchModule.panelEquipmentGroups || [];
+
+             // 檢查分支模組的主分支閥件是否啟用後方區塊
+              if (branchModule.valve && branchModule.valve.data && branchModule.valve.data.enableValve === false) {
+                 return;
               }
-              
-              const additionalRow = {
-                'util-cat': additionalUtilCat, // A: 根據全局設備索引決定
-                'sm-no': additionalSmNo, // B: 根據全局設備索引決定
-                'sm-size': additionalSmSize, // C: 根據全局設備索引決定
-                'sm-floor': floor.sourceFloor || '',
-                'b1-size': b1Size,
-                'b1-floor': floor.equipmentFloor || '',
-                'b2-size': '',
-                'b2-floor': '',
-                'b3-size': '',
-                'b3-floor': '',
-                'dp-size': panel.size || '',
-                'dp-type': this.getPanelType(panel),
-                'dp-tag': '',
-                'pou-size': additionalData.size || '',
-                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'bulkGas', additionalEquipment.valve),
-                'pou-comp': additionalData.connectionName || '',
-                'Accessory1': '',
-                'Accessory2': '',
-                'Accessory3': '',
-                'Accessory4': '',
-                'Accessory5': '',
-                'Accessory6': '',
-                'b1-type': 'X0', // 額外設備卡片都是 X0（不是第一個設備）
-                'dp-con': this.getDPCon(panel),
-                'dp-tv': this.getDPTV(moduleSet, group),
-                'n-labor': '',
-                'l1-labor': '',
-                'vpanel-line': this.getVPanelLine(additionalData),
-                'sup-qty': '',
-                'n2-temp': '',
-                'gt-loop4': '',
-                'gt-loop8': '',
-                'ht-m': '',
-                'ins-m': '',
-                'long-type': '',
-                'long-m': '',
-                'dl-type': '',
-              };
-              
-              excelRows.push(additionalRow);
-              globalEquipmentIndex++; // 额外设备计数
-            });
+             
+             // Branch Module 內部也可能有 "Internal Child Groups" (雖然較少見，但邏輯應一致)
+             // 建立 Branch 內部的 map
+             const branchChildMap = {};
+             const branchTopLevel = [];
+             branchGroups.forEach(g => {
+                if (g.parentAdditionalEquipmentId) {
+                    if (!branchChildMap[g.parentAdditionalEquipmentId]) branchChildMap[g.parentAdditionalEquipmentId] = [];
+                    branchChildMap[g.parentAdditionalEquipmentId].push(g);
+                } else if (g.parentGroupId) {
+                    if (!branchChildMap[g.parentGroupId]) branchChildMap[g.parentGroupId] = [];
+                    branchChildMap[g.parentGroupId].push(g);
+                } else {
+                    branchTopLevel.push(g);
+                }
+             });
+
+             const processBranchGroupRecursively = (grp, grpIdx, isAdd = false, addValve = null, addData = null, addId = null) => {
+                 // 匯出當前行 (重用 processGroup)
+                 if (isAdd) {
+                     processGroup(grp, grpIdx, branchFloor, branchValveSize, true, true, addValve, addData);
+                 } else {
+                     processGroup(grp, grpIdx, branchFloor, branchValveSize, true);
+                 }
+                 
+                 // 處理內部子群組
+                 const nId = isAdd ? addId : grp.id;
+                 if (nId && branchChildMap[nId]) {
+                     branchChildMap[nId].forEach(child => {
+                         processBranchGroupRecursively(child, grpIdx); 
+                     });
+                 }
+                 // 外部模組 (External Modules connected to this Branch Module)
+                 // 目前架構下，分支模組裡面通常不會再連另一個分支模組 (多層分支)，
+                 // 但若有 connections 支援，原理同上。這裡暫不處理 Branch 連 Branch 的複雜遞歸 (除非 connections 有定義)
+             };
+
+             branchTopLevel.forEach((group) => {
+               const originalIndex = branchGroups.indexOf(group);
+               // 1. 主設備
+               processBranchGroupRecursively(group, originalIndex);
+               
+               // 2. 額外設備
+               if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                 group.additionalEquipmentCards.forEach((additionalEquipment, cardIndex) => {
+                   const additionalData = additionalEquipment.data || {};
+                   const additionalValve = additionalEquipment.valve;
+                   processBranchGroupRecursively(group, originalIndex, true, additionalValve, additionalData, additionalEquipment.id);
+                 });
+               }
+             });
+             
+             processedBranchIndices.add(branchModuleIndex);
+           }
+        };
+
+        // 1. 建立親子關係映射與頂層群組列表 (解決內部群組排序問題)
+        const childGroupsMap = {}; // Key: Parent ID (panel-equipment-group-ID or additional-card-ID), Value: [Group]
+        const topLevelGroups = [];
+
+        panelEquipmentGroups.forEach(group => {
+          if (group.parentAdditionalEquipmentId) {
+            // 這是掛在額外設備下的分支群組
+            if (!childGroupsMap[group.parentAdditionalEquipmentId]) childGroupsMap[group.parentAdditionalEquipmentId] = [];
+            childGroupsMap[group.parentAdditionalEquipmentId].push(group);
+          } else if (group.parentGroupId) {
+            // 這是掛在主設備下的分支群組
+            if (!childGroupsMap[group.parentGroupId]) childGroupsMap[group.parentGroupId] = [];
+            childGroupsMap[group.parentGroupId].push(group);
+          } else {
+            // 頂層群組
+            topLevelGroups.push(group);
           }
         });
+
+        // 定義遞歸處理群組的函數
+        const processGroupRecursively = (groupKey, group, groupIndex, floorData, b1SizeData, isBranchModule, isAdditional = false, additionalValve = null, additionalCardData = null, additionalCardId = null) => {
+             // 1. 匯出當前節點 (processGroup 只負責產生一行)
+             if (isAdditional) {
+                 processGroup(group, groupIndex, floorData, b1SizeData, isBranchModule, true, additionalValve, additionalCardData);
+             } else {
+                 processGroup(group, groupIndex, floorData, b1SizeData, isBranchModule);
+             }
+
+             // 2. 處理當前節點下掛的 "內部" 分支群組 (Internal Branch Groups)
+             // 節點ID: 如果是額外設備，用 additionalCardId；如果是主群組，用 group.id
+             const nodeId = isAdditional ? additionalCardId : group.id;
+             if (nodeId && childGroupsMap[nodeId]) {
+                 childGroupsMap[nodeId].forEach(childGroup => {
+                     // 遞歸呼叫：內部分支群組視為一般群組處理 (非 BranchModule)
+                     // 注意：內部分支群組通常沒有 panel，只有 branchValve
+                     // 傳遞參數時保持上下文 (floor, b1Size 可能沿用或有自己的邏輯，這裡沿用當前上下文)
+                     processGroupRecursively('internal-child', childGroup, groupIndex, floorData, b1SizeData, isBranchModule); 
+                 });
+             }
+
+             // 3. 處理當前節點下掛的 "外部" 分支模組 (External Branch Modules)
+             // 使用 branchMap，Key 是 groupIndex 或 groupIndex-cardIndex
+             // 注意：groupIndex 對於頂層群組是準確的，但對於內部子群組，這裡需要確認 branchMap 的 key 是什麼
+             // branchMap 的 key 是基於 connection 的 groupIndex，這通常是指向頂層 panelEquipmentGroups 數組的索引
+             // 因此，只有頂層群組 (或透過頂層索引定位的額外設備) 能直接查 branchMap
+             // 對於內部遞歸的子群組，如果有外部分支連接，connection 應該也是指向它們在陣列中的實際位置?
+             // 不，connection 的 groupIndex 是指整個 panelEquipmentGroups 陣列的索引。
+             // 我們的 childGroupsMap 只是邏輯上的分類，groupIndex 仍然是該 group 在原始陣列中的 index。
+             // 我們需要知道這個 group 在原始 panelEquipmentGroups 中的 index 才能查 branchMap。
+             // 解決方案：processGroupRecursively 需要接收正確的 originalGroupIndex。
+             // 這裡傳入的 groupIndex 參數應保持為原始索引。
+             
+             // 查詢 External Branches
+             if (branchMap[groupKey]) {
+                branchMap[groupKey].forEach(branchIndex => processBranchModule(branchIndex));
+             }
+        };
+
+        // 重新遍歷頂層群組
+        topLevelGroups.forEach((group) => {
+             // 必須找出該 group 在原始陣列中的 index (為了 branchMap)
+             const originalIndex = panelEquipmentGroups.indexOf(group);
+             const mainKey = `${originalIndex}`;
+             
+             // 1. 匯出主設備 & 內部子群組 & 外部分支
+             processGroupRecursively(mainKey, group, originalIndex, floor, b1Size, false);
+
+             // 2. 處理額外設備卡片 (及其子群組 & 外部分支)
+             if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                 group.additionalEquipmentCards.forEach((additionalEquipment, cardIndex) => {
+                    const additionalData = additionalEquipment.data || {};
+                    const additionalValve = additionalEquipment.valve;
+                    const additionalKey = `${originalIndex}-${cardIndex}`;
+                    
+                    processGroupRecursively(additionalKey, group, originalIndex, floor, b1Size, false, true, additionalValve, additionalData, additionalEquipment.id);
+                 });
+             }
+        });
         
-        // 如果还有多余的分支源頭資訊，为它们创建空行（只有 ABC 列有数据）
+        // 處理未被關聯的分支 (Orphans)
+        if (moduleSet.branchModuleCards) {
+          moduleSet.branchModuleCards.forEach((_, index) => {
+            if (!processedBranchIndices.has(index)) {
+              processBranchModule(index);
+            }
+          });
+        }
+        
+        // 如果還有多餘的分支源頭資訊，為它們創建空行
         if (branchSourceCards.length > globalEquipmentIndex - 1) {
           for (let i = globalEquipmentIndex - 1; i < branchSourceCards.length; i++) {
             const branchSource = branchSourceCards[i].data || {};
-            const emptyRow = {
-              'util-cat': branchSource.gasType || '', // A: 分支源頭資訊 -> 氣體別
-              'sm-no': branchSource.valveNumber || '', // B: 分支源頭資訊 -> 閥件編號
-              'sm-size': branchSource.sourceSize || '', // C: 分支源頭資訊 -> 源頭尺寸
-              'sm-floor': '', // D: 無設備留空
-              'b1-size': '', // E: 無設備留空
-              'b1-floor': '', // F: 無設備留空
-              'b2-size': '',
-              'b2-floor': '',
-              'b3-size': '',
-              'b3-floor': '',
-              'dp-size': '',
-              'dp-type': '',
-              'dp-tag': '',
-              'pou-size': '',
-              'pou-ptype': '',
-              'pou-comp': '',
-              'Accessory1': '',
-              'Accessory2': '',
-              'Accessory3': '',
-              'Accessory4': '',
-              'Accessory5': '',
-              'Accessory6': '',
-              'b1-type': '',
-              'dp-con': '',
-              'dp-tv': '',
-              'n-labor': '',
-              'l1-labor': '',
-              'vpanel-line': '',
-              'sup-qty': '',
-              'n2-temp': '',
-              'gt-loop4': '',
-              'gt-loop8': '',
-              'ht-m': '',
-              'ins-m': '',
-              'long-type': '',
-              'long-m': '',
-              'dl-type': '',
-            };
+            const emptyRow = this.generateHierarchyRow(
+              moduleSet,
+              {}, // group is empty
+              {}, // equipment is empty
+              'bulkGas',
+              i + 1, // simulates globalEquipmentIndex
+              source,
+              branchSourceCards,
+              b1Size,
+              floor,
+              null,
+              0,
+              false
+            );
+            // Reset fields that shouldn't be populated for empty rows
+            const keysToKeep = ['util-cat', 'sm-no', 'sm-size'];
+            Object.keys(emptyRow).forEach(key => {
+              if (!keysToKeep.includes(key)) {
+                emptyRow[key] = '';
+              }
+            });
             excelRows.push(emptyRow);
           }
         }
@@ -3475,9 +5667,103 @@ export default {
     },
 
     /**
+     * 生成 Hierarchy Excel 行資料
+     */
+     generateHierarchyRow(
+      moduleSet, 
+      group, 
+      equipment, 
+      hierarchyType, 
+      globalEquipmentIndex, 
+      source, 
+      branchSourceCards, 
+      b1Size, 
+      floor, 
+      activeValve,
+      pipelineLength,
+      isFirstEquipmentInModule
+    ) {
+      // 确定 ABC 欄位的來源
+      let utilCat = '';
+      let smNo = '';
+      let smSize = '';
+      
+      if (globalEquipmentIndex === 0) {
+        // 第一个设备：使用源頭資訊
+        utilCat = source.gasType || '';
+        smNo = source.valveNumber || '';
+        smSize = source.sourceSize || '';
+      } else {
+        // 第二個及以後的設備：使用對應的分支源頭資訊
+        const branchIndex = globalEquipmentIndex - 1;
+        if (branchIndex < branchSourceCards.length) {
+          const branchSource = branchSourceCards[branchIndex].data || {};
+          utilCat = branchSource.gasType || '';
+          smNo = branchSource.valveNumber || '';
+          smSize = branchSource.sourceSize || '';
+        }
+      }
+
+      const panel = group.panel?.data || {};
+      
+      const commonFields = {
+        'util-cat': utilCat,
+        'sm-no': smNo,
+        'sm-size': smSize,
+        'sm-floor': floor.sourceFloor || '',
+        'b1-size': b1Size,
+        'b1-floor': floor.equipmentFloor || '',
+        'b2-size': '',
+        'b2-floor': '',
+        'b3-size': '',
+        'b3-floor': '',
+        'dp-size': panel.size || '',
+        'dp-type': this.getPanelType(panel),
+        'dp-tag': '',
+        'pou-size': equipment.size || '',
+        'pou-comp': equipment.connectionName || '',
+        'Accessory1': '',
+        'Accessory2': '',
+        'Accessory3': '',
+        'Accessory4': '',
+        'Accessory5': '',
+        'n-labor': '',
+        'l1-labor': '',
+        'vpanel-line': this.getVPanelLine(equipment),
+        'sup-qty': '',
+        'ht-m': '',
+        'ins-m': '',
+        'gt-loop4': '',
+        'gt-loop8': '',
+        'long-type': hierarchyType === 'specialGas' ? this.getLongType(pipelineLength) : '',
+        'long-m': hierarchyType === 'specialGas' ? this.getLongM(pipelineLength) : '',
+        'dl-type': '',
+      };
+
+      if (hierarchyType === 'bulkGas') {
+        return {
+          ...commonFields,
+          'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'bulkGas', activeValve),
+          'Accessory6': '',
+          'b1-type': isFirstEquipmentInModule ? 'X1' : 'X0',
+          'dp-con': this.getDPCon(panel),
+          'dp-tv': this.getDPTV(moduleSet, group, activeValve),
+          'n2-temp': '',
+        };
+      } else {
+        return {
+          ...commonFields,
+          'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'specialGas', activeValve),
+          'dp-con': this.getDPCon(panel), // Special Gas 在 V 列
+          'gas-conta': this.getGasConta(moduleSet, group, equipment),
+        };
+      }
+    },
+
+    /**
      * 获取第一个閥件資訊卡片
      * @param {Object} moduleSet - 模組組
-     * @returns {Object} 閥件卡片对象
+     * @returns {Object} 閥件卡片對象
      */
     getFirstValveCard(moduleSet) {
       // 获取主分支的閥件資訊卡片
@@ -3489,7 +5775,7 @@ export default {
 
     /**
      * 获取 Panel Type 字符串
-     * @param {Object} panel - Panel 数据
+     * @param {Object} panel - Panel 數據
      * @returns {String} Panel Type
      */
     getPanelType(panel) {
@@ -3521,9 +5807,9 @@ export default {
     },
 
     /**
-     * 将流程图数据转换为 Hierarchy Excel 格式 (Special Gas)
+     * 將流程圖數據轉換為 Hierarchy Excel 格式 (Special Gas)
      * @param {Array} moduleSets - 所有模組組
-     * @returns {Array} Excel 数据行数组
+     * @returns {Array} Excel 數據行數組
      */
     convertToHierarchyExcelSpecialGas(moduleSets) {
       const excelRows = [];
@@ -3540,190 +5826,236 @@ export default {
         // 获取分支源頭資訊
         const branchSourceCards = moduleSet.branchSourceCards || [];
         
-        // 获取 Panel 和 Equipment 数据
+        // 獲取 Panel 和 Equipment 數據
         const panelEquipmentGroups = moduleSet.panelEquipmentGroups || [];
         
-        // 获取管线长度（用于 long-type 和 long-m）
+        // 獲取管線長度（用於 long-type 和 long-m）
         const pipelineLength = parseFloat(pipeline.length) || 0;
         
         // 用于跟踪当前设备的全局索引（跨越所有 group 和 additionalEquipmentCards）
         let globalEquipmentIndex = 0;
         
-        // 为每个设备生成一行
-        panelEquipmentGroups.forEach((group, groupIndex) => {
-          const panel = group.panel?.data || {};
-          const equipment = group.equipment?.data || {};
-          const isFirstEquipment = groupIndex === 0;
-          
-          // 确定 ABC 欄位的來源（基于全局设备索引）
-          let utilCat = '';
-          let smNo = '';
-          let smSize = '';
-          
-          if (globalEquipmentIndex === 0) {
-            // 第一个设备：使用源頭資訊
-            utilCat = source.gasType || '';
-            smNo = source.valveNumber || '';
-            smSize = source.sourceSize || '';
+        // 定義處理群組的內部函數
+        const processGroup = (group, currentFloor, currentB1Size, currentPipelineLength, isBranchModule = false, isAdditional = false, additionalValve = null, additionalData = null) => {
+          let equipment, activeValve;
+
+          if (isAdditional) {
+            equipment = additionalData || {};
+            activeValve = additionalValve;
+             // 若額外設備的閥件被禁用，則跳過此行
+              if (activeValve && 
+                  (activeValve.type === 'additional-equipment-valve') &&
+                  activeValve.data && 
+                  activeValve.data.enableValve === false) {
+                return;
+              }
           } else {
-            // 第二个及以后的设备：使用对应的分支源頭資訊（索引 = globalEquipmentIndex - 1）
-            const branchIndex = globalEquipmentIndex - 1;
-            if (branchIndex < branchSourceCards.length) {
-              const branchSource = branchSourceCards[branchIndex].data || {};
-              utilCat = branchSource.gasType || '';
-              smNo = branchSource.valveNumber || '';
-              smSize = branchSource.sourceSize || '';
-            }
-            // 如果没有对应的分支源頭資訊，ABC 欄位留空（已经是空字符串了）
+            equipment = group.equipment?.data || {};
+            activeValve = group.panel ? group.valve : group.branchValve;
+             // 若為分支相關閥件且被禁用 (enableValve === false)，則跳過此行
+              if (activeValve && 
+                  (activeValve.type === 'branch-panel-equipment-valve' || 
+                   activeValve.type === 'branch-valve-equipment-valve' || 
+                   activeValve.type === 'branch-valve') && 
+                  activeValve.data && 
+                  activeValve.data.enableValve === false) {
+                return;
+              }
           }
-          
-          const row = {
-            'util-cat': utilCat, // A: 根據全局設備索引決定
-            'sm-no': smNo, // B: 根據全局設備索引決定
-            'sm-size': smSize, // C: 根據全局設備索引決定
-            'sm-floor': floor.sourceFloor || '', // D: 樓層資訊 -> 源頭樓層
-            'b1-size': b1Size, // E: 閥件資訊 -> 閥件尺寸
-            'b1-floor': floor.equipmentFloor || '', // F: 樓層資訊 -> 設備樓層
-            'b2-size': '', // G: 無須填寫
-            'b2-floor': '', // H: 無須填寫
-            'b3-size': '', // I: 無須填寫
-            'b3-floor': '', // J: 無須填寫
-            'dp-size': panel.size || '', // K: 盤面資訊 -> 尺寸
-            'dp-type': this.getPanelType(panel), // L: 盤面資訊 -> Valve+Regulator+壓力錶表頭
-            'dp-tag': '', // M: 無須填寫
-            'pou-size': equipment.size || '', // N: 設備資訊 -> 尺寸
-            'pou-ptype': this.getPOUType(moduleSet, group, equipment, 'specialGas', group.valve), // O: 根據管線類型判斷（Special Gas 不會用到軟管）
-            'pou-comp': equipment.connectionName || '', // P: 設備資訊 -> 設備接點名稱
-            'Accessory1': '', // Q: 無須填寫
-            'Accessory2': '', // R: 無須填寫
-            'Accessory3': '', // S: 無須填寫
-            'Accessory4': '', // T: 無須填寫
-            'Accessory5': '', // U: 無須填寫
-            'dp-con': this.getDPCon(panel), // V: 盤面資訊 -> Valve接頭（Special Gas 在 V 列）
-            'n-labor': '', // W: 無須填寫
-            'l1-labor': '', // X: 無須填寫
-            'vpanel-line': this.getVPanelLine(equipment), // Y: 設備資訊 -> 三合一
-            'sup-qty': '', // Z: 無須填寫
-            'gas-conta': this.getGasConta(moduleSet, group, equipment), // AA: 管線類型（單管/雙管）
-            'ht-m': '', // AB: 無須填寫
-            'ins-m': '', // AC: 無須填寫
-            'gt-loop4': '', // AD: 無須填寫
-            'gt-loop8': '', // AE: 無須填寫
-            'long-type': this.getLongType(pipelineLength), // AF: 超長米數Range（≥47M才顯示）
-            'long-m': this.getLongM(pipelineLength), // AG: 超長米數（≥47M才顯示）
-            'dl-type': '', // AH: 無須填寫
-          };
+
+          const row = this.generateHierarchyRow(
+            moduleSet,
+            group,
+            equipment,
+            'specialGas',
+            globalEquipmentIndex,
+            source,
+            branchSourceCards,
+            currentB1Size,
+            currentFloor,
+            activeValve,
+            currentPipelineLength,
+            false
+          );
           
           excelRows.push(row);
-          globalEquipmentIndex++; // 主设备计数
-          
-          // 如果有额外的设备卡片，也为每个设备创建一行（ABC 欄位根据全局索引决定）
-          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
-            group.additionalEquipmentCards.forEach((additionalEquipment) => {
-              const additionalData = additionalEquipment.data || {};
-              
-              // 为额外设备确定 ABC 欄位的來源
-              let additionalUtilCat = '';
-              let additionalSmNo = '';
-              let additionalSmSize = '';
-              
-              if (globalEquipmentIndex === 0) {
-                additionalUtilCat = source.gasType || '';
-                additionalSmNo = source.valveNumber || '';
-                additionalSmSize = source.sourceSize || '';
-              } else {
-                const branchIndex = globalEquipmentIndex - 1;
-                if (branchIndex < branchSourceCards.length) {
-                  const branchSource = branchSourceCards[branchIndex].data || {};
-                  additionalUtilCat = branchSource.gasType || '';
-                  additionalSmNo = branchSource.valveNumber || '';
-                  additionalSmSize = branchSource.sourceSize || '';
-                }
+          globalEquipmentIndex++;
+        };
+
+        // 建立分支模組與主設備/額外設備的映射關係
+        const branchMap = {}; 
+        const processedBranchIndices = new Set();
+        
+        if (moduleSet.connections) {
+          moduleSet.connections.forEach(conn => {
+            if (conn.branchModuleIndex !== undefined && (conn.to === 'branch-source' || conn.to === 'branch-valve')) {
+               const key = conn.equipmentCardIndex !== undefined
+                ? `${conn.groupIndex}-${conn.equipmentCardIndex}`
+                : `${conn.groupIndex}`;
+               if (!branchMap[key]) branchMap[key] = [];
+               if (!branchMap[key].includes(conn.branchModuleIndex)) {
+                 branchMap[key].push(conn.branchModuleIndex);
+               }
+            }
+          });
+        }
+
+        // 輔助函數：處理分支模組
+        const processBranchModule = (branchModuleIndex) => {
+           if (processedBranchIndices.has(branchModuleIndex)) return;
+           
+           if (moduleSet.branchModuleCards && moduleSet.branchModuleCards.length > branchModuleIndex) {
+             const branchModule = moduleSet.branchModuleCards[branchModuleIndex];
+             const branchFloor = branchModule.floor?.data || {};
+             const branchValveSize = branchModule.valve?.data?.size || '';
+             const branchPipelineLength = parseFloat(branchModule.pipeline?.data?.length) || 0;
+             const branchGroups = branchModule.panelEquipmentGroups || [];
+
+             // 檢查分支模組的主分支閥件是否啟用後方區塊
+              if (branchModule.valve && branchModule.valve.data && branchModule.valve.data.enableValve === false) {
+                 return;
               }
+
+             // Branch Module 內部也可能有 "Internal Child Groups"
+             const branchChildMap = {};
+             const branchTopLevel = [];
+             branchGroups.forEach(g => {
+                if (g.parentAdditionalEquipmentId) {
+                    if (!branchChildMap[g.parentAdditionalEquipmentId]) branchChildMap[g.parentAdditionalEquipmentId] = [];
+                    branchChildMap[g.parentAdditionalEquipmentId].push(g);
+                } else if (g.parentGroupId) {
+                    if (!branchChildMap[g.parentGroupId]) branchChildMap[g.parentGroupId] = [];
+                    branchChildMap[g.parentGroupId].push(g);
+                } else {
+                    branchTopLevel.push(g);
+                }
+             });
+
+             const processBranchGroupRecursively = (grp, grpIdx, isAdd = false, addValve = null, addData = null, addId = null) => {
+                 if (isAdd) {
+                     processGroup(grp, branchFloor, branchValveSize, branchPipelineLength, true, true, addValve, addData);
+                 } else {
+                     processGroup(grp, branchFloor, branchValveSize, branchPipelineLength, true);
+                 }
+                 
+                 const nId = isAdd ? addId : grp.id;
+                 if (nId && branchChildMap[nId]) {
+                     branchChildMap[nId].forEach(child => {
+                         processBranchGroupRecursively(child, grpIdx); 
+                     });
+                 }
+             };
+
+             branchTopLevel.forEach((group) => {
+                // 1. 分支主設備
+               const originalIndex = branchGroups.indexOf(group);
+               processBranchGroupRecursively(group, originalIndex);
+
+               // 2. 分支額外設備
+               if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                     group.additionalEquipmentCards.forEach((additionalEquipment, cardIndex) => {
+                       const additionalData = additionalEquipment.data || {};
+                       const additionalValve = additionalEquipment.valve;
+                       processBranchGroupRecursively(group, originalIndex, true, additionalValve, additionalData, additionalEquipment.id);
+                     });
+                 }
+             });
+             
+             processedBranchIndices.add(branchModuleIndex);
+           }
+        };
+
+        // 1. 建立親子關係映射
+        const childGroupsMap = {};
+        const topLevelGroups = [];
+
+        panelEquipmentGroups.forEach(group => {
+          if (group.parentAdditionalEquipmentId) {
+            if (!childGroupsMap[group.parentAdditionalEquipmentId]) childGroupsMap[group.parentAdditionalEquipmentId] = [];
+            childGroupsMap[group.parentAdditionalEquipmentId].push(group);
+          } else if (group.parentGroupId) {
+            if (!childGroupsMap[group.parentGroupId]) childGroupsMap[group.parentGroupId] = [];
+            childGroupsMap[group.parentGroupId].push(group);
+          } else {
+            topLevelGroups.push(group);
+          }
+        });
+
+        // 定義遞歸函數
+        const processGroupRecursively = (groupKey, group, groupIndex, floorData, b1SizeData, pLength, isBranchModule, isAdditional = false, additionalValve = null, additionalCardData = null, additionalCardId = null) => {
+            if (isAdditional) {
+                processGroup(group, floorData, b1SizeData, pLength, isBranchModule, true, additionalValve, additionalCardData);
+            } else {
+                processGroup(group, floorData, b1SizeData, pLength, isBranchModule);
+            }
+
+            const nodeId = isAdditional ? additionalCardId : group.id;
+            if (nodeId && childGroupsMap[nodeId]) {
+                 childGroupsMap[nodeId].forEach(childGroup => {
+                     // 遞歸呼叫
+                     processGroupRecursively('internal-child', childGroup, groupIndex, floorData, b1SizeData, pLength, isBranchModule); 
+                 });
+            }
+
+            if (branchMap[groupKey]) {
+                branchMap[groupKey].forEach(branchIndex => processBranchModule(branchIndex));
+            }
+        };
+
+        // 1. 處理主分支的 Panel Equipment Groups (遍歷 Top Level)
+        topLevelGroups.forEach((group) => {
+          const originalIndex = panelEquipmentGroups.indexOf(group);
+          const mainKey = `${originalIndex}`;
+          
+          // 1.1 主設備 & 內部子群組 & 外部分支
+          processGroupRecursively(mainKey, group, originalIndex, floor, b1Size, pipelineLength, false);
+          
+          // 1.2 額外設備 ( & 內部子群組 & 外部分支)
+           if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach((additionalEquipment, cardIndex) => {
+              const additionalData = additionalEquipment.data || {};
+              const additionalValve = additionalEquipment.valve;
+              const additionalKey = `${originalIndex}-${cardIndex}`;
               
-              const additionalRow = {
-                'util-cat': additionalUtilCat, // A: 根據全局設備索引決定
-                'sm-no': additionalSmNo, // B: 根據全局設備索引決定
-                'sm-size': additionalSmSize, // C: 根據全局設備索引決定
-                'sm-floor': floor.sourceFloor || '',
-                'b1-size': b1Size,
-                'b1-floor': floor.equipmentFloor || '',
-                'b2-size': '',
-                'b2-floor': '',
-                'b3-size': '',
-                'b3-floor': '',
-                'dp-size': panel.size || '',
-                'dp-type': this.getPanelType(panel),
-                'dp-tag': '',
-                'pou-size': additionalData.size || '',
-                'pou-ptype': this.getPOUType(moduleSet, group, additionalData, 'specialGas', additionalEquipment.valve),
-                'pou-comp': additionalData.connectionName || '',
-                'Accessory1': '',
-                'Accessory2': '',
-                'Accessory3': '',
-                'Accessory4': '',
-                'Accessory5': '',
-                'dp-con': this.getDPCon(panel),
-                'n-labor': '',
-                'l1-labor': '',
-                'vpanel-line': this.getVPanelLine(additionalData),
-                'sup-qty': '',
-                'gas-conta': this.getGasConta(moduleSet, group, additionalData),
-                'ht-m': '',
-                'ins-m': '',
-                'gt-loop4': '',
-                'gt-loop8': '',
-                'long-type': this.getLongType(pipelineLength),
-                'long-m': this.getLongM(pipelineLength),
-                'dl-type': '',
-              };
-              
-              excelRows.push(additionalRow);
-              globalEquipmentIndex++; // 额外设备计数
+              processGroupRecursively(additionalKey, group, originalIndex, floor, b1Size, pipelineLength, false, true, additionalValve, additionalData, additionalEquipment.id);
             });
           }
         });
+
+        // 處理未被關聯的分支 (Orphans)
+        if (moduleSet.branchModuleCards) {
+          moduleSet.branchModuleCards.forEach((_, index) => {
+            if (!processedBranchIndices.has(index)) {
+              processBranchModule(index);
+            }
+          });
+        }
         
-        // 如果还有多余的分支源頭資訊，为它们创建空行（只有 ABC 列有数据）
+        // 如果還有多餘的分支源頭資訊，為它們創建空行
         if (branchSourceCards.length > globalEquipmentIndex - 1) {
           for (let i = globalEquipmentIndex - 1; i < branchSourceCards.length; i++) {
             const branchSource = branchSourceCards[i].data || {};
-            const emptyRow = {
-              'util-cat': branchSource.gasType || '', // A: 分支源頭資訊 -> 氣體別
-              'sm-no': branchSource.valveNumber || '', // B: 分支源頭資訊 -> 閥件編號
-              'sm-size': branchSource.sourceSize || '', // C: 分支源頭資訊 -> 源頭尺寸
-              'sm-floor': '', // D: 無設備留空
-              'b1-size': '', // E: 無設備留空
-              'b1-floor': '', // F: 無設備留空
-              'b2-size': '',
-              'b2-floor': '',
-              'b3-size': '',
-              'b3-floor': '',
-              'dp-size': '',
-              'dp-type': '',
-              'dp-tag': '',
-              'pou-size': '',
-              'pou-ptype': '',
-              'pou-comp': '',
-              'Accessory1': '',
-              'Accessory2': '',
-              'Accessory3': '',
-              'Accessory4': '',
-              'Accessory5': '',
-              'dp-con': '', // V: Special Gas 在 V 列
-              'n-labor': '',
-              'l1-labor': '',
-              'vpanel-line': '',
-              'sup-qty': '',
-              'gas-conta': '', // AA: Special Gas 專用
-              'ht-m': '',
-              'ins-m': '',
-              'gt-loop4': '',
-              'gt-loop8': '',
-              'long-type': '',
-              'long-m': '',
-              'dl-type': '',
-            };
+            const emptyRow = this.generateHierarchyRow(
+              moduleSet,
+              {},
+              {},
+              'specialGas',
+              i + 1,
+              source,
+              branchSourceCards,
+              b1Size,
+              floor,
+              null,
+              pipelineLength,
+              false
+            );
+            // Reset fields that shouldn't be populated for empty rows
+            const keysToKeep = ['util-cat', 'sm-no', 'sm-size'];
+            Object.keys(emptyRow).forEach(key => {
+              if (!keysToKeep.includes(key)) {
+                emptyRow[key] = '';
+              }
+            });
             excelRows.push(emptyRow);
           }
         }
@@ -3743,7 +6075,7 @@ export default {
      * Special Gas 不會用到軟管
      * @param {Object} moduleSet - 模組組
      * @param {Object} group - Panel+Equipment 群組
-     * @param {Object} equipment - Equipment 数据
+     * @param {Object} equipment - Equipment 數據
      * @param {String} hierarchyType - 類型（'bulkGas' 或 'specialGas'）
      * @param {Object} valve - 設備閥件對象（可選）
      * @returns {String} 軟管或硬管
@@ -3789,7 +6121,7 @@ export default {
      * 顯示接入設備的管線種類：單套管顯示"單管"，雙套管顯示"雙管"
      * @param {Object} moduleSet - 模組組
      * @param {Object} group - Panel+Equipment 群組
-     * @param {Object} equipment - Equipment 数据
+     * @param {Object} equipment - Equipment 數據
      * @returns {String} 單管、雙管或空字符串
      */
     getGasConta(moduleSet, group, equipment) {
@@ -3901,7 +6233,7 @@ export default {
     /**
      * 获取 dp-con (盤面資訊 -> Valve接頭)
      * 選SWG:SM, 選VCR-M、VCR-F:VM, 如盤面未啟用則顯示:NA
-     * @param {Object} panel - Panel 数据
+     * @param {Object} panel - Panel 數據
      * @returns {String} SM, VM, 或 NA
      */
     getDPCon(panel) {
@@ -3927,9 +6259,10 @@ export default {
      * 控制閥盤面後有分支,有設置閥件,填TV
      * @param {Object} moduleSet - 模組組
      * @param {Object} group - Panel+Equipment 群組
+     * @param {Object} activeValve - 當前設備點的閥件卡片
      * @returns {String} NV, TNV, 或 TV
      */
-    getDPTV(moduleSet, group) {
+    getDPTV(moduleSet, group, activeValve) {
       const panel = group.panel?.data || {};
       if (!panel.enablePanel) {
         return '';
@@ -3939,10 +6272,9 @@ export default {
       const hasAdditionalEquipment = group.additionalEquipmentCards && 
                                      group.additionalEquipmentCards.length > 0;
       
-      // 檢查設備是否有閥件
-      const equipment = group.equipment?.data || {};
-      const hasEquipmentValve = group.equipment?.valve?.data && 
-                                group.equipment.valve.data.size;
+      // 檢查當前設備點是否有閥件 (使用傳入的 activeValve)
+      const hasEquipmentValve = activeValve?.data && 
+                                activeValve.data.size;
       
       if (!hasAdditionalEquipment && !hasEquipmentValve) {
         return 'NV';
@@ -3954,13 +6286,14 @@ export default {
         return 'TV';
       }
       
-      return '';
+      // 預設 (無分岔但在設備點有閥件，邏輯上視為一般直通)
+      return 'NV';
     },
 
     /**
      * 获取 vpanel-line (設備資訊 -> 三合一)
      * 三合一新增:O7, 三合一修改:O7R, 未填或無設備:欄位留空
-     * @param {Object} equipment - Equipment 数据
+     * @param {Object} equipment - Equipment 數據
      * @returns {String} O7, O7R, 或空字符串
      */
     getVPanelLine(equipment) {
@@ -4287,7 +6620,7 @@ export default {
       });
 
       if (errors.length > 0) {
-        // 限制错误消息长度，最多显示前5个错误
+        // 限制錯誤訊息長度，最多顯示前5個錯誤
         const displayErrors = errors.slice(0, 5);
         const remainingCount = errors.length - 5;
         let message = '以下必填項目尚未填寫：\n\n' + displayErrors.join('\n');
@@ -4589,6 +6922,56 @@ export default {
         }
         
         insertIndex += 1;
+      }
+      return insertIndex;
+    },
+    
+    /**
+     * 取得插入主分支額外設備的分支閥件設備群組的位置
+     * @param {Object} moduleSet - 模組組對象
+     * @param {number} parentGroupIndex - 父群組索引
+     * @param {string} parentAdditionalEquipmentId - 父額外設備ID
+     * @returns {number} 插入位置索引
+     */
+    findBranchInsertionIndexForAdditional(moduleSet, parentGroupIndex, parentAdditionalEquipmentId) {
+      if (!moduleSet?.panelEquipmentGroups) {
+        return parentGroupIndex + 1;
+      }
+      
+      const parentGroup = moduleSet.panelEquipmentGroups[parentGroupIndex];
+      if (!parentGroup) {
+        return parentGroupIndex + 1;
+      }
+      
+      // 獲取目標額外設備在父群組中的索引
+      const targetAddEqIndex = parentGroup?.additionalEquipmentCards?.findIndex(c => c.id === parentAdditionalEquipmentId) ?? -1;
+
+      let insertIndex = parentGroupIndex + 1;
+      while (
+        insertIndex < moduleSet.panelEquipmentGroups.length &&
+        this.isBranchValveEquipmentGroup(moduleSet.panelEquipmentGroups[insertIndex])
+      ) {
+        const group = moduleSet.panelEquipmentGroups[insertIndex];
+        
+        // 如果不屬於同一父群組，停止搜索
+        if (group.parentGroupId !== parentGroup.id) {
+          break;
+        }
+        
+        // 如果是主設備分支，跳過（額外設備分支應排在主設備分支之後）
+        if (!group.parentAdditionalEquipmentId) {
+          insertIndex += 1;
+          continue;
+        }
+        
+        // 如果是額外設備分支，比較額外設備的順序
+        const existingAddEqIndex = parentGroup?.additionalEquipmentCards?.findIndex(c => c.id === group.parentAdditionalEquipmentId) ?? -1;
+        
+        if (existingAddEqIndex <= targetAddEqIndex) {
+          insertIndex += 1;
+        } else {
+          break;
+        }
       }
       return insertIndex;
     },
@@ -6730,7 +9113,7 @@ export default {
       const baseX = position.x;
       const baseY = position.y;
       
-      // 默认源头管线类别
+      // 默認源頭管線類別
       const defaultPipelineType = '單套管';
       
       return {
@@ -6778,7 +9161,7 @@ export default {
                 valveConnector: '',
                 regulator: false,
                 pressureGauge: 'none',
-                backPipelineType: defaultPipelineType // 默认与源头资讯的管线类别相同
+                backPipelineType: defaultPipelineType // 默認與源頭資訊的管線類別相同
               }
             },
             equipment: { 
@@ -6819,12 +9202,24 @@ export default {
      */
     updateCardData(setIndex, cardType, data) {
       if (this.allModuleSets[setIndex] && this.allModuleSets[setIndex][cardType]) {
-        const oldData = { ...this.allModuleSets[setIndex][cardType].data };
+        // 在更新前保存舊的氣體別和管線類別
+        const oldGasType = this.allModuleSets[setIndex][cardType].data.gasType;
+        const oldPipelineType = this.allModuleSets[setIndex][cardType].data.pipelineType;
+        
+        // 更新數據
         this.allModuleSets[setIndex][cardType].data = data;
         
+        console.log('[updateCardData] cardType:', cardType, 'oldGasType:', oldGasType, 'newGasType:', data.gasType);
+        
         // 如果更新的是源头资讯的管线类别，同步更新所有相关盘面卡片的后方管线类别
-        if (cardType === 'source' && data.pipelineType !== oldData.pipelineType && data.pipelineType) {
+        if (cardType === 'source' && data.pipelineType !== oldPipelineType && data.pipelineType) {
           this.syncBackPipelineTypeFromSource(setIndex, data.pipelineType);
+        }
+        
+        // 如果更新的是源頭資訊的氣體別，同步更新所有相關設備的氣體別
+        if (cardType === 'source' && data.gasType !== oldGasType && data.gasType) {
+          console.log('[updateCardData] 檢測到氣體別變更，從', oldGasType, '到', data.gasType);
+          this.syncGasTypeFromSource(setIndex, data.gasType);
         }
       }
     },
@@ -6862,17 +9257,99 @@ export default {
     },
     
     /**
-     * 处理盘面卡片后方管线类别改变事件
+     * 同步更新所有設備的氣體別（從源頭資訊）
+     * @param {number} setIndex - 模組組索引
+     * @param {string} gasType - 源頭氣體別
+     */
+    syncGasTypeFromSource(setIndex, gasType) {
+      const moduleSet = this.allModuleSets[setIndex];
+      if (!moduleSet) return;
+      
+      console.log(`同步氣體別 "${gasType}" 到模組 ${setIndex} 的所有設備`);
+      
+      // 更新主分支的所有设备
+      if (moduleSet.panelEquipmentGroups) {
+        moduleSet.panelEquipmentGroups.forEach((group, groupIndex) => {
+          // 更新主设备
+          if (group.equipment && group.equipment.data) {
+            group.equipment.data.gasType = gasType;
+            console.log(`  更新主分支群組 ${groupIndex} 的主設備氣體別`);
+          }
+          
+          // 更新额外设备卡片
+          if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+            group.additionalEquipmentCards.forEach((card, cardIndex) => {
+              if (card.data) {
+                card.data.gasType = gasType;
+                console.log(`  更新主分支群組 ${groupIndex} 的額外設備 ${cardIndex} 氣體別`);
+              }
+            });
+          }
+          
+          // 更新分支閥件設備群組的設備
+          if (group.branchValve && group.equipment && group.equipment.data) {
+            group.equipment.data.gasType = gasType;
+            console.log(`  更新主分支群組 ${groupIndex} 的分支閥件設備氣體別`);
+          }
+        });
+      }
+      
+      // 更新分支模組的所有设备
+      if (moduleSet.branchModuleCards) {
+        moduleSet.branchModuleCards.forEach((branchModule, branchIndex) => {
+          if (branchModule.panelEquipmentGroups) {
+            branchModule.panelEquipmentGroups.forEach((group, groupIndex) => {
+              // 更新分支主设备
+              if (group.equipment && group.equipment.data) {
+                group.equipment.data.gasType = gasType;
+                console.log(`  更新分支 ${branchIndex} 群組 ${groupIndex} 的主設備氣體別`);
+              }
+              
+              // 更新分支额外设备卡片
+              if (group.additionalEquipmentCards && group.additionalEquipmentCards.length > 0) {
+                group.additionalEquipmentCards.forEach((card, cardIndex) => {
+                  if (card.data) {
+                    card.data.gasType = gasType;
+                    console.log(`  更新分支 ${branchIndex} 群組 ${groupIndex} 的額外設備 ${cardIndex} 氣體別`);
+                  }
+                });
+              }
+              
+              // 更新分支閥件設備群組的設備
+              if (group.branchValve && group.equipment && group.equipment.data) {
+                group.equipment.data.gasType = gasType;
+                console.log(`  更新分支 ${branchIndex} 群組 ${groupIndex} 的分支閥件設備氣體別`);
+              }
+            });
+          }
+        });
+      }
+      
+      // 更新分支源頭資訊的氣體別
+      if (moduleSet.branchSourceCards) {
+        moduleSet.branchSourceCards.forEach((branchCard, branchIndex) => {
+          if (branchCard.data) {
+            branchCard.data.gasType = gasType;
+            console.log(`  更新分支源頭資訊 ${branchIndex} 的氣體別`);
+          }
+        });
+      }
+      
+      console.log(`氣體別同步完成`);
+    },
+    
+    /**
+     * 處理盤面卡片後方管線類別改變事件
      * @param {number} setIndex - 模組組索引
      * @param {number} groupIndex - Panel+Equipment群組索引
-     * @param {Object} event - 事件对象
-     * @param {boolean} isBranch - 是否为分支模块
+     * @param {Object} event - 事件對象
+     * @param {boolean} isBranch - 是否為分支模組
      * @param {number} branchModuleIndex - 分支模块索引（如果是分支）
      */
     handleBackPipelineTypeChange(setIndex, groupIndex, event, isBranch = false, branchModuleIndex = null) {
       const { newValue, sourceValue, oldValue, cardData } = event;
       
-      // 显示确认窗口
+      // 顯示確認視窗
       this.showPopup({
         title: '',
         message: '是否要改變後方管線類別?',
@@ -6881,20 +9358,20 @@ export default {
             text: '取消',
             class: 'default',
             action: () => {
-              // 取消：恢复为源头管线类别
+              // 取消：恢復為源頭管線類別
               const restoreValue = sourceValue || oldValue;
               if (isBranch && branchModuleIndex !== null) {
                 const branchModule = this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex];
                 if (branchModule && branchModule.panelEquipmentGroups[groupIndex]) {
                   branchModule.panelEquipmentGroups[groupIndex].panel.data.backPipelineType = restoreValue;
-                  // 触发更新事件
+                  // 觸發更新事件
                   this.updateBranchPanelData(setIndex, branchModuleIndex, groupIndex, branchModule.panelEquipmentGroups[groupIndex].panel.data);
                 }
               } else {
                 const moduleSet = this.allModuleSets[setIndex];
                 if (moduleSet && moduleSet.panelEquipmentGroups[groupIndex]) {
                   moduleSet.panelEquipmentGroups[groupIndex].panel.data.backPipelineType = restoreValue;
-                  // 触发更新事件
+                  // 觸發更新事件
                   this.updatePanelData(setIndex, groupIndex, moduleSet.panelEquipmentGroups[groupIndex].panel.data);
                 }
               }
@@ -6905,7 +9382,7 @@ export default {
             text: '確定',
             class: 'primary',
             action: () => {
-              // 确定：保持新值（数据已经在 cardData 中更新了）
+              // 確定：保持新值（數據已經在 cardData 中更新了）
               this.closePopup();
             }
           }
@@ -6921,7 +9398,7 @@ export default {
     handlePanelEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, event) {
       const { newValue, panelValue, oldValue, cardData } = event;
       
-      // 显示确认窗口
+      // 顯示確認視窗
       this.showPopup({
         title: '',
         message: '是否要改變後方管線類別?',
@@ -6930,12 +9407,12 @@ export default {
             text: '取消',
             class: 'default',
             action: () => {
-              // 取消：恢复为盘面管线类别
+              // 取消：恢復為盤面管線類別
               const restoreValue = panelValue || oldValue;
               const moduleSet = this.allModuleSets[setIndex];
               if (moduleSet && moduleSet.panelEquipmentGroups[groupIndex] && moduleSet.panelEquipmentGroups[groupIndex].valve) {
                 moduleSet.panelEquipmentGroups[groupIndex].valve.data.backPipelineType = restoreValue;
-                // 触发更新事件
+                // 觸發更新事件
                 this.updatePanelEquipmentValveData(setIndex, groupIndex, moduleSet.panelEquipmentGroups[groupIndex].valve.data);
               }
               this.closePopup();
@@ -6945,7 +9422,7 @@ export default {
             text: '確定',
             class: 'primary',
             action: () => {
-              // 确定：保持新值（数据已经在 cardData 中更新了）
+              // 確定：保持新值（數據已經在 cardData 中更新了）
               this.closePopup();
             }
           }
@@ -6961,7 +9438,7 @@ export default {
     handleAdditionalEquipmentValveBackPipelineTypeChange(setIndex, groupIndex, cardIndex, event) {
       const { newValue, panelValue, oldValue, cardData } = event;
       
-      // 显示确认窗口
+      // 顯示確認視窗
       this.showPopup({
         title: '',
         message: '是否要改變後方管線類別?',
@@ -6970,7 +9447,7 @@ export default {
             text: '取消',
             class: 'default',
             action: () => {
-              // 取消：恢复为盘面管线类别
+              // 取消：恢復為盤面管線類別
               const restoreValue = panelValue || oldValue;
               const moduleSet = this.allModuleSets[setIndex];
               if (moduleSet && 
@@ -6979,7 +9456,7 @@ export default {
                   moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex] &&
                   moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve) {
                 moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data.backPipelineType = restoreValue;
-                // 触发更新事件
+                // 觸發更新事件
                 this.updateAdditionalEquipmentValveData(setIndex, groupIndex, cardIndex, moduleSet.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data);
               }
               this.closePopup();
@@ -6989,7 +9466,7 @@ export default {
             text: '確定',
             class: 'primary',
             action: () => {
-              // 确定：保持新值（数据已经在 cardData 中更新了）
+              // 確定：保持新值（數據已經在 cardData 中更新了）
               this.closePopup();
             }
           }
@@ -7005,7 +9482,7 @@ export default {
     handleBranchPanelEquipmentValveBackPipelineTypeChange(setIndex, branchModuleIndex, groupIndex, event) {
       const { newValue, panelValue, oldValue, cardData } = event;
       
-      // 显示确认窗口
+      // 顯示確認視窗
       this.showPopup({
         title: '',
         message: '是否要改變後方管線類別?',
@@ -7014,7 +9491,7 @@ export default {
             text: '取消',
             class: 'default',
             action: () => {
-              // 取消：恢复为盘面管线类别
+              // 取消：恢復為盤面管線類別
               const restoreValue = panelValue || oldValue;
               const moduleSet = this.allModuleSets[setIndex];
               if (moduleSet && 
@@ -7024,7 +9501,7 @@ export default {
                   moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex] &&
                   moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].valve) {
                 moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].valve.data.backPipelineType = restoreValue;
-                // 触发更新事件
+                // 觸發更新事件
                 this.updateBranchPanelEquipmentValveData(setIndex, branchModuleIndex, groupIndex, moduleSet.branchModuleCards[branchModuleIndex].panelEquipmentGroups[groupIndex].valve.data);
               }
               this.closePopup();
@@ -7034,7 +9511,7 @@ export default {
             text: '確定',
             class: 'primary',
             action: () => {
-              // 确定：保持新值（数据已经在 cardData 中更新了）
+              // 確定：保持新值（數據已經在 cardData 中更新了）
               this.closePopup();
             }
           }
@@ -7085,7 +9562,7 @@ export default {
     handleBranchAdditionalEquipmentValveBackPipelineTypeChange(setIndex, branchModuleIndex, groupIndex, cardIndex, event) {
       const { newValue, panelValue, oldValue, cardData } = event;
       
-      // 显示确认窗口
+      // 顯示確認視窗
       this.showPopup({
         title: '',
         message: '是否要改變後方管線類別?',
@@ -7094,7 +9571,7 @@ export default {
             text: '取消',
             class: 'default',
             action: () => {
-              // 取消：恢复为盘面管线类别
+              // 取消：恢復為盤面管線類別
               const restoreValue = panelValue || oldValue;
               const branchModule = this.allModuleSets[setIndex].branchModuleCards[branchModuleIndex];
               if (branchModule && 
@@ -7103,7 +9580,7 @@ export default {
                   branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex] &&
                   branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve) {
                 branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data.backPipelineType = restoreValue;
-                // 触发更新事件
+                // 觸發更新事件
                 this.updateBranchAdditionalEquipmentValveData(setIndex, branchModuleIndex, groupIndex, cardIndex, branchModule.panelEquipmentGroups[groupIndex].additionalEquipmentCards[cardIndex].valve.data);
               }
               this.closePopup();
@@ -7113,7 +9590,7 @@ export default {
             text: '確定',
             class: 'primary',
             action: () => {
-              // 确定：保持新值（数据已经在 cardData 中更新了）
+              // 確定：保持新值（數據已經在 cardData 中更新了）
               this.closePopup();
             }
           }
@@ -7683,7 +10160,7 @@ export default {
         data: {
           title: '',
           pipelineType: '',
-          gasType: '',
+          gasType: moduleSet.source?.data?.gasType || '',
           valveNumber: '',
           sourceSize: '',
           doubleSleeveSize: '',
@@ -7983,13 +10460,13 @@ export default {
             valveConnector: '',
             regulator: false,
             pressureGauge: 'none',
-            backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
+            backPipelineType: sourcePipelineType // 設置為源頭資訊的管線類別
           }
         },
         equipment: { 
           position: { x: baseX + 430, y: baseY },
           data: {
-            gasType: '',
+            gasType: moduleSet.source?.data?.gasType || '',
             size: '',
             connector: 'WELD',
             connectionName: '',
@@ -8121,7 +10598,7 @@ export default {
             valveConnector: '',
             regulator: false,
             pressureGauge: 'none',
-            backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
+            backPipelineType: sourcePipelineType // 設置為源頭資訊的管線類別
           }
         },
         equipment: {
@@ -8129,7 +10606,7 @@ export default {
           type: 'branch-equipment',
           position: { x: baseX + 430, y: baseY },
           data: {
-            gasType: '',
+            gasType: moduleSet?.source?.data?.gasType || '',
             size: '',
             connector: 'WELD',
             connectionName: '',
@@ -8243,7 +10720,7 @@ export default {
         id: `equipment-card-${Date.now()}`,
         position: { x: currentGroup.equipment.position.x, y: newEquipmentY },
         data: {
-          gasType: '',
+          gasType: currentModuleSet.source?.data?.gasType || '',
           size: '',
           connector: 'WELD',
           connectionName: '',
@@ -8346,7 +10823,7 @@ export default {
         id: `equipment-card-${Date.now()}`,
         position: { x: currentGroup.valve.position.x + 318, y: newEquipmentY },
         data: {
-          gasType: '',
+          gasType: currentModuleSet.source?.data?.gasType || '',
           size: '',
           connector: 'WELD',
           connectionName: '',
@@ -8620,7 +11097,7 @@ export default {
         id: `branch-equipment-card-${Date.now()}`,
         position: { x: targetX, y: targetY },
         data: {
-          gasType: '',
+          gasType: currentModuleSet.source?.data?.gasType || '',
           size: '',
           connector: 'WELD',
           connectionName: '',
@@ -8732,7 +11209,7 @@ export default {
         id: `branch-equipment-card-${Date.now()}`,
         position: { x: targetX, y: targetY },
         data: {
-          gasType: '',
+          gasType: currentModuleSet.source?.data?.gasType || '',
           size: '',
           connector: 'WELD',
           connectionName: '',
@@ -10998,7 +13475,7 @@ export default {
         parentGroupIndex: groupIndex
       };
 
-      const insertionIndex = this.findBranchInsertionIndex(currentModuleSet, groupIndex);
+      const insertionIndex = this.findBranchInsertionIndexForAdditional(currentModuleSet, groupIndex, equipmentCard.id);
       currentModuleSet.panelEquipmentGroups.splice(insertionIndex, 0, newGroup);
       const newGroupIndex = insertionIndex;
 
@@ -13020,6 +15497,9 @@ export default {
         branchModule.pipeline.position.y = newBranchValveY;
         branchModule.floor.position.y = newBranchValveY;
         
+        // 更新從主管線到此分支閥件的連接線位置
+        this.updateBranchValveConnectionPositions(moduleSet, index);
+        
         // 追蹤當前分支模組的底部位置
         let moduleBottomY = newBranchValveY + this.getCardHeight('valve');
         
@@ -13623,7 +16103,7 @@ export default {
                 valveConnector: '',
                 regulator: false,
                 pressureGauge: 'none',
-                backPipelineType: sourcePipelineType // 设置为源头资讯的管线类别
+                backPipelineType: sourcePipelineType // 設置為源頭資訊的管線類別
               }
             },
             equipment: {

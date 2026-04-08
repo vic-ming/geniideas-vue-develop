@@ -54,10 +54,11 @@
       
       <div class="info-item">
         <label class="info-label">氣體別<span class="required">*</span></label>
-        <select class="info-select" :class="{ empty: !sourceData.gasType }" v-model="sourceData.gasType">
-          <option value="">請選擇氣體別</option>
-          <option v-for="gasType in $constants.gasTypes" :key="gasType" :value="gasType">{{ gasType }}</option>
-        </select>
+        <SearchableSelect
+          v-model="sourceData.gasType"
+          :options="$constants.gasTypes"
+          placeholder="請選擇氣體別"
+        />
       </div>
       
       <div class="info-item">
@@ -126,8 +127,13 @@
 </template>
 
 <script>
+import SearchableSelect from '@/components/SearchableSelect.vue';
+
 export default {
   name: 'SourceInfoCard',
+  components: {
+    SearchableSelect
+  },
   props: {
     initialPosition: {
       type: Object,
@@ -162,13 +168,14 @@ export default {
   },
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      // 創建本地數據副本，避免直接修改 prop
+      sourceData: { ...this.cardData },
+      // 標記是否正在更新，避免循環觸發
+      isUpdating: false
     }
   },
   computed: {
-    sourceData() {
-      return this.cardData;
-    },
     cardStyle() {
       return {
         position: 'absolute',
@@ -178,8 +185,22 @@ export default {
     }
   },
   watch: {
+    // 監聽 prop 變化，同步到本地數據
+    cardData: {
+      handler(newVal) {
+        if (this.isUpdating) return;
+        this.isUpdating = true;
+        this.sourceData = { ...newVal };
+        this.$nextTick(() => {
+          this.isUpdating = false;
+        });
+      },
+      deep: true
+    },
+    // 監聽本地數據變化，發送到父組件
     sourceData: {
       handler(newVal) {
+        if (this.isUpdating) return;
         this.$emit('update-data', newVal);
       },
       deep: true

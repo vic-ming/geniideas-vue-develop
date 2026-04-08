@@ -1,0 +1,2630 @@
+{
+  "rules": [
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L EP有縫_NEWBEST_無",
+        "partNo": "GTUB04007061200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L EP無縫_KUZE_無",
+        "partNo": "GTUB04007031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L EP無縫_NEWBEST_無",
+        "partNo": "GTUB04007031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KOBE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L EP無縫_KOBE_無",
+        "partNo": "GTUB04007031400",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L EP無縫_KUZE_無",
+        "partNo": "GTUB04008031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L EP無縫_NEWBEST_無",
+        "partNo": "GTUB04008031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L EP無縫_KUZE_無",
+        "partNo": "GTUB04009031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L EP無縫_NEWBEST_無",
+        "partNo": "GTUB04009031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KOBE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L EP無縫_KOBE_無",
+        "partNo": "GTUB04009031400",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L EP無縫_KUZE_無",
+        "partNo": "GTUB04011031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L EP無縫_NEWBEST_無",
+        "partNo": "GTUB04011031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KOBE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L EP無縫_KOBE_無",
+        "partNo": "GTUB04011031400",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_316L EP無縫_KUZE_無",
+        "partNo": "GPIP04018031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_316L EP無縫_NEWBEST_無",
+        "partNo": "GPIP04018031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L EP無縫_KUZE_無",
+        "partNo": "GPIP04020031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L EP無縫_NEWBEST_無",
+        "partNo": "GPIP04020031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_316L EP無縫_KUZE_無",
+        "partNo": "GPIP04022031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_316L EP無縫_NEWBEST_無",
+        "partNo": "GPIP04022031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L EP無縫_KUZE_無",
+        "partNo": "GPIP04023031100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KOBE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L EP無縫_KOBE_無",
+        "partNo": "GPIP04023031400",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_316L EP無縫_NEWBEST_無",
+        "partNo": "GPIP04024031200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ],
+        "brand": [
+          "KOBE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_316L EP無縫_KOBE_無",
+        "partNo": "GPIP04024031400",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA有縫_NEWBEST_無",
+        "partNo": "GTUB04008051200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA有縫_DAJA_無",
+        "partNo": "GTUB04008050200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L BA有縫_DAJA_無",
+        "partNo": "GPIP04023050200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_316L BA有縫_NEWBEST_無",
+        "partNo": "GPIP04024051200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "80A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_80A_316L BA有縫_NEWBEST_無",
+        "partNo": "GPIP04025051200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_316L BA有縫_KUZE_無",
+        "partNo": "GPIP04026051100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_316L BA有縫_NEWBEST_無",
+        "partNo": "GPIP04026051200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_316L BA有縫_NIHON_無",
+        "partNo": "GPIP04026051300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L BA無縫_KUZE_無",
+        "partNo": "GTUB04007021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L BA無縫_NEWBEST_無",
+        "partNo": "GTUB04007021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_316L BA無縫_NIHON_無",
+        "partNo": "GTUB04007021300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA無縫_KUZE_無",
+        "partNo": "GTUB04008021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA無縫_NEWBEST_無",
+        "partNo": "GTUB04008021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA無縫_DAJA_無",
+        "partNo": "GTUB04008020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_316L BA無縫_NIHON_無",
+        "partNo": "GTUB04008021300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L BA無縫_KUZE_無",
+        "partNo": "GTUB04009021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L BA無縫_NEWBEST_無",
+        "partNo": "GTUB04009021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L BA無縫_DAJA_無",
+        "partNo": "GTUB04009020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_316L BA無縫_NIHON_無",
+        "partNo": "GTUB04009021300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L BA無縫_KUZE_無",
+        "partNo": "GTUB04011021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L BA無縫_NEWBEST_無",
+        "partNo": "GTUB04011021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L BA無縫_DAJA_無",
+        "partNo": "GTUB04011480200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_316L BA無縫_KUZE_無",
+        "partNo": "GPIP04018021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_316L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04018021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_304L BA無縫_DAJA_無",
+        "partNo": "GPIP04018480200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "20A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_20A_316L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04019021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "20A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_20A_316L BA無縫_DAJA_無",
+        "partNo": "GPIP04019020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "20A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_20A_316L BA無縫_NIHON_無",
+        "partNo": "GPIP04019021300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L BA無縫_KUZE_無",
+        "partNo": "GPIP04020021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04020021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L BA無縫_DAJA_無",
+        "partNo": "GPIP04020020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_316L BA無縫_NIHON_無",
+        "partNo": "GPIP04020021300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_316L BA無縫_KUZE_無",
+        "partNo": "GPIP04022021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_316L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04022021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_316L BA有縫_DAJA_無",
+        "partNo": "GPIP04022050200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L BA無縫_KUZE_無",
+        "partNo": "GPIP04023021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04023021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L BA無縫_DAJA_無",
+        "partNo": "GPIP04023020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_316L BA無縫_KUZE_無",
+        "partNo": "GPIP04024021100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_316L BA無縫_AP TECH_無",
+        "partNo": "GPIP04023021600",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L BA無縫_DAJA_無",
+        "partNo": "GTUB04011020200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_304L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04018481200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04020481200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "32A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_32A_304L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04021481200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L BA無縫_NEWBEST_無",
+        "partNo": "GPIP04023481200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L BA無縫_DAJA_無",
+        "partNo": "GPIP04023480200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "20A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_20A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04019041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04020041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L AP有縫_DAJA_無",
+        "partNo": "GPIP04020040200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "32A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_32A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04021041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04022041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP有縫_DAJA_無",
+        "partNo": "GPIP04022040200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04023041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L AP有縫_DAJA_無",
+        "partNo": "GPIP04023040200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04024041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "80A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_80A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04025041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04026041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_304L AP有縫_DAJA_無",
+        "partNo": "GPIP04026040200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "150A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_150A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04027041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "200A"
+        ],
+        "material": [
+          "304L AP有縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_200A_304L AP有縫_NEWBEST_無",
+        "partNo": "GPIP04028041200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料-TUBE_管材_WELD_1/4\"_304L AP無縫_KUZE_無",
+        "partNo": "GTUB04007011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/4\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04007011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_304L AP無縫_KUZE_無",
+        "partNo": "GTUB04008011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/8\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04008011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_304L AP無縫_KUZE_無",
+        "partNo": "GTUB04009011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04009011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "SUMIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1/2\"_304L AP無縫_SUMIKIN_無",
+        "partNo": "GTUB04009014100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "5/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_5/8\"_304L AP無縫_KUZE_無",
+        "partNo": "GTUB04010011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "5/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_5/8\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04010011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04011011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L AP無縫_NIHON_無",
+        "partNo": "GTUB04011011300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "SUMIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L AP無縫_SUMIKIN_無",
+        "partNo": "GTUB04011014100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1\"_304L AP無縫_KUZE_無",
+        "partNo": "GTUB04012011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1\"_304L AP無縫_NEWBEST_無",
+        "partNo": "GTUB04012011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_1\"_304L AP無縫_NIHON_無",
+        "partNo": "GTUB04012011300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_15A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04018011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "20A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_20A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04019011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04020011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L AP無縫_DAJA_無",
+        "partNo": "GPIP04020010200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_25A_304L AP無縫_NIHON_無",
+        "partNo": "GPIP04020011300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "32A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_32A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04021011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "32A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_32A_304L AP無縫_DAJA_無",
+        "partNo": "GPIP04021010200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP無縫_KUZE_無",
+        "partNo": "GPIP04022011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04022011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP無縫_DAJA_無",
+        "partNo": "GPIP04022010200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "40A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "SUMIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_40A_304L AP無縫_SUMIKIN_無",
+        "partNo": "GPIP04022014100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04023011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L AP無縫_DAJA_無",
+        "partNo": "GPIP04023010200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_50A_304L AP無縫_NIHON_無",
+        "partNo": "GPIP04023011300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "65A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NEWBEST"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_65A_304L AP無縫_NEWBEST_無",
+        "partNo": "GPIP04024011200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "80A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "KUZE"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_304L AP無縫_KUZE_無",
+        "partNo": "GPIP04026011100",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "100A"
+        ],
+        "material": [
+          "304L AP無縫"
+        ],
+        "brand": [
+          "NIHON"
+        ]
+      },
+      "output": {
+        "name": "氣體材料PIPE_管材_WELD_100A_304L AP無縫_NIHON_無",
+        "partNo": "GPIP04026011300",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "6MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_6MM_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00001070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "6MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "DAIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_6MM_PFA(軟管)_DAIKIN_無",
+        "partNo": "GFLT00001073800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "8MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_8MM_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00002070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "10MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_10MM_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00003070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "12MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_12MM_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00004070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "12MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Polyurethane tube-PU軟管_NA_12MM_PU_NA_無",
+        "partNo": "GPUT00004860000",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "16MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Polyurethane tube-PU軟管_NA_16MM_PU_NA_無",
+        "partNo": "GPUT00005860000",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_1/4\"_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00007070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_3/8\"_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00008070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_1/2\"_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00009070800",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ],
+        "brand": [
+          "NICHIAS"
+        ]
+      },
+      "output": {
+        "name": "氣體材料Flexible tube軟管_NA_3/4\"_PFA(軟管)_NICHIAS_無",
+        "partNo": "GFLT00011070800",
+        "unit": "M"
+      }
+    }
+  ],
+  "unmatched": []
+}

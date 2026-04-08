@@ -2,11 +2,16 @@
   "name": "geniideas-vue",
   "version": "1.0.0",
   "description": "A Vue.js project using JavaScript",
-  "type": "module",
+  "author": "Geniideas",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:electron": "cross-env ELECTRON=true vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\"",
+    "electron:build": "npm run build:electron && electron-builder",
+    "electron:build:win": "npm run build:electron && electron-builder --win --x64"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
@@ -15,11 +20,73 @@
     "jspdf-autotable": "^5.0.2",
     "vue": "^3.4.0",
     "vue-zoomable": "^1.2.8",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "express": "^4.18.2",
+    "better-sqlite3": "^9.2.2",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.0",
     "sass": "^1.93.2",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0",
+    "cross-env": "^7.0.3"
+  },
+  "build": {
+    "appId": "com.geniideas.flowchart",
+    "productName": "Geniideas Flowchart",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "public/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "publisherName": "Geniideas",
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Geniideas Flowchart",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "menuCategory": true,
+      "perMachine": false,
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "extraResources": [
+      {
+        "from": "public",
+        "to": "public",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "build/libreoffice",
+        "to": "libreoffice",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   }
 }

@@ -1,0 +1,4551 @@
+{
+  "rules": [
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LEP-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-EP-1\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LEP-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LEP-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LEP-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-EP-1\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LEP-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LEP-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LBA-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-50A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LBA-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-50A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LBA-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-50A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW_S-316LBA-3/4\"",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-15A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-25A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "90 DI ELBOW",
+          "ELBOW"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "ELBOW-316LBA-50A",
+        "unit": "EA",
+        "divisor": 3,
+        "round": "ceil"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-EP-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*15A\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-EP-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L EP-25A*15A\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "5/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-BA-5/8\"&1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316LBA-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax25A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-50A*25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "5/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-BA-5/8\"&1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316LBA-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L BA-50A*25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-304L AP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "無可對應料號",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-304L AP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCING TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER TEE-316L AP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax5/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "無可對應料號",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-EP-50A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax5/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "無可對應料號",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L EP-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-EP-50A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1\"x15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1\"*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax5/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "無可對應料號",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*2''",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax25A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/8\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1/2\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\"x3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1/2\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\"x1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-3/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1\"x15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-1\"*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15Ax3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-15A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax5/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "無可對應料號",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax1\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25Ax15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-316L BA-25A*15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*2''",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "REDUCER"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50Ax25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "REDUCER-BA-50A*25A",
+        "unit": "EA"
+      }
+    }
+  ]
+}

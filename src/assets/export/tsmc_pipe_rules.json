@@ -1,0 +1,2717 @@
+{
+  "rules": [
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L EP-15A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L EP-25A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L EP-1\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L EP-15A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L EP-25A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-15A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-25A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-50A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-316L BA-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-15A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-25A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "PIPE-316L BA-50A",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-1/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "5/8\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-5/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L AP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-1/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "5/8\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-5/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L AP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TUBE[小管徑]-304 AP-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "A2源頭-管線類別"
+        ],
+        "size": [
+          "D2-盤面-尺寸"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "料表",
+        "lengthHint": "選單C1(長度只影響數量幾米)",
+        "quantityHint": "數量",
+        "note": "備註"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "雙套管"
+        ],
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "inner": "TUBE[小管徑]-316L EP-1/4\"",
+        "outer": "TUBE[小管徑]-304 AP-1/2\"",
+        "unit": "M",
+        "note": "內管固定配EP；外管固定配AP"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "雙套管"
+        ],
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "inner": "TUBE[小管徑]-316L EP-3/8\"",
+        "outer": "TUBE[小管徑]-304 AP-5/8\"",
+        "unit": "M",
+        "note": "內管固定配EP；外管固定配AP"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "雙套管"
+        ],
+        "doubleSize": [
+          "3/4\"*1/2\""
+        ]
+      },
+      "output": {
+        "inner": "TUBE[小管徑]-316L EP-1/2\"",
+        "outer": "TUBE[小管徑]-304 AP-3/4\"",
+        "unit": "M",
+        "note": "內管固定配EP；外管固定配AP"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "A2源頭-管線類別"
+        ],
+        "size": [
+          "F2-設備-尺寸"
+        ],
+        "material": [
+          "C2-管線-材質"
+        ]
+      },
+      "output": {
+        "partName": "料表",
+        "lengthHint": "C1-管線-長度",
+        "quantityHint": "數量",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "6MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M--6mm",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "8MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M--8mm",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "10MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M--10mm",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "12MM"
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M--12mm",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M-1/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M-3/8\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M-1/2\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M-3/4\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "軟管"
+        ],
+        "size": [
+          "1\""
+        ],
+        "material": [
+          "軟管(PFA or PTFE)"
+        ]
+      },
+      "output": {
+        "partName": "PTFE (軟管)M-1\"",
+        "lengthHint": "XX M",
+        "quantityHint": "XX米",
+        "note": ""
+      }
+    }
+  ],
+  "unmatched": [
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "316L EP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "316L EP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/4\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "316L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/4\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "316L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/4\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "3/8\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/2\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "3/4\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "15A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "25A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "304L BA有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/4\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "3/8\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/2\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "3/4\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "15A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "25A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "304L BA無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "15A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "25A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "304L AP有縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "15A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "25A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "單套管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "304L AP無縫",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "16MM",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "1/8\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "5/8\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "1-1/4\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "1-1/2\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "2\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "2-1/4\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "2-1/2\"",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "15A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "20A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "25A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "32A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "40A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "50A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "65A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "80A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "100A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "150A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "200A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    },
+    {
+      "category": "軟管",
+      "doubleSize": "",
+      "panelSize": "250A",
+      "material": "軟管(PFA or PTFE)",
+      "partName": "無可對應料號",
+      "lengthHint": "XX M",
+      "quantityHint": "XX米",
+      "note": ""
+    }
+  ]
+}

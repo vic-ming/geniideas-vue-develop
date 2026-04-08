@@ -1,0 +1,7207 @@
+{
+  "rules": [
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-1\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ]
+      },
+      "output": {
+        "partName": "Ball Valve-BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/8\"&1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ]
+      },
+      "output": {
+        "partName": "DIAPHRAGM VALVE-EP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-(SWG) BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ]
+      },
+      "output": {
+        "partName": "REGULATOR(調壓閥)-EP(VCR-F)-3/4\"",
+        "unit": "EA"
+      }
+    }
+  ],
+  "unmatched": [
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "Ball Valve",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "DIAPHRAGM VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "BELLOW VALVE",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "WELD",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "SWG",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-M",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "VCR-F",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "5/8\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "3/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "1-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/4\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "2-1/2\"",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "15A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "20A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "25A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "32A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "40A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "50A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "65A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "80A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "100A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "150A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "200A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    },
+    {
+      "connector": "Flange",
+      "size": "250A",
+      "valveType": "REGULATOR",
+      "partName": "無可對應料號",
+      "qtyHint": "1EA"
+    }
+  ]
+}

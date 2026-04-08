@@ -16,7 +16,7 @@
           />
         </div>
 
-        <!-- 客户 -->
+        <!-- 客戶 -->
         <div class="form-group">
           <label>客户</label>
           <input 
@@ -28,19 +28,19 @@
           />
         </div>
 
-        <!-- 厂商资讯 -->
+        <!-- 廠區資訊 -->
         <div class="form-group">
-          <label>廠商資訊</label>
+          <label>廠區資訊</label>
           <input 
             v-model="formData.vendorInfo" 
             type="text" 
             class="form-input" 
-            placeholder="請輸入廠商資訊"
+            placeholder="請輸入廠區資訊"
             maxlength="20"
           />
         </div>
 
-        <!-- 会勘监工 -->
+        <!-- 會勘監工 -->
         <div class="form-group">
           <label>會勘監工<span class="required">*</span></label>
           <input 
@@ -54,7 +54,7 @@
           />
         </div>
 
-        <!-- 会勘日期 -->
+        <!-- 會勘日期 -->
         <div class="form-group">
           <label>會勘日期<span class="required">*</span></label>
           <input 
@@ -67,7 +67,7 @@
           />
         </div>
 
-        <!-- 机台名称 -->
+        <!-- 機台名稱 -->
         <div class="form-group">
           <label>機台名稱<span class="required">*</span></label>
           <input 
@@ -83,12 +83,14 @@
 
         <!-- Location ID -->
         <div class="form-group">
-          <label>Location ID</label>
+          <label>Location ID<span class="required">*</span></label>
           <input 
             v-model="formData.locationId" 
             type="text" 
             class="form-input" 
+            :class="{ 'input-error': errors.locationId }"
             placeholder="請輸入Location ID"
+            @input="errors.locationId = false"
             maxlength="50"
           />
         </div>
@@ -105,19 +107,21 @@
           />
         </div>
 
-        <!-- 工程师联络资讯 -->
+        <!-- 工程師聯絡資訊 -->
         <div class="form-group">
-          <label>工程師聯絡資訊</label>
+          <label>工程師聯絡資訊<span class="required">*</span></label>
           <input 
             v-model="formData.engineerContact" 
             type="text" 
             class="form-input" 
+            :class="{ 'input-error': errors.engineerContact }"
             placeholder="請輸入工程師聯絡資訊"
+            @input="errors.engineerContact = false"
             maxlength="50"
           />
         </div>
 
-        <!-- 施工厂商 -->
+        <!-- 施工廠商 -->
         <div class="form-group">
           <label>施工廠商</label>
           <input 
@@ -129,7 +133,7 @@
           />
         </div>
 
-        <!-- 绘图日期 -->
+        <!-- 繪圖日期 -->
         <div class="form-group">
           <label>繪圖日期</label>
           <input 
@@ -140,7 +144,7 @@
           />
         </div>
 
-        <!-- 备注资讯 -->
+        <!-- 備註資訊 -->
         <div class="form-group">
           <label>備註資訊</label>
           <textarea 
@@ -152,7 +156,7 @@
           ></textarea>
         </div>
 
-        <!-- Hierachy种类 -->
+        <!-- Hierachy種類 -->
         <div class="form-group">
           <label>Hierachy種類</label>
           <div class="radio-group">
@@ -177,7 +181,7 @@
           </div>
         </div>
 
-        <!-- 按钮 -->
+        <!-- 按鈕 -->
         <div class="form-actions">
           <button type="button" class="btn btn-cancel" @click="handleCancel">
             取消
@@ -238,7 +242,11 @@ export default {
       errors: {
         surveySupervisor: false,
         surveyDate: false,
-        machineName: false
+        surveySupervisor: false,
+        surveyDate: false,
+        machineName: false,
+        locationId: false,
+        engineerContact: false
       }
     }
   },
@@ -264,7 +272,11 @@ export default {
       this.errors = {
         surveySupervisor: false,
         surveyDate: false,
-        machineName: false
+        surveySupervisor: false,
+        surveyDate: false,
+        machineName: false,
+        locationId: false,
+        engineerContact: false
       }
 
       // 驗證必填欄位
@@ -282,6 +294,16 @@ export default {
 
       if (!this.formData.machineName || this.formData.machineName.trim() === '') {
         this.errors.machineName = true
+        hasError = true
+      }
+
+      if (!this.formData.locationId || this.formData.locationId.trim() === '') {
+        this.errors.locationId = true
+        hasError = true
+      }
+
+      if (!this.formData.engineerContact || this.formData.engineerContact.trim() === '') {
+        this.errors.engineerContact = true
         hasError = true
       }
 
@@ -507,7 +529,7 @@ export default {
   }
 }
 
-/* 自定义滚动条样式 */
+/* 自定義滾動條樣式 */
 .setting-content::-webkit-scrollbar {
   width: 6px;
   position: relative;

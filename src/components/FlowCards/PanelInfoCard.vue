@@ -152,8 +152,8 @@ export default {
   data() {
     return {
       showMenu: false,
-      isSyncingFromSource: false, // 标记是否正在从源头同步更新
-      previousBackPipelineType: '' // 保存之前的值，用于取消时恢复
+      isSyncingFromSource: false, // 標記是否正在從源頭同步更新
+      previousBackPipelineType: '' // 保存之前的值，用於取消時恢復
     }
   },
   computed: {
@@ -176,7 +176,7 @@ export default {
       deep: true,
       immediate: true
     },
-    // 监听源头管线类别的变化，自动同步更新
+    // 監聽源頭管線類別的變化，自動同步更新
     sourcePipelineType: {
       handler(newVal, oldVal) {
         if (newVal && newVal !== oldVal && !this.isSyncingFromSource) {
@@ -196,12 +196,12 @@ export default {
       this.showMenu = !this.showMenu;
     },
     handleDataChange() {
-      // 处理其他字段的更新，不触发确认窗口
+      // 處理其他欄位的更新，不觸發確認視窗
       this.$emit('update-data', this.cardData);
       this.$forceUpdate();
     },
     handleBackPipelineTypeChange() {
-      // 如果是同步更新，直接更新数据，不触发确认窗口
+      // 如果是同步更新，直接更新數據，不觸發確認視窗
       if (this.isSyncingFromSource) {
         this.previousBackPipelineType = this.cardData.backPipelineType;
         this.$emit('update-data', this.cardData);
@@ -209,8 +209,8 @@ export default {
         return;
       }
       
-      // 检查后方管线类别是否与源头不同
-      // 只有当后方管线类别有值且与源头不同时才弹出确认窗口
+      // 檢查後方管線類別是否與源頭不同
+      // 只有當後方管線類別有值且與源頭不同時才彈出確認視窗
       if (this.sourcePipelineType && 
           this.cardData.backPipelineType && 
           this.cardData.backPipelineType !== '' &&
@@ -218,7 +218,7 @@ export default {
         // 保存之前的值
         const oldValue = this.previousBackPipelineType || this.sourcePipelineType;
         this.previousBackPipelineType = this.cardData.backPipelineType;
-        // 发出事件，请求显示确认窗口
+        // 發出事件，請求顯示確認視窗
         this.$emit('back-pipeline-type-change', {
           newValue: this.cardData.backPipelineType,
           sourceValue: this.sourcePipelineType,
@@ -226,7 +226,7 @@ export default {
           cardData: { ...this.cardData }
         });
       } else {
-        // 相同或源头为空，直接更新
+        // 相同或源頭為空，直接更新
         this.previousBackPipelineType = this.cardData.backPipelineType;
         this.$emit('update-data', this.cardData);
         this.$forceUpdate();

@@ -53,7 +53,7 @@
             :disabled="currentPage === 1"
             @click="goToPage(currentPage - 1)"
           >
-            &lt;
+            <img src="@/assets/images/chevron-left.svg" alt="prev" />
           </button>
           <span class="page-info">
             <button
@@ -71,7 +71,7 @@
             :disabled="currentPage === totalPages"
             @click="goToPage(currentPage + 1)"
           >
-            &gt;
+            <img src="@/assets/images/chevron-right.svg" alt="next" />
           </button>
         </div>
       </div>
@@ -86,10 +86,12 @@
               v-model="filename"
               type="text"
               class="filename-input"
+              :class="{ 'filename-input': true, 'error-border': showNameError }"
               placeholder="輸入檔案名稱"
               @input="handleFilenameChange"
               :disabled="isDisabled" 
             />
+            <p v-if="showNameError" class="error-message">請先命名此檔案名稱</p>
           </div>
           
           <p v-if="isModified" class="modify-notice">
@@ -136,7 +138,8 @@ export default {
       itemsPerPage: 10,
       filename: '',
       selectedFile: null,
-      originalFilename: '' // 記錄打開時的文件名
+      originalFilename: '', // 記錄打開時的檔案名稱
+      showNameError: false // 是否顯示檔名錯誤提示
     }
   },
   computed: {
@@ -178,9 +181,10 @@ export default {
     isOpen(newVal) {
       if (newVal) {
         this.loadFiles()
-        // 初始化文件名为当前文件名
+        // 初始化檔案名稱為當前檔案名稱
         this.originalFilename = this.currentFilename
         this.filename = this.currentFilename
+        this.showNameError = false
       }
     }
   },
@@ -207,7 +211,7 @@ export default {
         
         if (result.success) {
           const data = JSON.parse(result.data.data)
-                    // 传递文件信息和数据，不立即關閉FileManager
+                    // 傳遞檔案資訊和數據，不立即關閉FileManager
           // 讓 handleFileManagerLoad 決定是否需要關閉
 
           this.$emit('load', {
@@ -239,7 +243,7 @@ export default {
       }
       
       if (!this.filename.trim()) {
-        alert('請輸入檔案名稱')
+        this.triggerNameValidationError()
         return
       }
       
@@ -251,14 +255,37 @@ export default {
       await this.loadFiles()
     },
     
+    /**
+     * 觸發檔名驗證錯誤（供父組件調用）
+     */
+    triggerNameValidationError() {
+      this.showNameError = true
+      this.$emit('show-popup', {
+        title: '',
+        message: '目前檔案尚未命名，請先命名此檔案名稱後才可儲存喔！',
+        buttons: [
+          {
+            text: '確定',
+            class: 'primary',
+            action: 'confirm'
+          }
+        ],
+        showIcon: false,
+        closeOnOverlay: true
+      })
+    },
+    
     handleClose() {
       this.filename = ''
       this.originalFilename = ''
+      this.showNameError = false
       this.$emit('close')
     },
     
     handleFilenameChange() {
-      // 不再需要设置 isModified，因为我们使用 computed 属性
+      if (this.filename.trim()) {
+        this.showNameError = false
+      }
     },
     
     formatDate(dateString) {
@@ -310,6 +337,7 @@ export default {
 .file-manager {
   display: flex;
   flex: 1;
+  overflow: hidden; /* 防止內容撐開外層容器 */
 }
 
 .file-list-section {
@@ -317,6 +345,8 @@ export default {
   padding: 32px 16px 40px 0;
   overflow-y: auto;
   border-right: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
 }
 
 .section-title {
@@ -340,9 +370,9 @@ export default {
 }
 
 .file-table {
-  // border: 1px solid #E5E7EB;
-  
-  overflow: hidden;
+  /* border: 1px solid #E5E7EB; */
+  flex: 1;
+  overflow-y: auto; /* 確保表格內容可滾動 */
 }
 
 .table-header,
@@ -358,9 +388,14 @@ export default {
 
 .table-header {
   
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
   font-weight: 500;
   color: #737373;
   font-size: 14px;
+
 }
 
 .table-row {
@@ -419,10 +454,16 @@ export default {
   gap: 8px;
   margin-top: 20px;
 }
+.page-info{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 .page-btn,
 .page-number {
-  padding: 8px 12px;
+  width: 33px;
+  height: 33px;
   border: 1px solid #D4D4D4;
   border-radius: 4px;
   background: white;
@@ -497,6 +538,20 @@ export default {
     outline: none;
     border-color: #10B981;
   }
+  
+  &.error-border {
+    border-color: #EF4444; /* 紅框顏色 */
+    
+    &:focus {
+      border-color: #EF4444;
+    }
+  }
+}
+
+.error-message {
+  color: #EF4444;
+  font-size: 14px;
+  margin-top: 4px;
 }
 
 .modify-notice {

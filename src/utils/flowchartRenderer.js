@@ -2,7 +2,7 @@ const DEFAULT_CANVAS_WIDTH = 2200;
 const DEFAULT_CANVAS_HEIGHT = 1600;
 const DEFAULT_MODULE_HEIGHT = 520;
 const DEFAULT_MARGIN = 40;
-const SOURCE_BLOCK_WIDTH = 400;  // 增加源頭最小寬度
+const SOURCE_BLOCK_WIDTH = 300;  // 源頭資訊卡片最小寬度
 const SOURCE_BLOCK_HEIGHT = 160;
 const GAP_SOURCE_TO_MAIN = 30;
 const VALVE_SPACING = 95;
@@ -629,10 +629,10 @@ function drawEquipmentBranch(ctx, options) {
 }
 
 /**
- * 从 moduleSet 提取并转换数据格式，使其符合渲染需求
+ * 從 moduleSet 提取並轉換數據格式，使其符合渲染需求
  * @param {Object} moduleSet - 模組組對象
  * @param {Object} settings - 設定對象
- * @returns {Object} 转换后的数据对象
+ * @returns {Object} 轉換後的數據對象
  */
 function extractModuleSetData(moduleSet = {}, settings = {}) {
   // 提取源頭資訊
@@ -658,6 +658,9 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
     const panelData = panel.data || {};
     const equipment = group.equipment || {};
     const equipmentData = equipment.data || {};
+
+    // 檢查盤面是否啟用
+    const enablePanel = panelData.enablePanel !== false; // 默認為 true，只有明確設置為 false 時才不啟用
 
     // 構建 chillerLines（panel + equipment 資訊）
     const chillerLines = buildEquipmentLines(equipmentData, panelData, { index, sourceGasType });
@@ -693,11 +696,11 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
       hasValve: hasValve,  // 記錄是否有閥件
       valveType: valveData.valveType || '',  // 閥件種類
       valveSize: valveData.size || '',  // 閥件尺寸
-      valveConnector: valveData.connectorType || ''  // 閥件接頭
+      valveConnector: valveData.connectorType || '',  // 閥件接頭
+      enablePanel: enablePanel  // 記錄盤面是否啟用
     });
   });
 
-  // 分支模組：從 branchModuleCards 提取
   const branchModuleCards = moduleSet.branchModuleCards || [];
   const branchModulesData = []; // 存儲分支模組的完整數據（當 enableValve 為 true 時）
 
@@ -765,7 +768,8 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
           valveType: panelEquipmentValveData.valveType || '',  // 閥件種類
           valveSize: panelEquipmentValveData.size || '',  // 閥件尺寸
           valveConnector: panelEquipmentValveData.connectorType || '',  // 閥件接頭
-          branchIndex: branchIndex  // 保存原始分支索引，以便匹配 branchModulesData
+          branchIndex: branchIndex,  // 保存原始分支索引，以便匹配 branchModulesData
+          enablePanel: panelData.enablePanel !== false  // 記錄盤面是否啟用
         });
       }
 
@@ -897,12 +901,12 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
       const hasBranchValve = !!(group.branchValve && group.branchValve.data && Object.keys(group.branchValve.data).length > 0);
       const hasPanel = !!(group.panel && group.panel.data && Object.keys(group.panel.data).length > 0);
       const isEquipmentValveBranch = hasBranchValve && !hasPanel;
-      
+
       // 如果是設備閥件分支，跳過
       if (isEquipmentValveBranch) {
         return;
       }
-      
+
       const panel = group.panel || {};
       const panelData = panel.data || {};
       const equipment = group.equipment || {};
@@ -942,6 +946,7 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
         valveType: manifoldValveData.valveType || '',  // 閥件種類
         valveSize: manifoldValveData.size || '',  // 閥件尺寸
         valveConnector: manifoldValveData.connectorType || '',  // 閥件接頭
+        panel: panelData, // 保存 panel 數據以便後續使用（包含 enablePanel）
         additionalEquipmentBranches: (group.additionalEquipmentCards || []).map((equipmentCard) => {
           const equipmentData = equipmentCard?.data || {};
           const valveData = equipmentCard?.valve?.data || {};
@@ -1014,32 +1019,32 @@ function extractModuleSetData(moduleSet = {}, settings = {}) {
       const hasBranchValve = !!(group.branchValve && group.branchValve.data && Object.keys(group.branchValve.data).length > 0);
       const hasPanel = !!(group.panel && group.panel.data && Object.keys(group.panel.data).length > 0);
       const isEquipmentValveBranch = hasBranchValve && !hasPanel;
-      
+
       if (isEquipmentValveBranch) {
         // 檢查是否屬於主分支的設備閥件分支
-        const isMainBranchEquipmentValveBranch = 
-          (group.parentGroupId === mainPanelGroup.id) || 
-          (group.parentAdditionalEquipmentId && mainPanelGroup.additionalEquipmentCards && 
-           mainPanelGroup.additionalEquipmentCards.some(card => card.id === group.parentAdditionalEquipmentId));
-        
+        const isMainBranchEquipmentValveBranch =
+          (group.parentGroupId === mainPanelGroup.id) ||
+          (group.parentAdditionalEquipmentId && mainPanelGroup.additionalEquipmentCards &&
+            mainPanelGroup.additionalEquipmentCards.some(card => card.id === group.parentAdditionalEquipmentId));
+
         if (isMainBranchEquipmentValveBranch) {
           const branchValve = group.branchValve || {};
           const branchValveData = branchValve.data || {};
-          
+
           const equipment = group.equipment || {};
           const equipmentData = equipment.data || {};
-          
+
           // 構建設備資訊
           const equipmentLines = buildEquipmentLines(equipmentData, {}, { sourceGasType: sourceGasType });
-          
+
           // 檢查是否啟用（enableValve）
           const enableValve = branchValveData.enableValve === true;
-          
+
           // 判斷是主設備還是額外設備的設備閥件分支
           const isMainEquipmentBranch = !group.parentAdditionalEquipmentId;
-          const equipmentIndex = isMainEquipmentBranch ? 0 : 
+          const equipmentIndex = isMainEquipmentBranch ? 0 :
             (mainPanelGroup.additionalEquipmentCards?.findIndex(card => card.id === group.parentAdditionalEquipmentId) ?? -1);
-          
+
           equipmentValveBranches.push({
             groupIndex: 0,  // 主分支的索引始終為 0
             equipmentIndex: isMainEquipmentBranch ? 0 : equipmentIndex + 1,  // 0 表示主設備，>0 表示額外設備索引
@@ -1379,7 +1384,10 @@ function drawModule(ctx, moduleSet, options) {
 
   // 計算主管線的管線資訊和樓層資訊的固定x位置，確保不與閥件重疊
   // 管線資訊位置：在閥件區域結束後，確保有足夠間距（考慮閥件標籤的寬度）
-  const PIPELINE_LABEL_OFFSET = 300; // 管線資訊距離閥件區域的距離
+  // 根據閥件數量動態調整偏移量：閥件多時使用較小偏移，閥件少時使用較大偏移
+  const BASE_PIPELINE_LABEL_OFFSET = 500; // 基礎偏移量（當閥件數量為 0 或 1 時）
+  const VALVE_COUNT_OFFSET_REDUCTION = 50; // 每增加一個閥件，減少 50px 偏移量
+  const PIPELINE_LABEL_OFFSET = Math.max(300, BASE_PIPELINE_LABEL_OFFSET - (actualValveCount * VALVE_COUNT_OFFSET_REDUCTION));
   const FLOOR_LABEL_OFFSET = 100; // 樓層資訊距離管線資訊的距離（減小以讓樓層更靠右，避免與主閥件重疊）
   const mainPipelineLabelX = afterValvesX + PIPELINE_LABEL_OFFSET;
   const mainFloorLabelX = mainPipelineLabelX - FLOOR_LABEL_OFFSET;
@@ -1587,8 +1595,12 @@ function drawModule(ctx, moduleSet, options) {
         const valveSize = 50;
         const valveCenterX = chillerBoxLeftX - valveSize / 2 - 70;  // Valve positioned at left side of Chiller (往左移動)
 
-        // Line from SWG area to valve（使用盤面的 backPipelineType）
-        drawLineByType(ctx, lineBeforeChillerX, branchY, valveCenterX - valveSize / 2 - 10, branchY, panelBackPipelineType, false);
+        // 檢查盤面是否啟用
+        const enablePanel = branch.enablePanel !== false;
+
+        // Line from SWG area (or previous line if panel disabled) to valve（使用盤面的 backPipelineType）
+        const lineStartX = enablePanel ? lineBeforeChillerX : (beforeVertLineX || lineBeforeChillerX);
+        drawLineByType(ctx, lineStartX, branchY, valveCenterX - valveSize / 2 - 10, branchY, panelBackPipelineType, false);
 
         // Draw valve symbol (傳入閥件資訊)
         const valveInfo = {
@@ -1602,20 +1614,20 @@ function drawModule(ctx, moduleSet, options) {
         // 查找對應的設備閥件分支數據（主設備的設備閥件分支）
         const equipmentValveBranches = moduleData.equipmentValveBranches || [];
         const mainEquipmentValveBranches = equipmentValveBranches.filter(evb => evb.groupIndex === index && evb.isMainEquipment);
-        
+
         if (mainEquipmentValveBranches.length > 0) {
           const EQUIPMENT_VALVE_BRANCH_SPACING = 120; // 設備閥件分支間距
           const VALVE_LEFT_OFFSET = 80; // 從閥件左側的偏移距離
           const branchStartX = valveCenterX - valveSize / 2 - VALVE_LEFT_OFFSET; // 分支起始X位置（閥件左側）
-          
+
           // 追蹤已繪製的分支底部位置
           let currentBranchY = branchY;
           const drawnEquipmentValveBranchPositions = [];
-          
+
           mainEquipmentValveBranches.forEach((equipmentValveBranch, branchIdx) => {
             const branchValveData = equipmentValveBranch.branchValve || {};
             const enableValve = branchValveData.enableValve === true;
-            
+
             // 計算分支的Y位置（參考源頭閥件分支的樣式）
             if (branchIdx === 0) {
               // 第一個分支：從閥件下方開始（類似源頭閥件分支從主管線往下）
@@ -1627,15 +1639,15 @@ function drawModule(ctx, moduleSet, options) {
               const topVertLineLength = 80;  // 與源頭閥件分支一致
               currentBranchY = prevBranchBottom + topVertLineLength;
             }
-            
+
             // 繪製從閥件位置往下的垂直線（使用源頭的管線類型，參考源頭閥件分支）
             const topVertLineLength = 80;  // 與源頭閥件分支一致
             const valveTopY = branchY + topVertLineLength;
             drawLineByType(ctx, branchStartX, branchY, branchStartX, valveTopY, sourcePipelineType, true);
-            
+
             const sizeLabel = branchValveData.branchSize || '';
             const label = branchValveData.valveSize || '';  // 使用閥件尺寸作為標籤（類似源頭閥件分支的 valveLabels）
-            
+
             // Size label above valve position (類似源頭閥件分支在主管線上方的標籤)
             if (sizeLabel) {
               ctx.font = FONT_SMALL;
@@ -1644,7 +1656,7 @@ function drawModule(ctx, moduleSet, options) {
               ctx.fillText(sizeLabel, branchStartX, branchY - 8);
               ctx.textAlign = 'left';
             }
-            
+
             // Pipe size label next to top vertical line (rotated) (類似源頭閥件分支在垂直線右側的標籤)
             if (label) {
               ctx.font = FONT_SMALL;
@@ -1657,11 +1669,11 @@ function drawModule(ctx, moduleSet, options) {
               ctx.restore();
               ctx.textAlign = 'left';
             }
-            
+
             // Draw valve symbol (vertical orientation) (類似源頭閥件分支)
             const branchValveSize = VALVE_SIZE;
             const branchValveCenterY = valveTopY + branchValveSize / 2 + 5;  // 與源頭閥件分支一致
-            
+
             // 繪製垂直閥件符號
             const branchValveInfo = {
               valveType: branchValveData.valveType || '',
@@ -1669,53 +1681,53 @@ function drawModule(ctx, moduleSet, options) {
               valveConnector: branchValveData.valveConnector || ''
             };
             drawValveSymbol(ctx, branchStartX, branchValveCenterY, branchValveSize, null, label, true, branchValveInfo);
-            
+
             // Add label to the right of valve (rotated) (類似源頭閥件分支在閥件右側的標籤)
             const valveSize = branchValveData.valveSize || '';
             const valveConnector = branchValveData.valveConnector || '';
             const valveType = branchValveData.valveType || '';
-            
+
             ctx.fillStyle = '#1f1f1f';
             ctx.textAlign = 'center';
             ctx.save();
             ctx.translate(branchStartX + branchValveSize / 2 + 15, branchValveCenterY);  // 與源頭閥件分支一致
             ctx.rotate(-Math.PI / 2);
-            
+
             // 第一行：{閥件尺寸}{閥件接頭}（尺寸與接頭之間要有空白）
             ctx.font = FONT_SMALL_ROTATED;
             const firstLine = [valveSize, valveConnector].filter(Boolean).join(' ');  // 使用空格連接
             if (firstLine) {
               ctx.fillText(firstLine, 0, -8);  // 向上偏移8px
             }
-            
+
             // 第二行：{閥件種類}（使用更小的字體）
             if (valveType && valveType !== 'NA') {
               ctx.font = '14px "Microsoft JhengHei", "微軟正黑體", Arial';  // 比 FONT_SMALL_ROTATED (16px) 更小
               ctx.fillText(valveType, 0, 8);  // 向下偏移8px
             }
-            
+
             ctx.restore();
             ctx.textAlign = 'left';
-            
+
             let branchBottomY = branchValveCenterY + branchValveSize / 2;
-            
+
             // 如果啟用，繼續往下往右連接到設備卡片
             if (enableValve) {
               const bottomVertLineLength = 40;
               const bottomVertLineStartY = branchValveCenterY + branchValveSize / 2;
               const bottomVertLineEndY = bottomVertLineStartY + bottomVertLineLength;
-              
+
               // 繪製從閥件往下的垂直線（使用分支閥件的 backPipelineType）
               const branchValveBackPipelineType = branchValveData.backPipelineType || sourcePipelineType;
               drawLineByType(ctx, branchStartX, bottomVertLineStartY, branchStartX, bottomVertLineEndY, branchValveBackPipelineType, true);
-              
+
               // 繪製水平線連接到設備卡片
               const equipmentCardX = chillerBoxLeftX;
               const horizontalLineY = bottomVertLineEndY;
-              
+
               // 水平線（使用分支閥件的 backPipelineType）
               drawLineByType(ctx, branchStartX, horizontalLineY, equipmentCardX, horizontalLineY, branchValveBackPipelineType, false);
-              
+
               // 繪製設備卡片
               const equipmentLines = equipmentValveBranch.equipment.lines || ['設備資訊'];
               const lineHeight = 26;
@@ -1727,33 +1739,33 @@ function drawModule(ctx, moduleSet, options) {
                 FONT_SECONDARY,
                 BOX_HEIGHT
               );
-              
+
               const equipmentTop = horizontalLineY - actualEquipmentHeight / 2;
               ctx.strokeRect(equipmentCardX, equipmentTop, CHILLER_BOX_WIDTH, actualEquipmentHeight);
-              
+
               const equipmentTextStartY = equipmentTop + lineHeight + 10;
               drawTextBlock(ctx, equipmentLines, equipmentCardX + 15, equipmentTextStartY, {
                 font: FONT_SECONDARY,
                 lineHeight: lineHeight,
                 maxWidth: CHILLER_BOX_WIDTH - 30
               });
-              
+
               branchBottomY = equipmentTop + actualEquipmentHeight;
             }
-            
+
             // 記錄分支底部位置
             drawnEquipmentValveBranchPositions.push({
               bottomY: branchBottomY
             });
           });
-          
+
           // 更新模組底部位置（考慮設備閥件分支的高度）
           if (drawnEquipmentValveBranchPositions.length > 0) {
             const lastBranchBottom = drawnEquipmentValveBranchPositions[drawnEquipmentValveBranchPositions.length - 1].bottomY;
             if (lastBranchBottom > moduleBottomY) {
               moduleBottomY = lastBranchBottom;
             }
-            
+
             // 將設備閥件分支的底部位置存儲到 canvas，供後續分支使用
             ctx.canvas._equipmentValveBranchesBottom = lastBranchBottom;
           }
@@ -1762,20 +1774,33 @@ function drawModule(ctx, moduleSet, options) {
         // Line from valve to Chiller（使用閥件的 backPipelineType）
         drawLineByType(ctx, valveCenterX + valveSize / 2 + 10, branchY, chillerBoxLeftX, branchY, valveBackPipelineType, false);
       } else {
-        // 沒有閥件時，直接從 SWG 連接到設備（使用盤面的 backPipelineType）
-        drawLineByType(ctx, lineBeforeChillerX, branchY, chillerBoxLeftX, branchY, panelBackPipelineType, false);
+        // 沒有閥件時，檢查盤面是否啟用
+        const enablePanel = branch.enablePanel !== false;
+        // 如果盤面未啟用，直接從前面的線條連接到設備；否則從 SWG 連接到設備
+        const lineStartX = enablePanel ? lineBeforeChillerX : (beforeVertLineX || lineBeforeChillerX);
+        drawLineByType(ctx, lineStartX, branchY, chillerBoxLeftX, branchY, panelBackPipelineType, false);
       }
     }
 
-    // SWG box (垂直置中於線條)
-    const firstBoxRightX = lineBeforeChillerX;
-    const firstBoxLeftX = firstBoxRightX - BOX_WIDTH;
-    const swgBoxTop = branchY - BOX_HEIGHT / 2;  // 基於 BOX_HEIGHT 垂直置中
-    ctx.strokeRect(firstBoxLeftX, swgBoxTop, BOX_WIDTH, BOX_HEIGHT);
-    drawTextBlock(ctx, [branch.swgLabel], firstBoxLeftX + 15, swgBoxTop + BOX_HEIGHT / 2 + 8, {
-      font: FONT_SECONDARY,
-      align: 'left'
-    });
+    // 檢查盤面是否啟用
+    const enablePanel = branch.enablePanel !== false; // 默認為 true，只有明確設置為 false 時才不啟用
+
+    // SWG box (垂直置中於線條) - 只有當盤面啟用時才繪製
+    let firstBoxRightX, firstBoxLeftX;
+    if (enablePanel) {
+      firstBoxRightX = lineBeforeChillerX;
+      firstBoxLeftX = firstBoxRightX - BOX_WIDTH;
+      const swgBoxTop = branchY - BOX_HEIGHT / 2;  // 基於 BOX_HEIGHT 垂直置中
+      ctx.strokeRect(firstBoxLeftX, swgBoxTop, BOX_WIDTH, BOX_HEIGHT);
+      drawTextBlock(ctx, [branch.swgLabel], firstBoxLeftX + 15, swgBoxTop + BOX_HEIGHT / 2 + 8, {
+        font: FONT_SECONDARY,
+        align: 'left'
+      });
+    } else {
+      // 盤面未啟用時，為了讓連接線位置跟有盤面時一樣，firstBoxLeftX 也要計算為 lineBeforeChillerX - BOX_WIDTH
+      firstBoxRightX = lineBeforeChillerX;
+      firstBoxLeftX = firstBoxRightX - BOX_WIDTH; // 與有盤面時的位置一致
+    }
 
     // 繪製主盤面的額外設備分支（從 SWG box 後方往下分支）
     // 只在主盤面（index === 0）時繪製，類似額外盤面的繪製方式
@@ -1788,6 +1813,7 @@ function drawModule(ctx, moduleSet, options) {
         : [];
 
       if (mainAdditionalEquipmentCards.length > 0) {
+        // 無論盤面是否啟用，額外設備分支都從 firstBoxRightX 右側開始，保持位置一致
         const equipmentBaseX = firstBoxRightX + 30;
         const equipmentBranchSpacing = 120;  // 額外設備分支間距（減小以更緊湊）
 
@@ -1872,27 +1898,27 @@ function drawModule(ctx, moduleSet, options) {
             // 連接線：從閥件到設備（使用閥件的 backPipelineType）
             const additionalValveBackPipelineType = additionalValveData.backPipelineType || equipmentPipelineType;
             drawLineByType(ctx, additionalValveCenterX + additionalValveSize / 2 + 10, equipY, chillerBoxLeftX, equipY, additionalValveBackPipelineType, false);
-            
+
             // 繪製額外設備的設備閥件分支（從額外設備閥件左側往下繪製）
             const equipmentValveBranches = moduleData.equipmentValveBranches || [];
-            const additionalEquipmentValveBranches = equipmentValveBranches.filter(evb => 
-              evb.groupIndex === index && 
-              !evb.isMainEquipment && 
+            const additionalEquipmentValveBranches = equipmentValveBranches.filter(evb =>
+              evb.groupIndex === index &&
+              !evb.isMainEquipment &&
               evb.equipmentIndex === equipBranchIdx + 1
             );
-            
+
             if (additionalEquipmentValveBranches.length > 0) {
               const EQUIPMENT_VALVE_BRANCH_SPACING = 120; // 設備閥件分支間距
               const VALVE_LEFT_OFFSET = 80; // 從閥件左側的偏移距離
               const additionalBranchStartX = additionalValveCenterX - additionalValveSize / 2 - VALVE_LEFT_OFFSET;
-              
+
               let currentAdditionalBranchY = equipY;
               const drawnAdditionalEquipmentValveBranchPositions = [];
-              
+
               additionalEquipmentValveBranches.forEach((equipmentValveBranch, branchIdx) => {
                 const branchValveData = equipmentValveBranch.branchValve || {};
                 const enableValve = branchValveData.enableValve === true;
-                
+
                 // 計算分支的Y位置（參考源頭閥件分支的樣式）
                 if (branchIdx === 0) {
                   // 第一個分支：從閥件下方開始（類似源頭閥件分支從主管線往下）
@@ -1904,15 +1930,15 @@ function drawModule(ctx, moduleSet, options) {
                   const topVertLineLength = 80;  // 與源頭閥件分支一致
                   currentAdditionalBranchY = prevBranchBottom + topVertLineLength;
                 }
-                
+
                 // 繪製從閥件位置往下的垂直線（使用源頭的管線類型，參考源頭閥件分支）
                 const topVertLineLength = 80;  // 與源頭閥件分支一致
                 const valveTopY = equipY + topVertLineLength;
                 drawLineByType(ctx, additionalBranchStartX, equipY, additionalBranchStartX, valveTopY, equipmentPipelineType, true);
-                
+
                 const sizeLabel = branchValveData.branchSize || '';
                 const label = branchValveData.valveSize || '';  // 使用閥件尺寸作為標籤（類似源頭閥件分支的 valveLabels）
-                
+
                 // Size label above valve position (類似源頭閥件分支在主管線上方的標籤)
                 if (sizeLabel) {
                   ctx.font = FONT_SMALL;
@@ -1921,7 +1947,7 @@ function drawModule(ctx, moduleSet, options) {
                   ctx.fillText(sizeLabel, additionalBranchStartX, equipY - 8);
                   ctx.textAlign = 'left';
                 }
-                
+
                 // Pipe size label next to top vertical line (rotated) (類似源頭閥件分支在垂直線右側的標籤)
                 if (label) {
                   ctx.font = FONT_SMALL;
@@ -1934,11 +1960,11 @@ function drawModule(ctx, moduleSet, options) {
                   ctx.restore();
                   ctx.textAlign = 'left';
                 }
-                
+
                 // Draw valve symbol (vertical orientation) (類似源頭閥件分支)
                 const branchValveSize = VALVE_SIZE;
                 const branchValveCenterY = valveTopY + branchValveSize / 2 + 5;  // 與源頭閥件分支一致
-                
+
                 // 繪製垂直閥件符號
                 const branchValveInfo = {
                   valveType: branchValveData.valveType || '',
@@ -1946,50 +1972,50 @@ function drawModule(ctx, moduleSet, options) {
                   valveConnector: branchValveData.valveConnector || ''
                 };
                 drawValveSymbol(ctx, additionalBranchStartX, branchValveCenterY, branchValveSize, null, label, true, branchValveInfo);
-                
+
                 // Add label to the right of valve (rotated) (類似源頭閥件分支在閥件右側的標籤)
                 const valveSize = branchValveData.valveSize || '';
                 const valveConnector = branchValveData.valveConnector || '';
                 const valveType = branchValveData.valveType || '';
-                
+
                 ctx.fillStyle = '#1f1f1f';
                 ctx.textAlign = 'center';
                 ctx.save();
                 ctx.translate(additionalBranchStartX + branchValveSize / 2 + 15, branchValveCenterY);  // 與源頭閥件分支一致
                 ctx.rotate(-Math.PI / 2);
-                
+
                 // 第一行：{閥件尺寸}{閥件接頭}（尺寸與接頭之間要有空白）
                 ctx.font = FONT_SMALL_ROTATED;
                 const firstLine = [valveSize, valveConnector].filter(Boolean).join(' ');  // 使用空格連接
                 if (firstLine) {
                   ctx.fillText(firstLine, 0, -8);  // 向上偏移8px
                 }
-                
+
                 // 第二行：{閥件種類}（使用更小的字體）
                 if (valveType && valveType !== 'NA') {
                   ctx.font = '14px "Microsoft JhengHei", "微軟正黑體", Arial';  // 比 FONT_SMALL_ROTATED (16px) 更小
                   ctx.fillText(valveType, 0, 8);  // 向下偏移8px
                 }
-                
+
                 ctx.restore();
                 ctx.textAlign = 'left';
-                
+
                 let branchBottomY = branchValveCenterY + branchValveSize / 2;
-                
+
                 // 如果啟用，繼續往下往右連接到設備卡片
                 if (enableValve) {
                   const bottomVertLineLength = 40;
                   const bottomVertLineStartY = branchValveCenterY + branchValveSize / 2;
                   const bottomVertLineEndY = bottomVertLineStartY + bottomVertLineLength;
-                  
+
                   const branchValveBackPipelineType = branchValveData.backPipelineType || equipmentPipelineType;
                   drawLineByType(ctx, additionalBranchStartX, bottomVertLineStartY, additionalBranchStartX, bottomVertLineEndY, branchValveBackPipelineType, true);
-                  
+
                   const equipmentCardX = chillerBoxLeftX;
                   const horizontalLineY = bottomVertLineEndY;
-                  
+
                   drawLineByType(ctx, additionalBranchStartX, horizontalLineY, equipmentCardX, horizontalLineY, branchValveBackPipelineType, false);
-                  
+
                   // 繪製設備卡片
                   const equipmentLines = equipmentValveBranch.equipment.lines || ['設備資訊'];
                   const lineHeight = 26;
@@ -2001,25 +2027,25 @@ function drawModule(ctx, moduleSet, options) {
                     FONT_SECONDARY,
                     BOX_HEIGHT
                   );
-                  
+
                   const equipmentTop = horizontalLineY - actualEquipmentHeight / 2;
                   ctx.strokeRect(equipmentCardX, equipmentTop, CHILLER_BOX_WIDTH, actualEquipmentHeight);
-                  
+
                   const equipmentTextStartY = equipmentTop + lineHeight + 10;
                   drawTextBlock(ctx, equipmentLines, equipmentCardX + 15, equipmentTextStartY, {
                     font: FONT_SECONDARY,
                     lineHeight: lineHeight,
                     maxWidth: CHILLER_BOX_WIDTH - 30
                   });
-                  
+
                   branchBottomY = equipmentTop + actualEquipmentHeight;
                 }
-                
+
                 drawnAdditionalEquipmentValveBranchPositions.push({
                   bottomY: branchBottomY
                 });
               });
-              
+
               // 更新設備閥件分支的底部位置（取所有設備閥件分支的最大底部）
               if (drawnAdditionalEquipmentValveBranchPositions.length > 0) {
                 const lastAdditionalBranchBottom = drawnAdditionalEquipmentValveBranchPositions[drawnAdditionalEquipmentValveBranchPositions.length - 1].bottomY;
@@ -2066,6 +2092,8 @@ function drawModule(ctx, moduleSet, options) {
     let lineBeforeSWGX = firstBoxLeftX - 170; // 默認位置
     let vertLineX = lineBeforeSWGX;
     let vertLineBottom = branchY + 50; // 默認值
+    // Pipeline label 位置：對齊主管線的管線資訊x軸（在更外層定義，以便在額外盤面處理時使用）
+    let pipelineLabelX = mainPipelineLabelX;
 
     if (branchModuleData && index > 0) {
       // 繪製分支模組的 pipeline 和 floor 卡片
@@ -2081,7 +2109,7 @@ function drawModule(ctx, moduleSet, options) {
         : (branchPipelineLength ? `${branchPipelineLength}M` : '');
 
       // Pipeline label 位置：對齊主管線的管線資訊x軸
-      const pipelineLabelX = mainPipelineLabelX;
+      pipelineLabelX = mainPipelineLabelX;
       if (branchPipelineLabel) {
         ctx.font = FONT_SECONDARY;
         ctx.fillStyle = '#1f1f1f';
@@ -2120,9 +2148,14 @@ function drawModule(ctx, moduleSet, options) {
       // 連接線：從 floor 標記到 pipeline label
       drawLineByType(ctx, vertLineX, branchY, pipelineLabelX, branchY, sourcePipelineType, false);
 
-      // 連接線：從 pipeline label 到 SWG
+      // 檢查盤面是否啟用
+      const branchEnablePanel = branchModuleData.panelEquipmentGroups?.[0]?.panel?.enablePanel !== false;
+
+      // 連接線：從 pipeline label 到 SWG（如果盤面啟用）或直接到設備（如果盤面未啟用）
       lineBeforeSWGX = pipelineLabelX;
-      drawLineByType(ctx, lineBeforeSWGX, branchY, firstBoxLeftX, branchY, sourcePipelineType, false);
+      if (branchEnablePanel) {
+        drawLineByType(ctx, lineBeforeSWGX, branchY, firstBoxLeftX, branchY, sourcePipelineType, false);
+      }
 
       // 源頭閥件分支後方不應有 Panel 卡片，直接從 SWG 連接到 Chiller
       // 但如果有 panel 和 equipment 之間的閥件，需要繪製閥件
@@ -2132,14 +2165,15 @@ function drawModule(ctx, moduleSet, options) {
         const panelData = panelGroup.panel || {}; // 獲取 panel 數據
         const panelValveData = panelGroup.valve || {};
         const equipmentData = panelGroup.equipment || {};
-        const additionalEquipmentCards = panelGroup.additionalEquipmentCards || [];
+        const additionalEquipmentCards = panelGroup.additionalEquipmentCards || {};
 
         // 獲取盤面的後方管線類型（從 panel 的 backPipelineType 獲取，而不是 valve 的）
         const panelBackPipelineType = panelData.backPipelineType || sourcePipelineType;
 
         // 計算主設備卡片的位置
         let currentEquipmentX = chillerBoxLeftX;
-        let lineBeforeEquipmentX = firstBoxRightX;
+        // 如果盤面未啟用，連接線起點從 pipeline label 開始；否則從 SWG box 右側開始
+        let lineBeforeEquipmentX = branchEnablePanel ? firstBoxRightX : pipelineLabelX;
 
         // 如果有 panel 和 equipment 之間的閥件，繪製閥件（與主管線規格一致）
         if (panelValveData && panelValveData.size) {
@@ -2147,8 +2181,9 @@ function drawModule(ctx, moduleSet, options) {
           const panelValveCenterX = currentEquipmentX - panelValveSize / 2 - 70; // 與主管線一致：在設備左側
           const panelValveBackPipelineType = panelValveData.backPipelineType || panelBackPipelineType;
 
-          // 連接線：從 SWG 到閥件（使用盤面的 backPipelineType）
-          drawLineByType(ctx, firstBoxRightX, branchY, panelValveCenterX - panelValveSize / 2 - 10, branchY, sourcePipelineType, false);
+          // 連接線：從 SWG（如果盤面啟用）或 pipeline label（如果盤面未啟用）到閥件（使用盤面的 backPipelineType）
+          const valveLineStartX = branchEnablePanel ? firstBoxRightX : pipelineLabelX;
+          drawLineByType(ctx, valveLineStartX, branchY, panelValveCenterX - panelValveSize / 2 - 10, branchY, sourcePipelineType, false);
 
           // 繪製閥件
           const panelValveInfo = {
@@ -2191,7 +2226,7 @@ function drawModule(ctx, moduleSet, options) {
         // 繪製源頭閥件分支主盤面的額外設備分支
         // 參考主管線模式：從 SWG box 右側分支，而不是主設備右側
         if (additionalEquipmentCards.length > 0) {
-          // 分支點設在 SWG box 右側 30px
+          // 無論盤面是否啟用，分支點都設在 firstBoxRightX 右側 30px，保持位置一致
           const equipmentBaseX = firstBoxRightX + 30;
           const equipmentBranchSpacing = 120;  // 額外設備分支間距
 
@@ -2283,22 +2318,26 @@ function drawModule(ctx, moduleSet, options) {
           const lastEquipmentY = equipmentYPositions[equipmentYPositions.length - 1];
           ctx.canvas._branchMainPanelAdditionalEquipmentBottom = lastEquipmentY + 100;
         } else {
-          // 沒有額外設備時，直接從 SWG（或閥件）連接到主設備
+          // 沒有額外設備時，直接從 SWG（如果盤面啟用）或 pipeline label（如果盤面未啟用）（或閥件）連接到主設備
           if (!panelValveData || !panelValveData.size) {
-            drawLineByType(ctx, firstBoxRightX, branchY, currentEquipmentX, branchY, sourcePipelineType, false);
+            const lineStartX = branchEnablePanel ? firstBoxRightX : pipelineLabelX;
+            drawLineByType(ctx, lineStartX, branchY, currentEquipmentX, branchY, sourcePipelineType, false);
           }
         }
       } else {
-        // 沒有 panelEquipmentGroups 時，直接從 SWG 連接到 Chiller
-        drawLineByType(ctx, firstBoxRightX, branchY, chillerBoxLeftX, branchY, sourcePipelineType, false);
+        // 沒有 panelEquipmentGroups 時，直接從 SWG（如果盤面啟用）或 pipeline label（如果盤面未啟用）連接到 Chiller
+        const lineStartX = branchEnablePanel ? firstBoxRightX : pipelineLabelX;
+        drawLineByType(ctx, lineStartX, branchY, chillerBoxLeftX, branchY, sourcePipelineType, false);
       }
     } else {
-      // 沒有分支模組完整數據時，如果之前沒有繪製閥件，需要繪製從 SWG 到 Chiller 的連接線
+      // 沒有分支模組完整數據時，如果之前沒有繪製閥件，需要繪製從 SWG（如果盤面啟用）或前面的線條（如果盤面未啟用）到 Chiller 的連接線
       if (shouldDrawValveBeforeChiller && !branch.hasValve) {
         // 已經在 shouldDrawValveBeforeChiller 分支中繪製了連接線，這裡不需要重複繪製
       } else if (!shouldDrawValveBeforeChiller) {
         // 如果跳過了閥件繪製（因為有 Panel 卡片），但實際上沒有 Panel 卡片，需要繪製連接線
-        drawLineByType(ctx, firstBoxRightX, branchY, chillerBoxLeftX, branchY, sourcePipelineType, false);
+        // 如果盤面未啟用，從前面的線條連接到設備；否則從 SWG box 連接到設備
+        const lineStartX = enablePanel ? firstBoxRightX : (beforeVertLineX || firstBoxRightX);
+        drawLineByType(ctx, lineStartX, branchY, chillerBoxLeftX, branchY, sourcePipelineType, false);
       }
       // 沒有分支模組完整數據時，使用默認的繪製邏輯
       // 樓層資訊位置：對齊主管線的樓層資訊x軸（所有分支都使用相同位置）
@@ -2327,7 +2366,7 @@ function drawModule(ctx, moduleSet, options) {
         drawLineByType(ctx, beforeVertLineX, branchY, vertLineX, branchY, sourcePipelineType, false);
       }
 
-      // 當沒有源頭閥件分支時，確保從樓層資訊位置到 SWG 的線條連續
+      // 當沒有源頭閥件分支時，確保從樓層資訊位置到 SWG（如果盤面啟用）或設備（如果盤面未啟用）的線條連續
       // lineBeforeSWGX 應該從 vertLineX 開始，確保線條連續，中間不可以有空白
       const actualLineBeforeSWGX = Math.max(vertLineX, lineBeforeSWGX);
 
@@ -2337,8 +2376,16 @@ function drawModule(ctx, moduleSet, options) {
         drawLineByType(ctx, vertLineX, branchY, actualLineBeforeSWGX, branchY, sourcePipelineType, false);
       }
 
-      // Line before SWG（使用源頭的管線類型）
-      drawLineByType(ctx, actualLineBeforeSWGX, branchY, firstBoxLeftX, branchY, sourcePipelineType, false);
+      // Line before SWG（如果盤面啟用）或直接到設備（如果盤面未啟用）（使用源頭的管線類型）
+      // 注意：當有閥件時，連接線已經在閥件繪製時處理了，這裡不需要再繪製，避免貫穿閥件
+      if (enablePanel) {
+        drawLineByType(ctx, actualLineBeforeSWGX, branchY, firstBoxLeftX, branchY, sourcePipelineType, false);
+      } else {
+        // 盤面未啟用時，如果沒有閥件，才從樓層資訊位置連接到設備；否則連接線已經在閥件繪製時處理了
+        if (!branch.hasValve) {
+          drawLineByType(ctx, actualLineBeforeSWGX, branchY, chillerBoxLeftX, branchY, sourcePipelineType, false);
+        }
+      }
     }
 
     // 記錄分支的底部位置（設備卡片底部或垂直線底部）
@@ -2392,7 +2439,7 @@ function drawModule(ctx, moduleSet, options) {
       if (index === 0) {
         const equipmentValveBranchesBottom = ctx.canvas._equipmentValveBranchesBottom;
         const mainPanelEquipmentBottom = ctx.canvas._mainPanelAdditionalEquipmentBottom;
-        
+
         if (equipmentValveBranchesBottom) {
           branchBottom = Math.max(branchBottom, equipmentValveBranchesBottom);
         }
@@ -2421,10 +2468,9 @@ function drawModule(ctx, moduleSet, options) {
       const branchNumManifoldBranches = branchModuleData.manifoldPanelBranches.length;
 
       // 從主盤面（SWG box）左側連接到額外盤面位置（水平線）
-      // 源頭閥件分支的額外盤面連接點應與主管線額外盤面連接點相同
-      // 主管線的額外盤面連接點是 vertLineX + 200，所以源頭閥件分支也使用相同的位置
-      // 但源頭閥件分支的 vertLineX 是 mainFloorLabelX（在 1670 行設置），所以使用 mainFloorLabelX + 200
-      const branchManifoldConnectionStartX = mainFloorLabelX + 200; // 與主管線額外盤面連接點相同，讓起始點更靠右
+      // 無論主盤面是否啟用，連接線起點都從 firstBoxLeftX 左側開始，保持位置一致
+      const MANIFOLD_LEFT_OFFSET = 50; // 額外盤面連接線和垂直線往左的偏移量
+      const branchManifoldConnectionStartX = firstBoxLeftX - MANIFOLD_LEFT_OFFSET;
       drawLineByType(ctx, branchManifoldConnectionStartX, branchY, branchManifoldX, branchY, sourcePipelineType, false);
 
       // Draw branch manifold branches based on actual data
@@ -2475,25 +2521,27 @@ function drawModule(ctx, moduleSet, options) {
         const branchManifoldBranchData = branchModuleData.manifoldPanelBranches[branchManifoldIdx];
         if (!branchManifoldBranchData) return;
 
+        // 檢查額外盤面是否啟用（在循環開始時就定義，以便後續使用）
+        const branchManifoldPanelData = branchManifoldBranchData.panel || {};
+        const branchManifoldEnablePanel = branchManifoldPanelData.enablePanel !== false;
+
         // Find which line connects to this branch (類似於主管線的邏輯)
         const lineIdx = branchManifoldIdx === 0 ? 1 : 0; // Reverse mapping
 
         // 垂直线從主盤面的Y位置（branchY）開始，向下到額外盤面分支的位置
+        // 垂直線要在主盤面卡片左側，再往左一些，無論主盤面是否啟用都保持位置一致
+        const MANIFOLD_LEFT_OFFSET = 50; // 額外盤面連接線和垂直線往左的偏移量
         const lineOffsetX = lineIdx * 20;
-        const lineStartX = branchManifoldX + lineOffsetX;
+        const baseX = firstBoxLeftX - MANIFOLD_LEFT_OFFSET;
+        const lineStartX = baseX + lineOffsetX;
 
         // 獲取盤面分支的管線類型（使用盤面的 backPipelineType）
         // 直接使用已保存的 panel 數據
-        const branchManifoldPanelData = branchManifoldBranchData.panel || {};
         const branchManifoldPipelineType = branchManifoldPanelData.backPipelineType || sourcePipelineType;
 
         // Draw vertical line（使用盤面分支的管線類型）
         // 從主盤面的Y位置（branchY）向下到額外盤面分支的位置（yPos）
         drawLineByType(ctx, lineStartX, branchY, lineStartX, yPos, branchManifoldPipelineType, true);
-
-        // Draw horizontal line（使用盤面分支的管線類型）
-        const lineAfterBranch = lineStartX + 30;
-        drawLineByType(ctx, lineStartX, yPos, lineAfterBranch, yPos, branchManifoldPipelineType, false);
 
         // 使用實際數據
         const branchManifoldChillerLines = branchManifoldBranchData.chillerLines || ['設備資訊'];
@@ -2523,9 +2571,24 @@ function drawModule(ctx, moduleSet, options) {
           maxWidth: CHILLER_BOX_WIDTH - 30
         });
 
-        // 計算 SWG box 的位置（移到這裡以供後續使用）
+        // 計算 SWG box 的位置（提前計算，以便計算 lineAfterBranch）
         const branchManifoldLineBeforeChillerX = chillerBoxLeftX - 400;
-        const branchManifoldFirstBoxRightX = branchManifoldLineBeforeChillerX;
+
+        // 計算 SWG box 的位置（提前計算，以便在處理額外設備分支時使用）
+        let branchManifoldFirstBoxLeftX, branchManifoldFirstBoxRightX;
+        if (branchManifoldEnablePanel) {
+          branchManifoldFirstBoxRightX = branchManifoldLineBeforeChillerX;
+          branchManifoldFirstBoxLeftX = branchManifoldFirstBoxRightX - BOX_WIDTH;
+        } else {
+          // 額外盤面未啟用時，為了讓連接線位置跟有盤面時一樣，firstBoxLeftX 也要計算為 lineBeforeChillerX - BOX_WIDTH
+          branchManifoldFirstBoxRightX = branchManifoldLineBeforeChillerX;
+          branchManifoldFirstBoxLeftX = branchManifoldFirstBoxRightX - BOX_WIDTH; // 與有盤面時的位置一致
+        }
+
+        // Draw horizontal line（使用盤面分支的管線類型）
+        // 根據 SWG box 的位置動態計算 lineAfterBranch，確保水平線能夠連接到 SWG box 的左側
+        const lineAfterBranch = branchManifoldEnablePanel ? branchManifoldFirstBoxLeftX : (lineStartX + 30);
+        drawLineByType(ctx, lineStartX, yPos, lineAfterBranch, yPos, branchManifoldPipelineType, false);
 
         // 繪製源頭閥件分支額外盤面的額外設備分支
         // 參考主管線模式：從 SWG box 右側分支，而不是主設備右側
@@ -2536,7 +2599,7 @@ function drawModule(ctx, moduleSet, options) {
         const branchManifoldAdditionalEquipmentCards = branchManifoldPanelGroup?.additionalEquipmentCards || [];
 
         if (branchManifoldAdditionalEquipmentCards.length > 0) {
-          // 分支點設在 SWG box 右側 30px
+          // 無論額外盤面是否啟用，分支點都設在 branchManifoldFirstBoxRightX 右側 30px，保持位置一致
           const equipmentBaseX = branchManifoldFirstBoxRightX + 30;
           const equipmentBranchSpacing = 120;  // 額外設備分支間距
 
@@ -2636,8 +2699,9 @@ function drawModule(ctx, moduleSet, options) {
 
         // Draw valve before Chiller (只在設備有閥件時繪製)
         if (branchManifoldBranchData.hasValve) {
-          // Line from SWG area to valve
-          drawLineByType(ctx, branchManifoldLineBeforeChillerX, yPos, branchManifoldValveCenterX - branchManifoldValveSize / 2 - 10, yPos, branchManifoldPipelineType, false);
+          // Line from SWG area (如果盤面啟用) 或前面的線條 (如果盤面未啟用) to valve
+          const valveLineStartX = branchManifoldEnablePanel ? branchManifoldLineBeforeChillerX : lineAfterBranch;
+          drawLineByType(ctx, valveLineStartX, yPos, branchManifoldValveCenterX - branchManifoldValveSize / 2 - 10, yPos, branchManifoldPipelineType, false);
 
           // Draw valve symbol
           const branchManifoldValveInfo = {
@@ -2650,22 +2714,31 @@ function drawModule(ctx, moduleSet, options) {
           // Line from valve to Chiller
           drawLineByType(ctx, branchManifoldValveCenterX + branchManifoldValveSize / 2 + 10, yPos, chillerBoxLeftX, yPos, branchManifoldValveBackPipelineType, false);
         } else {
-          // 沒有閥件時，直接從 SWG 連接到設備
-          drawLineByType(ctx, branchManifoldLineBeforeChillerX, yPos, chillerBoxLeftX, yPos, branchManifoldPipelineType, false);
+          // 沒有閥件時，直接從 SWG (如果盤面啟用) 或前面的線條 (如果盤面未啟用) 連接到設備
+          const equipmentLineStartX = branchManifoldEnablePanel ? branchManifoldLineBeforeChillerX : lineAfterBranch;
+          drawLineByType(ctx, equipmentLineStartX, yPos, chillerBoxLeftX, yPos, branchManifoldPipelineType, false);
         }
 
-        // SWG box
-        // const branchManifoldFirstBoxRightX = branchManifoldLineBeforeChillerX; (已在上面定義)
-        const branchManifoldFirstBoxLeftX = branchManifoldFirstBoxRightX - BOX_WIDTH;
-        const branchManifoldSwgBoxTop = yPos - BOX_HEIGHT / 2;
-        ctx.strokeRect(branchManifoldFirstBoxLeftX, branchManifoldSwgBoxTop, BOX_WIDTH, BOX_HEIGHT);
-        drawTextBlock(ctx, [branchManifoldBranchData.swgLabel || 'SWG'], branchManifoldFirstBoxLeftX + 15, branchManifoldSwgBoxTop + BOX_HEIGHT / 2 + 8, {
-          font: FONT_SECONDARY,
-          align: 'left'
-        });
+        // SWG box - 只有當額外盤面啟用時才繪製（位置已在上面計算）
+        if (branchManifoldEnablePanel) {
+          const branchManifoldSwgBoxTop = yPos - BOX_HEIGHT / 2;
+          ctx.strokeRect(branchManifoldFirstBoxLeftX, branchManifoldSwgBoxTop, BOX_WIDTH, BOX_HEIGHT);
+          drawTextBlock(ctx, [branchManifoldBranchData.swgLabel || 'SWG'], branchManifoldFirstBoxLeftX + 15, branchManifoldSwgBoxTop + BOX_HEIGHT / 2 + 8, {
+            font: FONT_SECONDARY,
+            align: 'left'
+          });
+        }
 
-        // Line from branch to SWG
-        drawLineByType(ctx, lineAfterBranch, yPos, branchManifoldFirstBoxLeftX, yPos, branchManifoldPipelineType, false);
+        // Line from branch to SWG（如果盤面啟用）或直接到設備（如果盤面未啟用）
+        // 注意：當有閥件時，連接線已經在閥件繪製時處理了，這裡不需要再繪製，避免貫穿閥件
+        if (!branchManifoldBranchData.hasValve) {
+          if (branchManifoldEnablePanel) {
+            drawLineByType(ctx, lineAfterBranch, yPos, branchManifoldFirstBoxLeftX, yPos, branchManifoldPipelineType, false);
+          } else {
+            // 額外盤面未啟用時，直接從分支連接到設備
+            drawLineByType(ctx, lineAfterBranch, yPos, chillerBoxLeftX, yPos, branchManifoldPipelineType, false);
+          }
+        }
       });
 
       // 更新分支底部位置，考慮額外盤面的高度
@@ -2691,16 +2764,15 @@ function drawModule(ctx, moduleSet, options) {
       // 額外盤面的連接線起點更靠右，避免與樓層資訊重疊，並避免多餘的線
       const manifoldX = vertLineX + 270;  // 額外盤面位置，讓連接線終點更靠右
       const manifoldTopY = branchY;
-      const manifoldBranchSpacing = 120;  // 額外盤面間距（與設備分支間距一致）
+      const manifoldBranchSpacing = 180;  // 額外盤面間距（加大以增加盤面之間的距離）
       const numManifoldBranches = moduleData.manifoldPanelBranches.length;
       const manifoldBottomY = branchY + numManifoldBranches * manifoldBranchSpacing;
 
-      // 額外盤面的連接線：從 vertLineX 之後更靠右的位置連接到 manifoldX
-      // 主管線已經有從 beforeVertLineX 到 vertLineX 的連接線（在 1652 行繪製，用於樓層資訊）
-      // 額外盤面從 vertLineX 之後的某個位置（比如 vertLineX + 50）連接到 manifoldX
-      // 這樣可以避免從 vertLineX 延伸出來的多餘線條，因為連接線起點在 vertLineX 之後
-      const manifoldConnectionStartX = vertLineX + 200; // 從樓層資訊位置之後 200px 開始，讓起始點更靠右
-      // 水平線連接到 manifoldX，每個分支會從 manifoldX + lineOffsetX 位置繪製自己的垂直线
+      // 額外盤面的連接線：從主盤面卡片左側連接到額外盤面位置
+      // 無論主盤面是否啟用，連接線起點都從 firstBoxLeftX 左側開始，保持位置一致
+      const MANIFOLD_LEFT_OFFSET = 50; // 額外盤面連接線和垂直線往左的偏移量
+      const manifoldConnectionStartX = firstBoxLeftX - MANIFOLD_LEFT_OFFSET;
+      // 水平線連接到 manifoldX，每個分支會從主盤面卡片左側位置繪製自己的垂直线
       // 不需要主垂直 manifold line，因為每個分支都有自己的垂直线，主垂直線是多餘的
       drawLineByType(ctx, manifoldConnectionStartX, branchY, manifoldX, branchY, sourcePipelineType, false);
 
@@ -2719,12 +2791,12 @@ function drawModule(ctx, moduleSet, options) {
       const bottoms = [];
       if (equipmentValveBranchesBottom) bottoms.push(equipmentValveBranchesBottom);
       if (mainPanelEquipmentBottom) bottoms.push(mainPanelEquipmentBottom);
-      
+
       if (bottoms.length > 0) {
-        // 從最大底部位置 + 間距開始
-        firstManifoldY = Math.max(...bottoms) + 20;
+        // 從最大底部位置 + 間距開始（加大間距以增加主盤面與額外盤面之間的距離）
+        firstManifoldY = Math.max(...bottoms) + 50;
       } else {
-        // 如果沒有額外設備或設備閥件分支，使用固定間距
+        // 如果沒有額外設備或設備閥件分支，使用固定間距（與額外盤面之間間距一致）
         firstManifoldY = branchY + manifoldBranchSpacing;
       }
 
@@ -2750,7 +2822,7 @@ function drawModule(ctx, moduleSet, options) {
           if (prevAdditionalEquipmentCards.length > 0) {
             const prevPanelY = manifoldBranchYPositions[branchIdx - 1];
             const lastEquipmentY = prevPanelY + (prevAdditionalEquipmentCards.length) * 120;
-            currentManifoldY = lastEquipmentY + 80; // 設備底部 + 最小間距
+            currentManifoldY = lastEquipmentY + 120; // 設備底部 + 間距（加大以增加盤面之間的距離）
           } else {
             currentManifoldY += manifoldBranchSpacing;
           }
@@ -2764,9 +2836,12 @@ function drawModule(ctx, moduleSet, options) {
         const lineIdx = branchIdx === 0 ? 1 : 0;  // Reverse mapping
 
         // All lines start from same Y, different X
+        // 垂直線要在主盤面卡片左側，再往左一些，無論主盤面是否啟用都保持位置一致
+        const MANIFOLD_LEFT_OFFSET = 50; // 額外盤面連接線和垂直線往左的偏移量
         const startY = branchY;
         const lineOffsetX = lineIdx * 20;
-        const lineStartX = manifoldX + lineOffsetX;
+        const baseX = firstBoxLeftX - MANIFOLD_LEFT_OFFSET;
+        const lineStartX = baseX + lineOffsetX;
 
         // 獲取盤面分支的管線類型（使用盤面的 backPipelineType）
         // manifoldPanelBranches 是從 panelEquipmentGroups.slice(1) 提取的
@@ -2780,8 +2855,26 @@ function drawModule(ctx, moduleSet, options) {
         // Draw vertical line（使用盤面分支的管線類型）
         drawLineByType(ctx, lineStartX, startY, lineStartX, yPos, manifoldPipelineType, true);
 
+        // 計算 SWG box 的位置（提前計算，以便計算 lineAfterBranch）
+        const manifoldLineBeforeChillerX = chillerBoxLeftX - 400;  // Moved further left for SWG box
+
+        // 檢查額外盤面是否啟用
+        const manifoldEnablePanel = manifoldPanelData.enablePanel !== false;
+
+        // 計算 SWG box 的位置（提前計算，以便計算 lineAfterBranch）
+        let manifoldFirstBoxLeftX, manifoldFirstBoxRightX;
+        if (manifoldEnablePanel) {
+          manifoldFirstBoxRightX = manifoldLineBeforeChillerX;
+          manifoldFirstBoxLeftX = manifoldFirstBoxRightX - BOX_WIDTH;
+        } else {
+          // 額外盤面未啟用時，為了讓連接線位置跟有盤面時一樣，firstBoxLeftX 也要計算為 lineBeforeChillerX - BOX_WIDTH
+          manifoldFirstBoxRightX = manifoldLineBeforeChillerX;
+          manifoldFirstBoxLeftX = manifoldFirstBoxRightX - BOX_WIDTH; // 與有盤面時的位置一致
+        }
+
         // Draw horizontal line（使用盤面分支的管線類型）
-        const lineAfterBranch = lineStartX + 30;  // Reduced to move SWG cards left
+        // 根據 SWG box 的位置動態計算 lineAfterBranch，確保水平線能夠連接到 SWG box 的左側
+        const lineAfterBranch = manifoldEnablePanel ? manifoldFirstBoxLeftX : (lineStartX + 30);
         drawLineByType(ctx, lineStartX, yPos, lineAfterBranch, yPos, manifoldPipelineType, false);
 
         // 使用實際數據
@@ -2863,9 +2956,6 @@ function drawModule(ctx, moduleSet, options) {
           });
         }
 
-        // Line before chiller
-        const manifoldLineBeforeChillerX = chillerBoxLeftX - 400;  // Moved further left for SWG box
-
         // 獲取盤面分支的閥件管線類型
         const manifoldValve = manifoldPanel?.valve || {};
         const manifoldValveData = manifoldValve.data || {};
@@ -2877,8 +2967,9 @@ function drawModule(ctx, moduleSet, options) {
 
         // Draw valve before Chiller (只在設備有閥件時繪製)
         if (manifoldBranchData.hasValve) {
-          // Line from SWG area to valve（使用盤面分支的管線類型）
-          drawLineByType(ctx, manifoldLineBeforeChillerX, yPos, manifoldValveCenterX - manifoldValveSize / 2 - 10, yPos, manifoldPipelineType, false);
+          // Line from SWG area (如果盤面啟用) 或前面的線條 (如果盤面未啟用) to valve（使用盤面分支的管線類型）
+          const valveLineStartX = manifoldEnablePanel ? manifoldLineBeforeChillerX : lineAfterBranch;
+          drawLineByType(ctx, valveLineStartX, yPos, manifoldValveCenterX - manifoldValveSize / 2 - 10, yPos, manifoldPipelineType, false);
 
           // Draw valve symbol (傳入閥件資訊)
           const manifoldValveInfo = {
@@ -2891,25 +2982,36 @@ function drawModule(ctx, moduleSet, options) {
           // 連接線：從閥件到 Chiller（使用閥件的 backPipelineType）
           drawLineByType(ctx, manifoldValveCenterX + manifoldValveSize / 2 + 10, yPos, chillerBoxLeftX, yPos, manifoldValveBackPipelineType, false);
         } else {
-          // 沒有閥件時，直接從 SWG 連接到設備（使用盤面分支的管線類型）
-          drawLineByType(ctx, manifoldLineBeforeChillerX, yPos, chillerBoxLeftX, yPos, manifoldPipelineType, false);
+          // 沒有閥件時，直接從 SWG (如果盤面啟用) 或前面的線條 (如果盤面未啟用) 連接到設備（使用盤面分支的管線類型）
+          const equipmentLineStartX = manifoldEnablePanel ? manifoldLineBeforeChillerX : lineAfterBranch;
+          drawLineByType(ctx, equipmentLineStartX, yPos, chillerBoxLeftX, yPos, manifoldPipelineType, false);
         }
 
-        // SWG box (垂直置中於線條)
-        const manifoldFirstBoxRightX = manifoldLineBeforeChillerX;
-        const manifoldFirstBoxLeftX = manifoldFirstBoxRightX - BOX_WIDTH;
-        const manifoldSwgBoxTop = yPos - BOX_HEIGHT / 2;  // 基於 BOX_HEIGHT 垂直置中
-        ctx.strokeRect(manifoldFirstBoxLeftX, manifoldSwgBoxTop, BOX_WIDTH, BOX_HEIGHT);
-        drawTextBlock(ctx, [manifoldBranchData.swgLabel || 'SWG'], manifoldFirstBoxLeftX + 15, manifoldSwgBoxTop + BOX_HEIGHT / 2 + 8, {
-          font: FONT_SECONDARY,
-          align: 'left'
-        });
+        // SWG box (垂直置中於線條) - 只有當額外盤面啟用時才繪製
+        // 注意：manifoldFirstBoxLeftX 和 manifoldFirstBoxRightX 已經在上面計算過了
+        if (manifoldEnablePanel) {
+          const manifoldSwgBoxTop = yPos - BOX_HEIGHT / 2;  // 基於 BOX_HEIGHT 垂直置中
+          ctx.strokeRect(manifoldFirstBoxLeftX, manifoldSwgBoxTop, BOX_WIDTH, BOX_HEIGHT);
+          drawTextBlock(ctx, [manifoldBranchData.swgLabel || 'SWG'], manifoldFirstBoxLeftX + 15, manifoldSwgBoxTop + BOX_HEIGHT / 2 + 8, {
+            font: FONT_SECONDARY,
+            align: 'left'
+          });
+        }
 
-        // Line from branch to SWG（使用盤面分支的管線類型）
-        drawLineByType(ctx, lineAfterBranch, yPos, manifoldFirstBoxLeftX, yPos, manifoldPipelineType, false);
+        // Line from branch to SWG（如果盤面啟用）或直接到設備（如果盤面未啟用）（使用盤面分支的管線類型）
+        // 注意：當有閥件時，連接線已經在閥件繪製時處理了，這裡不需要再繪製，避免貫穿閥件
+        if (!manifoldBranchData.hasValve) {
+          if (manifoldEnablePanel) {
+            drawLineByType(ctx, lineAfterBranch, yPos, manifoldFirstBoxLeftX, yPos, manifoldPipelineType, false);
+          } else {
+            // 額外盤面未啟用時，直接從分支連接到設備
+            drawLineByType(ctx, lineAfterBranch, yPos, chillerBoxLeftX, yPos, manifoldPipelineType, false);
+          }
+        }
 
         // Add additional equipment branches for this manifold branch
         if (manifoldBranchData.additionalEquipmentBranches && manifoldBranchData.additionalEquipmentBranches.length > 0) {
+          // 無論額外盤面是否啟用，分支點都設在 manifoldFirstBoxRightX 右側 30px，保持位置一致
           const equipmentBaseX = manifoldFirstBoxRightX + 30;
           const equipmentBranchSpacing = 120;  // 設備分支間距（與主盤面一致）
 

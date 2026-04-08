@@ -1,0 +1,5213 @@
+{
+  "rules": [
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "SVC"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_2P調壓閥_SCV_無",
+        "partNo": "GRGT01009310600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_NA_OHNO_無",
+        "partNo": "GBAV04012000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_316L BA  無_OHNO_無",
+        "partNo": "GBAV04012510100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04012110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_NA_OHNO_無",
+        "partNo": "GBAV04018000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04018090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04018110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04018090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_OHNO_無",
+        "partNo": "GBAV04019000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04019090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_DAJA_無",
+        "partNo": "GBAV04019000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_KSK_無",
+        "partNo": "GBAV04019000700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04019090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04019110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_NA_OHNO_無",
+        "partNo": "GBAV04020000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04020090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_NA_DAJA_無",
+        "partNo": "GBAV04020000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04020110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04020090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04020110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_32A_NA_OHNO_無",
+        "partNo": "GBAV04021000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_32A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04021090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_NA_OHNO_無",
+        "partNo": "GBAV04022000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04022090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_NA_DAJA_無",
+        "partNo": "GBAV04022000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04022090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04022110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA OPP_DAJA_無",
+        "partNo": "GBAV04023090200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04023110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_NA_KSK_無",
+        "partNo": "GBAV04023000700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04023090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04023110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_65A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04024090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_65A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04024090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA IOPP_OHNO_無",
+        "partNo": "GBAV04025110100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04025090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04025090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04025110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04026090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04026110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04026090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "150A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_150A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04027090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "200A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_200A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04028090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01007080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_DAJA_無",
+        "partNo": "GBAV01007080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_KSK_無",
+        "partNo": "GBAV01007080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_OHNO_無",
+        "partNo": "GBAV01008080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_DAJA_無",
+        "partNo": "GBAV01008080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_KSK_無",
+        "partNo": "GBAV01008080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "SWAGELOK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_SWAGELOK_無",
+        "partNo": "GBAV01008082900",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_OHNO_無",
+        "partNo": "GBAV01009080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_DAJA_無",
+        "partNo": "GBAV01009080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_KSK_無",
+        "partNo": "GBAV01009080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01011080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_DAJA_無",
+        "partNo": "GBAV01011080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_KSK_無",
+        "partNo": "GBAV01011080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_SWG_OHNO_無",
+        "partNo": "GBAV04012080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1-1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1-1/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01013080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28020100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28020110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28020110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28022110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_32A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28021110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28022100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28022110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28023100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28023110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28023110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_65A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28024110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_80A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28025110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA 無_DAJA_無",
+        "partNo": "GBAV28026510200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28026100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28026110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28026110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_IHARA_無",
+        "partNo": "GDIV02007000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02007000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "HMJ"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_HMJ_無",
+        "partNo": "GDIV02007003200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/2\"_NA_IHARA_無",
+        "partNo": "GDIV02009000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/2\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02009000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_3/4\"_NA_IHARA_無",
+        "partNo": "GDIV02011000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_3/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02011000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_TUBE_1\"_316L EP OPP_FUJIKIN_無",
+        "partNo": "GDIV05012120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_1/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03007000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_1/2\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03009000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_3/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03011000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_15A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04018120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_15A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04018140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_20A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04019120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP OPP_OHNO_無",
+        "partNo": "GBEV04020120100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料-BELLOW VALVE_WELD_25A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04020500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04020120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04020140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_32A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04021140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_40A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04022120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP OPP_OHNO_無",
+        "partNo": "GBEV04023120100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04023500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04023120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04023140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_65A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04024500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_65A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04024120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_80A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04025120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/4\"_SWG_IHARA_無",
+        "partNo": "GBEV01007080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/4\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01007080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/8\"_SWG_IHARA_無",
+        "partNo": "GBEV01008080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/8\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01008080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/2\"_SWG_IHARA_無",
+        "partNo": "GBEV01009080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/2\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01009080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/4\"_SWG_IHARA_無",
+        "partNo": "GBEV01011080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_NA_OHNO_無",
+        "partNo": "GBAV04012000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_316L BA  無_OHNO_無",
+        "partNo": "GBAV04012510100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04012110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_NA_OHNO_無",
+        "partNo": "GBAV04018000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04018090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04018110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_15A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04018090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_OHNO_無",
+        "partNo": "GBAV04019000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04019090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_DAJA_無",
+        "partNo": "GBAV04019000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_NA_KSK_無",
+        "partNo": "GBAV04019000700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04019090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_20A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04019110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_NA_OHNO_無",
+        "partNo": "GBAV04020000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04020090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_NA_DAJA_無",
+        "partNo": "GBAV04020000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04020110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04020090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_25A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04020110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_32A_NA_OHNO_無",
+        "partNo": "GBAV04021000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_32A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04021090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_NA_OHNO_無",
+        "partNo": "GBAV04022000100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04022090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_NA_DAJA_無",
+        "partNo": "GBAV04022000200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04022090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_40A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04022110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA OPP_DAJA_無",
+        "partNo": "GBAV04023090200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04023110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_NA_KSK_無",
+        "partNo": "GBAV04023000700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04023090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_50A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04023110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_65A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04024090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_65A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04024090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA IOPP_OHNO_無",
+        "partNo": "GBAV04025110100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04025090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04025090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_80A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV04025110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA OPP_OHNO_無",
+        "partNo": "GBAV04026090100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV04026110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_100A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04026090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "150A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_150A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04027090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "200A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_200A_316L BA OPP_KSK_無",
+        "partNo": "GBAV04028090700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01007080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_DAJA_無",
+        "partNo": "GBAV01007080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/4\"_SWG_KSK_無",
+        "partNo": "GBAV01007080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_OHNO_無",
+        "partNo": "GBAV01008080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_DAJA_無",
+        "partNo": "GBAV01008080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_KSK_無",
+        "partNo": "GBAV01008080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "SWAGELOK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/8\"_SWG_SWAGELOK_無",
+        "partNo": "GBAV01008082900",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_OHNO_無",
+        "partNo": "GBAV01009080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_DAJA_無",
+        "partNo": "GBAV01009080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1/2\"_SWG_KSK_無",
+        "partNo": "GBAV01009080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01011080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_DAJA_無",
+        "partNo": "GBAV01011080200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_3/4\"_SWG_KSK_無",
+        "partNo": "GBAV01011080700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_WELD_1\"_SWG_OHNO_無",
+        "partNo": "GBAV04012080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1-1/4\""
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "OHNO"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_SWG_1-1/4\"_SWG_OHNO_無",
+        "partNo": "GBAV01013080100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28020100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28020110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_25A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28020110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28022110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_32A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28021110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28022100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_40A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28022110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28023100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28023110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_50A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28023110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_65A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28024110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_80A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28025110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA 無_DAJA_無",
+        "partNo": "GBAV28026510200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IPP_DAJA_無",
+        "partNo": "GBAV28026100200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "DAJA(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IOPP_DAJA_無",
+        "partNo": "GBAV28026110200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "Flange"
+        ],
+        "size": [
+          "100A"
+        ],
+        "valveType": [
+          "Ball Valve"
+        ],
+        "brand": [
+          "KSK(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BALL VALVE_球閥_法蘭式_100A_316L BA IOPP_KSK_無",
+        "partNo": "GBAV28026110700",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_IHARA_無",
+        "partNo": "GDIV02007000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02007000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "HMJ"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/4\"_NA_HMJ_無",
+        "partNo": "GDIV02007003200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/2\"_NA_IHARA_無",
+        "partNo": "GDIV02009000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_1/2\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02009000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_3/4\"_NA_IHARA_無",
+        "partNo": "GDIV02011000500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-M_3/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV02011000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-M"
+        ],
+        "size": [
+          "1\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_TUBE_1\"_316L EP OPP_FUJIKIN_無",
+        "partNo": "GDIV05012120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_1/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03007000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_1/2\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03009000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "DIAPHRAGM VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料DIAPHRAGM VALVE_隔膜閥_VCR-F_3/4\"_NA_FUJIKIN_無",
+        "partNo": "GDIV03011000400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_15A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04018120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "15A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_15A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04018140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "20A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_20A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04019120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP OPP_OHNO_無",
+        "partNo": "GBEV04020120100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料-BELLOW VALVE_WELD_25A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04020500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04020120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "25A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_25A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04020140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "32A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_32A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04021140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "40A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_40A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04022120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "OHNO(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP OPP_OHNO_無",
+        "partNo": "GBEV04023120100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04023500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04023120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "50A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(IOPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_50A_316L EP IOPP_FUJIKIN_無",
+        "partNo": "GBEV04023140400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_65A_316L EP 無_FUJIKIN_無",
+        "partNo": "GBEV04024500400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "65A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_65A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04024120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "WELD"
+        ],
+        "size": [
+          "80A"
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN(OPP)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_WELD_80A_316L EP OPP_FUJIKIN_無",
+        "partNo": "GBEV04025120400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/4\"_SWG_IHARA_無",
+        "partNo": "GBEV01007080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/4\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01007080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/8\"_SWG_IHARA_無",
+        "partNo": "GBEV01008080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/8\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01008080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/2\"_SWG_IHARA_無",
+        "partNo": "GBEV01009080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "FUJIKIN"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_1/2\"_SWG_FUJIKIN_無",
+        "partNo": "GBEV01009080400",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "BELLOW VALVE"
+        ],
+        "brand": [
+          "IHARA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料BELLOW VALVE_SWG_3/4\"_SWG_IHARA_無",
+        "partNo": "GBEV01011080500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TORR"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/4\"_2P調壓閥_TORR_無",
+        "partNo": "GRGT01007313500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/4\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT01007313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/4\"_2P調壓閥_AP TECH_無",
+        "partNo": "GRGT01007311600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/4\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT01007310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/4\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT01007320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TORR"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/8\"_2P調壓閥_TORR_無",
+        "partNo": "GRGT01008313500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/8\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT01008313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/8\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT01008310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/8\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT01008320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TORR"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_2P調壓閥_TORR_無",
+        "partNo": "GRGT01009313500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT01009313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_2P調壓閥_AP TECH_無",
+        "partNo": "GRGT01009311600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT01009310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_1/2\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT01009320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/4\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT01011313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/4\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT01011310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "SWG"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_SWG_3/4\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT01011320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TORR"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_2P調壓閥_TORR_無",
+        "partNo": "GRGT03007313500",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT03007313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_2P調壓閥_AP TECH_無",
+        "partNo": "GRGT03007311600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH(4P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_4P調壓閥_AP TECH_無",
+        "partNo": "GRGT03007331600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT03007310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT03007320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(4P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/4\"_4P調壓閥_PARKER_無",
+        "partNo": "GRGT03007330300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_3/8\"_2P調壓閥_AP TECH_無",
+        "partNo": "GRGT03008311600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_3/8\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT03008310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TESCOM"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/2\"_2P調壓閥_TESCOM_無",
+        "partNo": "GRGT03009313100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "AP TECH"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/2\"_2P調壓閥_AP TECH_無",
+        "partNo": "GRGT03009311600",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/2\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT03009310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_1/2\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT03009320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_3/4\"_2P調壓閥_PARKER_無",
+        "partNo": "GRGT03011310300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "PARKER(3P)"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_3/4\"_3P調壓閥_PARKER_無",
+        "partNo": "GRGT03011320300",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "connector": [
+          "VCR-F"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "valveType": [
+          "REGULATOR"
+        ],
+        "brand": [
+          "TORR"
+        ]
+      },
+      "output": {
+        "name": "氣體材料REGULATOR_調壓閥_VCR-F_3/4\"_2P調壓閥_TORR_無",
+        "partNo": "GRGT03011313500",
+        "unit": "EA"
+      }
+    }
+  ],
+  "unmatched": []
+}

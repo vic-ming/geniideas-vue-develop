@@ -17,16 +17,11 @@
     <div class="card-content">
       <div class="info-item">
         <label class="info-label">氣體別<span class="required">*</span></label>
-        <select 
-          :key="`gasType-${cardData.gasType || ''}`"
-          class="info-select" 
-          :class="{ empty: cardData.gasType === '' }" 
+        <SearchableSelect
           v-model="cardData.gasType"
-          @change="handleDataChange"
-        >
-          <option value="">請選擇氣體別</option>
-          <option v-for="gasType in $constants.gasTypes" :key="gasType" :value="gasType">{{ gasType }}</option>
-        </select>
+          :options="$constants.gasTypes"
+          placeholder="請選擇氣體別"
+        />
       </div>
       
       <div class="info-item">
@@ -96,8 +91,13 @@
 </template>
 
 <script>
+import SearchableSelect from '@/components/SearchableSelect.vue';
+
 export default {
   name: 'EquipmentInfoCard',
+  components: {
+    SearchableSelect
+  },
   props: {
     initialPosition: {
       type: Object,

@@ -208,7 +208,7 @@ export default {
   },
   methods: {
     handleDataChange() {
-      // 通用数据变化处理，直接更新数据
+      // 通用數據變化處理，直接更新數據
       this.$emit('update-data', this.cardData);
       this.$forceUpdate();
     },
