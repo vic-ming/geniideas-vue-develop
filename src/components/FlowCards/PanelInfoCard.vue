@@ -233,7 +233,7 @@ export default {
       }
     },
     handleDeleteButtonClick() {
-      console.log('刪除盤面卡片按鈕被點擊');
+      // console.log('刪除盤面卡片按鈕被點擊');
       this.$emit('delete-panel-group', {
         type: 'panel-group',
         position: {

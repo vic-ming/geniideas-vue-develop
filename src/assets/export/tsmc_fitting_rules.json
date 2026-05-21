@@ -2575,31 +2575,6 @@
     {
       "match": {
         "fittingType": [
-          "REDUCING TEE"
-        ],
-        "connector": [
-          "WELD"
-        ],
-        "pipelineType": [
-          "單套管",
-          "單線管",
-          "盤面"
-        ],
-        "size": [
-          "15Ax1/4\""
-        ],
-        "material": [
-          "304L AP無縫"
-        ]
-      },
-      "output": {
-        "partName": "REDUCER TEE-316L AP-15A*1/2\"",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "fittingType": [
           "REDUCER"
         ],
         "connector": [
@@ -4544,6 +4519,1040 @@
       },
       "output": {
         "partName": "REDUCER-BA-50A*25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316LEP-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316LEP-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316LEP-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316LEP-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L EP無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316LEP-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "316L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA有縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/4\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/8\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/8\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "1/2\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE_S-316L BA-3/4\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "15A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-15A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "25A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-25A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "connector": [
+          "WELD"
+        ],
+        "pipelineType": [
+          "單套管",
+          "單線管",
+          "盤面"
+        ],
+        "size": [
+          "50A"
+        ],
+        "material": [
+          "304L BA無縫"
+        ]
+      },
+      "output": {
+        "partName": "TEE-316L BA-50A",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "pipelineType": [
+          "雙套管"
+        ],
+        "doubleSize": [
+          "1/2\"*1/4\""
+        ]
+      },
+      "output": {
+        "partName": "DOUBLE TEE-EP-1/4\"*1/2\"",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "fittingType": [
+          "TEE"
+        ],
+        "pipelineType": [
+          "雙套管"
+        ],
+        "doubleSize": [
+          "5/8\"*3/8\""
+        ]
+      },
+      "output": {
+        "partName": "DOUBLE TEE-EP-3/8\"*5/8\"",
         "unit": "EA"
       }
     }

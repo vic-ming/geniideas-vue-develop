@@ -211,7 +211,7 @@ export default {
       this.showMenu = !this.showMenu;
     },
     handleAdditionalButtonClick() {
-      console.log('加號按鈕被點擊');
+      // console.log('加號按鈕被點擊');
       this.$emit('add-module', {
         type: 'source',
         position: {
@@ -221,7 +221,7 @@ export default {
       });
     },
     handleBranchButtonClick() {
-      console.log('分支按鈕被點擊');
+      // console.log('分支按鈕被點擊');
       this.$emit('add-branch-source', {
         type: 'branch-source',
         position: {
@@ -232,7 +232,7 @@ export default {
       });
     },
     handleDeleteButtonClick() {
-      console.log('刪除按鈕被點擊');
+      // console.log('刪除按鈕被點擊');
       this.$emit('delete-module', {
         type: 'source',
         position: {
@@ -242,14 +242,14 @@ export default {
       });
     },
     handleMoveUp() {
-      console.log('向上移動模組', this.moduleIndex);
+      // console.log('向上移動模組', this.moduleIndex);
       this.$emit('move-module', {
         currentIndex: this.moduleIndex,
         direction: 'up'
       });
     },
     handleMoveDown() {
-      console.log('向下移動模組', this.moduleIndex);
+      // console.log('向下移動模組', this.moduleIndex);
       this.$emit('move-module', {
         currentIndex: this.moduleIndex,
         direction: 'down'

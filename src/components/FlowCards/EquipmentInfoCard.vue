@@ -216,7 +216,7 @@ export default {
       }
     },
     handleDeleteButtonClick() {
-      console.log('刪除設備卡片按鈕被點擊');
+      // console.log('刪除設備卡片按鈕被點擊');
       this.$emit('delete-equipment-card', {
         type: 'equipment-card',
         position: {

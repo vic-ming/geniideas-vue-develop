@@ -909,27 +909,6 @@
           "單套管"
         ],
         "size": [
-          "3/4\""
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "DAJA"
-        ]
-      },
-      "output": {
-        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L BA無縫_DAJA_無",
-        "partNo": "GTUB04011480200",
-        "unit": "M"
-      }
-    },
-    {
-      "match": {
-        "pipelineType": [
-          "單套管"
-        ],
-        "size": [
           "15A"
         ],
         "material": [
@@ -963,6 +942,27 @@
       "output": {
         "name": "氣體材料PIPE_管材_WELD_15A_316L BA無縫_NEWBEST_無",
         "partNo": "GPIP04018021200",
+        "unit": "M"
+      }
+    },
+    {
+      "match": {
+        "pipelineType": [
+          "單套管"
+        ],
+        "size": [
+          "3/4\""
+        ],
+        "material": [
+          "304L BA無縫"
+        ],
+        "brand": [
+          "DAJA"
+        ]
+      },
+      "output": {
+        "name": "氣體材料TUBE_管材_WELD_3/4\"_304L BA無縫_DAJA_無",
+        "partNo": "GTUB04011480200",
         "unit": "M"
       }
     },
@@ -1299,27 +1299,6 @@
       "output": {
         "name": "氣體材料PIPE_管材_WELD_50A_316L BA無縫_AP TECH_無",
         "partNo": "GPIP04023021600",
-        "unit": "M"
-      }
-    },
-    {
-      "match": {
-        "pipelineType": [
-          "單套管"
-        ],
-        "size": [
-          "3/4\""
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "DAJA"
-        ]
-      },
-      "output": {
-        "name": "氣體材料TUBE_管材_WELD_3/4\"_316L BA無縫_DAJA_無",
-        "partNo": "GTUB04011020200",
         "unit": "M"
       }
     },
@@ -2358,7 +2337,7 @@
           "單套管"
         ],
         "size": [
-          "80A"
+          "100A"
         ],
         "material": [
           "304L AP無縫"

@@ -313,13 +313,13 @@ export default {
     
     // 處理加號圖標點擊事件
     handleAdditionalIconClick(connection) {
-      console.log('加號被點擊:', connection)
+      // console.log('加號被點擊:', connection)
       this.$emit('additional-icon-click', connection)
     },
     
     // 處理紫色圖標點擊事件
     handleFaIconClick(connection) {
-      console.log('閥件被點擊:', connection)
+      // console.log('閥件被點擊:', connection)
       this.$emit('fa-icon-click', connection)
     }
   }

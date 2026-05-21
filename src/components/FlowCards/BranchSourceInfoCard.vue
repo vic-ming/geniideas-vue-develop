@@ -163,7 +163,7 @@ export default {
   },
   methods: {
     handleDeleteButtonClick() {
-      console.log('刪除分支源頭資訊按鈕被點擊');
+      // console.log('刪除分支源頭資訊按鈕被點擊');
       this.$emit('delete-branch-source', {
         type: 'branch-source',
         position: {

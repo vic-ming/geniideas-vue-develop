@@ -22,22 +22,39 @@ export const unmatchedJuxianFittingRules = fittingRulesData.unmatched ?? [];
 export function resolveJuxianPipe({ pipelineType, size, material, brand, doubleSize }) {
   if (!pipelineType) return null;
 
-  const result = matchRule({
+  if (pipelineType === '雙套管') {
+    const inner = matchRule({
+      pipelineType: '單套管',
+      size,
+      material,
+      brand
+    }, pipeRulesData.rules);
+
+    const outerSizeMatch = doubleSize ? doubleSize.split('*')[0] : '';
+    const outerSize = outerSizeMatch || size;
+    let outerMaterial = material;
+    if (material.includes('316L EP')) outerMaterial = material.replace('316L EP', '304L AP');
+    else if (material.includes('316L BA')) outerMaterial = material.replace('316L BA', '304L AP');
+
+    const outer = matchRule({
+      pipelineType: '單套管',
+      size: outerSize,
+      material: outerMaterial,
+      brand
+    }, pipeRulesData.rules);
+
+    if (inner && outer) {
+      return { inner, outer };
+    }
+  }
+
+  return matchRule({
     pipelineType,
     size,
     material,
     brand,
     doubleSize
-  }, pipeRulesData.rules);
-
-  if (result && pipelineType === '雙套管') {
-    return {
-      inner: result.inner,
-      outer: result.outer
-    };
-  }
-
-  return result || null;
+  }, pipeRulesData.rules) || null;
 }
 
 export function resolveJuxianValve({ connector, size, valveType, brand }) {
@@ -62,48 +79,7 @@ export function resolveJuxianOverTube({ pipelineType, doubleSize, brand }) {
 }
 
 export function resolveJuxianGauge({ panelSize, panelConnector, material, brand }) {
-  let actualBrand = brand;
-  let spec = '';
-  if (brand && brand.includes('(')) {
-    const parts = brand.split('(');
-    actualBrand = parts[0];
-    spec = parts[1].replace(')', '');
-  }
-
-  const payload = { panelSize, panelConnector, material, brand: actualBrand, section: 'gauge' };
-  let rules = otherRulesData.rules || [];
-
-  // local filter to enforce the spec string is present in the output name
-  const applySpecFilter = (resMap) => {
-    if (!spec) return true;
-    return resMap?.output?.name?.includes(spec);
-  };
-
-  let res = matchRule(payload, rules);
-  if (res && applySpecFilter({ output: res })) return res;
-
-  if (panelSize !== '1/4"') {
-    let fallbackPayload = { ...payload, panelSize: '1/4"' };
-    let fallbackRules = rules.filter(r => r.match?.panelSize?.includes('1/4"'));
-    for (const rule of fallbackRules) {
-      let matchRes = matchRule(fallbackPayload, [rule]);
-      if (matchRes && applySpecFilter({ output: matchRes })) {
-        return matchRes;
-      }
-    }
-  }
-
-  // fallback pure match across all gauge rules simulating matchRule manually if it fails
-  for (const rule of rules) {
-    const isMatch = rule.match?.panelSize?.includes('1/4"') &&
-      rule.match?.panelConnector?.includes(panelConnector) &&
-      rule.match?.material?.includes(material) &&
-      rule.match?.brand?.includes(actualBrand);
-    if (isMatch && applySpecFilter(rule)) {
-      return rule.output;
-    }
-  }
-  return null;
+  return matchRule({ panelSize, panelConnector, material, brand, section: 'gauge' }, otherRulesData.rules) || null;
 }
 
 export function resolveJuxianGland({ panelSize, panelConnector, material, brand }) {

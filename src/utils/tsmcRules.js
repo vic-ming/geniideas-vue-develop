@@ -177,5 +177,5 @@ export function resolveTsmcDoubleTeePart({ doubleSize }) {
     doubleSize,
     pipelineType: PIPELINE_TYPE.DOUBLE
   });
-  return result ? { inner: result.inner, outer: result.outer, unit: 'EA' } : null;
+  return result ? { partName: result.partName, inner: result.inner, outer: result.outer, unit: 'EA' } : null;
 }

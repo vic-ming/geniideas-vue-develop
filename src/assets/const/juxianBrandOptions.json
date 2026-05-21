@@ -42,22 +42,26 @@
     "springBrand": ["KUZE", "JSK", "NEWBEST"],
     "overTubeBrand": ["KUZE", "JSK", "NEWBEST"],
     "gaugeBrand": [
-      "SMC",
-      "NKS(直立式訊號錶-30inhg~160PSI)",
-      "NKS(背接式0-200 PSI)",
-      "NKS(背接式訊號)",
-      "NKS(背接式-30inhg~160 PSI)",
-      "NKS(直立式0-100 PSI)",
-      "NKS(直立式0-600 PSI)",
-      "NKS(直立式-30inhg~160 PSI)",
-      "NKS(電子式 VCR背接)",
-      "NKS(直立式訊號錶-30inhg~160PSI)",
-      "NKS(背接式-30inhg~160 PSI)",
-      "SWAGELOK",
-      "WIKA",
-      "WIKA(電子式 VCR背接)",
-      "Tem-Tech(電子式-15~3000psi)",
-      "華記"
+      "SMC(SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK)",
+      "SMC(VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線))",
+      "NKS(直立式VCR-M訊號錶-30inhg~160PSI)",
+      "NKS(背接式VCR-F 0-30 PSI)",
+      "NKS(背接式0-30 PSI)",
+      "NKS(背接式VCR-F 0-200 PSI)",
+      "NKS(背接式VCR-F訊號)",
+      "NKS(背接式TUBE-30inhg~160 PSI)",
+      "NKS(背接式VCR-F-30inhg~160 PSI)",
+      "NKS(直立式VCR-F 0-100 PSI)",
+      "NKS(直立式VCR-F 0-600 PSI)",
+      "NKS(直立式VCR-F -30inhg~160 PSI)",
+      "NKS(電子式 VCR背接錶頭(有訊號線))",
+      "NKS(直立式VCR-F訊號錶-30inhg~160PSI)",
+      "NKS(背接式VCR-F -30inhg~160 PSI)",
+      "SWAGELOK VCR-F",
+      "WIKA TUBE",
+      "WIKA(電子式 VCR-F背接)",
+      "Tem-Tech(電子式VCR-F -15~3000psi)",
+      "華記 TUBE"
     ],
     "glandBrand": ["JSK", "JSK(Hi)", "FUJIKIN", "BENKAN"],
     "nutBrand": ["JSK", "JSK(Hi)", "FUJIKIN"],
@@ -69,5 +73,4 @@
     "doubleElbowBrand": ["KUZE", "NEWBEST"]
   }
 }
-
 

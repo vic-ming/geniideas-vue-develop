@@ -340,4002 +340,6 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP有縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L EP無縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA有縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "316L BA無縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA有縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU02007822100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU02007822100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-M"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
-        "partNo": "GGAU03007192100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
-        "partNo": "GGAU03007462800",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
-        "partNo": "GGAU03007182100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
-        "partNo": "GGAU03007252100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007252100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
-        "partNo": "GGAU03007432100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007432100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
-        "partNo": "GGAU03007442100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007442100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03007452100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007452100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
-        "partNo": "GGAU03007462104",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462104",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
-        "partNo": "GGAU03007812100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007812100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU03009372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03009372100",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "SWAGELOK"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
-        "partNo": "GGAU03007422900",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
-        "partNo": "GGAU03007462200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "GGAU03007462200",
-        "partNo": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "VCR-F"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "Tem-Tech"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
-        "partNo": "GGAU03007804022",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "SMC"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
-        "partNo": "GGAU01007522803",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "NKS"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
-        "partNo": "GGAU05007372100",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "WIKA"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
-        "partNo": "GGAU05007202200",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
-          "SWG"
-        ],
-        "material": [
-          "304L BA無縫"
-        ],
-        "brand": [
-          "華記"
-        ],
-        "section": [
-          "gauge"
-        ]
-      },
-      "output": {
-        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
-        "partNo": "GGAU05007402600",
-        "unit": "EA"
-      }
-    },
-    {
-      "match": {
-        "panelSize": [
-          "1/4\""
-        ],
-        "panelConnector": [
           "VCR-F"
         ],
         "material": [
@@ -7108,7 +3112,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7132,7 +3136,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7180,7 +3184,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7204,7 +3208,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7228,7 +3232,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7252,7 +3256,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7276,7 +3280,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -7324,7 +3328,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7348,7 +3352,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7372,7 +3376,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7396,7 +3400,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7420,7 +3424,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7444,7 +3448,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -7468,7 +3472,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7492,7 +3496,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7540,7 +3544,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7564,7 +3568,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7588,7 +3592,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7612,7 +3616,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7636,7 +3640,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -7660,7 +3664,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7684,7 +3688,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7708,7 +3712,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7732,7 +3736,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7756,7 +3760,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7780,7 +3784,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7804,7 +3808,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -7828,7 +3832,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7852,7 +3856,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7900,7 +3904,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7924,7 +3928,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7948,7 +3952,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7972,7 +3976,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -7996,7 +4000,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -8020,7 +4024,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8044,7 +4048,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8068,7 +4072,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8092,7 +4096,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8116,7 +4120,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8140,7 +4144,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8164,7 +4168,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -8188,7 +4192,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8212,7 +4216,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8260,7 +4264,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8284,7 +4288,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8308,7 +4312,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8332,7 +4336,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8356,7 +4360,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -8404,7 +4408,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8428,7 +4432,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8452,7 +4456,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8476,7 +4480,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8500,7 +4504,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8524,7 +4528,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -8548,7 +4552,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8572,7 +4576,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8620,7 +4624,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8644,7 +4648,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8668,7 +4672,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8692,7 +4696,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8716,7 +4720,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -8764,7 +4768,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8788,7 +4792,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8812,7 +4816,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8836,7 +4840,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8860,7 +4864,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8884,7 +4888,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -8908,7 +4912,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -8932,7 +4936,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -8980,7 +4984,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -9004,7 +5008,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -9028,7 +5032,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -9052,7 +5056,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -9076,7 +5080,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -9124,7 +5128,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9148,7 +5152,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9172,7 +5176,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9196,7 +5200,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9220,7 +5224,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9244,7 +5248,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -9268,7 +5272,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9292,7 +5296,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9340,7 +5344,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9364,7 +5368,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9388,7 +5392,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9412,7 +5416,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9436,7 +5440,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -9484,7 +5488,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9508,7 +5512,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9532,7 +5536,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9556,7 +5560,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9580,7 +5584,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9604,7 +5608,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -9628,7 +5632,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9652,7 +5656,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9700,7 +5704,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9724,7 +5728,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9748,7 +5752,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9772,7 +5776,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9796,7 +5800,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -9844,7 +5848,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9868,7 +5872,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9892,7 +5896,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9916,7 +5920,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9940,7 +5944,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9964,7 +5968,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -9988,7 +5992,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10012,7 +6016,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10060,7 +6064,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10084,7 +6088,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10108,7 +6112,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10132,7 +6136,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10156,7 +6160,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -10204,7 +6208,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10228,7 +6232,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10252,7 +6256,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10276,7 +6280,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10300,7 +6304,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10324,7 +6328,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -10348,7 +6352,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10372,7 +6376,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10420,7 +6424,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10444,7 +6448,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10468,7 +6472,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10492,7 +6496,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10516,7 +6520,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -10564,7 +6568,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10588,7 +6592,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10612,7 +6616,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10636,7 +6640,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10660,7 +6664,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10684,7 +6688,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -10708,7 +6712,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10732,7 +6736,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10780,7 +6784,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10804,7 +6808,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10828,7 +6832,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10852,7 +6856,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10876,7 +6880,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -10924,7 +6928,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -10948,7 +6952,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -10972,7 +6976,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -10996,7 +7000,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -11020,7 +7024,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -11044,7 +7048,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -11068,7 +7072,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11092,7 +7096,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11140,7 +7144,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11164,7 +7168,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11188,7 +7192,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11212,7 +7216,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11236,7 +7240,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -11284,7 +7288,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11308,7 +7312,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11332,7 +7336,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11356,7 +7360,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11380,7 +7384,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11404,7 +7408,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -11428,7 +7432,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11452,7 +7456,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11500,7 +7504,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11524,7 +7528,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11548,7 +7552,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11572,7 +7576,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11596,7 +7600,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -11644,7 +7648,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11668,7 +7672,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11692,7 +7696,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11716,7 +7720,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11740,7 +7744,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11764,7 +7768,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -11788,7 +7792,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11812,7 +7816,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11860,7 +7864,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11884,7 +7888,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11908,7 +7912,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11932,7 +7936,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -11956,7 +7960,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -12004,7 +8008,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12028,7 +8032,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12052,7 +8056,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12076,7 +8080,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12100,7 +8104,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12124,7 +8128,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -12148,7 +8152,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12172,7 +8176,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12220,7 +8224,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12244,7 +8248,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12268,7 +8272,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12292,7 +8296,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12316,7 +8320,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -12364,7 +8368,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12388,7 +8392,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12412,7 +8416,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12436,7 +8440,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12460,7 +8464,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12484,7 +8488,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -12508,7 +8512,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12532,7 +8536,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12580,7 +8584,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12604,7 +8608,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12628,7 +8632,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12652,7 +8656,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12676,7 +8680,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -12724,7 +8728,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12748,7 +8752,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12772,7 +8776,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12796,7 +8800,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12820,7 +8824,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12844,7 +8848,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -12868,7 +8872,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -12892,7 +8896,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -12940,7 +8944,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -12964,7 +8968,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -12988,7 +8992,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -13012,7 +9016,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -13036,7 +9040,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -13084,7 +9088,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13108,7 +9112,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13132,7 +9136,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13156,7 +9160,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13180,7 +9184,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13204,7 +9208,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -13228,7 +9232,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13252,7 +9256,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13300,7 +9304,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13324,7 +9328,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13348,7 +9352,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13372,7 +9376,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13396,7 +9400,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -13444,7 +9448,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13468,7 +9472,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13492,7 +9496,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13516,7 +9520,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13540,7 +9544,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13564,7 +9568,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -13588,7 +9592,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13612,7 +9616,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13660,7 +9664,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13684,7 +9688,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13708,7 +9712,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13732,7 +9736,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13756,7 +9760,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP有縫"
@@ -13804,7 +9808,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13828,7 +9832,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13852,7 +9856,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13876,7 +9880,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13900,7 +9904,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13924,7 +9928,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP有縫"
@@ -13948,7 +9952,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -13972,7 +9976,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14020,7 +10024,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14044,7 +10048,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14068,7 +10072,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14092,7 +10096,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14116,7 +10120,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L EP無縫"
@@ -14164,7 +10168,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14188,7 +10192,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14212,7 +10216,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14236,7 +10240,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14260,7 +10264,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14284,7 +10288,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L EP無縫"
@@ -14308,7 +10312,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14332,7 +10336,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14380,7 +10384,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14404,7 +10408,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14428,7 +10432,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14452,7 +10456,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14476,7 +10480,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA有縫"
@@ -14524,7 +10528,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14548,7 +10552,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14572,7 +10576,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14596,7 +10600,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14620,7 +10624,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14644,7 +10648,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA有縫"
@@ -14668,7 +10672,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14692,7 +10696,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14740,7 +10744,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14764,7 +10768,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14788,7 +10792,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14812,7 +10816,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14836,7 +10840,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "316L BA無縫"
@@ -14884,7 +10888,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -14908,7 +10912,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -14932,7 +10936,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -14956,7 +10960,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -14980,7 +10984,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -15004,7 +11008,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "316L BA無縫"
@@ -15028,7 +11032,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15052,7 +11056,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15100,7 +11104,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15124,7 +11128,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15148,7 +11152,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15172,7 +11176,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15196,7 +11200,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA有縫"
@@ -15244,7 +11248,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15268,7 +11272,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15292,7 +11296,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15316,7 +11320,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15340,7 +11344,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15364,7 +11368,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA有縫"
@@ -15388,7 +11392,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15412,7 +11416,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15460,7 +11464,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15484,7 +11488,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15508,7 +11512,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15532,7 +11536,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15556,7 +11560,7 @@
           "1\""
         ],
         "panelConnector": [
-          "VCR-M"
+          "VCR-F"
         ],
         "material": [
           "304L BA無縫"
@@ -15604,7 +11608,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -15628,7 +11632,7 @@
           "1/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -15652,7 +11656,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -15676,7 +11680,7 @@
           "1/2\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -15700,7 +11704,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -15724,7 +11728,7 @@
           "3/4\""
         ],
         "panelConnector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "material": [
           "304L BA無縫"
@@ -23803,6 +19807,706 @@
       "output": {
         "name": "氣體材料GASKET_墊片_NA_1\"_有爪_JSK_無",
         "partNo": "GGAS00012271000",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "SMC(SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_SWG_1/4\"_電子式 SWG背接錶頭(有訊號線),1/4\"_SMC_ISE20C-V-P-B2-WK",
+        "partNo": "GGAU01007522803",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "SMC(VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線))"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_SMC_無",
+        "partNo": "GGAU03007462800",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(直立式VCR-M訊號錶-30inhg~160PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-M_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
+        "partNo": "GGAU02007822100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式VCR-F 0-30 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
+        "partNo": "GGAU03007182100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式0-30 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-30 PSI_NKS_無",
+        "partNo": "GGAU03007182100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式VCR-F 0-200 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-200 PSI_NKS_無",
+        "partNo": "GGAU03007192100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式VCR-F訊號)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式訊號錶_NKS_無",
+        "partNo": "GGAU03007252100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式TUBE-30inhg~160 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式-30inhg~160 PSI_NKS_無",
+        "partNo": "GGAU05007372100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式VCR-F-30inhg~160 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式-30inhg~160 PSI_NKS_無",
+        "partNo": "GGAU03007372100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(直立式VCR-F 0-100 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-100 PSI_NKS_無",
+        "partNo": "GGAU03007432100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(直立式VCR-F 0-600 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式0-600 PSI_NKS_無",
+        "partNo": "GGAU03007442100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(直立式VCR-F -30inhg~160 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式-30inhg~160 PSI_NKS_無",
+        "partNo": "GGAU03007452100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(電子式 VCR背接錶頭(有訊號線))"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_NKS_ZT-60-Y02",
+        "partNo": "GGAU03007462104",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(直立式VCR-F訊號錶-30inhg~160PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_直立式訊號錶-30inhg~160PSI_NKS_無",
+        "partNo": "GGAU03007812100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "NKS(背接式VCR-F -30inhg~160 PSI)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/2\"_背接式-30inhg~160 PSI_NKS_無",
+        "partNo": "GGAU03009372100",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "SWAGELOK VCR-F"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_背接式0-5 psi_SWAGELOK_無",
+        "partNo": "GGAU03007422900",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "WIKA TUBE"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-3000 PSI_WIKA_無",
+        "partNo": "GGAU05007202200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "WIKA(電子式 VCR-F背接)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式 VCR背接錶頭(有訊號線),1/4\"_WIKA_無",
+        "partNo": "GGAU03007462200",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "Tem-Tech(電子式VCR-F -15~3000psi)"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_VCR-F_1/4\"_電子式-15~3000psi_Tem-Tech_HYWSFV-420TI",
+        "partNo": "GGAU03007804022",
+        "unit": "EA"
+      }
+    },
+    {
+      "match": {
+        "panelSize": [
+          "1/4\"",
+          "3/8\"",
+          "1/2\"",
+          "5/8\"",
+          "3/4\""
+        ],
+        "panelConnector": [
+          "VCR-M",
+          "VCR-F",
+          "SWG"
+        ],
+        "material": [
+          "316L EP有縫",
+          "316L EP無縫",
+          "316L BA有縫",
+          "316L BA無縫",
+          "304L BA有縫",
+          "304L BA無縫"
+        ],
+        "brand": [
+          "華記 TUBE"
+        ],
+        "section": [
+          "gauge"
+        ]
+      },
+      "output": {
+        "name": "氣體材料GAUGE_錶頭_TUBE_1/4\"_背接式0-150 psi_華記_無",
+        "partNo": "GGAU05007402600",
         "unit": "EA"
       }
     }

@@ -751,7 +751,7 @@
     {
       "match": {
         "connector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "size": [
           "1/4\""
@@ -768,7 +768,7 @@
     {
       "match": {
         "connector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "size": [
           "3/8\""
@@ -785,7 +785,7 @@
     {
       "match": {
         "connector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "size": [
           "1/2\""
@@ -802,7 +802,7 @@
     {
       "match": {
         "connector": [
-          "VCR-F"
+          "VCR-M"
         ],
         "size": [
           "3/4\""
@@ -1056,7 +1056,6 @@
       "partName": "無可對應料號",
       "qtyHint": "1EA"
     },
-
     {
       "connector": "SWG",
       "size": "65A",

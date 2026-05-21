@@ -1616,18 +1616,118 @@ export default {
       }
       return moduleSet.source?.data?.sourceSize || '';
     },
+    formatMatchValue(value) {
+      if (value === null || value === undefined || value === '') return '未填';
+      if (Array.isArray(value)) return value.map((item) => this.formatMatchValue(item)).join('/');
+      if (typeof value === 'object') return JSON.stringify(value);
+      return String(value);
+    },
+    buildMatchInfoStr(matchInfo) {
+      if (!matchInfo) return '';
+      const reservedKeys = new Set(['sourcePath', 'fieldValues', 'sourceFields', 'valveFields', 'moduleIndex']);
+      const sections = [];
+      const fieldValues = matchInfo.fieldValues || {};
+      const fieldEntries = Object.entries(fieldValues)
+        .filter(([, value]) => value !== undefined && value !== null && value !== '');
+      const fieldLabelMap = {
+        mainSize: '源頭尺寸',
+        branchSize: '分支閥件尺寸',
+        material: '管線材質',
+        valveType: '閥件種類',
+        connectorType: '閥件接頭形式',
+        pipelineType: '管線類別',
+        size: '尺寸',
+        valveSize: '閥件尺寸',
+        panelSize: '尺寸',
+        panelConnector: 'Valve接頭',
+        fromSize: '原尺寸',
+        toSize: '變徑後尺寸',
+        doubleSize: '雙套管尺寸',
+        brand: '品牌',
+        pipelineLength: '管線長度',
+        divisor: '計算基準',
+        enabledPanels: '啟用盤面數'
+      };
+      const formatMatchField = (key, value) => {
+        const label = fieldLabelMap[key] || key;
+        return `「${label}=${this.formatMatchValue(value)}」`;
+      };
+
+      const moduleIndexFromPath = (() => {
+        const match = String(matchInfo.sourcePath || '').match(/模組(\d+)/);
+        return match ? Number(match[1]) - 1 : null;
+      })();
+      const moduleIndex = Number.isInteger(matchInfo.moduleIndex)
+        ? matchInfo.moduleIndex
+        : moduleIndexFromPath;
+      const moduleSet = Number.isInteger(moduleIndex) ? this.allModuleSets?.[moduleIndex] : null;
+      const sourceData = moduleSet?.source?.data || {};
+      const sourceFields = matchInfo.sourceFields || {};
+      const valveFields = matchInfo.valveFields || {};
+      const pipelineType = sourceFields.pipelineType || fieldValues.pipelineType || sourceData.pipelineType;
+      const gasType = sourceFields.gasType || fieldValues.gasType || sourceData.gasType;
+      const matchReasonParts = [];
+      const typeText = String(matchInfo.type || '').toLowerCase();
+      const sourcePathText = String(matchInfo.sourcePath || '');
+      const isValveMatch = typeText.includes('valve') || typeText.includes('regulator') || sourcePathText.includes('Valve卡') || sourcePathText.includes('閥件');
+
+      const sourceReasonFields = [
+        ['管線類別', pipelineType],
+        ['氣體別', gasType]
+      ].filter(([, value]) => value !== undefined && value !== null && value !== '');
+      if (sourceReasonFields.length > 0) {
+        matchReasonParts.push(`源頭欄位的${sourceReasonFields.map(([key, value]) => `「${key}=${this.formatMatchValue(value)}」`).join('、')}`);
+      }
+
+      const sourcePathFieldEntries = fieldEntries.filter(([key]) => {
+        if (!isValveMatch) return true;
+        return !['size', 'panelSize', 'valveSize'].includes(key);
+      });
+      if (sourcePathText && sourcePathFieldEntries.length > 0) {
+        matchReasonParts.push(`來源「${sourcePathText}」的配對欄位${sourcePathFieldEntries.map(([key, value]) => formatMatchField(key, value)).join('、')}`);
+      }
+
+      const valveSize = valveFields.size || valveFields.valveSize || fieldValues.valveSize || (isValveMatch ? fieldValues.size || fieldValues.panelSize : '');
+      if (valveSize) {
+        matchReasonParts.push(`閥件資訊的「閥件尺寸=${this.formatMatchValue(valveSize)}」`);
+      }
+
+      if (matchReasonParts.length > 0) {
+        sections.push(`比對說明: 抓了${matchReasonParts.join('跟')}所以得到此料號`);
+      }
+
+      if (matchInfo.sourcePath) {
+        // sections.push(`來源: ${matchInfo.sourcePath}`);
+      }
+      if (matchInfo.type) {
+        // sections.push(`類型: ${matchInfo.type}`);
+      }
+
+      if (fieldEntries.length > 0) {
+        // sections.push(`配對欄位: ${fieldEntries.map(([key, value]) => `${key}=${this.formatMatchValue(value)}`).join(', ')}`);
+      }
+
+      const extraEntries = Object.entries(matchInfo)
+        .filter(([key, value]) => !reservedKeys.has(key) && key !== 'type' && value !== undefined && value !== null && value !== '' && typeof value !== 'object');
+      if (extraEntries.length > 0) {
+        sections.push(`其他條件: ${extraEntries.map(([key, value]) => `${fieldLabelMap[key] || key}=${this.formatMatchValue(value)}`).join(', ')}`);
+      }
+
+      return sections.length > 0 ? ` [${sections.join(' | ')}]` : '';
+    },
     buildTsmcPartQuantities() {
       const partQuantities = new Map();
       const unmatchedItems = [];
 
-      const addQuantity = (partName, quantity, unit = 'M') => {
+      const addQuantity = (partName, quantity, unit = 'M', matchInfo = '') => {
         if (!partName) return;
         const value = Number(quantity);
         if (!Number.isFinite(value) || value <= 0) return;
         const existing = partQuantities.get(partName) || { quantity: 0, unit };
         existing.quantity += value;
         partQuantities.set(partName, existing);
-        console.log(`✅ [TSMC 成功比對]料號: ${partName}, 數量: ${value} ${unit}`);
+        const matchInfoStr = this.buildMatchInfoStr(matchInfo);
+        console.log(`✅ [TSMC 成功比對]料號: ${partName}, 數量: ${value} ${unit}${matchInfoStr}`);
       };
 
       const normalizeValveTypeForRule = (uiValveType) => {
@@ -1655,13 +1755,13 @@ export default {
         return count;
       };
 
-      const addVCRMaterials = (size, connector, material, quantity, sysPipelineType, sysDoubleSize) => {
+      const addVCRMaterials = (size, connector, material, quantity, sysPipelineType, sysDoubleSize, meta = {}) => {
         if (!size || !connector || !material || quantity <= 0) return;
         const isVCR = connector === 'VCR-M' || connector === 'VCR-F';
         if (!isVCR) return;
 
         const gland = resolveGlandPart({ panelSize: size, panelConnector: connector, material });
-        if (gland?.partName) addQuantity(gland.partName, quantity, 'EA');
+        if (gland?.partName) addQuantity(gland.partName, quantity, 'EA', { ...meta, type: 'gland', fieldValues: { panelSize: size, panelConnector: connector, material } });
         else unmatchedItems.push({ type: 'gland', size, connector, material });
 
         let nutSize = size;
@@ -1671,11 +1771,11 @@ export default {
         }
 
         const nut = resolveNutPart({ panelSize: nutSize, panelConnector: connector, material });
-        if (nut?.partName) addQuantity(nut.partName, quantity, 'EA');
+        if (nut?.partName) addQuantity(nut.partName, quantity, 'EA', { ...meta, type: 'nut', fieldValues: { panelSize: nutSize, panelConnector: connector, material } });
         else unmatchedItems.push({ type: 'nut', size: nutSize, connector, material });
 
         const gasket = resolveGasketPart({ panelSize: size, panelConnector: connector, material });
-        if (gasket?.partName) addQuantity(gasket.partName, quantity, 'EA');
+        if (gasket?.partName) addQuantity(gasket.partName, quantity, 'EA', { ...meta, type: 'gasket', fieldValues: { panelSize: size, panelConnector: connector, material } });
         else unmatchedItems.push({ type: 'gasket', size, connector, material });
       };
 
@@ -1692,7 +1792,7 @@ export default {
       console.log(JSON.parse(JSON.stringify(this.allModuleSets)));
       console.log('----------------------------------------------------');
 
-      this.allModuleSets.forEach((moduleSet) => {
+      this.allModuleSets.forEach((moduleSet, moduleIndex) => {
         if (!moduleSet) return;
         
         const sourceData = moduleSet.source?.data || {};
@@ -1701,7 +1801,7 @@ export default {
         const mainMaterial = (pipelineData.material || sourceData.pipelineMaterial || '').trim();
 
         // 輔助函式：處理盤面群組內部元件
-        const processGroupComponents = (group, runSize, material, { isBranch = false, pipelineType = '', doubleSize = '' } = {}) => {
+        const processGroupComponents = (group, runSize, material, { isBranch = false, pipelineType = '', doubleSize = '', contextMeta = {} } = {}) => {
           let localSize = runSize;
           const panel = group.panel?.data || {};
           
@@ -1709,12 +1809,14 @@ export default {
             const pSize = panel.size || runSize;
             if (pipelineType === '雙套管' && doubleSize) {
               const ss = resolveStopSpacerPart({ doubleSize });
-              if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA');
+              if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡`, type: 'stop-spacer', fieldValues: { doubleSize } });
               else unmatchedItems.push({ type: 'stop-spacer', doubleSize });
               
               if (isBranch) {
                 const dt = resolveTsmcDoubleTeePart({ doubleSize });
-                if (dt?.inner && dt?.outer) {
+                if (dt?.partName) {
+                   addQuantity(dt.partName, 1, dt.unit || 'EA');
+                } else if (dt?.inner && dt?.outer) {
                    addQuantity(dt.inner, 1, dt.unit || 'EA');
                    addQuantity(dt.outer, 1, dt.unit || 'EA');
                 } else unmatchedItems.push({ type: 'double-tee', doubleSize });
@@ -1723,7 +1825,7 @@ export default {
             if (pSize && pSize !== localSize) {
               const mat = material;
               const resR = resolveReducerPart({ fromSize: localSize, toSize: pSize, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: pSize, material });
-              if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+              if (resR?.partName) addQuantity(resR.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > size`, type: 'reducer', fieldValues: { fromSize: localSize, toSize: pSize, material } });
               else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: pSize, material });
               localSize = pSize;
             }
@@ -1731,42 +1833,43 @@ export default {
             if (panel.valve && panel.valve !== 'none') {
               const vType = normalizeValveTypeForRule(panel.valve);
               const resV = resolveValvePart({ connector: panel.valveConnector || '', size: localSize, valveType: vType });
-              if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+              if (resV?.partName) addQuantity(resV.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > valve`, type: 'valve', fieldValues: { connectorType: panel.valveConnector, size: localSize, valveType: vType } });
               else unmatchedItems.push({ type: 'valve', valveType: vType, size: localSize, connector: panel.valveConnector });
             }
             if (panel.regulator) {
               const resReg = resolveValvePart({ connector: panel.valveConnector || '', size: localSize, valveType: 'REGULATOR' });
-              if (resReg?.partName) addQuantity(resReg.partName, 1, 'EA');
+              if (resReg?.partName) addQuantity(resReg.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > regulator`, type: 'regulator', fieldValues: { connectorType: panel.valveConnector, size: localSize, valveType: 'REGULATOR' } });
               else unmatchedItems.push({ type: 'regulator', size: localSize, connector: panel.valveConnector });
             }
             if (panel.pressureGauge && panel.pressureGauge !== 'none') {
               const conn = panel.valveConnector || '';
               const resG = resolveGaugePart({ panelSize: '1/4"', panelConnector: conn, material });
-              if (resG?.partName) addQuantity(resG.partName, 1, 'EA');
+              if (resG?.partName) addQuantity(resG.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > pressureGauge`, type: 'gauge', fieldValues: { panelSize: '1/4"', panelConnector: conn, material } });
               else unmatchedItems.push({ type: 'gauge', panelSize: localSize, panelConnector: conn, material });
               
               if (conn !== 'SWG') {
                  const resK = resolveGasketPart({ panelSize: localSize, panelConnector: conn, material });
-                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA');
+                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > pressureGauge`, type: 'gasket', fieldValues: { panelSize: localSize, panelConnector: conn, material } });
                  else unmatchedItems.push({ type: 'gasket', size: localSize, connector: conn, material });
               }
             }
-            addVCRMaterials(localSize, panel.valveConnector || panel.connector || '', material, 2, pipelineType, doubleSize);
+            addVCRMaterials(localSize, panel.valveConnector || panel.connector || '', material, 2, pipelineType, doubleSize, { ...contextMeta, sourcePath: `${contextMeta.basePath} > Panel卡 > connector` });
           }
 
           const adds = Array.isArray(group.additionalEquipmentCards) ? group.additionalEquipmentCards : [];
-          adds.forEach(card => {
+          adds.forEach((card, additionalIndex) => {
             const vData = card.valve?.data || {};
             const addSize = vData.size || card.connector || localSize; 
+            const additionalMeta = { ...contextMeta, sourcePath: `${contextMeta.basePath} > 附加設備卡${additionalIndex + 1}` };
             
             if (addSize === localSize) {
               const resT = resolveTsmcTee({ size: localSize, material });
-              if (resT?.partName) addQuantity(resT.partName, 1, 'EA');
+              if (resT?.partName) addQuantity(resT.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > valve.size`, type: 'tee', fieldValues: { size: localSize, material } });
               else unmatchedItems.push({ type: 'tee', size: localSize, material });
             } else {
               const mat = material;
               const resRT = resolveReducerTeePart({ mainSize: localSize, branchSize: addSize, material: mat }) || resolveReducerTeePart({ mainSize: localSize, branchSize: addSize, material });
-              if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA');
+              if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > valve.size`, type: 'reducer-tee', fieldValues: { mainSize: localSize, branchSize: addSize, material } });
               else unmatchedItems.push({ type: 'reducer-tee', mainSize: localSize, branchSize: addSize, material });
             }
 
@@ -1774,31 +1877,49 @@ export default {
                if (vData.size && vData.size !== localSize) {
                   const mat = material;
                   const res = resolveReducerPart({ fromSize: localSize, toSize: vData.size, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: vData.size, material });
-                  if (res?.partName) addQuantity(res.partName, 1, 'EA');
+                  if (res?.partName) addQuantity(res.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > valve.size`, type: 'reducer', fieldValues: { fromSize: localSize, toSize: vData.size, material } });
                   else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: vData.size, material });
                   localSize = vData.size;
                }
                const vType = normalizeValveTypeForRule(vData.valveType);
                const resV = resolveValvePart({ connector: vData.connectorType || '', size: localSize, valveType: vType });
-               if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+               if (resV?.partName) addQuantity(resV.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > valve`, type: 'valve', fieldValues: { connectorType: vData.connectorType, size: localSize, valveType: vType } });
                else unmatchedItems.push({ type: 'valve', valveType: vType, size: localSize, connector: vData.connectorType });
                
                
-               addVCRMaterials(localSize, vData.connectorType, material, 2, pipelineType, doubleSize);
+               addVCRMaterials(localSize, vData.connectorType, material, 2, pipelineType, doubleSize, { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > valve.connectorType` });
             }
             if (card.pressureGauge && card.pressureGauge !== 'none') {
                const conn = card.connector || panel.connector || '';
                const resG = resolveGaugePart({ panelSize: '1/4"', panelConnector: conn, material });
-               if (resG?.partName) addQuantity(resG.partName, 1, 'EA');
+               if (resG?.partName) addQuantity(resG.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > pressureGauge`, type: 'gauge', fieldValues: { panelSize: '1/4"', panelConnector: conn, material } });
                else unmatchedItems.push({ type: 'gauge', panelSize: localSize, panelConnector: conn, material });
                
                if (conn !== 'SWG') {
                  const resK = resolveGasketPart({ panelSize: localSize, panelConnector: conn, material });
-                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA');
+                 if (resK?.partName) addQuantity(resK.partName, 1, 'EA', { ...additionalMeta, sourcePath: `${additionalMeta.sourcePath} > pressureGauge`, type: 'gasket', fieldValues: { panelSize: localSize, panelConnector: conn, material } });
                  else unmatchedItems.push({ type: 'gasket', size: localSize, connector: conn, material });
                }
             }
           });
+
+          const branchValveData = group.branchValve?.data || null;
+          if (branchValveData) {
+            const branchValveSize = branchValveData.size || '';
+            if (branchValveSize && branchValveSize === localSize) {
+              const resT = resolveTsmcTee({ size: localSize, material });
+              if (resT?.partName) {
+                addQuantity(resT.partName, 1, 'EA', {
+                  ...contextMeta,
+                  sourcePath: `${contextMeta.basePath} > 分支閥件 > size`,
+                  type: 'tee',
+                  fieldValues: { size: localSize, material }
+                });
+              } else {
+                unmatchedItems.push({ type: 'tee', size: localSize, material });
+              }
+            }
+          }
 
           // Equipment ...
           const eqCard = group.equipment;
@@ -1807,11 +1928,11 @@ export default {
             if (eData.size && eData.size !== localSize) {
               const mat = material;
               const resR = resolveReducerPart({ fromSize: localSize, toSize: eData.size, material: mat }) || resolveReducerPart({ fromSize: localSize, toSize: eData.size, material });
-              if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+              if (resR?.partName) addQuantity(resR.partName, 1, 'EA', { ...contextMeta, sourcePath: `${contextMeta.basePath} > Equipment卡 > size`, type: 'reducer', fieldValues: { fromSize: localSize, toSize: eData.size, material } });
               else unmatchedItems.push({ type: 'reducer', fromSize: localSize, toSize: eData.size, material });
               localSize = eData.size;
             }
-            addVCRMaterials(localSize, eData.connector, material, 1, pipelineType, doubleSize);
+            addVCRMaterials(localSize, eData.connector, material, 1, pipelineType, doubleSize, { ...contextMeta, sourcePath: `${contextMeta.basePath} > Equipment卡 > connector` });
           }
         };
 
@@ -1821,33 +1942,34 @@ export default {
         
         if (pipelineType === '雙套管' && doubleSize) {
           const ss = resolveStopSpacerPart({ doubleSize });
-          if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA');
+          if (ss?.partName) addQuantity(ss.partName, 1, ss.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Source卡 > pipelineType`, type: 'stop-spacer', fieldValues: { doubleSize } });
           else unmatchedItems.push({ type: 'stop-spacer', doubleSize });
         }
         if (sourceData.connectorSpec && (sourceData.connectorSpec === 'VCR-M' || sourceData.connectorSpec === 'VCR-F')) {
-          addVCRMaterials(currentRunSize, sourceData.connectorSpec, mainMaterial, 1, pipelineType, doubleSize);
+          addVCRMaterials(currentRunSize, sourceData.connectorSpec, mainMaterial, 1, pipelineType, doubleSize, { sourcePath: `模組${moduleIndex + 1} > Source卡 > connectorSpec` });
         }
 
         // B / C 分支管線 => branchModules
         const branchModules = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
-        branchModules.forEach((bm) => {
+        branchModules.forEach((bm, branchModuleIndex) => {
           const branchEnabled = bm?.valve?.data?.enableValve !== false;
+          const branchBasePath = `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1}`;
 
           let branchSize = bm?.source?.data?.branchSourceSize || bm?.valve?.data?.size || '';
           if (branchSize && branchSize !== currentRunSize) {
             const mat = mainMaterial;
             const resRT = resolveReducerTeePart({ mainSize: currentRunSize, branchSize, material: mat }) || resolveReducerTeePart({ mainSize: currentRunSize, branchSize, material: mainMaterial });
-            if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA');
+            if (resRT?.partName) addQuantity(resRT.partName, 1, 'EA', { sourcePath: `${branchBasePath} > Source卡 > branchSourceSize`, type: 'reducer-tee', fieldValues: { mainSize: currentRunSize, branchSize, material: mainMaterial } });
             else unmatchedItems.push({ type: 'reducer-tee', mainSize: currentRunSize, branchSize, material: mainMaterial });
           } else {
             const resT = resolveTsmcTee({ size: currentRunSize, material: mainMaterial });
-            if (resT?.partName) addQuantity(resT.partName, 1, 'EA');
+            if (resT?.partName) addQuantity(resT.partName, 1, 'EA', { sourcePath: `${branchBasePath} > Source卡`, type: 'tee', fieldValues: { size: currentRunSize, material: mainMaterial } });
             else unmatchedItems.push({ type: 'tee', size: currentRunSize, material: mainMaterial });
             branchSize = currentRunSize;
           }
 
           if (bm.source?.data?.connectorSpec) {
-             addVCRMaterials(branchSize, bm.source.data.connectorSpec, mainMaterial, 1, pipelineType, doubleSize);
+             addVCRMaterials(branchSize, bm.source.data.connectorSpec, mainMaterial, 1, pipelineType, doubleSize, { sourcePath: `${branchBasePath} > Source卡 > connectorSpec` });
           }
 
           // C區塊 -> 分支主閥件
@@ -1855,55 +1977,56 @@ export default {
           if (bValve.size && bValve.size !== branchSize) {
             const mat = mainMaterial;
             const resR = resolveReducerPart({ fromSize: branchSize, toSize: bValve.size, material: mat }) || resolveReducerPart({ fromSize: branchSize, toSize: bValve.size, material: mainMaterial });
-            if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+            if (resR?.partName) addQuantity(resR.partName, 1, 'EA', { sourcePath: `${branchBasePath} > Valve卡 > size`, type: 'reducer', fieldValues: { fromSize: branchSize, toSize: bValve.size, material: mainMaterial } });
             else unmatchedItems.push({ type: 'reducer', fromSize: branchSize, toSize: bValve.size, material: mainMaterial });
             branchSize = bValve.size;
           }
           
           const vType = normalizeValveTypeForRule(bValve.valveType);
           const resV = resolveValvePart({ connector: bValve.connectorType || '', size: branchSize, valveType: vType });
-          if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+          if (resV?.partName) addQuantity(resV.partName, 1, 'EA', { sourcePath: `${branchBasePath} > Valve卡`, type: 'valve', fieldValues: { connectorType: bValve.connectorType, size: branchSize, valveType: vType } });
           else unmatchedItems.push({ type: 'valve', valveType: vType, size: branchSize, connector: bValve.connectorType });
           
           
-          addVCRMaterials(branchSize, bValve.connectorType, mainMaterial, 2, pipelineType, doubleSize);
+          addVCRMaterials(branchSize, bValve.connectorType, mainMaterial, 2, pipelineType, doubleSize, { sourcePath: `${branchBasePath} > Valve卡 > connectorType` });
 
           if (!branchEnabled) return;
 
           // 分支盤面 G / H
           const bGroups = Array.isArray(bm.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
-          bGroups.forEach(group => {
-             processGroupComponents(group, branchSize, mainMaterial, { isBranch: true, pipelineType, doubleSize });
+          bGroups.forEach((group, groupIndex) => {
+             processGroupComponents(group, branchSize, mainMaterial, { isBranch: true, pipelineType, doubleSize, contextMeta: { basePath: `${branchBasePath} > 盤面群組${groupIndex + 1}` } });
           });
         });
 
         // D / F 區塊 主線閥件
         const mainValves = Array.isArray(moduleSet.valveCards) ? moduleSet.valveCards : [];
-        mainValves.forEach((vCard) => {
+        mainValves.forEach((vCard, valveIndex) => {
           const vData = vCard.data || {};
           if (!vData.valveType || vData.valveType === 'NA') return;
+          const valvePath = `模組${moduleIndex + 1} > 主線閥件卡${valveIndex + 1}`;
           
           if (vData.size && vData.size !== currentRunSize) {
             const mat = mainMaterial;
             const resR = resolveReducerPart({ fromSize: currentRunSize, toSize: vData.size, material: mat }) || resolveReducerPart({ fromSize: currentRunSize, toSize: vData.size, material: mainMaterial });
-            if (resR?.partName) addQuantity(resR.partName, 1, 'EA');
+            if (resR?.partName) addQuantity(resR.partName, 1, 'EA', { sourcePath: `${valvePath} > size`, type: 'reducer', fieldValues: { fromSize: currentRunSize, toSize: vData.size, material: mainMaterial } });
             else unmatchedItems.push({ type: 'reducer', fromSize: currentRunSize, toSize: vData.size, material: mainMaterial });
             currentRunSize = vData.size;
           }
           
           const vType = normalizeValveTypeForRule(vData.valveType);
           const resV = resolveValvePart({ connector: vData.connectorType || '', size: currentRunSize, valveType: vType });
-          if (resV?.partName) addQuantity(resV.partName, 1, 'EA');
+          if (resV?.partName) addQuantity(resV.partName, 1, 'EA', { sourcePath: valvePath, type: 'valve', fieldValues: { connectorType: vData.connectorType, size: currentRunSize, valveType: vType } });
           else unmatchedItems.push({ type: 'valve', valveType: vType, size: currentRunSize, connector: vData.connectorType });
           
           
-          addVCRMaterials(currentRunSize, vData.connectorType, mainMaterial, 2, pipelineType, doubleSize);
+          addVCRMaterials(currentRunSize, vData.connectorType, mainMaterial, 2, pipelineType, doubleSize, { sourcePath: `${valvePath} > connectorType` });
         });
 
         // L / M 區塊 主盤面
         const mainGroups = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
-        mainGroups.forEach(group => {
-           processGroupComponents(group, currentRunSize, mainMaterial, { isBranch: false, pipelineType, doubleSize });
+        mainGroups.forEach((group, groupIndex) => {
+           processGroupComponents(group, currentRunSize, mainMaterial, { isBranch: false, pipelineType, doubleSize, contextMeta: { basePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1}` } });
         });
 
         // 管線
@@ -1912,10 +2035,10 @@ export default {
           const pipeRes = resolvePipePart({ pipelineType, size: currentRunSize, material: mainMaterial, doubleSize });
           if (pipeRes) {
             if (pipelineType === '雙套管' && pipeRes.inner && pipeRes.outer) {
-               addQuantity(pipeRes.inner, pipelineLength, 'M');
-               addQuantity(pipeRes.outer, pipelineLength, 'M');
+               addQuantity(pipeRes.inner, pipelineLength, 'M', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'pipeline-inner', fieldValues: { pipelineType, size: currentRunSize, material: mainMaterial, doubleSize } });
+               addQuantity(pipeRes.outer, pipelineLength, 'M', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'pipeline-outer', fieldValues: { pipelineType, size: currentRunSize, material: mainMaterial, doubleSize } });
             } else if (typeof pipeRes === 'string') {
-               addQuantity(pipeRes, pipelineLength, 'M');
+               addQuantity(pipeRes, pipelineLength, 'M', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'pipeline', fieldValues: { pipelineType, size: currentRunSize, material: mainMaterial } });
             }
           } else {
              unmatchedItems.push({ type: 'pipeline', pipelineType, size: currentRunSize, material: mainMaterial, quantity: pipelineLength });
@@ -1923,17 +2046,17 @@ export default {
 
           if (pipelineType === '雙套管' && doubleSize) {
             const springResolved = resolveSpringPart({ doubleSize });
-            if (springResolved?.partName) addQuantity(springResolved.partName, pipelineLength * 0.75, springResolved.unit || 'EA');
+            if (springResolved?.partName) addQuantity(springResolved.partName, pipelineLength * 0.75, springResolved.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'spring', fieldValues: { doubleSize, pipelineLength } });
             else unmatchedItems.push({ type: 'spring', doubleSize, length: pipelineLength });
 
             const overTubeResolved = resolveOverTubePart({ doubleSize });
-            if (overTubeResolved?.partName) addQuantity(overTubeResolved.partName, pipelineLength * 0.5, overTubeResolved.unit || 'EA');
+            if (overTubeResolved?.partName) addQuantity(overTubeResolved.partName, pipelineLength * 0.5, overTubeResolved.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'over-tube', fieldValues: { doubleSize, pipelineLength } });
             else unmatchedItems.push({ type: 'over-tube', doubleSize, length: pipelineLength });
 
             const dElbow = resolveTsmcDoubleElbowPart({ doubleSize });
             if (dElbow?.inner && dElbow?.outer) {
-              addQuantity(dElbow.inner, pipelineLength * 0.3, dElbow.unit || 'EA');
-              addQuantity(dElbow.outer, pipelineLength * 0.3, dElbow.unit || 'EA');
+              addQuantity(dElbow.inner, pipelineLength * 0.3, dElbow.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'double-elbow-inner', fieldValues: { doubleSize, pipelineLength } });
+              addQuantity(dElbow.outer, pipelineLength * 0.3, dElbow.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'double-elbow-outer', fieldValues: { doubleSize, pipelineLength } });
             }
             
           } else {
@@ -1944,7 +2067,7 @@ export default {
               const raw = pipelineLength / divisor;
               const qty = elbowResolved.round === 'floor' ? Math.floor(raw) : Math.ceil(raw);
               if (qty > 0) {
-                addQuantity(elbowResolved.partName, qty, elbowResolved.unit || 'EA');
+                addQuantity(elbowResolved.partName, qty, elbowResolved.unit || 'EA', { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'elbow', fieldValues: { size: currentRunSize, material: mainMaterial, pipelineLength, divisor } });
               }
             }
           }
@@ -1956,8 +2079,8 @@ export default {
       }
 
       console.log('--- [ TSMC 匯出原始數據 ] ---');
-      console.log('partQuantities:', Object.fromEntries(partQuantities));
-      console.log('unmatchedItems:', unmatchedItems);
+      console.log('比對成功的料號 partQuantities:', Object.fromEntries(partQuantities));
+      console.log('未比對成功的料號 unmatchedItems:', unmatchedItems);
       console.log('-----------------------------');
       return { partQuantities, unmatchedItems };
     },
@@ -1965,14 +2088,15 @@ export default {
       const rowsByPartNo = new Map();
       const unmatchedItems = [];
 
-      const addRow = ({ name, partNo, unit, quantity }) => {
+      const addRow = ({ name, partNo, unit, quantity, matchInfo }) => {
         if (!name || !partNo) return;
         const qty = Number(quantity);
         if (!Number.isFinite(qty) || qty <= 0) return;
         const existing = rowsByPartNo.get(partNo);
+        const matchInfoStr = this.buildMatchInfoStr(matchInfo);
         if (existing) {
           existing.quantity += qty;
-          console.log(`✅ [Juxian 成功比對 - 累加]品名: ${name}, 料號: ${partNo}, 新增數量: ${qty} ${unit} (總數: ${existing.quantity})`);
+          console.log(`✅ [Juxian 成功比對 - 累加]品名: ${name}, 料號: ${partNo}, 新增數量: ${qty} ${unit} (總數: ${existing.quantity})${matchInfoStr}`);
           return;
         }
         rowsByPartNo.set(partNo, {
@@ -1981,7 +2105,7 @@ export default {
           unit: unit || 'EA',
           quantity: qty
         });
-        console.log(`✅ [Juxian 成功比對 - 新增]品名: ${name}, 料號: ${partNo}, 數量: ${qty} ${unit}`);
+        console.log(`✅ [Juxian 成功比對 - 新增]品名: ${name}, 料號: ${partNo}, 數量: ${qty} ${unit}${matchInfoStr}`);
       };
 
       if (!Array.isArray(this.allModuleSets)) {
@@ -2069,8 +2193,28 @@ export default {
             pipelineType,
             size: referenceSize,
             material,
-            brand: pipelineBrand
+            brand: pipelineBrand,
+            doubleSize: sourceData.doubleSleeveSize || ''
           });
+
+          if (pipelineType === '雙套管' && resolved?.inner && resolved?.outer) {
+            addRow({
+              name: resolved.inner.name,
+              partNo: resolved.inner.partNo,
+              unit: resolved.inner.unit || 'M',
+              quantity: length,
+              matchInfo: { ...meta, type: 'pipeline-inner', fieldValues: { pipelineType, size: referenceSize, material, brand: pipelineBrand, doubleSize: sourceData.doubleSleeveSize || '' } }
+            });
+            addRow({
+              name: resolved.outer.name,
+              partNo: resolved.outer.partNo,
+              unit: resolved.outer.unit || 'M',
+              quantity: length,
+              matchInfo: { ...meta, type: 'pipeline-outer', fieldValues: { pipelineType, size: referenceSize, material, brand: pipelineBrand, doubleSize: sourceData.doubleSleeveSize || '' } }
+            });
+            return { length, material };
+          }
+
           if (!resolved?.name || !resolved?.partNo) {
             unmatchedItems.push({
               type: 'pipeline',
@@ -2089,7 +2233,8 @@ export default {
             name: resolved.name,
             partNo: resolved.partNo,
             unit: resolved.unit || 'M',
-            quantity: length
+            quantity: length,
+            matchInfo: { ...meta, type: 'pipeline', fieldValues: { pipelineType, size: referenceSize, material, brand: pipelineBrand } }
           });
           return { length, material };
         };
@@ -2098,21 +2243,14 @@ export default {
           pipelineData,
           referenceSize,
           materialFallback: '',
-          meta: { location: 'main' }
+          meta: { location: 'main', sourcePath: `模組${moduleIndex + 1} > Pipeline卡` }
         });
         const mainMaterial = mainPipeResult.material || (pipelineData.material || '').trim();
         const pipelineLength = mainPipeResult.length;
         const doubleSize = sourceData.doubleSleeveSize || '';
         const stopSpacerBrand = (this.juxianExportSettings?.stopSpacerBrand || '').trim();
 
-        // 雙套管 源頭 A-6 Stop Spacer
-        if (pipelineType === PIPELINE_TYPE.DOUBLE && doubleSize && stopSpacerBrand) {
-           const resolved = resolveJuxianStopSpacer({ pipelineType, doubleSize, brand: stopSpacerBrand });
-           if (resolved?.partNo) addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
-           else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: stopSpacerBrand, quantity: 1, unit: 'EA' });
-        } else if (pipelineType === PIPELINE_TYPE.DOUBLE && doubleSize && !stopSpacerBrand) {
-           unmatchedItems.push({ type: 'stop-spacer', moduleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
-        }
+
 
           // 配件 - ELBOW：聚賢不特別匯出 ELBOW (根據使用者比對列表移除)
 
@@ -2127,7 +2265,7 @@ export default {
             pipelineData: bmPipe,
             referenceSize: bmValveSize || referenceSize,
             materialFallback: mainMaterial,
-            meta: { location: 'branch', branchModuleIndex }
+            meta: { location: 'branch', branchModuleIndex, sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > Pipeline卡` }
           });
         });
 
@@ -2150,7 +2288,7 @@ export default {
             brand: reducerTeeBrand
           });
           if (resolved?.partNo) {
-            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > Source卡 > branchSourceSize`, type: 'reducer-tee', fieldValues: { mainSize: mainValveSize, branchSize, material: mainMaterial, brand: reducerTeeBrand } } });
           } else {
             unmatchedItems.push({
               type: 'reducer-tee',
@@ -2177,7 +2315,7 @@ export default {
             brand: teeBrand
           });
           if (resolved?.partNo) {
-            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > Source卡`, type: 'tee', fieldValues: { size: mainValveSize, material: mainMaterial, brand: teeBrand } } });
           } else {
             unmatchedItems.push({
               type: 'tee',
@@ -2190,6 +2328,63 @@ export default {
               unit: 'EA'
             });
           }
+        });
+
+        const mainPanelGroupsForBranchValveTee = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        mainPanelGroupsForBranchValveTee.forEach((group, groupIndex) => {
+          const branchValveSize = group?.branchValve?.data?.size || '';
+          if (!mainValveSize || !branchValveSize || !mainMaterial || !teeBrand) return;
+          if (branchValveSize !== mainValveSize) return;
+          const resolved = resolveJuxianTee({
+            size: mainValveSize,
+            material: mainMaterial,
+            brand: teeBrand
+          });
+          if (resolved?.partNo) {
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > BranchValve卡 > size`, type: 'tee', fieldValues: { size: mainValveSize, material: mainMaterial, brand: teeBrand } } });
+          } else {
+            unmatchedItems.push({
+              type: 'tee',
+              moduleIndex,
+              groupIndex,
+              size: mainValveSize,
+              material: mainMaterial,
+              brand: teeBrand,
+              quantity: 1,
+              unit: 'EA'
+            });
+          }
+        });
+
+        const mainPanelGroupsForAdditionalTee = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
+        mainPanelGroupsForAdditionalTee.forEach((group, groupIndex) => {
+          const panelSize = group?.panel?.data?.size || mainValveSize;
+          const additionalCards = Array.isArray(group?.additionalEquipmentCards) ? group.additionalEquipmentCards : [];
+          additionalCards.forEach((card, additionalIndex) => {
+            const additionalSize = card?.data?.size || panelSize;
+            if (!panelSize || !additionalSize || !mainMaterial || !teeBrand) return;
+            if (additionalSize !== panelSize) return;
+            const resolved = resolveJuxianTee({
+              size: panelSize,
+              material: mainMaterial,
+              brand: teeBrand
+            });
+            if (resolved?.partNo) {
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > 附加設備卡${additionalIndex + 1} > size`, type: 'tee', fieldValues: { size: panelSize, material: mainMaterial, brand: teeBrand } } });
+            } else {
+              unmatchedItems.push({
+                type: 'tee',
+                moduleIndex,
+                groupIndex,
+                additionalIndex,
+                size: panelSize,
+                material: mainMaterial,
+                brand: teeBrand,
+                quantity: 1,
+                unit: 'EA'
+              });
+            }
+          });
         });
 
         // 雙套管 盤面專屬邏輯 (D-2 / F-2)
@@ -2213,14 +2408,12 @@ export default {
              const bGroups = Array.isArray(bm.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
              bGroups.forEach(group => {
                if (group?.panel?.data?.enablePanel) {
-                 // Stop Spacer
                  if (stopSpacerBrand) {
                    const resSS = resolveJuxianStopSpacer({ pipelineType, doubleSize, brand: stopSpacerBrand });
                    if (resSS?.partNo) addRow({ name: resSS.name, partNo: resSS.partNo, unit: 'EA', quantity: 1 });
                    else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, branchModuleIndex, doubleSize, brand: stopSpacerBrand, quantity: 1, unit: 'EA' });
                  } else unmatchedItems.push({ type: 'stop-spacer', moduleIndex, branchModuleIndex, doubleSize, brand: '', quantity: 1, unit: 'EA' });
                  
-                 // Double Tee
                  if (dtBrand) {
                    const resDT = resolveJuxianDoubleTee({ pipelineType, doubleSize, brand: dtBrand });
                    if (resDT?.partNo) addRow({ name: resDT.name, partNo: resDT.partNo, unit: 'EA', quantity: 1 });
@@ -2230,6 +2423,8 @@ export default {
              });
           });
         }
+
+
 
         // 配件 - REDUCER (盤面尺寸 != 設備尺寸)
         const groupsForReducer = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
@@ -2247,7 +2442,7 @@ export default {
             brand: reducerBrand
           });
           if (resolved?.partNo) {
-            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { sourcePath: `模組${moduleIndex + 1} > 主盤面群組 > Panel卡 / Equipment卡 > size`, type: 'reducer', fieldValues: { fromSize: pSize, toSize: eSize, material: mainMaterial, brand: reducerBrand } } });
           } else {
             unmatchedItems.push({
               type: 'reducer',
@@ -2279,7 +2474,7 @@ export default {
                   brand: doubleElbowBrand
                 });
                 if (resolved?.partNo) {
-                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty, matchInfo: { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'double-elbow', fieldValues: { pipelineType, doubleSize, brand: doubleElbowBrand } } });
                 } else {
                   unmatchedItems.push({
                     type: 'double-elbow',
@@ -2316,7 +2511,7 @@ export default {
                 brand: stopSpacerBrand
               });
               if (resolved?.partNo) {
-                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty, matchInfo: { sourcePath: `模組${moduleIndex + 1} > Source卡 > pipelineType`, type: 'stop-spacer', fieldValues: { pipelineType, doubleSize, enabledPanels, brand: stopSpacerBrand } } });
               } else {
                 unmatchedItems.push({
                   type: 'stop-spacer',
@@ -2349,7 +2544,7 @@ export default {
             if (springBrand) {
               const resolved = resolveJuxianSpring({ pipelineType, doubleSize, brand: springBrand });
               if (resolved?.partNo) {
-                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty, matchInfo: { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'spring', fieldValues: { pipelineType, doubleSize, brand: springBrand, pipelineLength } } });
               } else {
                 unmatchedItems.push({
                   type: 'spring',
@@ -2380,7 +2575,7 @@ export default {
             if (overTubeBrand) {
               const resolved = resolveJuxianOverTube({ pipelineType, doubleSize, brand: overTubeBrand });
               if (resolved?.partNo) {
-                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty });
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: qty, matchInfo: { sourcePath: `模組${moduleIndex + 1} > Pipeline卡`, type: 'over-tube', fieldValues: { pipelineType, doubleSize, brand: overTubeBrand, pipelineLength } } });
               } else {
                 unmatchedItems.push({
                   type: 'over-tube',
@@ -2434,7 +2629,7 @@ export default {
             brand
           });
           if (resolved?.partNo) {
-            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+            addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { moduleIndex, ...meta, type: 'valve', fieldValues: { connectorType: connector, size, valveType: valveTypeRule, brand } } });
           } else {
             unmatchedItems.push({
               type: 'valve',
@@ -2451,6 +2646,7 @@ export default {
         };
 
         let currentRunSize = sourceData.sourceSize || '';
+
         const valveCards = Array.isArray(moduleSet.valveCards) ? moduleSet.valveCards : [];
         valveCards.forEach((card, valveIndex) => {
           const data = card?.data || {};
@@ -2460,7 +2656,7 @@ export default {
              if (reducerBrand) {
                 const resR = resolveJuxianReducer({ fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: reducerBrand });
                 if (resR?.partNo) {
-                   addRow({ name: resR.name, partNo: resR.partNo, unit: 'EA', quantity: 1 });
+                   addRow({ name: resR.name, partNo: resR.partNo, unit: 'EA', quantity: 1 , matchInfo: { type: 'reducer', moduleIndex, fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: reducerBrand, quantity: 1, unit: 'EA' }});
                 } else {
                    unmatchedItems.push({ type: 'reducer', moduleIndex, fromSize: currentRunSize, toSize: data.size, material: mainMaterial, brand: reducerBrand, quantity: 1, unit: 'EA' });
                 }
@@ -2474,7 +2670,7 @@ export default {
             connector: data.connectorType,
             size: data.size,
             valveType: data.valveType,
-            meta: { valveIndex }
+            meta: { valveIndex, sourcePath: `模組${moduleIndex + 1} > 主線閥件卡${valveIndex + 1}` }
           });
         });
 
@@ -2485,7 +2681,7 @@ export default {
             connector: data.connectorType,
             size: data.size,
             valveType: data.valveType,
-            meta: { branchModuleIndex }
+            meta: { branchModuleIndex, sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > Valve卡` }
           });
 
           const branchEnabled = bm?.valve?.data?.enableValve !== false;
@@ -2497,14 +2693,14 @@ export default {
               connector: v.connectorType,
               size: v.size,
               valveType: v.valveType,
-              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-valve' }
+              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-valve', sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > 盤面群組${panelEquipmentGroupIndex + 1} > Valve卡` }
             });
             const bv = g?.branchValve?.data || {};
             addValveFromCardData({
               connector: bv.connectorType,
               size: bv.size,
               valveType: bv.valveType,
-              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-branchValve' }
+              meta: { branchModuleIndex, panelEquipmentGroupIndex, location: 'branch-group-branchValve', sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > 盤面群組${panelEquipmentGroupIndex + 1} > BranchValve卡` }
             });
           });
         });
@@ -2516,14 +2712,14 @@ export default {
             connector: v.connectorType,
             size: v.size,
             valveType: v.valveType,
-            meta: { groupIndex, location: 'group-valve' }
+            meta: { groupIndex, location: 'group-valve', sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > Valve卡` }
           });
           const bv = group?.branchValve?.data || {};
           addValveFromCardData({
             connector: bv.connectorType,
             size: bv.size,
             valveType: bv.valveType,
-            meta: { groupIndex, location: 'group-branchValve' }
+            meta: { groupIndex, location: 'group-branchValve', sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > BranchValve卡` }
           });
           const adds = Array.isArray(group?.additionalEquipmentCards) ? group.additionalEquipmentCards : [];
           adds.forEach((ae, additionalIndex) => {
@@ -2532,7 +2728,7 @@ export default {
               connector: av.connectorType,
               size: av.size,
               valveType: av.valveType,
-              meta: { groupIndex, additionalIndex, location: 'additionalEquipment-valve' }
+              meta: { groupIndex, additionalIndex, location: 'additionalEquipment-valve', sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > 附加設備卡${additionalIndex + 1} > Valve卡` }
             });
           });
         });
@@ -2540,11 +2736,11 @@ export default {
         // 盤面閥件/Regulator/Gauge + GLAND/NUT/GASKET：每個啟用盤面獨立計算
         const allPanelGroups = [];
         const topGroups = Array.isArray(moduleSet.panelEquipmentGroups) ? moduleSet.panelEquipmentGroups : [];
-        topGroups.forEach((g) => allPanelGroups.push({ group: g, meta: { location: 'main' } }));
+        topGroups.forEach((g, groupIndex) => allPanelGroups.push({ group: g, meta: { location: 'main', groupIndex, sourcePath: `模組${moduleIndex + 1} > 主盤面群組${groupIndex + 1} > Panel卡` } }));
         const bms = Array.isArray(moduleSet.branchModuleCards) ? moduleSet.branchModuleCards : [];
         bms.forEach((bm, branchModuleIndex) => {
           const bg = Array.isArray(bm?.panelEquipmentGroups) ? bm.panelEquipmentGroups : [];
-          bg.forEach((g) => allPanelGroups.push({ group: g, meta: { location: 'branch', branchModuleIndex } }));
+          bg.forEach((g, groupIndex) => allPanelGroups.push({ group: g, meta: { location: 'branch', branchModuleIndex, groupIndex, sourcePath: `模組${moduleIndex + 1} > 分支模組${branchModuleIndex + 1} > 盤面群組${groupIndex + 1} > Panel卡` } }));
         });
         allPanelGroups.forEach(({ group, meta }) => {
           const panel = group?.panel?.data || {};
@@ -2566,7 +2762,7 @@ export default {
                   brand
                 });
                 if (resolved?.partNo) {
-                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+                  addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { moduleIndex, ...meta, type: 'panel-valve', fieldValues: { connectorType: panelConnector, size: panelSize, valveType: valveTypeRule, brand } } });
                 } else {
                   unmatchedItems.push({
                     type: 'panel-valve',
@@ -2608,7 +2804,7 @@ export default {
                 brand
               });
               if (resolved?.partNo) {
-                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+                addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { moduleIndex, ...meta, type: 'regulator', fieldValues: { connectorType: panelConnector, size: panelSize, valveType: 'REGULATOR', brand } } });
               } else {
                 unmatchedItems.push({
                   type: 'regulator',
@@ -2638,29 +2834,23 @@ export default {
 
           // Gauge（只有有調壓閥時才會選）
           if (panel.regulator && panel.pressureGauge === 'Gauge' && gaugeBrand) {
-            const gaugeMat = mainMaterial.replace('無縫', '有縫'); // gauge prefers seamed in Juxian!
             const resolved = resolveJuxianGauge({
-              panelSize: '1/4"',
-              panelConnector: 'TUBE',
+              panelSize,
+              panelConnector,
               material: mainMaterial,
-              brand: gaugeBrand
-            }) || resolveJuxianGauge({
-              panelSize: '1/4"',
-              panelConnector: 'TUBE',
-              material: gaugeMat,
               brand: gaugeBrand
             });
             
             if (resolved?.partNo) {
-              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1 });
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 1, matchInfo: { moduleIndex, ...meta, type: 'gauge', fieldValues: { panelSize, panelConnector, material: mainMaterial, brand: gaugeBrand } } });
             } else {
               unmatchedItems.push({
                 type: 'gauge',
                 moduleIndex,
                 ...meta,
-                panelSize: '1/4"',
-                panelConnector: 'TUBE',
-                material: gaugeMat,
+                panelSize,
+                panelConnector,
+                material: mainMaterial,
                 brand: gaugeBrand,
                 quantity: 1,
                 unit: 'EA'
@@ -2668,10 +2858,12 @@ export default {
             }
           }
 
-          if (panelConnector === 'VCR' && glandBrand) {
+          const isVcrConnector = ['VCR', 'VCR-M', 'VCR-F'].includes(panelConnector);
+
+          if (isVcrConnector && glandBrand) {
             const resolved = resolveJuxianGland({ panelSize, panelConnector, material: mainMaterial, brand: glandBrand });
             if (resolved?.partNo) {
-              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2, matchInfo: { moduleIndex, ...meta, type: 'gland', fieldValues: { panelSize, panelConnector, material: mainMaterial, brand: glandBrand } } });
             } else {
               unmatchedItems.push({
                 type: 'gland',
@@ -2686,10 +2878,10 @@ export default {
               });
             }
           }
-          if (panelConnector === 'VCR' && nutBrand) {
+          if (isVcrConnector && nutBrand) {
             const resolved = resolveJuxianNut({ panelSize, panelConnector, material: mainMaterial, brand: nutBrand });
             if (resolved?.partNo) {
-              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2, matchInfo: { moduleIndex, ...meta, type: 'nut', fieldValues: { panelSize, panelConnector, material: mainMaterial, brand: nutBrand } } });
             } else {
               unmatchedItems.push({
                 type: 'nut',
@@ -2704,10 +2896,10 @@ export default {
               });
             }
           }
-          if (panelConnector === 'VCR' && gasketBrand) {
+          if (isVcrConnector && gasketBrand) {
             const resolved = resolveJuxianGasket({ panelSize, panelConnector, material: mainMaterial, brand: gasketBrand });
             if (resolved?.partNo) {
-              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2 });
+              addRow({ name: resolved.name, partNo: resolved.partNo, unit: 'EA', quantity: 2, matchInfo: { moduleIndex, ...meta, type: 'gasket', fieldValues: { panelSize, panelConnector, material: mainMaterial, brand: gasketBrand } } });
             } else {
               unmatchedItems.push({
                 type: 'gasket',
@@ -18106,4 +18298,3 @@ LIBREOFFICE_INSTALL_GUIDE.md`,
   color: #dc2626;
 }
 </style>
-

@@ -513,7 +513,7 @@ function createWindow() {
                 nodeIntegration: false,
                 contextIsolation: true,
                 preload: preloadPath,
-                devTools: isDev // 只在開發模式下允許開發者工具
+                devTools: true // 允許開啟開發者工具 (配合手動快捷鍵)
             },
             show: false // 先不顯示,等載入完成
         });
@@ -521,6 +521,19 @@ function createWindow() {
         // 移除菜單欄
         mainWindow.setMenuBarVisibility(false);
         mainWindow.setMenu(null);
+
+        // 允許透過快捷鍵手動開關 DevTools (F12 或 Ctrl/Cmd + Shift + I)
+        mainWindow.webContents.on('before-input-event', (event, input) => {
+            if (input.type === 'keyDown') {
+                const isF12 = input.key === 'F12';
+                const isInspectShortcut = input.shift && input.key.toLowerCase() === 'i' && (input.control || input.meta);
+                
+                if (isF12 || isInspectShortcut) {
+                    mainWindow.webContents.toggleDevTools();
+                    event.preventDefault();
+                }
+            }
+        });
 
         // 捕獲控制台訊息
         mainWindow.webContents.on('console-message', (event, level, message, line, sourceId) => {
